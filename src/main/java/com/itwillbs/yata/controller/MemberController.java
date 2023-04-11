@@ -15,11 +15,12 @@ import com.itwillbs.yata.vo.MemberVO;
 
 @Controller
 public class MemberController {
+//	test
 	@Autowired
 	private MemberService memberService;
 	@GetMapping("login")
 	public String login() {
-
+		
 		return "member/member_login";
 	}
 	
