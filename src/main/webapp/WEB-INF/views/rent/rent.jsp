@@ -8,6 +8,30 @@
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <link rel="stylesheet" href="resources/css/rent.css">
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+  // 검색 버튼 클릭 이벤트
+  $('#search_button').on('click', function() {
+// 	debugger;
+    var car_model = $('#search_box').val();
+    
+	//  AJAX 요청 보내기
+    $.ajax({
+	      type: 'GET',
+	      url: '/search',
+	      data: { car_model: $('#search_box').val() },
+	      success: function(data) {
+	      },
+	      error: function(xhr, textStatus, errorThrown) {
+	        console.log(xhr.responseText);
+	      }
+	    });
+    
+  });
+});
+</script>
 <!-- 창용 지도 관련  -->
 <script type="text/javascript">
 	/* 지점선택창 누르면 #zoneSelect로 넘어가지면서 불투명도 0 ->1로 변경이 돼서 팝업창이 보임  */
@@ -496,10 +520,7 @@
 																		<button
 																			class="js-tab-insu-type-pc btn btn-light py-2 w-25"
 																			type="button" data-t="all">
-																			<div
-																				class="d-flex justify-content-center align-items-center">
-																				<span class="text-14 ml-1">전체</span>
-																			</div>
+																			
 																		</button>
 																		<button
 																			class="js-tab-insu-type-pc btn btn-light py-2 w-25"
@@ -533,289 +554,84 @@
 																		</button>
 																	</div>
 																</div>
-																<hr>
 															</div>
 															<div class="js-vf-section-hashtags">
-																<div class="form-group">
-																	<div class="text-14 font-weight-bold color-grey-5 mb-2">인기
-																		키워드</div>
-																	<div class="wordbreak-breakword w-100 text-14 mb-2"
-																		id="vf_container_hashtag_pc">
-																		<button
-																			class="js-btn-vf-hashtag btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																			data-id="골프여행">#골프여행</button>
-																		<button
-																			class="js-btn-vf-hashtag btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																			data-id="신차">#신차</button>
-																		<button
-																			class="js-btn-vf-hashtag btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																			data-id="오픈카">#오픈카</button>
-																		<button
-																			class="js-btn-vf-hashtag btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																			data-id="가족여행">#가족여행</button>
-																	</div>
-																</div>
-																<hr>
 															</div>
 															<div class="js-vf-section-branch-term">
-																<div class="form-group">
-																	<div class="text-14 font-weight-bold color-grey-5 mb-2">대여조건</div>
-																	<div class="dc-block">
-																		<label class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_branch_term_pc"
-																			value="0"><span
-																			class="checkbox-label color-grey-5">반려동물 동반 가능</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_branch_term_pc"
-																			value="1"><span
-																			class="checkbox-label color-grey-5">낚시용품 지참 가능</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_branch_term_pc"
-																			value="2"><span
-																			class="checkbox-label color-grey-5">군인대여 가능</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_branch_term_pc"
-																			value="3"><span
-																			class="checkbox-label color-grey-5">외국인대여 가능</span><span
-																			class="checkmark"></span></label>
-																	</div>
-																</div>
-																<hr>
 															</div>
 															<div class="js-vf-section-car-model">
 																<div class="form-group mb-0">
 																	<div class="text-14 font-weight-bold color-grey-5 mb-2">자동차
 																		모델</div>
 																	<div class="dc-flex">
-																		<div class="dc-block w-100">
-																			<div class="position-relative">
-																				<input
-																					class="js-input-deletable form-control form-control-sm"
-																					id="vf_car_model_input_pc"
-																					placeholder="자동차 모델명으로 검색할 수 있습니다" maxlength="20"
-																					size="1" max="9" pattern="" autocomplete="off"
-																					data-auto-carmodel="vf_dropdown_car_models_auto_pc">
-																				<div
-																					class="js-btn-delete-input btn-input-close-sm click-effect-press"
-																					data-input="vf_car_model_input_pc">
-																					<div class="wrapper">
-																						<img
-																							src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNDNEM0QzQiIGQ9Ik04IDE1YzMuODY2IDAgNy0zLjEzNCA3LTdzLTMuMTM0LTctNy03LTcgMy4xMzQtNyA3IDMuMTM0IDcgNyA3eiIvPgogICAgPHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNy4yOTMgOGwtMi4xMjEgMi4xMjIuNzA3LjcwN0w4IDguNzA3bDIuMTIyIDIuMTIyLjcwNy0uNzA3TDguNzA3IDggMTAuODMgNS44OGwtLjcwNy0uNzA3TDggNy4yOTMgNS44OCA1LjE3MmwtLjcwNy43MDdMNy4yOTMgOHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4K">
+																		<form action="search">
+																			<div class="dc-block w-100">
+																				<div class="position-relative">
+																					<input type="text" name="car_model" id="search_box" placeholder="자동차 모델명으로 검색할 수 있습니다">
+																					<input type="submit" class="btn btn-primary btn-sm px-3 ml-1"
+																					id="search_button" value="검색"></input>
+																					<div id="carList"></div>
+																					<div
+																						class="js-btn-delete-input btn-input-close-sm click-effect-press"
+																						data-input="vf_car_model_input_pc">
+																						<div class="wrapper">
+																							<img
+																								src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNDNEM0QzQiIGQ9Ik04IDE1YzMuODY2IDAgNy0zLjEzNCA3LTdzLTMuMTM0LTctNy03LTcgMy4xMzQtNyA3IDMuMTM0IDcgNyA3eiIvPgogICAgPHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNy4yOTMgOGwtMi4xMjEgMi4xMjIuNzA3LjcwN0w4IDguNzA3bDIuMTIyIDIuMTIyLjcwNy0uNzA3TDguNzA3IDggMTAuODMgNS44OGwtLjcwNy0uNzA3TDggNy4yOTMgNS44OCA1LjE3MmwtLjcwNy43MDdMNy4yOTMgOHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4K">
+																						</div>
 																					</div>
+																					<div class="dropdown-menu"
+																						id="vf_dropdown_car_models_auto_pc"
+																						style="max-height: 190px; overflow-y: scroll;"></div>
 																				</div>
-																				<div class="dropdown-menu"
-																					id="vf_dropdown_car_models_auto_pc"
-																					style="max-height: 190px; overflow-y: scroll;"></div>
 																			</div>
-																		</div>
-																		<button class="btn btn-primary btn-sm px-3 ml-1"
-																			id="js_vf_btn_car_model_apply_pc">검색</button>
+																		</form>
 																	</div>
-																	<hr>
 																</div>
 															</div>
 															<div class="js-vf-section-car-grade">
 																<div class="form-group">
-																	<div class="text-14 font-weight-bold color-grey-5 mb-2">차량등급</div>
 																	<div class="dc-block">
-																		<label class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_grade_all_pc"
-																			value="99"><span
-																			class="checkbox-label color-grey-5">전체</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_grade_pc"
-																			value="0"><span
-																			class="checkbox-label color-grey-5">경형</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"
-																			style="display: none;"><input type="checkbox"
-																			name="vf_check_car_grade_pc" value="1"><span
-																			class="checkbox-label color-grey-5">소형</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_grade_pc"
-																			value="2"><span
-																			class="checkbox-label color-grey-5">준중형</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_grade_pc"
-																			value="3"><span
-																			class="checkbox-label color-grey-5">중형</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_grade_pc"
-																			value="4"><span
-																			class="checkbox-label color-grey-5">대형</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_grade_pc"
-																			value="5"><span
-																			class="checkbox-label color-grey-5">수입</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_grade_pc"
-																			value="6"><span
-																			class="checkbox-label color-grey-5">승합RV</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_grade_pc"
-																			value="7"><span
-																			class="checkbox-label color-grey-5">SUV</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"
-																			style="display: none;"><input type="checkbox"
-																			name="vf_check_car_grade_pc" value="8"><span
-																			class="checkbox-label color-grey-5">왜건</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"
-																			style="display: none;"><input type="checkbox"
-																			name="vf_check_car_grade_pc" value="9"><span
-																			class="checkbox-label color-grey-5">스포츠</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"
-																			style="display: none;"><input type="checkbox"
-																			name="vf_check_car_grade_pc" value="10"><span
-																			class="checkbox-label color-grey-5">컨버터블</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"
-																			style="display: none;"><input type="checkbox"
-																			name="vf_check_car_grade_pc" value="11"><span
-																			class="checkbox-label color-grey-5">픽업트럭</span><span
-																			class="checkmark"></span></label>
 																	</div>
 																	<hr>
 																</div>
 															</div>
 															<div class="js-vf-section-fuels">
 																<div class="form-group mb-0">
-																	<div class="text-14 font-weight-bold color-grey-5 mb-2">연료</div>
+																	<div class="text-14 font-weight-bold color-grey-5 mb-2">보험</div>
 																	<div class="dc-block">
-																		<label class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_fuel_all_pc"
-																			value="99"><span
-																			class="checkbox-label color-grey-5">전체</span><span
+																		<label
+																			class="checkbox-container mr-2"><input
+																			type="checkbox" class="insurance" name="ins_normal" value="1"><span
+																			class="checkbox-label color-grey-5">일반자차</span><span
 																			class="checkmark"></span></label><label
 																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_fuel_pc" value="1"><span
-																			class="checkbox-label color-grey-5">휘발유</span><span
+																			type="checkbox" class="insurance" name="ins_perfect" value="2"><span
+																			class="checkbox-label color-grey-5">완전자차</span><span
 																			class="checkmark"></span></label><label
 																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_fuel_pc" value="2"><span
-																			class="checkbox-label color-grey-5">경유</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_fuel_pc" value="3"><span
-																			class="checkbox-label color-grey-5">LPG</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_fuel_pc" value="4"><span
-																			class="checkbox-label color-grey-5">전기</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" name="vf_check_car_fuel_pc" value="5"><span
-																			class="checkbox-label color-grey-5">하이브리드</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"
-																			style="display: none;"><input type="checkbox"
-																			name="vf_check_car_fuel_pc" value="6"><span
-																			class="checkbox-label color-grey-5">수소</span><span
+																			type="checkbox" class="insurance" name="ins_super" value="3"><span
+																			class="checkbox-label color-grey-5">슈퍼자차</span><span
 																			class="checkmark"></span></label>
 																	</div>
-																	<hr>
+																	&nbsp;
+																	
+																	<div class="col-6 col-lg-12 pb-lg-3">
+																		<img src="resources/images/보험.png" >
+																	</div>
 																</div>
 															</div>
 															<div class="js-vf-section-price-range">
 																<div
 																	class="dc-flex justify-content-between align-items-center">
-																	<div>
-																		<div
-																			class="text-14 mb-0 font-weight-bold color-grey-5">대여
-																			가격 선택</div>
-																	</div>
-																	<p class="mb-0 color-blue text-12">
-																		<span id="vf_txt_price_slider_lower_pc">0만원</span><span>&nbsp;
-																			~ &nbsp;</span><span id="vf_txt_price_slider_upper_pc">50만원
-																			이상</span>
-																	</p>
+																	
 																</div>
 																<div class="my-4 mx-2">
-																	<div id="vf_price_slider_pc" body-scroll-lock-ignore=""
-																		class="carmore-target carmore-ltr carmore-horizontal">
-																		<div class="carmore-base">
-																			<div class="carmore-connects">
-																				<div class="carmore-connect"
-																					style="transform: translate(0%, 0px) scale(1, 1);"></div>
-																			</div>
-																			<div class="carmore-origin"
-																				style="transform: translate(-100%, 0px); z-index: 5;">
-																				<div class="carmore-handle carmore-handle-lower"
-																					data-handle="0" tabindex="0" role="slider"
-																					aria-orientation="horizontal" aria-valuemin="0.0"
-																					aria-valuemax="50.0" aria-valuenow="0.0"
-																					aria-valuetext="0.00">
-																					<div class="carmore-touch-area"></div>
-																				</div>
-																			</div>
-																			<div class="carmore-origin"
-																				style="transform: translate(0%, 0px); z-index: 4;">
-																				<div class="carmore-handle carmore-handle-upper"
-																					data-handle="1" tabindex="0" role="slider"
-																					aria-orientation="horizontal" aria-valuemin="0.0"
-																					aria-valuemax="50.0" aria-valuenow="50.0"
-																					aria-valuetext="50.00">
-																					<div class="carmore-touch-area"></div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
 																</div>
-																<hr>
 															</div>
 															<div class="js-vf-section-insu-age form-group mb-0">
 																<div class="dc-flex justify-content-between">
-																	<div
-																		class="dc-flex align-items-center justify-content-start mb-2">
-																		<div>
-																			<div class="text-14 font-weight-bold color-grey-5">자동차보험
-																				나이</div>
-																			<div class="text-12 color-grey-5">보험가입 운전자의 만
-																				나이</div>
-																		</div>
-																	</div>
 																</div>
 																<div class="wordbreak-breakword w-100 text-14 mb-2">
-																	<button
-																		class="js-vf-btn-age btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block active"
-																		type="button" data-age="all"
-																		style="display: inline-block;">전체</button>
-																	<button
-																		class="js-vf-btn-age btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																		type="button" data-age="-1"
-																		style="display: inline-block;">21세 미만</button>
-																	<button
-																		class="js-vf-btn-age btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																		type="button" data-age="21"
-																		style="display: inline-block;">21세 이상</button>
-																	<button
-																		class="js-vf-btn-age btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																		type="button" data-age="23" style="display: none;">23세
-																		이상</button>
-																	<button
-																		class="js-vf-btn-age btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																		type="button" data-age="24" style="display: none;">24세
-																		이상</button>
-																	<button
-																		class="js-vf-btn-age btn btn-category px-2 py-1 mr-1 mb-2 dc-inline-block"
-																		type="button" data-age="26"
-																		style="display: inline-block;">26세 이상</button>
-																	<button
-																		class="js-vf-btn-age btn btn-category px-2 py-1 mb-2 dc-inline-block"
-																		type="button" data-age="30" style="display: none;">30세
-																		이상</button>
 																</div>
 
 																<div class="js-vf-container-calc-korean-age dc-none"

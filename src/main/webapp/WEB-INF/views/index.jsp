@@ -630,7 +630,7 @@
 										<div class="index-box-review swiper-slide swiper-slide-active"
 											role="group" aria-label="1 / 12" style="margin-right: 20px;">
 											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">5.0</div>
+												<div class="text-40 font-weight-bold text-primary">${review[0].review_star }</div>
 												<div
 													class="index-box-review-container-rate d-flex justify-content-center">
 													<img class="index-box-review-img-rate-star"
@@ -646,25 +646,21 @@
 												</div>
 												<div class="mt-3">
 													<div class="text-16 text-left">
-														<span class="index-txt-review-highlighter">카모아의
-															편리함도, 업체의 대응이나 친절도</span><span>도 마음에 들었습니다. 차량 상태도
-															좋았고요,&nbsp;</span><span class="index-txt-review-highlighter">사후
-															문제 대응도 탁월</span><span>하다는 생각이 들었습니다.<br>다음에도 또 같은
-															곳에서 빌리고 싶다는 생각이 들었어요!
-														</span>
+															<!-- 리뷰 내용 -->
+															${review[0].review_content }
 													</div>
 												</div>
 												<div class="index-box-review-bottom-box text-left">
 													<div class="index-txt-review-bottom-box-top text-14">제주에서
 														1일 렌트하신</div>
-													<div class="text-16-b text-white">김** 고객님</div>
+													<div class="text-16-b text-white">${review[0].member_name }님</div>
 												</div>
 											</div>
 										</div>
 										<div class="index-box-review swiper-slide swiper-slide-next"
 											role="group" aria-label="2 / 12" style="margin-right: 20px;">
 											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">4.9</div>
+												<div class="text-40 font-weight-bold text-primary">${review[1].review_star }</div>
 												<div
 													class="index-box-review-container-rate d-flex justify-content-center">
 													<img class="index-box-review-img-rate-star"
@@ -680,23 +676,20 @@
 												</div>
 												<div class="mt-3">
 													<div class="text-16 text-left">
-														<span>카쉐어링만 하다가 일반 렌터카 이용해봤는데요.<br>직원분들도&nbsp;
-														</span><span class="index-txt-review-highlighter">친절하고
-															차상태도 괜찮고</span><span>&nbsp;시외 첫 장거리운전 해봤는데 사고없이 안전운전
-															했습니다.</span>
+														${review[1].review_content }
 													</div>
 												</div>
 												<div class="index-box-review-bottom-box text-left">
 													<div class="index-txt-review-bottom-box-top text-14">부산에서
 														1일 렌트하신</div>
-													<div class="text-16-b text-white">유** 고객님</div>
+													<div class="text-16-b text-white">${review[1].member_name }님</div>
 												</div>
 											</div>
 										</div>
 										<div class="index-box-review swiper-slide" role="group"
 											aria-label="3 / 12" style="margin-right: 20px;">
 											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">5.0</div>
+												<div class="text-40 font-weight-bold text-primary">${review[2].review_star }</div>
 												<div
 													class="index-box-review-container-rate d-flex justify-content-center">
 													<img class="index-box-review-img-rate-star"
@@ -712,18 +705,11 @@
 												</div>
 												<div class="mt-3">
 													<div class="text-16 text-left">
-														<span class="index-txt-review-highlighter">픽업 서비스</span><span>도
-															좋았고요! 차량 상태에 대해 잘 이야기해주시고 계약하면서 어려운 부분도 잘 알려주셔서 감사했습니다.</span><span
-															class="index-txt-review-highlighter">업체도 친절</span><span>&nbsp;하고
-															대응 잘해주셔서 편하게 렌트했습니다.<br>크게 불편한 점도 없었구요. 앞으로도 사업
-															번창하세요. :)!
-														</span>
+														${review[2].review_content }
 													</div>
 												</div>
 												<div class="index-box-review-bottom-box text-left">
-													<div class="index-txt-review-bottom-box-top text-14">제주에서
-														1일 렌트하신</div>
-													<div class="text-16-b text-white">김** 고객님</div>
+													<div class="text-16-b text-white">${review[2].member_name }님</div>
 												</div>
 											</div>
 										</div>

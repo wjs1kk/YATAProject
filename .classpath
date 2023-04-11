@@ -41,6 +41,7 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
 			<attribute name="ignore_optional_problems" value="true"/>
@@ -58,5 +59,7 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
+=======
+>>>>>>> 9cb37e516037cb3f3fb59378dddd80450e1c2744
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
