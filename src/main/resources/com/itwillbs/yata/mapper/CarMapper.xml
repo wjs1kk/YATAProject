@@ -14,4 +14,9 @@
 			from car 
 			where car_id = #{car_id}
 	</select>
+	<select id="searchByName" parameterType="String" resultType="com.itwillbs.yata.vo.CarVO">
+  	 	SELECT * 
+  	 		FROM car 
+  	 		WHERE car_model LIKE CONCAT('%',#{car_model},'%');
+  	</select>
 </mapper>
