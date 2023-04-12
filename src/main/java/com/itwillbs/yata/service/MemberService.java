@@ -1,5 +1,7 @@
 package com.itwillbs.yata.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,10 @@ public class MemberService {
 	
 	public int insertUser(MemberVO member) {
 		return mapper.insertUser(member);
+	}
+
+	public int modifyUser(String member_birth, String member_phone, String member_email) {
+		return mapper.modifyUser(member_birth, member_phone,member_email);
 	}
 	
 }
