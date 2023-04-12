@@ -24,13 +24,13 @@ $(document).ready(function() {
   // 검색 버튼 클릭 이벤트
   $('#search_button').on('click', function() {
 // 	debugger;
-    var car_model = $('#search_box').val();
+    var car_name = $('#search_box').val();
     
 	//  AJAX 요청 보내기
     $.ajax({
 	      type: 'GET',
 	      url: '/search',
-	      data: { car_model: $('#search_box').val() },
+	      data: { car_name: $('#search_box').val() },
 	      success: function(data) {
 	      },
 	      error: function(xhr, textStatus, errorThrown) {
@@ -534,7 +534,7 @@ $(document).ready(function() {
 																		<form action="search">
 																			<div class="dc-block w-100">
 																				<div class="position-relative">
-																					<input type="text" name="car_model" id="search_box" placeholder="자동차 모델명으로 검색할 수 있습니다">
+																					<input type="text" name="car_name" id="search_box" placeholder="자동차 모델명으로 검색할 수 있습니다">
 																					<input type="submit" class="btn btn-primary btn-sm px-3 ml-1"
 																					id="search_button" value="검색"></input>
 																					<div id="carList"></div>
