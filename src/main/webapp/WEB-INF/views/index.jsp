@@ -65,16 +65,11 @@
 											<div class="click-effect-press"
 												id="modal_header_overseas_toggle_button"
 												style="display: flex;">
-												<img class="mr-1"
-													src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik00LjMyNyAyIDIgNC45MWg4TTcuNjczIDEwIDEwIDcuMDlIMiIgc3Ryb2tlPSIjOTk5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg=="><span
-													class="js-overseas-toggle js-overseas-toggle-domestic text-12 color-grey-5 dc-none"
-													data-isoverseas="0" style="display: none;">국내지역</span><span
-													class="js-overseas-toggle js-overseas-toggle-overseas text-12 color-grey-5"
-													data-isoverseas="1" style="display: block;">해외지역</span>
+												<span class="js-overseas-toggle js-overseas-toggle-domestic text-12 color-grey-5 dc-none"
+													data-isoverseas="0" style="display: none;">국내지역</span>
 											</div>
 										</div>
 									</div>
-
 
 									<!-- 닫기 버튼 -->
 									<button id="modal_close"
@@ -129,37 +124,27 @@
 										</div>
 									</div>
 								</div>
+								
+								
+								<!-- 지도 팝업창 상단 지도 이동 탭 -->
 								<div class="dc-none js-msa-tabs" style="display: block;">
-									<nav
-										class="common-nav-tabs nav nav-classic nav-borderless nav-fill bg-white">
-										<li class="nav-item text-center" style="width: 50%"><div
-												class="nav-link js-vsas-item-menu clickable active" data="0">국내</div></li>
-										<li class="nav-item text-center" style="width: 50%"><div
-												class="nav-link js-vsas-item-menu clickable" data="1">지도
-												검색</div></li>
-									</nav>
+									<button onclick="전포()">전포</button>
+									<button onclick="부전()">부전</button> 
+								    <button onclick="사상()">사상</button> 
+								    <button onclick="개금()">개금</button> 
 								</div>
-								<div class="dc-none js-msa-overseas-tabs" style="display: none;">
-									<nav
-										class="common-nav-tabs nav nav-classic nav-borderless nav-fill bg-white">
-										<li class="nav-item text-center" style="width: 50%"><div
-												class="nav-link js-vsas-item-menu clickable" data="2">해외</div></li>
-										<li class="nav-item text-center" style="width: 50%"><div
-												class="nav-link js-vsas-item-menu clickable" data="3">지도
-												검색</div></li>
-									</nav>
-								</div>
+								
+								
 								<div class="modal-body" body-scroll-lock-ignore="">
 									<div class="container-as-contents is-exist-tab"
 										id="js_vsas_container_area">
 										<div class="" id="js_vsas_container_area_s_kor"
 											style="display: block;">
-
-
 											<div class="dc-flex">
+											
 												<!-- 지도 영역 -->
 												<div id="map"
-													style="width: 800px; height: 700px; border-radius: 20px"></div>
+													style="width: 780px; height: 630px;"></div>
 												<script type="text/javascript"
 													src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac7eaf0b889d2a25e8a1f59096c406a"></script>
 												<script>
@@ -255,6 +240,31 @@
 																			});
 														})(marker, infowindow);
 													}
+													
+													
+													//지도 위도 경도 이동 버튼 클릭 이벤트
+													function 전포() {
+													    // 이동할 위도 경도 위치를 생성합니다 
+													    var moveLatLon = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136);
+													    
+													    // 지도 중심을 부드럽게 이동시킵니다
+													    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+													    map.panTo(moveLatLon);            
+													}        
+													function 부전() {
+													    var moveLatLon = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977);
+													    map.panTo(moveLatLon);            
+													}        
+													
+													function 사상() {
+													    var moveLatLon = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084);
+													    map.panTo(moveLatLon);            
+													}        
+													function 개금() {
+													    var moveLatLon = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524);
+													    map.panTo(moveLatLon);            
+													} 
+													
 
 													// 지도에 클릭 이벤트를 등록합니다
 													// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
@@ -292,7 +302,6 @@
 
 										</div>
 
-										<input type="button" value="전포지점">
 
 										<div class="container-as-bottom-bar is-pc-modal"
 											id="js_csabb_container_bottom_info">
@@ -325,7 +334,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- 지도 선택 팝업창 -->
 
 
 				<!-- 			메인 이미지 영역 -->
