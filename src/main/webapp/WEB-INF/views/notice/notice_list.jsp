@@ -98,7 +98,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm"); // 년년-월월-
 	<!-- 게시판 리스트 -->
 	<h2>게시판 글 목록</h2>
 	<section id="buttonArea">
-		<input type="button" value="글쓰기" onclick="location.href='BoardWriteForm.bo'" />
+		<input type="button" value="글쓰기" onclick="location.href='write.no'" />
 	</section>
 	<section id="listForm">
 		<table>
@@ -199,5 +199,19 @@ SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm"); // 년년-월월-
 		</c:choose>
 		
 	</section>
+	<jsp:include page="../inc/footer.jsp"/>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

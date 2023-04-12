@@ -1,133 +1,135 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html class="no-fouc">
+<html>
 <head>
-<link rel="stylesheet" href="resources/css/css.css">
-	<meta charset="UTF-8">
-<style>
-.ke_mg_pd {
-	padding-top: 50px;
+<meta charset="UTF-8">
+<title>MVC 게시판</title>
+<style type="text/css">
+#listForm {
+	width: 1024px;
+	max-height: 610px;
+	margin: auto;
+}
+
+h2 {
+	text-align: center;
+}
+
+table {
+	margin: auto;
+	width: 1024px;
+}
+
+#tr_top {
+	background: #b8f1ff;
+	text-align: center;
+}
+
+table td {
+	text-align: center;
+}
+
+#subject {
+	text-align: left;
+	padding-left: 20px;
+	/* 제목 길이 제한 (잘린 부분은 ... 으로 표시) */
+	max-width: 450px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#name {
+	/* 작성자 길이 제한 (잘린 부분은 ... 으로 표시) */
+	max-width: 100px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#pageList {
+	margin: auto;
+	width: 1024px;
+	text-align: center;
+}
+
+#emptyArea {
+	margin: auto;
+	width: 1024px;
+	text-align: center;
+}
+
+#buttonArea {
+	margin: auto;
+	width: 1024px;
+	text-align: right;
+}
+
+/* 하이퍼링크 밑줄 제거 */
+a {
+	text-decoration: none;
 }
 </style>
+<!-- css/main.css 파일 불러오기 -->
+<link href="css/inc.css" rel="stylesheet" type="text/css">
 </head>
-<body style="">
+<body>
+	<header>
+		<%-- inc/top.jsp 페이지 삽입(jsp:include 액션태그 사용 시 / 경로는 webapp 가리킴) --%>
+		<jsp:include page="../inc/top.jsp"></jsp:include>
+	</header>
 
-	<jsp:include page="../inc/top.jsp"></jsp:include>
-	<div class="pc-mobile-header-container">
-		<div class="pc-header space-2 text-center dc-none dc-lg-block">
-			<div class="container">
-				<h2 class="text-grey-3 underline-bg dc-inline-block">공지사항</h2>
-				<p class="text-grey-5 mb-0">회원분들께 알립니다.</p>
-			</div>
-		</div>
-		<div class="container space-lg-2">
-			<div class="row">
-				<div class="col-4 text-left dc-lg-block dc-none">
-					<div>
-						<h3 class="color-grey-3 text-14 list-border-bottom">공지사항</h3>
-						<div class="list-group list-group-flush">
-							<a
-								class="py-2 text-decoration-none px-0 event-left-menu-doing click-effect-press">공지사항</a><a
-								class="py-2 text-decoration-none px-0 event-left-menu-close click-effect-press">공지사항</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-8">
-					<div class="mustgo-view-wr container">
+	<!-- 게시판 리스트 -->
+	<h2>게시판 글 목록</h2>
+	<section id="buttonArea">
+		<input type="button" value="글쓰기" onclick="location.href='write.no'" />
+	</section>
+	<section id="listForm">
+		<table>
+			<tr id="tr_top">
+				<td width="100px">번호</td>
+				<td>제목</td>
+				<td width="150px">작성자</td>
+				<td width="150px">날짜</td>
+				<td width="100px">조회수</td>
+			</tr>
+			<%-- JSTL 과 EL 활용하여 글목록 표시를 위한 반복문 작성 - <c:forEach> --%>
+			<c:forEach var="board" items="${noticeList }">
+				<tr>
+					<td>${notice.board_num }</td>
 
-						<header>
-							<div class="view-hd-top d-flex">
-								<!-- 카테고리 지역 | 음식종류 -->
-								<div class="bo_v_cate_wr me-auto">
-									<span class="bo_v_cate bo_v_cate01">공지사항 분류</span>
-								</div>
+					<%-- 제목에 하이퍼링크 추가(BoardDetail.bo) => 글번호(board_num), 페이지번호(pageNum) 전달 --%>
+					<td id="subject">
+						<%-- ===================== 답글 관련 처리 ======================= --%> <%-- board_re_lev 값이 0보다 크면 답글이므로 들여쓰기 후 이미지(re.gif) 표시 --%>
+						<a
+						href="BoardDetail.bo?board_num=${board.board_num }&pageNum=${pageNum}">${board.board_subject }</a>
+					</td>
 
-								<!-- 우측상단 버튼 -->
+					<td id="name">${board.board_name }</td>
+					<%-- JSTL fmt 라이브러리를 활용하여 날짜 포맷 변경 시 --%>
+					<td><fmt:formatDate value="${board.board_date }"
+							pattern="yy-MM-dd HH:mm" /></td>
+					<td>${board.board_readcount }</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</section>
 
-							</div>
-
-							<h2 id="bo_v_title">
-								<span id="bo_v_tit" class="bo_v_tit">교통도로법관련 공지사항</span>
-							</h2>
-							<p class="">꼭 읽어봐야함</p>
-						</header>
-
-						<section class="mustgo-contents">
-							<!-- 카모아 혜택 -->
-
-
-							<!-- 카모아 크루 한마디 -->
-							<div class="crew-say"></div>
-
-							<!-- 가게 정보 -->
-
-
-							<!-- 내돈내먹 리뷰 -->
-							<div class="other-reviews">
-								<h3 class="view-sub-title">
-									내돈내먹 맛집 리뷰 <br>미리 찾아놨어요!
-								</h3>
-								<!-- 유튜브 플레이어 리뷰 -->
-								<div class="other-reviews-wr">
-									<div class="other-review-youtube"></div>
-
-									<!-- 네이버 블로그 리뷰 -->
-									<div class="other-review-naver">
-										<a href="https://blog.naver.com/dbstmfgustj/222644672582"
-											target="_blank" id="review-naver-box1"
-											class="review-naver-box">
-											<div class="naver-thumbnail"></div>
-											<div class="naver-info">
-												<h6 class="other-title">제주 토투가커피 서쪽 까눌레 최고 맛집 내돈내산 후기</h6>
-												<div class="other-contents">
-													<span class="other-icon"><img
-														src="/source/images/icon/icon-naver-small.svg" alt=""></span>
-													<span class="other-name">윤슬 님</span> <span
-														class="other-dot"></span> <span class="other-date">2022.
-														2. 11.</span>
-												</div>
-											</div>
-										</a> <a href="https://blog.naver.com/minenge304/222647396419"
-											target="_blank" id="review-naver-box2"
-											class="review-naver-box">
-											<div class="naver-thumbnail"></div>
-											<div class="naver-info">
-												<h6 class="other-title">제주 토투가 커피 _ 바다 까눌레 그리고 전기차?</h6>
-												<div class="other-contents">
-													<span class="other-icon"><img
-														src="/source/images/icon/icon-naver-small.svg" alt=""></span>
-													<span class="other-name">채자매네 님</span> <span
-														class="other-dot"></span> <span class="other-date">2022.
-														2. 14. </span>
-												</div>
-											</div>
-										</a> <a href="https://blog.naver.com/sdh3564/222617275038"
-											target="_blank" id="review-naver-box3"
-											class="review-naver-box">
-											<div class="naver-thumbnail"></div>
-											<div class="naver-info">
-												<h6 class="other-title">까눌레와 커피가 맛있는 제주 한림 카페 토투가커피</h6>
-												<div class="other-contents">
-													<span class="other-icon"><img
-														src="/source/images/icon/icon-naver-small.svg" alt=""></span>
-													<span class="other-name">다미 님</span> <span
-														class="other-dot"></span> <span class="other-date">2022.
-														1. 10.</span>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<!-- 내돈내먹 리뷰 -->
-						</section>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	<jsp:include page="../inc/footer.jsp" />
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

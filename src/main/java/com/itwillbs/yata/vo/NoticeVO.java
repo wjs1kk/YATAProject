@@ -1,39 +1,26 @@
 package com.itwillbs.yata.vo;
 
-import java.sql.Timestamp;
-
 public class NoticeVO {
 	private int board_num;
-	private String board_name;
-	private String board_pass;
 	private String board_subject;
 	private String board_content;
 	private String board_file;
 	private int board_re_ref;
-	private int board_re_lev;
 	private int board_re_seq;
-	private int board_readcount;
-	private Timestamp board_date;
 	
 	public NoticeVO() {
 		super();
 	}
 
-	public NoticeVO(int board_num, String board_name, String board_pass, String board_subject, String board_content,
-			String board_file, int board_re_ref, int board_re_lev, int board_re_seq, int board_readcount,
-			Timestamp board_date) {
+	public NoticeVO(int board_num, String board_subject, String board_content,
+			String board_file, int board_re_ref, int board_re_seq) {
 		super();
 		this.board_num = board_num;
-		this.board_name = board_name;
-		this.board_pass = board_pass;
 		this.board_subject = board_subject;
 		this.board_content = board_content;
 		this.board_file = board_file;
 		this.board_re_ref = board_re_ref;
-		this.board_re_lev = board_re_lev;
 		this.board_re_seq = board_re_seq;
-		this.board_readcount = board_readcount;
-		this.board_date = board_date;
 	}
 
 	public int getBoard_num() {
@@ -42,22 +29,6 @@ public class NoticeVO {
 
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
-	}
-
-	public String getBoard_name() {
-		return board_name;
-	}
-
-	public void setBoard_name(String board_name) {
-		this.board_name = board_name;
-	}
-
-	public String getBoard_pass() {
-		return board_pass;
-	}
-
-	public void setBoard_pass(String board_pass) {
-		this.board_pass = board_pass;
 	}
 
 	public String getBoard_subject() {
@@ -92,14 +63,6 @@ public class NoticeVO {
 		this.board_re_ref = board_re_ref;
 	}
 
-	public int getBoard_re_lev() {
-		return board_re_lev;
-	}
-
-	public void setBoard_re_lev(int board_re_lev) {
-		this.board_re_lev = board_re_lev;
-	}
-
 	public int getBoard_re_seq() {
 		return board_re_seq;
 	}
@@ -108,28 +71,12 @@ public class NoticeVO {
 		this.board_re_seq = board_re_seq;
 	}
 
-	public int getBoard_readcount() {
-		return board_readcount;
-	}
-
-	public void setBoard_readcount(int board_readcount) {
-		this.board_readcount = board_readcount;
-	}
-
-	public Timestamp getBoard_date() {
-		return board_date;
-	}
-
-	public void setBoard_date(Timestamp board_date) {
-		this.board_date = board_date;
-	}
-
 	@Override
 	public String toString() {
-		return "NoticeVO [board_num=" + board_num + ", board_name=" + board_name + ", board_pass=" + board_pass
-				+ ", board_subject=" + board_subject + ", board_content=" + board_content + ", board_file=" + board_file
-				+ ", board_re_ref=" + board_re_ref + ", board_re_lev=" + board_re_lev + ", board_re_seq=" + board_re_seq
-				+ ", board_readcount=" + board_readcount + ", board_date=" + board_date + "]";
+		return "NoticeVO [board_num=" + board_num + ", board_subject=" + board_subject + ", board_content="
+				+ board_content + ", board_file=" + board_file + ", board_re_ref=" + board_re_ref + ", board_re_seq="
+				+ board_re_seq + "]";
 	}
+
 	
 }
