@@ -35,7 +35,7 @@
 												class="js-cpi-txt-car-type ml-1">${car.car_type }</span></a>
 											<div
 												class="js-cpi-txt-car-model text-20 font-weight-bold color-grey-3 mb-0">
-												${car.car_model }</div>
+												${car.car_name }</div>
 											<div class="js-cpi-container-branch-info pt-1 dc-none"
 												style="display: none;">
 												<div class="dc-flex align-items-center">

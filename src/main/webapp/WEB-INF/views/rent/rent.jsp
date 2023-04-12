@@ -24,13 +24,13 @@ $(document).ready(function() {
   // 검색 버튼 클릭 이벤트
   $('#search_button').on('click', function() {
 // 	debugger;
-    var car_model = $('#search_box').val();
+    var car_name = $('#search_box').val();
     
 	//  AJAX 요청 보내기
     $.ajax({
 	      type: 'GET',
 	      url: '/search',
-	      data: { car_model: $('#search_box').val() },
+	      data: { car_name: $('#search_box').val() },
 	      success: function(data) {
 	      },
 	      error: function(xhr, textStatus, errorThrown) {
@@ -409,7 +409,8 @@ $(document).ready(function() {
 										<div
 											class="js-vsl-btn-rent-date dc-flex justify-content-between align-items-center click-effect-press box-border-grey-7 box-round-gray px-25 py-1 h-100"
 											data-type="location" onclick="daySelect()">
-										<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent;" />
+											<!-- 날짜 시간 선택창에 메인에서 넘어온 rentalDatetime값이 적용되게함 -->
+										<input type="text" id="demo" name="demo" value="${param.rentalDatetime }" style="border:0 solid black; background-color:transparent; width:250px; font-weight: bolder;" />
 										<script>
 										$(function () {
 										    $('#demo').daterangepicker({
@@ -428,8 +429,9 @@ $(document).ready(function() {
 										            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 										            "firstDay": 1
 										        },
-										        "startDate": new Date(),
-										        "endDate": new Date(),
+										        
+										        // startDate: new Date() 와 endDate: new Date()가 있으면 오늘 날짜가 기본값으로 적용되는 것 같음
+												// request로 넘어온 value가 기본값 때문에 적용되지 않아 지움
 										        "drops": "down",
 										        timePicker: true,
 										        timePicker24Hour: true
@@ -439,7 +441,6 @@ $(document).ready(function() {
 										    	var endDate = end.format('MM-DD HH');
 										    	var time = (end - start) / (1000*60*60);
 										    	$('#time').text(time + " 시간");
-										    	debugger;
 										    });
 										});
 										</script>
@@ -534,7 +535,7 @@ $(document).ready(function() {
 																		<form action="search">
 																			<div class="dc-block w-100">
 																				<div class="position-relative">
-																					<input type="text" name="car_model" id="search_box" placeholder="자동차 모델명으로 검색할 수 있습니다">
+																					<input type="text" name="car_name" id="search_box" placeholder="자동차 모델명으로 검색할 수 있습니다">
 																					<input type="submit" class="btn btn-primary btn-sm px-3 ml-1"
 																					id="search_button" value="검색"></input>
 																					<div id="carList"></div>
@@ -1106,8 +1107,10 @@ $(document).ready(function() {
 
 									<c:forEach var="carList" items="${carList }">
 									<form action="rent2">
-																																																
-									<div class="bg-white mb-3 js-vsl-container-search-list-item click-no-effect"  onclick="window.location.href='rent2?car_id=${carList.car_id}&place=${param.place }'">
+									
+									
+										<!-- 카리스트 아이디와, 대여장소, 대여날짜 및 시간이 rent2페이지로 넘어가게 수정 -->																												
+									<div class="bg-white mb-3 js-vsl-container-search-list-item click-no-effect"  onclick="window.location.href='rent2?car_id=${carList.car_id}&place=${param.place }&rentalDatetime=${param.rentalDatetime }'">
 										<div class="row car-list no-gutters">
 											<div class="col-12 col-lg-5 pt-3 pb-2 px-1 p-lg-3">
 												<div class="pt-3 pb-2 px-1 p-lg-3">
@@ -1128,17 +1131,23 @@ $(document).ready(function() {
 															<div class="badge-car-type px-2 py-1 dc-flex align-items-center">
 																<img
 																	src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS43NTQ0IDQuMDA5NzlMMTIuODIwNCA2Ljg0NzQyQzEzLjI0NyA2LjkwMzk4IDEzLjk5NzMgNy40MTcxNSAxNCA4LjM4ODMyVjExLjE3NDlDMTQgMTEuNjMyOSAxMy42NDAyIDEyLjAwMjYgMTMuMTk3NSAxMi4wMDI2SDEyLjk1OTVWMTIuNDgwOEMxMi45NTk1IDEzLjkwMyAxMS4wMDgxIDEzLjg4NjUgMTEuMDAyOCAxMi40ODA4VjEyLjAwMjZIMy45ODc4N1YxMi40ODA4QzMuOTg3ODcgMTMuODg2NSAyLjAzNjUzIDEzLjkwMyAyLjAzOTIxIDEyLjQ4MDhWMTIuMDAyNkgxLjgwMjQ4QzEuMzU5NzggMTIuMDAyNiAxIDExLjYzMTUgMSAxMS4xNzQ5VjguMzg4MzJDMC45OTg2NzEgNy40MTcxNSAxLjc0NzY0IDYuOTAzOTggMi4xNzAyNyA2Ljg0NzQyTDMuMjM2MjIgNC4wMDk3OUMzLjQzOTUxIDMuNDY2MjcgMy44NzU1MyAzLjAwNDE0IDQuNjk1MzcgM0gxMC4yOTUzQzExLjExOTEgMy4wMDQxNCAxMS41NTUxIDMuNDY2MjcgMTEuNzU0NCA0LjAwOTc5Wk0xMC44MzI5IDYuODIxMjFDMTEuMTI3MiA2LjgyMTIxIDExLjMyNjUgNi41MTIyMSAxMS4yMTE0IDYuMjMyMTZMMTAuNjQ5NyA0Ljg2MjMyTDEwLjYzNzIgNC44MzY0MUMxMC40ODA1IDQuNTA5OTkgMTAuMzg4IDQuMzE3MjggMTAuMDQ2NSA0LjMxMTlINC45NDE0N0M0LjU4NTcxIDQuMzE3NDIgNC40MjI1NSA0LjY0NTc0IDQuMzM4MjggNC44NjIzMkwzLjc3NjU1IDYuMjMyMTZDMy42NjE1MyA2LjUxMjIxIDMuODYwODEgNi44MjEyMSA0LjE1NTA0IDYuODIxMjFIMTAuODMyOVpNMTIuNjM1NiA4LjgzMTQzQzEyLjYzNTYgOS4zMjc5NyAxMi4yMzg4IDkuNzMwNDkgMTEuNzQ5MiA5LjczMDQ5QzExLjI1OTcgOS43MzA0OSAxMC44NjI5IDkuMzI3OTcgMTAuODYyOSA4LjgzMTQzQzEwLjg2MjkgOC4zMzQ5IDExLjI1OTcgNy45MzIzNyAxMS43NDkyIDcuOTMyMzdDMTIuMjM4OCA3LjkzMjM3IDEyLjYzNTYgOC4zMzQ5IDEyLjYzNTYgOC44MzE0M1pNMy4xNzM1OSA5LjczMDQ5QzMuNjYzMTIgOS43MzA0OSA0LjA1OTk1IDkuMzI3OTcgNC4wNTk5NSA4LjgzMTQzQzQuMDU5OTUgOC4zMzQ5IDMuNjYzMTIgNy45MzIzNyAzLjE3MzU5IDcuOTMyMzdDMi42ODQwNyA3LjkzMjM3IDIuMjg3MjMgOC4zMzQ5IDIuMjg3MjMgOC44MzE0M0MyLjI4NzIzIDkuMzI3OTcgMi42ODQwNyA5LjczMDQ5IDMuMTczNTkgOS43MzA0OVoiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg==">
-																	<span class="ml-1">${carList.car_manufacturer }</span>
-<!-- 																			차 제조사 -->
+																	<span class="ml-1">${carList.car_type }</span>
+<!-- 																			차 타입 -->
 															</div>
 														
 															
 														</div>
-														<div class="js-vsl-txt-car-model text-20 mb-1 color-grey-1">${carList.car_name }</div>
-														<div class="js-vsl-txt-car-desc text-12 color-grey-5">${carList.car_year }ㆍ${carList.car_fuel }
 														
+														<div class="js-vsl-txt-car-model text-20 mb-1 color-grey-1" >
+															<img class="badge-car-type px-2 py-1 dc-flex align-items-center" style="width:50px; height:30px; background-color: white; border: 1px solid #f1f4f9;" src="resources/images/car/${carList.car_manufacturer }.png">   ${carList.car_name }
+														</div>
+														<div class="js-vsl-txt-car-desc text-12 color-grey-5">
+														<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNOCAxNEMxMS4zMTM3IDE0IDE0IDExLjMxMzcgMTQgOEMxNCA0LjY4NjI5IDExLjMxMzcgMiA4IDJDNC42ODYyOSAyIDIgNC42ODYyOSAyIDhDMiAxMS4zMTM3IDQuNjg2MjkgMTQgOCAxNFpNOC41OTMwNCAxMS41Nzc3VjguODA0NDhMMTEuMTE2OCA0LjgxMDYxSDkuODI5ODJMNy45NDI1MyA3LjgxMjZMNi4yNzIwOCA0LjgxMDYxSDQuOTQ3MDJMNy4zNTYyNiA4LjgwNDQ4VjExLjU3NzdIOC41OTMwNFoiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg==">
+															<span class="js-car-info-txt-car-year ml-1">${carList.car_year  }</span>
+														<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM3ODhBQUMiIGQ9Ik03Ljk3IDIuMTc0QzcuODQgMi4wNTkgNy42NzggMiA3LjUxNiAyYy0uMTYzIDAtLjMyNi4wNTktLjQ1OC4xNzQtLjE2NS4xNDYtNC4wNDIgMy42NDYtNC4wNDIgNy4yNzMgMCAyLjUxMyAyLjAxNiA0LjU1MyA0LjUgNC41NTMgMi40OCAwIDQuNS0yLjA0MyA0LjUtNC41NTMgMC0zLjYyNy0zLjg4LTcuMTI3LTQuMDQ2LTcuMjczeiIvPgo8L3N2Zz4K">
+															<span class="js-car-info-txt-fuel ml-1">${carList.car_fuel }</span>
 														<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM3ODhBQUMiIGQ9Ik0xMi41IDEzLjA2MXYtMS40OTVjMC0xLjg1MS0xLjE2NC0zLjQyNC0yLjc2Ni0zLjk2Ny43Ny0uNDUyIDEuMjkzLTEuMzEzIDEuMjkzLTIuMjk5IDAtMS40NTEtMS4xMzQtMi42MzQtMi41MjctMi42MzQtMS4zOTMgMC0yLjUyNyAxLjE4My0yLjUyNyAyLjYzNCAwIC45ODYuNTIzIDEuODQ3IDEuMjkzIDIuMjk5QzUuNjYyIDguMTQyIDQuNSA5LjcxNSA0LjUgMTEuNTY2djEuNDk1YzAgLjE1LjExNi4yNzIuMjYuMjcyaDcuNDg0Yy4xNC0uMDAyLjI1Ni0uMTIyLjI1Ni0uMjcyeiIvPgo8L3N2Zz4K">
-															<span class="js-car-info-txt-passenger ml-1">${carList.car_seater }</span>
+															<span class="js-car-info-stxt-passenger ml-1">${carList.car_seater }</span>
 																
 														<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGw9IiM4NTkyQUIiIGQ9Ik0zIDEyaDEwdjJIM3pNOSA1aDJsLTEgNEg4bDEtNHpNOCA5aDJsMSAzSDUuNUw4IDl6Ii8+CiAgICA8Y2lyY2xlIGN4PSIxMCIgY3k9IjQiIHI9IjIiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg=="><span
 																class="js-car-info-txt-transmission ml-1">오토</span>

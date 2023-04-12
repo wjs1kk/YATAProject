@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/main.css">
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <script type="text/javascript">
 	/* 지점선택창 누르면 #zoneSelect로 넘어가지면서 불투명도 0 ->1로 변경이 돼서 팝업창이 보임  */
@@ -36,6 +44,15 @@
 }
 </style>
 
+<!-- 차량검색 클릭 이벤트(클릭시rent 페이지에 대여장소와 날짜가 request객체로 이동) -->
+<script type="text/javascript">
+	$(function() {
+		$("#search").on("click", function() {
+			location.href = "rent1?place=${param.place}&rentalDatetime="+$('#demo').val();
+		})
+	})
+</script>
+
 </head>
 <body>
 	<main id="content" role="main">
@@ -43,6 +60,7 @@
 			<!-- 		nav -->
 			<jsp:include page="inc/top.jsp" />
 			<div class="pc-mobile-header-container index-page">
+
 				<!-- 지도 선택 팝업창 -->
 				<div class="contents-modal" id="zoneSelect">
 					<div class="modal fade pr-0 show" id="modal_select_area"
@@ -335,7 +353,6 @@
 					</div>
 				</div>
 
-
 				<!-- 			메인 이미지 영역 -->
 				<section
 					class="index-container-first-section bg-color-primary-blue-light loading-shimmer"
@@ -417,37 +434,48 @@
 											class="dc-flex align-items-center justify-content-start mb-1">
 											<img class="icon mr-1"
 												src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMwcXVhOHdkMzZhKSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNENEQ0RDQiPgogICAgICAgIDxwYXRoIGQ9Ik04IDIuNWE2IDYgMCAxIDAgMCAxMiA2IDYgMCAwIDAgMC0xMnptLTcgNmE3IDcgMCAxIDEgMTQgMCA3IDcgMCAwIDEtMTQgMHoiLz4KICAgICAgICA8cGF0aCBkPSJNOCA0LjVhLjUuNSAwIDAgMSAuNS41djMuNUgxMGEuNS41IDAgMCAxIDAgMUg4YS41LjUgMCAwIDEtLjUtLjVWNWEuNS41IDAgMCAxIC41LS41eiIvPgogICAgPC9nPgogICAgPGRlZnM+CiAgICAgICAgPGNsaXBQYXRoIGlkPSIwcXVhOHdkMzZhIj4KICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAuNSkiIGQ9Ik0wIDBoMTZ2MTZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"><label
-												class="text-14 color-grey-4 mb-0">날짜 및 시간</label>
+												class="text-14 color-grey-4 mb-0">대여 및 반납날짜 선택하기</label>
 										</div>
 										<div
 											class="index-search-selected-box px-3 py-25 click-effect-press"
 											id="js_index_rent_date_view" data-type="period">
-											<div
-												class="dc-flex align-items-center justify-content-between w-100">
-												<div class="dc-flex align-items-center flex-grow-1">
-													<div class="dc-flex text-14">
-														<div
-															class="txt-rent-start-date mb-0 mr-015 font-weight-bold"
-															style="display: block;">4.5(수)</div>
-														<div class="txt-rent-start-time mb-0"
-															style="display: block;">10:00</div>
-													</div>
-													<img
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM0OTQ5NDkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="
-														style="height: 14px; margin: 0 2px;">
-													<div class="dc-flex text-14">
-														<div
-															class="txt-rent-end-date mb-0 mr-015 font-weight-bold"
-															style="display: block;">4.6(목)</div>
-														<div class="txt-rent-end-time mb-0"
-															style="display: block;">10:00</div>
-													</div>
-												</div>
-												<div class="text-right">
-													<span class="txt-rent-period color-grey-3 text-12"
-														style="display: block;">24시간</span>
-												</div>
-											</div>
+											<!-- 날짜 선택창 -->
+											<!-- 날짜선택 -->
+													<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent; width:250px; font-weight: bolder;" />
+														<script>
+														$(function () {
+														    $('#demo').daterangepicker({
+														        "locale": {
+														            "format": "MM.DD HH:00",
+														            "separator": " ~ ",
+														            "applyLabel": "확인",
+														            "cancelLabel": "취소",
+														            "fromLabel": "From",
+														            "autoclose": "true",
+														            "toLabel": "To",
+														            "todayHighlight" : "true",
+														            "customRangeLabel": "Custom",
+														            "weekLabel": "W",
+														            "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+														            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+														            "firstDay": 1
+														        },
+														        "startDate": new Date(),
+														        "endDate": new Date(),
+														        "drops": "down",
+														        timePicker: true,
+														        timePicker24Hour: true
+														        
+														    }, function (start, end) {
+														    	var startDate = start.format('MM-DD HH');
+														    	var endDate = end.format('MM-DD HH');
+														    	var time = (end - start) / (1000*60*60);
+														    	$('#time').text(time + " 시간");
+														    });
+														});
+														</script>
+														<!-- 	시간표시 -->
+														<p id="time" style="border:0 solid black; background-color:transparent;">시간</p>
 										</div>
 									</div>
 								</div>
@@ -456,11 +484,10 @@
 						</div>
 						<!-- 						차량 검색버튼  -->
 						<!-- 						창용 차량 검색버튼에 rent화면에 장소데이터 전송  -->
-						<a class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press"
-							href="rent1?place=${param.place }">
-							<div class="index-btn-search border-radius-normal dc-flex flex-column justify-content-center align-items-center">
+						<a class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press" >
+							<div class="index-btn-search border-radius-normal dc-flex flex-column justify-content-center align-items-center" id="search" >
 								<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNSAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0yMyAyMi41IDcgNyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTE1LjUgMjMuNWM1LjI0NyAwIDkuNS00LjAzIDkuNS05cy00LjI1My05LTkuNS05Yy01LjI0NiAwLTkuNSA0LjAzLTkuNSA5czQuMjU0IDkgOS41IDl6IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIvPgo8L3N2Zz4K">
-								<div class="text-16 font-weight-bold mt-2">차량 검색</div>
+								<div class="text-16 font-weight-bold mt-2" >차량 검색</div>
 							</div></a>
 					</div>
 				</section>
