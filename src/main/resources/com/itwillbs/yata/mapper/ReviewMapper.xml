@@ -4,38 +4,53 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.itwillbs.yata.mapper.ReviewMapper">
-	<select id="selectReview" resultType="com.itwillbs.yata.vo.ReviewVO">
+	<select id="selectReview"
+		resultType="com.itwillbs.yata.vo.ReviewVO">
 		SELECT member_name -- 작성자
-			 , review_content -- 내용
-			 , review_star -- 별점
-		  FROM review
-		 ORDER BY review_regdate DESC
-		 LIMIT 3;
+		, review_content -- 내용
+		, review_star -- 별점
+		FROM review
+		ORDER BY review_regdate DESC
+		LIMIT 3;
 	</select>
-	
+
 	<insert id="insertReview" useGeneratedKeys="true"
 		keyProperty="review_idx">
 		insert into review (
-			review_idx,
-			member_email,
-			member_name,
-			review_title,
-			review_content,
-			review_regdate,
-			review_updateDate,
-			review_star,
-			review_viewcnt
+		review_idx,
+		member_email,
+		member_name,
+		review_title,
+		review_content,
+		review_regdate,
+		review_updateDate,
+		review_star,
+		review_viewcnt
 		)
 		value (
-			#{review_idx},
-			#{member_email},
-			#{member_name},
-			#{review_title},
-			#{review_content},
-			CURRENT_TIMESTAMP(),
-			CURRENT_TIMESTAMP(),
-			#{review_star},
-			0
+		#{review_idx},
+		#{member_email},
+		#{member_name},
+		#{review_title},
+		#{review_content},
+		CURRENT_TIMESTAMP(),
+		CURRENT_TIMESTAMP(),
+		#{review_star},
+		0
 		)
 	</insert>
+	
+	<!-- 나의 리뷰 select -->
+	<select id="selectMyReview" resultType="com.itwillbs.yata.vo.ReviewVO">
+	 	SELECT *
+ 	 	  FROM review
+ 		 WHERE member_email IN (SELECT member_email FROM member WHERE member_email = #{member_email})
+	</select>
+	
+	<!-- 나의 리뷰 개수 -->
+	<select id="selectMyReviewCount" resultType="Integer">
+		SELECT COUNT(member_email)
+		  FROM review
+		 WHERE member_email IN (SELECT member_email FROM member WHERE member_email = #{member_email})
+	</select>
 </mapper>

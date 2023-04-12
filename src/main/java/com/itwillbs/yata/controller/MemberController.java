@@ -1,5 +1,7 @@
 package com.itwillbs.yata.controller;
 
+import java.util.*;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +12,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.itwillbs.yata.service.MemberService;
-import com.itwillbs.yata.vo.MemberVO;
+import com.itwillbs.yata.service.*;
+import com.itwillbs.yata.vo.*;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ReviewService service;
+	
 	@GetMapping("login")
 	public String login() {
 		
@@ -38,6 +44,7 @@ public class MemberController {
 		session.setAttribute("member_date", member.getMember_date());
 		session.setAttribute("member_gender", member.getMember_gender());
 		session.setAttribute("member_name", member.getMember_name());
+	
 		return "redirect:/";
 	}
 	
@@ -79,5 +86,16 @@ public class MemberController {
 	@GetMapping("point")
 	public String point() {
 		return "member/member_point";
+	}
+	
+	@GetMapping("review")
+	public String review(Model model, HttpSession session, ReviewVO review) {
+		List<ReviewVO> myReviewList = service.myReview((String)session.getAttribute("member_email"));
+		Integer myReviewCount = service.selectMyReviewCount(review);
+//		System.out.println(myReviewList);
+		model.addAttribute("myReview", myReviewList);
+		model.addAttribute("myReviewCount", myReviewCount);
+		System.out.println(myReviewCount);
+		return "member/member_review";
 	}
 }

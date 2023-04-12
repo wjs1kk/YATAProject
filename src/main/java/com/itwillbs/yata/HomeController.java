@@ -19,7 +19,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model) {
 		List<ReviewVO> reviewList = service.getReview();
-	    System.out.println(reviewList);
+//	    System.out.println(reviewList);
 	    model.addAttribute("review", reviewList);
 	    return "index";
 	}
