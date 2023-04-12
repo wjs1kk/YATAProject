@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.itwillbs</groupId>
 	<artifactId>yata</artifactId>
-	<name>YATAProject__</name>
+	<name>YATAProject</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
