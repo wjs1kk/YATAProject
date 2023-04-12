@@ -409,7 +409,7 @@ $(document).ready(function() {
 										<div
 											class="js-vsl-btn-rent-date dc-flex justify-content-between align-items-center click-effect-press box-border-grey-7 box-round-gray px-25 py-1 h-100"
 											data-type="location" onclick="daySelect()">
-										<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent;" />
+										<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent; width:250px;" />
 										<script>
 										$(function () {
 										    $('#demo').daterangepicker({
@@ -439,7 +439,6 @@ $(document).ready(function() {
 										    	var endDate = end.format('MM-DD HH');
 										    	var time = (end - start) / (1000*60*60);
 										    	$('#time').text(time + " 시간");
-										    	debugger;
 										    });
 										});
 										</script>
