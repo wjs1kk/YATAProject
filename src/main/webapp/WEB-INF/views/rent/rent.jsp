@@ -412,7 +412,8 @@ $(document).ready(function() {
 										<div
 											class="js-vsl-btn-rent-date dc-flex justify-content-between align-items-center click-effect-press box-border-grey-7 box-round-gray px-25 py-1 h-100"
 											data-type="location" onclick="daySelect()">
-										<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent; width:250px;" />
+											<!-- 날짜 시간 선택창에 메인에서 넘어온 rentalDatetime값이 적용되게함 -->
+										<input type="text" id="demo" name="demo" value="${param.rentalDatetime }" style="border:0 solid black; background-color:transparent; width:250px; font-weight: bolder;" />
 										<script>
 										$(function () {
 										    $('#demo').daterangepicker({
@@ -431,8 +432,9 @@ $(document).ready(function() {
 										            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 										            "firstDay": 1
 										        },
-										        "startDate": new Date(),
-										        "endDate": new Date(),
+										        
+										        // startDate: new Date() 와 endDate: new Date()가 있으면 오늘 날짜가 기본값으로 적용되는 것 같음
+												// request로 넘어온 value가 기본값 때문에 적용되지 않아 지움
 										        "drops": "down",
 										        timePicker: true,
 										        timePicker24Hour: true
@@ -1124,8 +1126,10 @@ $(document).ready(function() {
 
 									<c:forEach var="carList" items="${carList }">
 									<form action="rent2">
-																																																
-									<div class="bg-white mb-3 js-vsl-container-search-list-item click-no-effect"  onclick="window.location.href='rent2?car_id=${carList.car_id}&place=${param.place }'">
+									
+									
+										<!-- 카리스트 아이디와, 대여장소, 대여날짜 및 시간이 rent2페이지로 넘어가게 수정 -->																												
+									<div class="bg-white mb-3 js-vsl-container-search-list-item click-no-effect"  onclick="window.location.href='rent2?car_id=${carList.car_id}&place=${param.place }&rentalDatetime=${param.rentalDatetime }'">
 										<div class="row car-list no-gutters">
 											<div class="col-12 col-lg-5 pt-3 pb-2 px-1 p-lg-3">
 												<div class="pt-3 pb-2 px-1 p-lg-3">

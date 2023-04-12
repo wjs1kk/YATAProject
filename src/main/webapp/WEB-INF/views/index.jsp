@@ -15,7 +15,7 @@
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script type="text/javascript">
+
 <script type="text/javascript">
 	/* 지점선택창 누르면 #zoneSelect로 넘어가지면서 불투명도 0 ->1로 변경이 돼서 팝업창이 보임  */
 	function zoneSelect() {
@@ -44,6 +44,15 @@
 }
 </style>
 
+<!-- 차량검색 클릭 이벤트(클릭시rent 페이지에 대여장소와 날짜가 request객체로 이동) -->
+<script type="text/javascript">
+	$(function() {
+		$("#search").on("click", function() {
+			location.href = "rent1?place=${param.place}&rentalDatetime="+$('#demo').val();
+		})
+	})
+</script>
+
 </head>
 <body>
 	<main id="content" role="main">
@@ -51,6 +60,7 @@
 			<!-- 		nav -->
 			<jsp:include page="inc/top.jsp" />
 			<div class="pc-mobile-header-container index-page">
+
 				<!-- 지도 선택 팝업창 -->
 				<div class="contents-modal" id="zoneSelect">
 					<div class="modal fade pr-0 show" id="modal_select_area"
@@ -343,7 +353,6 @@
 					</div>
 				</div>
 
-
 				<!-- 			메인 이미지 영역 -->
 				<section
 					class="index-container-first-section bg-color-primary-blue-light loading-shimmer"
@@ -419,27 +428,20 @@
 										</div>
 									</div>
 								</div>
-								
 								<div class="col-lg-6">
 									<div class="form-group mb-0">
 										<div
 											class="dc-flex align-items-center justify-content-start mb-1">
 											<img class="icon mr-1"
 												src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMwcXVhOHdkMzZhKSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNENEQ0RDQiPgogICAgICAgIDxwYXRoIGQ9Ik04IDIuNWE2IDYgMCAxIDAgMCAxMiA2IDYgMCAwIDAgMC0xMnptLTcgNmE3IDcgMCAxIDEgMTQgMCA3IDcgMCAwIDEtMTQgMHoiLz4KICAgICAgICA8cGF0aCBkPSJNOCA0LjVhLjUuNSAwIDAgMSAuNS41djMuNUgxMGEuNS41IDAgMCAxIDAgMUg4YS41LjUgMCAwIDEtLjUtLjVWNWEuNS41IDAgMCAxIC41LS41eiIvPgogICAgPC9nPgogICAgPGRlZnM+CiAgICAgICAgPGNsaXBQYXRoIGlkPSIwcXVhOHdkMzZhIj4KICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAuNSkiIGQ9Ik0wIDBoMTZ2MTZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"><label
-												class="text-14 color-grey-4 mb-0">날짜 및 시간</label>
+												class="text-14 color-grey-4 mb-0">대여 및 반납날짜 선택하기</label>
 										</div>
-										
 										<div
 											class="index-search-selected-box px-3 py-25 click-effect-press"
 											id="js_index_rent_date_view" data-type="period">
-											<div
-												class="dc-flex align-items-center justify-content-between w-100">
-												<div class="dc-flex align-items-center flex-grow-1">
-
-													<div class="dc-flex text-14">
-													
-													<!-- 날짜선택 -->
-													<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent; width:250px;" />
+											<!-- 날짜 선택창 -->
+											<!-- 날짜선택 -->
+													<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent; width:250px; font-weight: bolder;" />
 														<script>
 														$(function () {
 														    $('#demo').daterangepicker({
@@ -474,9 +476,6 @@
 														</script>
 														<!-- 	시간표시 -->
 														<p id="time" style="border:0 solid black; background-color:transparent;">시간</p>
-													</div>
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -485,11 +484,10 @@
 						</div>
 						<!-- 						차량 검색버튼  -->
 						<!-- 						창용 차량 검색버튼에 rent화면에 장소데이터 전송  -->
-						<a class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press"
-							href="rent1?place=${param.place }">
-							<div class="index-btn-search border-radius-normal dc-flex flex-column justify-content-center align-items-center">
+						<a class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press" >
+							<div class="index-btn-search border-radius-normal dc-flex flex-column justify-content-center align-items-center" id="search" >
 								<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNSAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0yMyAyMi41IDcgNyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTE1LjUgMjMuNWM1LjI0NyAwIDkuNS00LjAzIDkuNS05cy00LjI1My05LTkuNS05Yy01LjI0NiAwLTkuNSA0LjAzLTkuNSA5czQuMjU0IDkgOS41IDl6IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIvPgo8L3N2Zz4K">
-								<div class="text-16 font-weight-bold mt-2">차량 검색</div>
+								<div class="text-16 font-weight-bold mt-2" >차량 검색</div>
 							</div></a>
 					</div>
 				</section>
