@@ -17,10 +17,10 @@
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script type="text/javascript">
 
+<!-- 왼쪽 검색 기능 -->
+<script type="text/javascript">
 $(document).ready(function() {
-	
   // 검색 버튼 클릭 이벤트
   $('#search_button').on('click', function() {
 // 	debugger;
@@ -41,6 +41,9 @@ $(document).ready(function() {
   });
 });
 </script>
+
+
+
 <!-- 창용 지도 관련  -->
 <script type="text/javascript">
 	/* 지점선택창 누르면 #zoneSelect로 넘어가지면서 불투명도 0 ->1로 변경이 돼서 팝업창이 보임  */
@@ -561,23 +564,39 @@ $(document).ready(function() {
 																	<hr>
 																</div>
 															</div>
-															<div class="js-vf-section-fuels">
-																<div class="form-group mb-0">
-																	<div class="text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
-																	<div class="radio">
-																	   
-																	      <input id="radio1" name="radio" type="radio" class="radio" checked="checked" ><label for="radio1"> 일반자차</label><br>
-																	      <input id="radio2" name="radio" type="radio" class="radio"> <label for="radio2">완전자차</label><br>
-																	      <input id="radio3" name="radio" type="radio" class="radio"> <label for="radio3">슈퍼자차</label>
-																	    
+															
+															<!--왼쪽 필터 - 보험 선택 -->
+															<form name="ins" method="post" class="ins" >
+																<div class="js-vf-section-fuels">
+																	<div class="form-group mb-0">
+																		<div class="text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
+																		
+																		<div class="radio text-center">
+																			<label class="ins">
+																			    <input type="radio" name="ins" value="10000" onclick="getRadioValue(event)">
+																			    <span>일반자차
+																				<img class="js-vsl-img-car vsl-img-car img-fluid" style="width:150px; height:70px;" src="resources/images/일반자차.png">
+																				</span>
+																			</label>
+																			<br>
+																			<label class="ins">
+																			    <input type="radio" name="ins" value="15000" onclick="getRadioValue(event)">
+																			    <span>완전자차 
+																					<img class="js-vsl-img-car vsl-img-car img-fluid" style="width:150px; height:70px;" src="resources/images/일반자차.png">
+																			    </span>
+																			</label>
+																			<br>
+																			<label class="ins">
+																			    <input type="radio" name="ins" value="20000" onclick="getRadioValue(event)">
+																			    <span>슈퍼자차
+																					<img class="js-vsl-img-car vsl-img-car img-fluid" style="width:150px; height:70px;" src="resources/images/일반자차.png">
+																				</span>
+																			</label>
+																			
+																		</div>
 																	</div>
-																	&nbsp;
-																	
-<!-- 																	<div class="col-6 col-lg-12 pb-lg-3"> -->
-<!-- 																		<img src="resources/images/보험.png" > -->
-<!-- 																	</div> -->
 																</div>
-															</div>
+															</form>
 															<div class="js-vf-section-price-range">
 																<div
 																	class="dc-flex justify-content-between align-items-center">
@@ -1166,13 +1185,6 @@ $(document).ready(function() {
 																		data-is="7513"
 																		href="container-view-car-detail.html?mt=1&amp;rt=1&amp;srsd=2023-04-06 10:00:00&amp;sred=2023-04-07 10:00:00&amp;ssat=2&amp;ssac=I_2&amp;sls=20&amp;isOverSeas=false&amp;msac=I_2&amp;pet=0&amp;fishing=0&amp;army=0&amp;foreigner=0&amp;isul=0&amp;fda=-1&amp;rcs=59604&amp;sis=7513&amp;eat=여수엑스포역&amp;epos=2&amp;einpos=1&amp;v=230329_1">
 																		<div class="js-vsl-price-top-info dc-flex justify-content-between align-items-center">
-<!-- 																			<div class="js-vsl-price-info-only-top"> -->
-<!-- 																				<img class="js-vsl-img-car-year-icon dc-none mr-1" -->
-<!-- 																					src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjUwNTk0IDExLjk5OTlIMS42OTk1MUMwLjc2MDg5OCAxMS45OTk5IDAgMTEuMjY3MyAwIDEwLjM2MzVWNi41NDU0QzAgNS42NDE2NyAwLjc2MDg5OCA0LjkwOTA1IDEuNjk5NTEgNC45MDkwNUgyLjc0NzYyTDQuODY0MTEgMC4zMjM5MjJDNC45NTUwNCAwLjEyNjk0NCA1LjE1NzkyIDAgNS4zODE3OSAwQzYuNjMzMjggMCA3LjY0NzgxIDAuOTc2ODI1IDcuNjQ3ODEgMi4xODE4VjMuODE4MTVMMTAuMjgxMyAzLjgxODE4QzEwLjc3OTkgMy44MTI3NSAxMS4yNTU4IDQuMDE4NDEgMTEuNTgzIDQuMzgwNjlDMTEuOTEwMiA0Ljc0Mjk3IDEyLjA1NTYgNS4yMjUzMyAxMS45ODA3IDUuNzAwOEwxMS4xOTkxIDEwLjYwOUMxMS4wNzIgMTEuNDE1NyAxMC4zNDcgMTIuMDA5MSA5LjUwNTk0IDExLjk5OTlaTTMuNjgyMzkgMTAuOTA5NEw5LjUxMjQ2IDEwLjkwOTRDOS43OTQ5NCAxMC45MTI1IDEwLjAzNjYgMTAuNzE0NyAxMC4wNzkxIDEwLjQ0NDlMMTAuODYwOCA1LjUzNjYzQzEwLjg4NTcgNS4zNzg0MSAxMC44MzcyIDUuMjE3NjIgMTAuNzI4MSA1LjA5Njg2QzEwLjYxOTEgNC45NzYxIDEwLjQ2MDQgNC45MDc1NSAxMC4yODc4IDQuOTA5NEg3LjA4MTQyQzYuNzY4NTUgNC45MDk0IDYuNTE0OTEgNC42NjUxOSA2LjUxNDkxIDQuMzYzOTVWMi4xODIxNUM2LjUxNDkxIDEuNjk1MyA2LjE4MzY4IDEuMjgyOTQgNS43MjYzNyAxLjE0MjU4TDMuNjgyMzkgNS41NzA2VjEwLjkwOTRaTTEuNjcxMjIgNkgyLjU0OTMxVjEwLjkwOUgxLjY3MTIyQzEuMzU4MzUgMTAuOTA5IDEuMTA0NzIgMTAuNjY0OCAxLjEwNDcyIDEwLjM2MzZWNi41NDU0NUMxLjEwNDcyIDYuMjQ0MjEgMS4zNTgzNSA2IDEuNjcxMjIgNloiIGZpbGw9IiMwRDZGRkMiLz4KPC9zdmc+Cg==" -->
-<!-- 																					style="display: none;"><span -->
-<%-- 																					class="js-vsl-txt-car-year text-12 font-weight-bold car-year-color mb-0">${carList.car_year }ㆍ</span><span --%>
-<%-- 																					class="js-vsl-txt-car-fuel text-12 font-weight-bold color-grey-2 mb-0">${carList.car_fuel }</span> --%>
-<!-- 																			</div> -->
 																			
 																		</div>
 																		<div class="dc-flex justify-content-between align-items-center">

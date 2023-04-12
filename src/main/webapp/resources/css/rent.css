@@ -35181,3 +35181,22 @@ img.object-fit.contain {
 .naver .naver-pt-0 {
     padding-top: 0 !important
 }
+
+/* 왼쪽 필터 보험 선택란 css 추가 */
+.ins input[type="radio"] {
+      display: none;
+  }
+
+.ins input[type="radio"] + span {
+    display: inline-block;
+    padding: 15px 10px;
+    border: 1px solid #dfdfdf;
+    background-color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.ins input[type="radio"]:checked + span {
+    background-color: #0d6ffc;
+    color: #ffffff;
+}
