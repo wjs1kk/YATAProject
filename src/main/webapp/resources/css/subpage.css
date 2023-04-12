@@ -1,0 +1,91 @@
+@charset "UTF-8";
+#joinForm {
+	width: 600px;
+	height: 600px;
+	margin: auto;
+}
+
+#loginForm {
+	width: 300px;
+	height: 200px;
+	margin: auto;
+}
+
+h1 {
+	text-align: center;
+}
+
+.td_left {
+	width: 150px;
+}
+
+.td_right {
+	width: 350px;
+	margin-left: 10px;
+}
+
+#btnArea, #commandCell {
+	text-align: center;
+}
+
+.email {
+	width: 100px;
+}
+
+/* board_write_form.jsp */
+#writeForm {
+	width: 500px;
+	height: 450px;
+	margin: auto;
+}
+
+#writeForm > table {
+	margin: auto;
+	width: 450px;
+}
+
+.write_td_left {
+	width: 150px;
+	background: orange;
+	text-align: center;
+}
+
+.write_td_right {
+	width: 300px;
+	background: skyblue;
+}
+
+#board_subject {
+	width: 300px;
+}
+
+#board_content {
+	width: 300px;
+	height: 200px;
+}
+
+
+
+#modifyForm {
+	width: 500px;
+	height: 450px;
+	margin: auto;
+}
+
+#modifyForm > table {
+	margin: auto;
+	width: 450px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
