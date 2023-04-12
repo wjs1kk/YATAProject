@@ -10,14 +10,14 @@ public class ReviewVO {
 	private String review_title;
 	private String review_content;
 	private Timestamp review_regdate;
-	private Timestamp review_updateDate;
+	private Date review_updateDate;
 	private String review_star; 
 	private int review_viewcnt;
 	
 	public ReviewVO() {}
 	
 	public ReviewVO(int review_idx, String member_email, String member_name, String review_title, String review_content,
-			Timestamp review_regdate, Timestamp review_updateDate, String review_star, int review_viewcnt) {
+			Timestamp review_regdate, Date review_updateDate, String review_star, int review_viewcnt) {
 		this.review_idx = review_idx;
 		this.member_email = member_email;
 		this.member_name = member_name;
@@ -71,10 +71,10 @@ public class ReviewVO {
 	public void setReview_regdate(Timestamp review_regdate) {
 		this.review_regdate = review_regdate;
 	}
-	public Timestamp getReview_updateDate() {
+	public Date getReview_updateDate() {
 		return review_updateDate;
 	}
-	public void setReview_updateDate(Timestamp review_updateDate) {
+	public void setReview_updateDate(Date review_updateDate) {
 		this.review_updateDate = review_updateDate;
 	}
 	public String getReview_star() {

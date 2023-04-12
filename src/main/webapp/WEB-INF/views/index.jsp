@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/main.css">
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <script type="text/javascript">
 	/* 지점선택창 누르면 #zoneSelect로 넘어가지면서 불투명도 0 ->1로 변경이 돼서 팝업창이 보임  */
@@ -36,6 +44,15 @@
 }
 </style>
 
+<!-- 차량검색 클릭 이벤트(클릭시rent 페이지에 대여장소와 날짜가 request객체로 이동) -->
+<script type="text/javascript">
+	$(function() {
+		$("#search").on("click", function() {
+			location.href = "rent1?place=${param.place}&rentalDatetime="+$('#demo').val();
+		})
+	})
+</script>
+
 </head>
 <body>
 	<main id="content" role="main">
@@ -43,6 +60,7 @@
 			<!-- 		nav -->
 			<jsp:include page="inc/top.jsp" />
 			<div class="pc-mobile-header-container index-page">
+
 				<!-- 지도 선택 팝업창 -->
 				<div class="contents-modal" id="zoneSelect">
 					<div class="modal fade pr-0 show" id="modal_select_area"
@@ -65,16 +83,11 @@
 											<div class="click-effect-press"
 												id="modal_header_overseas_toggle_button"
 												style="display: flex;">
-												<img class="mr-1"
-													src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik00LjMyNyAyIDIgNC45MWg4TTcuNjczIDEwIDEwIDcuMDlIMiIgc3Ryb2tlPSIjOTk5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg=="><span
-													class="js-overseas-toggle js-overseas-toggle-domestic text-12 color-grey-5 dc-none"
-													data-isoverseas="0" style="display: none;">국내지역</span><span
-													class="js-overseas-toggle js-overseas-toggle-overseas text-12 color-grey-5"
-													data-isoverseas="1" style="display: block;">해외지역</span>
+												<span class="js-overseas-toggle js-overseas-toggle-domestic text-12 color-grey-5 dc-none"
+													data-isoverseas="0" style="display: none;">국내지역</span>
 											</div>
 										</div>
 									</div>
-
 
 									<!-- 닫기 버튼 -->
 									<button id="modal_close"
@@ -129,37 +142,27 @@
 										</div>
 									</div>
 								</div>
+								
+								
+								<!-- 지도 팝업창 상단 지도 이동 탭 -->
 								<div class="dc-none js-msa-tabs" style="display: block;">
-									<nav
-										class="common-nav-tabs nav nav-classic nav-borderless nav-fill bg-white">
-										<li class="nav-item text-center" style="width: 50%"><div
-												class="nav-link js-vsas-item-menu clickable active" data="0">국내</div></li>
-										<li class="nav-item text-center" style="width: 50%"><div
-												class="nav-link js-vsas-item-menu clickable" data="1">지도
-												검색</div></li>
-									</nav>
+									<button onclick="전포()">전포</button>
+									<button onclick="부전()">부전</button> 
+								    <button onclick="사상()">사상</button> 
+								    <button onclick="개금()">개금</button> 
 								</div>
-								<div class="dc-none js-msa-overseas-tabs" style="display: none;">
-									<nav
-										class="common-nav-tabs nav nav-classic nav-borderless nav-fill bg-white">
-										<li class="nav-item text-center" style="width: 50%"><div
-												class="nav-link js-vsas-item-menu clickable" data="2">해외</div></li>
-										<li class="nav-item text-center" style="width: 50%"><div
-												class="nav-link js-vsas-item-menu clickable" data="3">지도
-												검색</div></li>
-									</nav>
-								</div>
+								
+								
 								<div class="modal-body" body-scroll-lock-ignore="">
 									<div class="container-as-contents is-exist-tab"
 										id="js_vsas_container_area">
 										<div class="" id="js_vsas_container_area_s_kor"
 											style="display: block;">
-
-
 											<div class="dc-flex">
+											
 												<!-- 지도 영역 -->
 												<div id="map"
-													style="width: 800px; height: 700px; border-radius: 20px"></div>
+													style="width: 780px; height: 630px;"></div>
 												<script type="text/javascript"
 													src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac7eaf0b889d2a25e8a1f59096c406a"></script>
 												<script>
@@ -255,6 +258,31 @@
 																			});
 														})(marker, infowindow);
 													}
+													
+													
+													//지도 위도 경도 이동 버튼 클릭 이벤트
+													function 전포() {
+													    // 이동할 위도 경도 위치를 생성합니다 
+													    var moveLatLon = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136);
+													    
+													    // 지도 중심을 부드럽게 이동시킵니다
+													    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+													    map.panTo(moveLatLon);            
+													}        
+													function 부전() {
+													    var moveLatLon = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977);
+													    map.panTo(moveLatLon);            
+													}        
+													
+													function 사상() {
+													    var moveLatLon = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084);
+													    map.panTo(moveLatLon);            
+													}        
+													function 개금() {
+													    var moveLatLon = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524);
+													    map.panTo(moveLatLon);            
+													} 
+													
 
 													// 지도에 클릭 이벤트를 등록합니다
 													// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
@@ -292,7 +320,6 @@
 
 										</div>
 
-										<input type="button" value="전포지점">
 
 										<div class="container-as-bottom-bar is-pc-modal"
 											id="js_csabb_container_bottom_info">
@@ -325,8 +352,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- 지도 선택 팝업창 -->
-
 
 				<!-- 			메인 이미지 영역 -->
 				<section
@@ -409,37 +434,48 @@
 											class="dc-flex align-items-center justify-content-start mb-1">
 											<img class="icon mr-1"
 												src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMwcXVhOHdkMzZhKSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNENEQ0RDQiPgogICAgICAgIDxwYXRoIGQ9Ik04IDIuNWE2IDYgMCAxIDAgMCAxMiA2IDYgMCAwIDAgMC0xMnptLTcgNmE3IDcgMCAxIDEgMTQgMCA3IDcgMCAwIDEtMTQgMHoiLz4KICAgICAgICA8cGF0aCBkPSJNOCA0LjVhLjUuNSAwIDAgMSAuNS41djMuNUgxMGEuNS41IDAgMCAxIDAgMUg4YS41LjUgMCAwIDEtLjUtLjVWNWEuNS41IDAgMCAxIC41LS41eiIvPgogICAgPC9nPgogICAgPGRlZnM+CiAgICAgICAgPGNsaXBQYXRoIGlkPSIwcXVhOHdkMzZhIj4KICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAuNSkiIGQ9Ik0wIDBoMTZ2MTZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"><label
-												class="text-14 color-grey-4 mb-0">날짜 및 시간</label>
+												class="text-14 color-grey-4 mb-0">대여 및 반납날짜 선택하기</label>
 										</div>
 										<div
 											class="index-search-selected-box px-3 py-25 click-effect-press"
 											id="js_index_rent_date_view" data-type="period">
-											<div
-												class="dc-flex align-items-center justify-content-between w-100">
-												<div class="dc-flex align-items-center flex-grow-1">
-													<div class="dc-flex text-14">
-														<div
-															class="txt-rent-start-date mb-0 mr-015 font-weight-bold"
-															style="display: block;">4.5(수)</div>
-														<div class="txt-rent-start-time mb-0"
-															style="display: block;">10:00</div>
-													</div>
-													<img
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM0OTQ5NDkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="
-														style="height: 14px; margin: 0 2px;">
-													<div class="dc-flex text-14">
-														<div
-															class="txt-rent-end-date mb-0 mr-015 font-weight-bold"
-															style="display: block;">4.6(목)</div>
-														<div class="txt-rent-end-time mb-0"
-															style="display: block;">10:00</div>
-													</div>
-												</div>
-												<div class="text-right">
-													<span class="txt-rent-period color-grey-3 text-12"
-														style="display: block;">24시간</span>
-												</div>
-											</div>
+											<!-- 날짜 선택창 -->
+											<!-- 날짜선택 -->
+													<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent; width:250px; font-weight: bolder;" />
+														<script>
+														$(function () {
+														    $('#demo').daterangepicker({
+														        "locale": {
+														            "format": "MM.DD HH:00",
+														            "separator": " ~ ",
+														            "applyLabel": "확인",
+														            "cancelLabel": "취소",
+														            "fromLabel": "From",
+														            "autoclose": "true",
+														            "toLabel": "To",
+														            "todayHighlight" : "true",
+														            "customRangeLabel": "Custom",
+														            "weekLabel": "W",
+														            "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+														            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+														            "firstDay": 1
+														        },
+														        "startDate": new Date(),
+														        "endDate": new Date(),
+														        "drops": "down",
+														        timePicker: true,
+														        timePicker24Hour: true
+														        
+														    }, function (start, end) {
+														    	var startDate = start.format('MM-DD HH');
+														    	var endDate = end.format('MM-DD HH');
+														    	var time = (end - start) / (1000*60*60);
+														    	$('#time').text(time + " 시간");
+														    });
+														});
+														</script>
+														<!-- 	시간표시 -->
+														<p id="time" style="border:0 solid black; background-color:transparent;">시간</p>
 										</div>
 									</div>
 								</div>
@@ -448,11 +484,10 @@
 						</div>
 						<!-- 						차량 검색버튼  -->
 						<!-- 						창용 차량 검색버튼에 rent화면에 장소데이터 전송  -->
-						<a class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press"
-							href="rent1?place=${param.place }">
-							<div class="index-btn-search border-radius-normal dc-flex flex-column justify-content-center align-items-center">
+						<a class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press" >
+							<div class="index-btn-search border-radius-normal dc-flex flex-column justify-content-center align-items-center" id="search" >
 								<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNSAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0yMyAyMi41IDcgNyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTE1LjUgMjMuNWM1LjI0NyAwIDkuNS00LjAzIDkuNS05cy00LjI1My05LTkuNS05Yy01LjI0NiAwLTkuNSA0LjAzLTkuNSA5czQuMjU0IDkgOS41IDl6IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIvPgo8L3N2Zz4K">
-								<div class="text-16 font-weight-bold mt-2">차량 검색</div>
+								<div class="text-16 font-weight-bold mt-2" >차량 검색</div>
 							</div></a>
 					</div>
 				</section>

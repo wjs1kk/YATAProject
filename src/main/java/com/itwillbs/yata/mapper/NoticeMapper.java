@@ -6,11 +6,11 @@ import com.itwillbs.yata.vo.NoticeVO;
 
 public interface NoticeMapper {
 
-	int insertNotice(NoticeVO board);
+	int insertNotice(NoticeVO notice);
 	
 	int selectMaxNoticeNum();
 	
-	int insertNotice2(NoticeVO board);
+	int insertNotice2(NoticeVO notice);
 	
 	List<NoticeVO> selectNoticeList();
 	

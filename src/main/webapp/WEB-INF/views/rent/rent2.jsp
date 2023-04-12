@@ -19,7 +19,7 @@
 									<div class="col-8 offset-2 col-xl-6 offset-xl-3 px-5">
 										<div class="mt-3 mb-xl-0">
 											<img class="img-fluid" id="vcd_img_car"
-												src="resources/images/${car.car_model }.png" height="289" width="140">
+												src="resources/images/car/${car.car_model }.png" style="width:289px; height:140px;">
 											
 										</div>
 									</div>
@@ -35,7 +35,7 @@
 												class="js-cpi-txt-car-type ml-1">${car.car_type }</span></a>
 											<div
 												class="js-cpi-txt-car-model text-20 font-weight-bold color-grey-3 mb-0">
-												${car.car_model }</div>
+												${car.car_name }</div>
 											<div class="js-cpi-container-branch-info pt-1 dc-none"
 												style="display: none;">
 												<div class="dc-flex align-items-center">
@@ -1046,181 +1046,93 @@
 										
 										<div class="container">
 											<div class="click-effect-press" id="sci_btn_open_branch_map">
+											
+												<!-- 지도 영역 -->
 												<div class="map-wrap w-100" style="height: 164px;">
-													<div class="js-btn-open-full-map map-container click-effect-press border-radius-8"
-														id="sci_map_branch" style="display: block;">
-														<div class="js-tMap-V2-map-wrap map-container">
-															<div
-																style="position: relative; overflow: hidden; user-select: none; -webkit-user-drag: none; left: 0px; top: 0px; width: 623px; height: 164px; z-index: 0; background-image: url(&quot;data:image/png;base64,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&quot;);">
-																<div
-																	style="position: relative; overflow: hidden; user-select: none; -webkit-user-drag: none; left: 0px; top: 0px; width: 623px; height: 164px; z-index: 1;">
-																	<div
-																		style="position: absolute; overflow: visible; user-select: none; -webkit-user-drag: none; left: -33px; top: -149px; width: 623px; height: 164px; z-index: 0; opacity: 1;">
-																		<img draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111586/78496.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: -256px; top: -256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111586/78495.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: -256px; top: 0px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111586/78494.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: -256px; top: 256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111586/78493.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: -256px; top: 512px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111586/78492.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: -256px; top: 768px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111587/78496.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 0px; top: -256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111587/78495.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 0px; top: 0px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111587/78494.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 0px; top: 256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111587/78493.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 0px; top: 512px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111587/78492.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 0px; top: 768px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111588/78496.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 256px; top: -256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111588/78495.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 256px; top: 0px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111588/78494.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 256px; top: 256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111588/78493.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 256px; top: 512px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111588/78492.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 256px; top: 768px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111589/78496.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 512px; top: -256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111589/78495.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 512px; top: 0px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111589/78494.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 512px; top: 256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111589/78493.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 512px; top: 512px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111589/78492.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 512px; top: 768px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111590/78496.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 768px; top: -256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111590/78495.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 768px; top: 0px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111590/78494.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 768px; top: 256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111590/78493.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 768px; top: 512px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111590/78492.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 768px; top: 768px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111591/78496.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1024px; top: -256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111591/78495.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1024px; top: 0px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111591/78494.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1024px; top: 256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111591/78493.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1024px; top: 512px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111591/78492.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1024px; top: 768px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111592/78496.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1280px; top: -256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111592/78495.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1280px; top: 0px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111592/78494.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1280px; top: 256px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111592/78493.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1280px; top: 512px;"><img
-																			draggable="false"
-																			src="https://topopentile1.tmap.co.kr/tms/1.0.0/hd_tile/17/111592/78492.png?version=20220406"
-																			style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 1; width: 256px; height: 256px; left: 1280px; top: 768px;">
-																	</div>
-																</div>
-<!-- 																지도넣기 -->
-																<div
-																	style="position: absolute; overflow: visible; user-select: none; -webkit-user-drag: none; left: 0px; top: 0px; width: 1px; height: 1px; z-index: 2;">
-																	<canvas width="623" height="164"
-																		style="position: absolute;"></canvas>
-																	<canvas width="623" height="164"
-																		style="position: absolute; visibility: hidden;"></canvas>
-																</div>
-																<div
-																	style="position: absolute; overflow: visible; user-select: none; -webkit-user-drag: none; left: 0px; top: 0px; width: 1px; height: 1px; z-index: 10;">
-																	<span
-																		style="position: absolute; user-select: none; -webkit-user-drag: none; overflow: visible; left: 305.401px; top: 82.3203px; width: 12px; height: 10px; text-align: center; font-size: 12px;">
-																	</span><img draggable="false"
-																		src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAmCAYAAADeB1slAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNDA5M0VFQjExMDNFNDExQURGMUZFM0QwNjMzNkU5RSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpDQzNEMTE4NTEzQjgxMUU0QUNCQUQyQjJEN0JCQTM3OCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpDQzNEMTE4NDEzQjgxMUU0QUNCQUQyQjJEN0JCQTM3OCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkNGNzdFRERFMUExM0U0MTFCNUREOTUzNjM3OUQyM0Q3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY0MDkzRUVCMTEwM0U0MTFBREYxRkUzRDA2MzM2RTlFIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Q23/mwAAA7ZJREFUeNrsV1tLlEEYfj41Xc0DuXYghZJMyaAyISWCKJIKvIqKQuumQKyruuumCL3oF0RQ3ZTRdSBFB7oqqegEJeWJVbIT7q6u5mE97Nfzznzrfut+626mdw6MM8687/PMvPPO880apmliKUsKlrgsEyQsafOyn25dx+YU60HWCtZ8a8rP+oH1Mevd0J3aX/EwDKcsInAOm6us55DlzjAz3YArD0hN1wYzk8BEAMa4DxjzBTlynfUKiUYSEhC8jE0rgUvM/BIgfSUHV7Cm0trQRuITmmGdAiZHYfi7hYh/UEuSjrgEFvgLM7ewAO5SBjCDFjbguUV8TRJNcxO+ThjD370c3WMnmSUgeDabdwQvRQF50lycTTIHzBBJJgBvh5B0cqSSJH/mZtFlhqUU7s3/Bq6WmaJ9xFcwBMu+A65+Lfu9ZtEuFzKZKCmxyVWSCTw4ofvvvzG1njkQhaaBcT+M/jfcDjZyF7/Dy6wjsAvp2TrmDuViJVC+XtcjFZowdif0FQzBEkxbiA6bWW6dLXEO9NjOSD+L2XpmqxOBoTAUFjHtBNvhytWp6FCOFgIFObrf59Xtycp4t5MYgiWYNoLVSJVdOa++sSoCfuOl7m8o0MQO24DGImYyWiSxrt6k+w/bgWufeacmo4mTETuvuv6IlQ2JdZalEGVrKDwHgIFh/b8Qxx62qaVEMG0En0Rb1PWfU+yx3r8FqK/S4Yl72IIhWIJpU9MnFK59Zl4R45c2exZ73RGw51+AH8MRnEPl+uDP7gYuvbWtnvqkRJCY9h3co1hNYXIsahcXqnUrMW94pC9XuN5q03NC0lBiW71gCBbQMkvAG8e7iZtKFUW4RFtYasq136seoHs8OhK32yOHfXxbWI+CWlnJT8z+uWInyfvRXFVcDJFp0f54KuqkqnKwBDcGPR6O7CDBcFSaWgP1NJhRhyQyjGSeNJZkywdIfIkRBo+5B5yQyDYZ/i4tv1aokpFq5UNfC2Pej34zxgfb4O3U257vYRYOjdiKj/gmelVwBbLNOmOESTnyU0uwY6hMPUcbZUsfyzfxs4WGvWzOGwEm15SkrkOoZIxzyoa2lk/y7yI6tCA4ct/wfmUYgtHnIX2OqTnaKNsFPrwaMTrQh0GPDof6yFuhkTGZE5uFvuy4soA6j0FPCBNDOh1VSg5Bjem4B/7r6UgA+QI0G74u9QZS7yCfSslma25R3qZNTMPXGKDiSZW+jCXz4Ej2BwilRD47T61/a7j6nkUlWP4BsmTlrwADAGiHsLWkHt9JAAAAAElFTkSuQmCC"
-																		width="24" height="38"
-																		style="border: 0px; margin: 0px; padding: 0px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; position: absolute; user-select: none; -webkit-user-drag: none; opacity: 1; z-index: 100; left: 299.401px; top: 44.3203px; width: 24px; height: 38px;">
-																</div>
-																<div
-																	style="position: absolute; overflow: visible; user-select: none; -webkit-user-drag: none; left: 0px; top: 0px; width: 1px; height: 1px; z-index: 9;">
-																</div>
-																<div
-																	style="position: absolute; overflow: visible; user-select: none; -webkit-user-drag: none; left: 0px; top: 0px; width: 623px; height: 164px; z-index: 1;">
-																	<svg width="623" height="164"
-																		style="position: absolute; overflow: visible;"></svg>
-																</div>
-																<div
-																	style="position: absolute; overflow: visible; user-select: none; -webkit-user-drag: none; left: 0px; top: 0px; width: 1px; height: 1px; z-index: 1;">
-																	<canvas width="623" height="164"
-																		style="position: absolute;"></canvas>
-																	<canvas width="623" height="164"
-																		style="position: absolute; visibility: hidden;"></canvas>
-																</div>
-																<div
-																	style="position: absolute; overflow: visible; user-select: none; -webkit-user-drag: none; right: 1px; bottom: 1px; width: 210px; height: 35px; z-index: 10000; background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAAYCAYAAAC1Ft6mAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAANKADAAQAAAABAAAAGAAAAABZji8GAAADCklEQVRYCe1U30vTURTfd5u61LJsMnQxtdqEYMMH60GwgQ++NaHnMRGCKBASkq0RrTYi/AN6EPJha22ighOfehORYiFUqA/9QiE3h0+lkuzX9/Y5t+8V0TYxSCi+Bz7f8/N7z7nn3Hs1GpXUDqgdUDugduAf6oB0WK2MsUdlYl5JkvQSMRcRcw3IAmHgOnABeAd/ApwT4vQQ3MB5gCn4gJg4ZE6/yUc1fkRMVAn5c4bFA/hbJD7ABwcHEcJ6gsEgMxqNssViKQ4PD292dnbmamtrZZfLxVZXV19QBYjTzc/Ppzs6Ogo6nU4mU2Vlpdzd3c0WFxfX4NcCB/Lp9XrZ6XSypaWlL/AfOgDKVZKwgHV6enpnfHw8NTk5udHW1lZE0XI0GmVkW1hYeD8zM8M3GgqFWH9/P5cdDgcbGRlhZrNZdrvdBaxzNZPJxGjTXV1dbGJiopBIJFYikcgPxMpWq1XOZrP3xYZ8Ph/Dup8JsVjsm91uZ+3t7UX4b5cs9qgOLHa3vr5e9vv9EJmO/gevGxoayre2tlIy9/r6+lMyYzM70PVUWEtLC/luTE1NfSXf8vJykv4VNDs7m4fMksnka8TxCY2Ojn4XfuJjY2O8UWgKn/Ze335Zu99QRi/m83kNjokG57moxLFcLifBRglzNTU1O2THMckipmAwGDTw89Dt7e0TJJhMpiso/J5AVVXVCtm3trZOEieqqKg4Bf8DQiqVeobToWloaGDAp18Rpb90SY+VmpqaaPOPRVIULcRd7vF4WF9f30MywC9VV1ezeDwuabXaJ7tBJYRj31A4HKaJrol60un0uYGBAaFy7vV6JTwsfHKYFt2ft42NjTcxdXpFy9KxbwiFPm9ubvaIqubm5t5Avix04jabbbO3t5ee9iPTkTaEDh14NnEM8ArzN4LuFhcwgTpRCfz8nuKunCUbVIPwEccETiv8jLDTHRLyX+U4z17AuTcJ9B7gFtnAdUAAsCu6E/IdRb4EOQDwx4FsRNBNit2s6BTj4E71o3ZA7YDaAbUD/3sHfgINwITGapYLDgAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-position: center bottom;">
-																</div>
-																<div
-																	style="position: absolute; overflow: visible; user-select: none; -webkit-user-drag: none; right: 20px; bottom: 10px; width: 64px; height: 18px; font-size: 10px; z-index: 10000; background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD4AAAAGCAYAAACb6C2EAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAChJREFUeNpiYGBg+A/FDgwjA4D9y8QwQsGox0caYISm+dEYHykAIMAAy6wFRZq52ScAAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-position: center bottom; text-align: center;">
-																	<div style="vertical-align: baseline; font-size: 100%;">
-																		63m</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div
-														class="js-btn-open-full-map map-container click-effect-press border-radius-8 dc-none"
-														id="sci_map_branch_oversea" style="display: none;"></div>
+												
+												
+												<!-- 지도 -->
+												<div id="map" style="width:100%;height:350px;"></div>
+												<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac7eaf0b889d2a25e8a1f59096c406a"></script>
+												<script>
+												
+												window.onload = function() {
+													
+													if(${param.place eq '전포지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.15849019679627, 129.06202404131136), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); 
+														var iwContent = '<input type="text" id="place" value="전포지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); //인포윈도우 표시 위치입니다
+													}
+													if(${param.place eq '부전지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.15975905300518, 129.06186404315977), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); 
+														var iwContent = '<input type="text" id="place" value="부전지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); //인포윈도우 표시 위치입니다
+													}
+													if(${param.place eq '사상지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.158690073109824, 129.06113477638084), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); 
+														var iwContent = '<input type="text" id="place" value="사상지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); //인포윈도우 표시 위치입니다
+													}
+													if(${param.place eq '개금지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.15730753621485, 129.06294334538524), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); 
+														var iwContent = '<input type="text" id="place" value="개금지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); //인포윈도우 표시 위치입니다
+													}
+													
+													var map = new kakao.maps.Map(mapContainer, mapOption);
+													// 마커를 생성합니다
+													var marker = new kakao.maps.Marker({
+													    position: markerPosition
+													});
+													
+													// 마커가 지도 위에 표시되도록 설정합니다
+													marker.setMap(map);
+													    
+													// 인포윈도우를 생성합니다
+													var infowindow = new kakao.maps.InfoWindow({
+													    position : iwPosition, 
+													    content : iwContent 
+													});
+													  
+													// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+													infowindow.open(map, marker);
+													
+												}
+												</script>
+													
+												</div>
+												<!-- 지도 영역 끝 -->
+												
 												</div>
 											</div>
-											<div
-												class="js-sci-oversea-api-location mt-3 align-items-center dc-none"
-												style="display: none;">
-												<img class="mr-1"
-													src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNBQUI0QzYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTggMTVzNS01Ljk0NiA1LTguODEyQzEzIDMuMzIzIDEwLjc2MSAxIDggMVMzIDMuMzIzIDMgNi4xODhDMyA5LjA1NCA4IDE1IDggMTV6bTAtN2MxLjEwNSAwIDItLjg5NSAyLTJzLS44OTUtMi0yLTItMiAuODk1LTIgMiAuODk1IDIgMiAyeiIgY2xpcC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=">
-												<div
-													class="js-sci-oversea-api-location-txt text-12 color-grey-4">오시는
-													길</div>
-											</div>
-										</div>
 										<div class="container">
 											<div class="text-14 font-weight-bold color-grey-3 mt-3">주소</div>
 											<div class="dc-flex justify-content-between mt-2">
