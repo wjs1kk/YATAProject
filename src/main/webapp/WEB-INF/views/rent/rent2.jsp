@@ -19,7 +19,7 @@
 									<div class="col-8 offset-2 col-xl-6 offset-xl-3 px-5">
 										<div class="mt-3 mb-xl-0">
 											<img class="img-fluid" id="vcd_img_car"
-												src="resources/images/${car.car_model }.png" height="289" width="140">
+												src="resources/images/car/${car.car_model }.png" style="width:289px; height:140px;">
 											
 										</div>
 									</div>
