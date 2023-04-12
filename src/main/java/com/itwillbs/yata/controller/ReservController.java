@@ -48,11 +48,12 @@ public class ReservController {
 	public String pay_success() {
 		return "pay/pay_success";
 	}
+//	car_model -> car_name 수정
 	@GetMapping("/search")
-	public String search(@RequestParam String car_model, Model model) {
+	public String search(@RequestParam String car_name, Model model) {
 		System.out.println("search");
 		
-	    List<CarVO> cars = carService.searchByName(car_model);
+	    List<CarVO> cars = carService.searchByName(car_name);
 	    System.out.println(cars);
 	    
 	    model.addAttribute("carList", cars);

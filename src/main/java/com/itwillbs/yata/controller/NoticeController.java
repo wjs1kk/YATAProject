@@ -2,6 +2,8 @@ package com.itwillbs.yata.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,28 +15,29 @@ import com.itwillbs.yata.vo.NoticeVO;
 
 @Controller
 public class NoticeController {
+	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 	
 	@Autowired
 	private NoticeService noticeService;
 	
-	@GetMapping("write.bo")
+	@GetMapping("write.no")
 	public String writeForm() {
-		return "write_form";
+		return "notice/write_form";
 	}
 	
-	@PostMapping("writePro.bo")
-	public String writePro(NoticeVO board) {
-		int insertCount = noticeService.registNotice(board);
-		return "redirect:/notice.no";
+	@PostMapping("writePro.no")
+	public String writePro(NoticeVO notice) {
+		int insertCount = noticeService.registNotice(notice);
+		return "redirect:/notice";
 	}
 	
-	@GetMapping("notice.no")
+	@GetMapping("notice")
 	public String notice(Model model) {
 		List<NoticeVO> noticeList = noticeService.getNoticeList();
 		
 		model.addAttribute("noticeList", noticeList);
 		
-		return "notice_list";
+		return "notice";
 	}
 	
  	

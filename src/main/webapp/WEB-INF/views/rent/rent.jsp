@@ -8,6 +8,15 @@
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <link rel="stylesheet" href="resources/css/rent.css">
+
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -15,13 +24,13 @@ $(document).ready(function() {
   // 검색 버튼 클릭 이벤트
   $('#search_button').on('click', function() {
 // 	debugger;
-    var car_model = $('#search_box').val();
+    var car_name = $('#search_box').val();
     
 	//  AJAX 요청 보내기
     $.ajax({
 	      type: 'GET',
 	      url: '/search',
-	      data: { car_model: $('#search_box').val() },
+	      data: { car_name: $('#search_box').val() },
 	      success: function(data) {
 	      },
 	      error: function(xhr, textStatus, errorThrown) {
@@ -390,94 +399,51 @@ $(document).ready(function() {
 											</div>
 										</div>
 									</div>
-								</div>
+								</div>						
+								
 								<div class="col-lg-5">
 									<div class="form-group mb-0 h-100"
 										id="js_container_search_list_rent_date_view_pc">
-										<div class="js-vsl-btn-rent-date dc-flex justify-content-between align-items-center click-effect-press box-border-grey-7 box-round-gray px-25 py-1 h-100" data-type="location" onclick="daySelect()">
-											<div class="dc-flex align-items-center">
-												<div class="dc-flex align-items-center text-16 color-grey-3">
-													<img class="js-time-icon mr-1"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE3Ij4KICAgIDxwYXRoIGZpbGw9IiNBQUI0QzYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTggMTQuNzc4YzMuNjgyIDAgNi42NjctMi45ODUgNi42NjctNi42NjdTMTEuNjgyIDEuNDQ0IDggMS40NDQgMS4zMzMgNC40MyAxLjMzMyA4LjExMSA0LjMxOCAxNC43NzggOCAxNC43Nzh6bS44NjYtOS40NDhjMC0uMzY4LS4yOTktLjY2Ny0uNjY3LS42NjctLjM2OCAwLS42NjcuMjk5LS42NjcuNjY3djIuODY2bC0xLjY3NS0uOTMzYy0uMzIyLS4xOC0uNzI4LS4wNjQtLjkwNy4yNTgtLjE4LjMyMi0uMDY0LjcyOC4yNTguOTA3bDIuNjY3IDEuNDg0Yy4yMDYuMTE1LjQ1OC4xMTIuNjYyLS4wMDcuMjAzLS4xMi4zMjktLjMzOS4zMjktLjU3NXYtNHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4K"><img
-														class="js-start-date-error-icon mr-1 dc-none"
-														src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xNSA4LjExYTcgNyAwIDEgMS0xNCAwIDcgNyAwIDAgMSAxNCAweiIgZmlsbD0iI0IxMkMyQyIvPgogICAgPHJlY3QgeD0iNyIgeT0iNC4xMDkiIHdpZHRoPSIyIiBoZWlnaHQ9IjYiIHJ4PSIxIiBmaWxsPSIjZmZmIi8+CiAgICA8cGF0aCBkPSJNNyAxMi4xMWExIDEgMCAxIDEgMiAwIDEgMSAwIDAgMS0yIDB6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo="
-														style="display: none;"><span
-														class="txt-rent-start-date font-weight-bold"
-														style="display: block;">4.7(금)</span><span>&nbsp;</span><span
-														class="txt-rent-start-time" style="display: block;">10:00</span>
-												</div>
-												<img class="mx-2"
-													src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
-												<div class="dc-flex align-items-center text-16 color-grey-3">
-													<img class="js-end-date-error-icon mr-1 dc-none"
-														src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xNSA4LjExYTcgNyAwIDEgMS0xNCAwIDcgNyAwIDAgMSAxNCAweiIgZmlsbD0iI0IxMkMyQyIvPgogICAgPHJlY3QgeD0iNyIgeT0iNC4xMDkiIHdpZHRoPSIyIiBoZWlnaHQ9IjYiIHJ4PSIxIiBmaWxsPSIjZmZmIi8+CiAgICA8cGF0aCBkPSJNNyAxMi4xMWExIDEgMCAxIDEgMiAwIDEgMSAwIDAgMS0yIDB6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo="
-														style="display: none;"><span
-														class="txt-rent-end-date font-weight-bold"
-														style="display: block;">4.8(토)</span><span>&nbsp;</span><span
-														class="txt-rent-end-time" style="display: block;">10:00</span>
-												</div>
-											</div>
-											<div class="dc-flex align-items-center text-12 color-grey-3">
-												<span class="txt-rent-period" style="display: block;">24시간</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-3">
-									<div class="js-container-search-list-filter-age h-100"
-										style="display: none;">
+										
+										<!--달력 -->
 										<div
-											class="dc-flex align-itesm-center click-effect-press box-border-grey-7 box-round-gray px-25 py-2 h-100 text-14 color-grey-3">
-											<img class="mr-1"
-												src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCNzc2w3N3l5N3VhKSIgZmlsbD0iI0FBQjRDNiI+CiAgICAgICAgPHJlY3QgeD0iMSIgeT0iOSIgd2lkdGg9IjE0IiBoZWlnaHQ9IjYiIHJ4PSIxIi8+CiAgICAgICAgPHBhdGggZD0iTTMgNmExIDEgMCAwIDEgMS0xaDhhMSAxIDAgMCAxIDEgMXYySDNWNnoiLz4KICAgICAgICA8cmVjdCB4PSI1IiB5PSIyIiB3aWR0aD0iMSIgaGVpZ2h0PSI0IiByeD0iLjUiLz4KICAgICAgICA8cmVjdCB4PSI3LjUiIHk9IjEiIHdpZHRoPSIxIiBoZWlnaHQ9IjUiIHJ4PSIuNSIvPgogICAgICAgIDxyZWN0IHg9IjEwIiB5PSIyIiB3aWR0aD0iMSIgaGVpZ2h0PSI0IiByeD0iLjUiLz4KICAgIDwvZz4KICAgIDxkZWZzPgogICAgICAgIDxjbGlwUGF0aCBpZD0ic3NsNzd5eTd1YSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoMTZ2MTZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"><select
-												class="js-vsl-select-filter-age w-100 custom-select-grey color-grey-3 font-weight-bold click-no-effect border-none"><option
-													value="18">만 18세</option>
-												<option value="19">만 19세</option>
-												<option value="20">만 20세</option>
-												<option value="21">만 21세</option>
-												<option value="22">만 22세</option>
-												<option value="23">만 23세</option>
-												<option value="24">만 24세</option>
-												<option value="25">만 25세</option>
-												<option value="26">만 26세</option>
-												<option value="27">만 27세</option>
-												<option value="28">만 28세</option>
-												<option value="29">만 29세</option>
-												<option value="30">만 30 ~ 65세</option>
-												<option value="66">만 66세</option>
-												<option value="67">만 67세</option>
-												<option value="68">만 68세</option>
-												<option value="69">만 69세</option>
-												<option value="70">만 70세</option>
-												<option value="71">만 71세</option>
-												<option value="72">만 72세</option>
-												<option value="73">만 73세</option>
-												<option value="74">만 74세</option>
-												<option value="75">만 75세</option>
-												<option value="76">만 76세</option>
-												<option value="77">만 77세</option>
-												<option value="78">만 78세</option>
-												<option value="79">만 79세</option>
-												<option value="80">만 80세</option>
-												<option value="81">만 81세</option>
-												<option value="82">만 82세</option>
-												<option value="83">만 83세</option>
-												<option value="84">만 84세</option>
-												<option value="85">만 85세</option>
-												<option value="86">만 86세</option>
-												<option value="87">만 87세</option>
-												<option value="88">만 88세</option>
-												<option value="89">만 89세</option>
-												<option value="90">만 90세</option>
-												<option value="91">만 91세</option>
-												<option value="92">만 92세</option>
-												<option value="93">만 93세</option>
-												<option value="94">만 94세</option>
-												<option value="95">만 95세</option>
-												<option value="96">만 96세</option>
-												<option value="97">만 97세</option>
-												<option value="98">만 98세</option>
-												<option value="99">만 99세</option></select>
+											class="js-vsl-btn-rent-date dc-flex justify-content-between align-items-center click-effect-press box-border-grey-7 box-round-gray px-25 py-1 h-100"
+											data-type="location" onclick="daySelect()">
+										<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent; width:250px;" />
+										<script>
+										$(function () {
+										    $('#demo').daterangepicker({
+										        "locale": {
+										            "format": "MM.DD HH:00",
+										            "separator": " ~ ",
+										            "applyLabel": "확인",
+										            "cancelLabel": "취소",
+										            "fromLabel": "From",
+										            "autoclose": "true",
+										            "toLabel": "To",
+										            "todayHighlight" : "true",
+										            "customRangeLabel": "Custom",
+										            "weekLabel": "W",
+										            "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+										            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+										            "firstDay": 1
+										        },
+										        "startDate": new Date(),
+										        "endDate": new Date(),
+										        "drops": "down",
+										        timePicker: true,
+										        timePicker24Hour: true
+										        
+										    }, function (start, end) {
+										    	var startDate = start.format('MM-DD HH');
+										    	var endDate = end.format('MM-DD HH');
+										    	var time = (end - start) / (1000*60*60);
+										    	$('#time').text(time + " 시간");
+										    });
+										});
+										</script>
+										<!-- 	시간표시 -->
+										<p id="time" style="border:0 solid black; background-color:transparent;">시간</p>
 										</div>
 									</div>
 								</div>
@@ -567,7 +533,7 @@ $(document).ready(function() {
 																		<form action="search">
 																			<div class="dc-block w-100">
 																				<div class="position-relative">
-																					<input type="text" name="car_model" id="search_box" placeholder="자동차 모델명으로 검색할 수 있습니다">
+																					<input type="text" name="car_name" id="search_box" placeholder="자동차 모델명으로 검색할 수 있습니다">
 																					<input type="submit" class="btn btn-primary btn-sm px-3 ml-1"
 																					id="search_button" value="검색"></input>
 																					<div id="carList"></div>
@@ -597,27 +563,19 @@ $(document).ready(function() {
 															</div>
 															<div class="js-vf-section-fuels">
 																<div class="form-group mb-0">
-																	<div class="text-14 font-weight-bold color-grey-5 mb-2">보험</div>
-																	<div class="dc-block">
-																		<label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" class="insurance" name="ins_normal" value="1"><span
-																			class="checkbox-label color-grey-5">일반자차</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" class="insurance" name="ins_perfect" value="2"><span
-																			class="checkbox-label color-grey-5">완전자차</span><span
-																			class="checkmark"></span></label><label
-																			class="checkbox-container mr-2"><input
-																			type="checkbox" class="insurance" name="ins_super" value="3"><span
-																			class="checkbox-label color-grey-5">슈퍼자차</span><span
-																			class="checkmark"></span></label>
+																	<div class="text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
+																	<div class="radio">
+																	   
+																	      <input id="radio1" name="radio" type="radio" class="radio" checked="checked" ><label for="radio1"> 일반자차</label><br>
+																	      <input id="radio2" name="radio" type="radio" class="radio"> <label for="radio2">완전자차</label><br>
+																	      <input id="radio3" name="radio" type="radio" class="radio"> <label for="radio3">슈퍼자차</label>
+																	    
 																	</div>
 																	&nbsp;
 																	
-																	<div class="col-6 col-lg-12 pb-lg-3">
-																		<img src="resources/images/보험.png" >
-																	</div>
+<!-- 																	<div class="col-6 col-lg-12 pb-lg-3"> -->
+<!-- 																		<img src="resources/images/보험.png" > -->
+<!-- 																	</div> -->
 																</div>
 															</div>
 															<div class="js-vf-section-price-range">
@@ -707,16 +665,7 @@ $(document).ready(function() {
 																	</div>
 																</div>
 															</div>
-															<div class="py-3" id="js_filter_pc_container_btn">
-																<button
-																	class="js-vf-btn-init btn btn-light btn-block text-center bg-color-grey-7 click-effect-press">
-																	<div class="d-flex justify-content-center">
-																		<img class="icon-25"
-																			src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxwYXRoIGZpbGw9IiM2NjYiIGQ9Ik01LjUzNCA3LjEyNGMuMDM1LS4wNTcuMDc2LS4xMTEuMTI0LS4xNjIgMS44MDMtMS44ODggNC4yOTQtMi45NzcgNi45NTctMi45NzcgNS4zMSAwIDkuNjE2IDQuMzA1IDkuNjE2IDkuNjE1IDAgNS4zMS00LjMwNSA5LjYxNS05LjYxNiA5LjYxNUM3LjMwNSAyMy4yMTUgMyAxOC45MSAzIDEzLjZjMC0uNTMxLjQzLS45NjIuOTYyLS45NjIuNTMgMCAuOTYxLjQzLjk2MS45NjIgMCA0LjI0OCAzLjQ0NCA3LjY5MiA3LjY5MiA3LjY5MiA0LjI0OSAwIDcuNjkzLTMuNDQ0IDcuNjkzLTcuNjkycy0zLjQ0NC03LjY5Mi03LjY5My03LjY5MmMtMi4xMzIgMC00LjEyMi44Ny01LjU2NSAyLjM4Mi0uMDMuMDMtLjA2LjA2LS4wOTMuMDg1bDMuNDEuMDAyYy41NDMgMCAuOTgzLjQ0Ljk4NC45ODQgMCAuNTQ0LS40NC45ODQtLjk4NC45ODRsLTUuOTA2LS4wMDJjLS41NDMgMC0uOTg0LS40NC0uOTg0LS45ODVsLS4wMDItNS4zNzRjMC0uNTQ0LjQ0LS45ODQuOTg0LS45ODQuNTQzIDAgLjk4NC40NDEuOTg0Ljk4NWwuMDg5IDMuMTM4LjAwMi4wMDF6Ii8+Cjwvc3ZnPgo=">
-																		<div class="text-16 color-grey-4 mb-0">필터 초기화</div>
-																	</div>
-																</button>
-															</div>
+														
 														</div>
 													</div>
 												</div>
@@ -1159,30 +1108,11 @@ $(document).ready(function() {
 																																																
 									<div class="bg-white mb-3 js-vsl-container-search-list-item click-no-effect"  onclick="window.location.href='rent2?car_id=${carList.car_id}&place=${param.place }'">
 										<div class="row car-list no-gutters">
-											<div class="col-12 col-lg-5">
+											<div class="col-12 col-lg-5 pt-3 pb-2 px-1 p-lg-3">
 												<div class="pt-3 pb-2 px-1 p-lg-3">
-														<div class="col-6 col-lg-12 pb-lg-3">			
-															<img class="js-vsl-img-car vsl-img-car img-fluid px-2 p-lg-3 mb-2 lazy" src="resources/images/${carList.car_model }.png" >
+														<div class="">			
+															<img class="js-vsl-img-car vsl-img-car img-fluid " src="resources/images/car/${carList.car_model }.png" style="width:289px; height:130px;">
 														</div>
-													<div class="js-group-include-info row no-gutters">
-														<div class="col-12 px-3 px-lg-0 text-12">
-															<div class="d-flex justify-content-center align-items-center flex-wrap">
-																<div class="js-container-car-info-icon pr-4">
-																	<div class="d-flex align-items-center">
-																		<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM3ODhBQUMiIGQ9Ik0xMi41IDEzLjA2MXYtMS40OTVjMC0xLjg1MS0xLjE2NC0zLjQyNC0yLjc2Ni0zLjk2Ny43Ny0uNDUyIDEuMjkzLTEuMzEzIDEuMjkzLTIuMjk5IDAtMS40NTEtMS4xMzQtMi42MzQtMi41MjctMi42MzQtMS4zOTMgMC0yLjUyNyAxLjE4My0yLjUyNyAyLjYzNCAwIC45ODYuNTIzIDEuODQ3IDEuMjkzIDIuMjk5QzUuNjYyIDguMTQyIDQuNSA5LjcxNSA0LjUgMTEuNTY2djEuNDk1YzAgLjE1LjExNi4yNzIuMjYuMjcyaDcuNDg0Yy4xNC0uMDAyLjI1Ni0uMTIyLjI1Ni0uMjcyeiIvPgo8L3N2Zz4K">
-																		<span class="js-car-info-txt-passenger ml-1">${carList.car_seater }</span>
-																	</div>
-																</div>
- 
-																<div class="js-container-car-info-icon pr-4">
-																	<div class="d-flex align-items-center">
-																		<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGw9IiM4NTkyQUIiIGQ9Ik0zIDEyaDEwdjJIM3pNOSA1aDJsLTEgNEg4bDEtNHpNOCA5aDJsMSAzSDUuNUw4IDl6Ii8+CiAgICA8Y2lyY2xlIGN4PSIxMCIgY3k9IjQiIHI9IjIiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg=="><span
-																			class="js-car-info-txt-transmission ml-1">오토</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
 												</div>
 												
 											</div>							
@@ -1193,19 +1123,34 @@ $(document).ready(function() {
 												</div>
 												<div class="col-6 col-lg-12 d-flex flex-column justify-content-center">
 													<div class="pt-lg-3 border-lg-top">
-														<div class="js-vsl-badge-car-type">
+														<div class="js-vsl-badge-car-type"> <!-- 수정중 -->
 															<div class="badge-car-type px-2 py-1 dc-flex align-items-center">
 																<img
 																	src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS43NTQ0IDQuMDA5NzlMMTIuODIwNCA2Ljg0NzQyQzEzLjI0NyA2LjkwMzk4IDEzLjk5NzMgNy40MTcxNSAxNCA4LjM4ODMyVjExLjE3NDlDMTQgMTEuNjMyOSAxMy42NDAyIDEyLjAwMjYgMTMuMTk3NSAxMi4wMDI2SDEyLjk1OTVWMTIuNDgwOEMxMi45NTk1IDEzLjkwMyAxMS4wMDgxIDEzLjg4NjUgMTEuMDAyOCAxMi40ODA4VjEyLjAwMjZIMy45ODc4N1YxMi40ODA4QzMuOTg3ODcgMTMuODg2NSAyLjAzNjUzIDEzLjkwMyAyLjAzOTIxIDEyLjQ4MDhWMTIuMDAyNkgxLjgwMjQ4QzEuMzU5NzggMTIuMDAyNiAxIDExLjYzMTUgMSAxMS4xNzQ5VjguMzg4MzJDMC45OTg2NzEgNy40MTcxNSAxLjc0NzY0IDYuOTAzOTggMi4xNzAyNyA2Ljg0NzQyTDMuMjM2MjIgNC4wMDk3OUMzLjQzOTUxIDMuNDY2MjcgMy44NzU1MyAzLjAwNDE0IDQuNjk1MzcgM0gxMC4yOTUzQzExLjExOTEgMy4wMDQxNCAxMS41NTUxIDMuNDY2MjcgMTEuNzU0NCA0LjAwOTc5Wk0xMC44MzI5IDYuODIxMjFDMTEuMTI3MiA2LjgyMTIxIDExLjMyNjUgNi41MTIyMSAxMS4yMTE0IDYuMjMyMTZMMTAuNjQ5NyA0Ljg2MjMyTDEwLjYzNzIgNC44MzY0MUMxMC40ODA1IDQuNTA5OTkgMTAuMzg4IDQuMzE3MjggMTAuMDQ2NSA0LjMxMTlINC45NDE0N0M0LjU4NTcxIDQuMzE3NDIgNC40MjI1NSA0LjY0NTc0IDQuMzM4MjggNC44NjIzMkwzLjc3NjU1IDYuMjMyMTZDMy42NjE1MyA2LjUxMjIxIDMuODYwODEgNi44MjEyMSA0LjE1NTA0IDYuODIxMjFIMTAuODMyOVpNMTIuNjM1NiA4LjgzMTQzQzEyLjYzNTYgOS4zMjc5NyAxMi4yMzg4IDkuNzMwNDkgMTEuNzQ5MiA5LjczMDQ5QzExLjI1OTcgOS43MzA0OSAxMC44NjI5IDkuMzI3OTcgMTAuODYyOSA4LjgzMTQzQzEwLjg2MjkgOC4zMzQ5IDExLjI1OTcgNy45MzIzNyAxMS43NDkyIDcuOTMyMzdDMTIuMjM4OCA3LjkzMjM3IDEyLjYzNTYgOC4zMzQ5IDEyLjYzNTYgOC44MzE0M1pNMy4xNzM1OSA5LjczMDQ5QzMuNjYzMTIgOS43MzA0OSA0LjA1OTk1IDkuMzI3OTcgNC4wNTk5NSA4LjgzMTQzQzQuMDU5OTUgOC4zMzQ5IDMuNjYzMTIgNy45MzIzNyAzLjE3MzU5IDcuOTMyMzdDMi42ODQwNyA3LjkzMjM3IDIuMjg3MjMgOC4zMzQ5IDIuMjg3MjMgOC44MzE0M0MyLjI4NzIzIDkuMzI3OTcgMi42ODQwNyA5LjczMDQ5IDMuMTczNTkgOS43MzA0OVoiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg==">
-																	<span class="ml-1">${carList.car_manufacturer }</span>
-<!-- 																			차 제조사 -->
+																	<span class="ml-1">${carList.car_type }</span>
+<!-- 																			차 타입 -->
 															</div>
+														
+															
 														</div>
-														<div class="js-vsl-txt-car-model text-20 mb-1 color-grey-1">${carList.car_model }</div>
-														<div class="js-vsl-txt-car-desc text-12 color-grey-5">벤츠 E클래스 10세대</div>
-														<div class="js-vsl-txt-car-price-range text-16 text-lg-12 mb-0 mt-2 color-grey-2 font-weight-medium">2시간 : ${carList.car_price }원</div>
+														
+														<div class="js-vsl-txt-car-model text-20 mb-1 color-grey-1" >
+															<img class="badge-car-type px-2 py-1 dc-flex align-items-center" style="width:50px; height:30px; background-color: white; border: 1px solid #f1f4f9;" src="resources/images/car/${carList.car_manufacturer }.png">   ${carList.car_name }
+														</div>
+														<div class="js-vsl-txt-car-desc text-12 color-grey-5">
+														<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNOCAxNEMxMS4zMTM3IDE0IDE0IDExLjMxMzcgMTQgOEMxNCA0LjY4NjI5IDExLjMxMzcgMiA4IDJDNC42ODYyOSAyIDIgNC42ODYyOSAyIDhDMiAxMS4zMTM3IDQuNjg2MjkgMTQgOCAxNFpNOC41OTMwNCAxMS41Nzc3VjguODA0NDhMMTEuMTE2OCA0LjgxMDYxSDkuODI5ODJMNy45NDI1MyA3LjgxMjZMNi4yNzIwOCA0LjgxMDYxSDQuOTQ3MDJMNy4zNTYyNiA4LjgwNDQ4VjExLjU3NzdIOC41OTMwNFoiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg==">
+															<span class="js-car-info-txt-car-year ml-1">${carList.car_year  }</span>
+														<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM3ODhBQUMiIGQ9Ik03Ljk3IDIuMTc0QzcuODQgMi4wNTkgNy42NzggMiA3LjUxNiAyYy0uMTYzIDAtLjMyNi4wNTktLjQ1OC4xNzQtLjE2NS4xNDYtNC4wNDIgMy42NDYtNC4wNDIgNy4yNzMgMCAyLjUxMyAyLjAxNiA0LjU1MyA0LjUgNC41NTMgMi40OCAwIDQuNS0yLjA0MyA0LjUtNC41NTMgMC0zLjYyNy0zLjg4LTcuMTI3LTQuMDQ2LTcuMjczeiIvPgo8L3N2Zz4K">
+															<span class="js-car-info-txt-fuel ml-1">${carList.car_fuel }</span>
+														<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM3ODhBQUMiIGQ9Ik0xMi41IDEzLjA2MXYtMS40OTVjMC0xLjg1MS0xLjE2NC0zLjQyNC0yLjc2Ni0zLjk2Ny43Ny0uNDUyIDEuMjkzLTEuMzEzIDEuMjkzLTIuMjk5IDAtMS40NTEtMS4xMzQtMi42MzQtMi41MjctMi42MzQtMS4zOTMgMC0yLjUyNyAxLjE4My0yLjUyNyAyLjYzNCAwIC45ODYuNTIzIDEuODQ3IDEuMjkzIDIuMjk5QzUuNjYyIDguMTQyIDQuNSA5LjcxNSA0LjUgMTEuNTY2djEuNDk1YzAgLjE1LjExNi4yNzIuMjYuMjcyaDcuNDg0Yy4xNC0uMDAyLjI1Ni0uMTIyLjI1Ni0uMjcyeiIvPgo8L3N2Zz4K">
+															<span class="js-car-info-stxt-passenger ml-1">${carList.car_seater }</span>
+																
+														<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGw9IiM4NTkyQUIiIGQ9Ik0zIDEyaDEwdjJIM3pNOSA1aDJsLTEgNEg4bDEtNHpNOCA5aDJsMSAzSDUuNUw4IDl6Ii8+CiAgICA8Y2lyY2xlIGN4PSIxMCIgY3k9IjQiIHI9IjIiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg=="><span
+																class="js-car-info-txt-transmission ml-1">오토</span>
+														</div>
 
 													</div>
+														<div class="js-vsl-txt-company-discount-price text-right text-16-b color-grey-2 mb-0 dc-inline-block">2시간 : ${carList.car_price }원</div>
 												</div>
 												
 												<div class="js-vsl-container-car-info-list">
@@ -1221,21 +1166,18 @@ $(document).ready(function() {
 																		data-is="7513"
 																		href="container-view-car-detail.html?mt=1&amp;rt=1&amp;srsd=2023-04-06 10:00:00&amp;sred=2023-04-07 10:00:00&amp;ssat=2&amp;ssac=I_2&amp;sls=20&amp;isOverSeas=false&amp;msac=I_2&amp;pet=0&amp;fishing=0&amp;army=0&amp;foreigner=0&amp;isul=0&amp;fda=-1&amp;rcs=59604&amp;sis=7513&amp;eat=여수엑스포역&amp;epos=2&amp;einpos=1&amp;v=230329_1">
 																		<div class="js-vsl-price-top-info dc-flex justify-content-between align-items-center">
-																			<div class="js-vsl-price-info-only-top">
-																				<img class="js-vsl-img-car-year-icon dc-none mr-1"
-																					src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjUwNTk0IDExLjk5OTlIMS42OTk1MUMwLjc2MDg5OCAxMS45OTk5IDAgMTEuMjY3MyAwIDEwLjM2MzVWNi41NDU0QzAgNS42NDE2NyAwLjc2MDg5OCA0LjkwOTA1IDEuNjk5NTEgNC45MDkwNUgyLjc0NzYyTDQuODY0MTEgMC4zMjM5MjJDNC45NTUwNCAwLjEyNjk0NCA1LjE1NzkyIDAgNS4zODE3OSAwQzYuNjMzMjggMCA3LjY0NzgxIDAuOTc2ODI1IDcuNjQ3ODEgMi4xODE4VjMuODE4MTVMMTAuMjgxMyAzLjgxODE4QzEwLjc3OTkgMy44MTI3NSAxMS4yNTU4IDQuMDE4NDEgMTEuNTgzIDQuMzgwNjlDMTEuOTEwMiA0Ljc0Mjk3IDEyLjA1NTYgNS4yMjUzMyAxMS45ODA3IDUuNzAwOEwxMS4xOTkxIDEwLjYwOUMxMS4wNzIgMTEuNDE1NyAxMC4zNDcgMTIuMDA5MSA5LjUwNTk0IDExLjk5OTlaTTMuNjgyMzkgMTAuOTA5NEw5LjUxMjQ2IDEwLjkwOTRDOS43OTQ5NCAxMC45MTI1IDEwLjAzNjYgMTAuNzE0NyAxMC4wNzkxIDEwLjQ0NDlMMTAuODYwOCA1LjUzNjYzQzEwLjg4NTcgNS4zNzg0MSAxMC44MzcyIDUuMjE3NjIgMTAuNzI4MSA1LjA5Njg2QzEwLjYxOTEgNC45NzYxIDEwLjQ2MDQgNC45MDc1NSAxMC4yODc4IDQuOTA5NEg3LjA4MTQyQzYuNzY4NTUgNC45MDk0IDYuNTE0OTEgNC42NjUxOSA2LjUxNDkxIDQuMzYzOTVWMi4xODIxNUM2LjUxNDkxIDEuNjk1MyA2LjE4MzY4IDEuMjgyOTQgNS43MjYzNyAxLjE0MjU4TDMuNjgyMzkgNS41NzA2VjEwLjkwOTRaTTEuNjcxMjIgNkgyLjU0OTMxVjEwLjkwOUgxLjY3MTIyQzEuMzU4MzUgMTAuOTA5IDEuMTA0NzIgMTAuNjY0OCAxLjEwNDcyIDEwLjM2MzZWNi41NDU0NUMxLjEwNDcyIDYuMjQ0MjEgMS4zNTgzNSA2IDEuNjcxMjIgNloiIGZpbGw9IiMwRDZGRkMiLz4KPC9zdmc+Cg=="
-																					style="display: none;"><span
-																					class="js-vsl-txt-car-year text-12 font-weight-bold car-year-color mb-0">${carList.car_year }ㆍ</span><span
-																					class="js-vsl-txt-car-fuel text-12 font-weight-bold color-grey-2 mb-0">${carList.car_fuel }</span>
-																			</div>
+<!-- 																			<div class="js-vsl-price-info-only-top"> -->
+<!-- 																				<img class="js-vsl-img-car-year-icon dc-none mr-1" -->
+<!-- 																					src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjUwNTk0IDExLjk5OTlIMS42OTk1MUMwLjc2MDg5OCAxMS45OTk5IDAgMTEuMjY3MyAwIDEwLjM2MzVWNi41NDU0QzAgNS42NDE2NyAwLjc2MDg5OCA0LjkwOTA1IDEuNjk5NTEgNC45MDkwNUgyLjc0NzYyTDQuODY0MTEgMC4zMjM5MjJDNC45NTUwNCAwLjEyNjk0NCA1LjE1NzkyIDAgNS4zODE3OSAwQzYuNjMzMjggMCA3LjY0NzgxIDAuOTc2ODI1IDcuNjQ3ODEgMi4xODE4VjMuODE4MTVMMTAuMjgxMyAzLjgxODE4QzEwLjc3OTkgMy44MTI3NSAxMS4yNTU4IDQuMDE4NDEgMTEuNTgzIDQuMzgwNjlDMTEuOTEwMiA0Ljc0Mjk3IDEyLjA1NTYgNS4yMjUzMyAxMS45ODA3IDUuNzAwOEwxMS4xOTkxIDEwLjYwOUMxMS4wNzIgMTEuNDE1NyAxMC4zNDcgMTIuMDA5MSA5LjUwNTk0IDExLjk5OTlaTTMuNjgyMzkgMTAuOTA5NEw5LjUxMjQ2IDEwLjkwOTRDOS43OTQ5NCAxMC45MTI1IDEwLjAzNjYgMTAuNzE0NyAxMC4wNzkxIDEwLjQ0NDlMMTAuODYwOCA1LjUzNjYzQzEwLjg4NTcgNS4zNzg0MSAxMC44MzcyIDUuMjE3NjIgMTAuNzI4MSA1LjA5Njg2QzEwLjYxOTEgNC45NzYxIDEwLjQ2MDQgNC45MDc1NSAxMC4yODc4IDQuOTA5NEg3LjA4MTQyQzYuNzY4NTUgNC45MDk0IDYuNTE0OTEgNC42NjUxOSA2LjUxNDkxIDQuMzYzOTVWMi4xODIxNUM2LjUxNDkxIDEuNjk1MyA2LjE4MzY4IDEuMjgyOTQgNS43MjYzNyAxLjE0MjU4TDMuNjgyMzkgNS41NzA2VjEwLjkwOTRaTTEuNjcxMjIgNkgyLjU0OTMxVjEwLjkwOUgxLjY3MTIyQzEuMzU4MzUgMTAuOTA5IDEuMTA0NzIgMTAuNjY0OCAxLjEwNDcyIDEwLjM2MzZWNi41NDU0NUMxLjEwNDcyIDYuMjQ0MjEgMS4zNTgzNSA2IDEuNjcxMjIgNloiIGZpbGw9IiMwRDZGRkMiLz4KPC9zdmc+Cg==" -->
+<!-- 																					style="display: none;"><span -->
+<%-- 																					class="js-vsl-txt-car-year text-12 font-weight-bold car-year-color mb-0">${carList.car_year }ㆍ</span><span --%>
+<%-- 																					class="js-vsl-txt-car-fuel text-12 font-weight-bold color-grey-2 mb-0">${carList.car_fuel }</span> --%>
+<!-- 																			</div> -->
 																			
 																		</div>
 																		<div class="dc-flex justify-content-between align-items-center">
 																			<div class="d-flex align-items-center">
-																				<img class="mr-1"
-																					src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyLjEwMSAxMC4wNjRjLS44MTggMS43NzktMi4zMTIgMy4xMzYtNC40MTQgMy45MDItLjEyMy4wNDUtLjI1Ny4wNDUtLjM4IDAtMi4wOTctLjc2Ny0zLjU5LTIuMTI0LTQuNDA5LTMuOTAzLS4zMDUtLjY2Ni0uNTI0LTEuNDg2LS42NzEtMi40MjgtLjE5OS0xLjI3LS4yNS0yLjU5LS4yMTktMy43MmwuMDA4LS4yMWMuMDE0LS4yOS4yNTUtLjUxOC41NDktLjUxOCAxLjI3OCAwIDIuNDMtLjIxMiAzLjQzNC0uNTYzLjM1LS4xMjIuNjU0LS4yNTEuOTEyLS4zOC4xNS0uMDc1LjI0Ny0uMTMuMjktLjE1OC4xOC0uMTE1LjQxMi0uMTE1LjU5MyAwIC4wNDIuMDI3LjE0LjA4My4yOS4xNTcuMjU5LjEzLjU2NC4yNi45MTMuMzgxIDEuMDA4LjM1MSAyLjE2LjU2MyAzLjQzOC41NjMuMjk0IDAgLjUzNS4yMjguNTUuNTE5bC4wMDcuMjA5Yy4wMyAxLjEzLS4wMiAyLjQ1LS4yMTkgMy43Mi0uMTQ3Ljk0Mi0uMzY2IDEuNzYyLS42NzIgMi40Mjl6TTcuOTkyIDUuNGMwLS4yNzYtLjIyNS0uNS0uNTA0LS41LS4yNzggMC0uNTA0LjIyNC0uNTA0LjV2Mi4wMDJINC45NjdjLS4yNzggMC0uNTA0LjIyNC0uNTA0LjVzLjIyNi41LjUwNC41aDIuMDE3VjEwLjRjMCAuMjc3LjIyNi41LjUwNC41LjI3OSAwIC41MDQtLjIyMy41MDQtLjVWOC40MDJoMi4wMTdjLjI3OCAwIC41MDQtLjIyNC41MDQtLjVzLS4yMjYtLjUtLjUwNC0uNUg3Ljk5MlY1LjR6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhciIgeDE9IjEyLjQzOSIgeDI9IjIuMTkxIiB5MT0iMiIgeTI9IjIuMTU0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwNkI2RTYiLz4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEQ2RkZDIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KPC9zdmc+Cg=="><span
-																					class="js-vsl-txt-car-insu-age text-12 color-grey-3 mb-0">만
-																					26세 이상</span>
+																				
 																			</div>
 																			<div class="d-flex align-items-center">
 

@@ -6,6 +6,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/main.css">
+
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById('event_list_container').style.display = 'block';
+		var coupon1 = document.getElementById("coupon1");
+		var coupon2 = document.getElementById("coupon2");
+		coupon1.onclick = click_Coupon1
+		coupon2.onclick = click_Coupon2
+//쿠폰 누를 시 해당쿠폰 제외 쿠폰 사라짐, 다시 누를 시 나타남
+	}
+	function click_Coupon1() {
+		if(document.getElementById('coupon2').style.display == 'none'){
+			document.getElementById('coupon2').style.display = 'block';
+		} else {
+			
+		document.getElementById('coupon1').style.display = 'block';
+		document.getElementById('coupon2').style.display = 'none';
+		
+		}
+	}
+	
+	function click_Coupon2() {
+		if(document.getElementById('coupon1').style.display == 'none'){
+			document.getElementById('coupon1').style.display = 'block';
+		}else {
+			
+		document.getElementById('coupon1').style.display = 'none';
+		document.getElementById('coupon2').style.display = 'block';
+		}
+		
+	}
+</script>
 </head>
 <body>
 
@@ -74,9 +106,9 @@
 							<h3>쿠폰 1</h3> <%--쿠폰 코드 위치 확인용 (나중에 지울것) --%>
 							<a
 								class="js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press"
-								id="js_event_list_item" data-s="153" data-p="0" data-i="0"
+								id="coupon1" data-s="153" data-p="0" data-i="0"
 								data-l="event_tap"
-								href="page-event-detail.html?a=153&amp;b=0&amp;c=event_tap&amp;v=230329_1"
+								
 								style="display: block;">
 								<div class="cm-rounded bg-white">
 									<img
@@ -97,9 +129,9 @@
 							<h3>쿠폰 2</h3> <%--쿠폰 코드 위치 확인용 (나중에 지울것) --%>
 							<a
 								class="js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press"
-								id="js_event_list_item" data-s="214" data-p="0" data-i="1"
+								id="coupon2" data-s="214" data-p="0" data-i="1"
 								data-l="event_tap"
-								href="page-event-detail.html?a=214&amp;b=1&amp;c=event_tap&amp;v=230329_1"
+								
 								style="display: block;">
 								<div class="cm-rounded bg-white">
 									<img

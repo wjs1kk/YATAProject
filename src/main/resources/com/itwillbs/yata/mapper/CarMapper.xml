@@ -14,9 +14,10 @@
 			from car 
 			where car_id = #{car_id}
 	</select>
+<!-- 	car_model -> car_name 수정 -->
 	<select id="searchByName" parameterType="String" resultType="com.itwillbs.yata.vo.CarVO">
   	 	SELECT * 
   	 		FROM car 
-  	 		WHERE car_model LIKE CONCAT('%',#{car_model},'%');
+  	 		WHERE car_name LIKE CONCAT('%',#{car_name},'%');
   	</select>
 </mapper>
