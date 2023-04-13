@@ -42,6 +42,17 @@ $(document).ready(function() {
 });
 </script>
 
+<!-- 보험 선택 -->
+<script type="text/javascript">
+	function insValue(){
+		var insValue = document.querySelector('input[name="ins"]:checked');
+		if (insValue) {
+		    sessionStorage.setItem('insValue', insValue.value);
+	 	}
+	}
+</script>
+
+
 
 
 <!-- 창용 지도 관련  -->
@@ -575,23 +586,20 @@ $(document).ready(function() {
 																		
 																		<div class="radio text-center">
 																			<label class="ins">
-																			    <input type="radio" name="ins" value="10000" onclick="getRadioValue(event)">
-																			    <span>일반자차
-																				<img class="js-vsl-img-car vsl-img-car img-fluid" style="width:150px; height:70px;" src="resources/images/일반자차.png">
+																			    <input type="radio" name="ins" value=10000  onclick="insValue()">
+																			    <span>일반자차 10,000원
 																				</span>
 																			</label>
 																			<br>
 																			<label class="ins">
-																			    <input type="radio" name="ins" value="15000" onclick="getRadioValue(event)">
-																			    <span>완전자차 
-																					<img class="js-vsl-img-car vsl-img-car img-fluid" style="width:150px; height:70px;" src="resources/images/일반자차.png">
+																			    <input type="radio" name="ins" value=15000 onclick="insValue()">
+																			    <span>완전자차 15,000원
 																			    </span>
 																			</label>
 																			<br>
 																			<label class="ins">
-																			    <input type="radio" name="ins" value="20000" onclick="getRadioValue(event)">
-																			    <span>슈퍼자차
-																					<img class="js-vsl-img-car vsl-img-car img-fluid" style="width:150px; height:70px;" src="resources/images/일반자차.png">
+																			    <input type="radio" name="ins" value=20000 onclick="insValue()">
+																			    <span>슈퍼자차 20,000원
 																				</span>
 																			</label>
 																			
@@ -865,153 +873,6 @@ $(document).ready(function() {
 											<img draggable="false"
 												class="swiper-lazy w-100 border-radius-8 swiper-lazy-loaded"
 												src="https://s3.ap-northeast-2.amazonaws.com/carmore-common/event/banner/banner_214_20230316053616.png?ver=181115">
-										</div>
-									</div>
-									<span class="swiper-notification" aria-live="assertive"
-										aria-atomic="true"></span>
-								</div>
-								<div class="mb-2 vsl-container-car-list-event-banner dc-none"
-									id="js_container_search_list_overseas_banner">
-									<img class="w-100" src="/home/images/banner-overseas.png">
-								</div>
-								<div class="vsl-container-car-list-padding-container">
-									<button class="btn btn-round-blue btn-block text-14 mb-3"
-										id="btn_search_list_ullengdo_info_re_setting"
-										style="display: none;">출발항구, 배편시간 재설정 하기</button>
-									<div id="container_search_list_ullengdo_info"
-										style="display: none;">
-										<div class="box-round p-3 mt-3">
-											<div class="text-14 color-grey-2">출발항구</div>
-											<div class="mb-2">
-												<label class="radiobtn-container inline-radio"><span
-													class="radio-label">강릉</span><input type="radio"
-													name="ullengdo_info_radio_start_harbor" value="1"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">묵호</span><input type="radio"
-													name="ullengdo_info_radio_start_harbor" value="2"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">후포</span><input type="radio"
-													name="ullengdo_info_radio_start_harbor" value="3"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">포항</span><input type="radio"
-													name="ullengdo_info_radio_start_harbor" value="4"><span
-													class="checkmark"></span></label>
-											</div>
-											<div class="text-14 color-grey-2 mb-1">배편시간</div>
-											<div class="form-row mb-3">
-												<div class="col-6">
-													<select class="custom-select form-control form-control-sm"
-														id="ullengdo_info_selectbox_ship_start_hour"><option
-															value="00">00</option>
-														<option value="01">01</option>
-														<option value="02">02</option>
-														<option value="03">03</option>
-														<option value="04">04</option>
-														<option value="05">05</option>
-														<option value="06">06</option>
-														<option value="07">07</option>
-														<option value="08">08</option>
-														<option value="09">09</option>
-														<option value="10">10</option>
-														<option value="11">11</option>
-														<option value="12">12</option>
-														<option value="13">13</option>
-														<option value="14">14</option>
-														<option value="15">15</option>
-														<option value="16">16</option>
-														<option value="17">17</option>
-														<option value="18">18</option>
-														<option value="19">19</option>
-														<option value="20">20</option>
-														<option value="21">21</option>
-														<option value="22">22</option>
-														<option value="23">23</option></select>
-												</div>
-												<div class="col-6">
-													<select class="custom-select form-control form-control-sm"
-														id="ullengdo_info_selectbox_ship_start_minute"><option
-															value="00">00</option>
-														<option value="05">05</option>
-														<option value="10">10</option>
-														<option value="15">15</option>
-														<option value="20">20</option>
-														<option value="25">25</option>
-														<option value="30">30</option>
-														<option value="35">35</option>
-														<option value="40">40</option>
-														<option value="45">45</option>
-														<option value="50">50</option>
-														<option value="55">55</option></select>
-												</div>
-											</div>
-											<div class="text-14 color-grey-2">나가는항구</div>
-											<div class="mb-2">
-												<label class="radiobtn-container inline-radio"><span
-													class="radio-label">도동</span><input type="radio"
-													name="ullengdo_info_radio_end_harbor" value="1"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">사동</span><input type="radio"
-													name="ullengdo_info_radio_end_harbor" value="2"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">저동</span><input type="radio"
-													name="ullengdo_info_radio_end_harbor" value="3"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">모름</span><input type="radio"
-													name="ullengdo_info_radio_end_harbor" value="4"><span
-													class="checkmark"></span></label>
-											</div>
-											<div class="text-14 color-grey-5">'모름'으로 선택하실경우 직원이 전화나
-												문자로 안내해드립니다.</div>
-										</div>
-										<button class="btn btn-primary my-3 btn-pill btn-block"
-											id="btn_search_list_ullengdo_input_search">검색</button>
-										<div class="box-round p-3 mb-2">
-											<div class="text-16 color-black-2 mb-2">
-												&lt;울릉도 대여 시 꼭 확인해 주세요!&gt;
-												<!--울릉도-->
-											</div>
-											<hr>
-											<p class="text-14 color-black-5">
-												1. 울릉도는 배편으로만 이동이 가능한 섬입니다. 배편을 먼저 예약해 주세요!<br>울릉도 지역의
-												렌트카는 이용하시는 배편의 시간에 맞춰 준비해드립니다. 배편을 먼저 예약한 뒤 렌트카를 예약하셔야 합니다.
-												'가보고 싶은 섬' 어플을 통해 배편을 미리 예약할 수 있습니다.<br>
-											</p>
-											<div class="click-effect-press"
-												id="ullengdo_reservation_ship_app_btn">-&gt; 가보고싶은 섬
-												어플 다운하기</div>
-											<br>2. 매일 비슷한 시간에 도동/저동/사동 항구로 여객선이 도착합니다.<br>이런
-											지리적 특성과 업체 사정으로 대여시간과 반납시간이 고정되어 있습니다.<br>오후 반납을 원하는 고객은
-											업체와 조율하셔서 현장에서 추가 결제를 하셔야 합니다. 정확한 안내는 업체와 전화통화로 조율 가능합니다.<br>
-											<br>3. 자세한 안내를 원할 경우 카모아 고객센터(1544-5344) 또는 카카오톡 카모아로
-											문의하시기 바랍니다.
-											<p></p>
-										</div>
-										<div class="box-round p-2 mb-2">
-											<div class="text-16 color-black-2 mb-2">울릉도 둘러보기</div>
-											<hr>
-											<div class="swiper" id="vsl_root_ulleongdo_swiper">
-												<div class="swiper-wrapper">
-													<div class="w-100 swiper-slide">
-														<img class="w-100"
-															src="/home/images/img_info_ulleongdo_1.png">
-													</div>
-													<div class="w-100 swiper-slide">
-														<img class="w-100"
-															src="/home/images/img_info_ulleongdo_2.png">
-													</div>
-													<div class="w-100 swiper-slide">
-														<img class="w-100"
-															src="/home/images/img_info_ulleongdo_3.png">
-													</div>
-												</div>
-												<div class="swiper-pagination custom-swiper-pagination"></div>
-											</div>
 										</div>
 									</div>
 								</div>

@@ -35184,11 +35184,11 @@ img.object-fit.contain {
 
 /* 왼쪽 필터 보험 선택란 css 추가 */
 .ins input[type="radio"] {
-      display: none;
+      display: inherit;
   }
 
 .ins input[type="radio"] + span {
-    display: inline-block;
+    display: inline-flex;
     padding: 15px 10px;
     border: 1px solid #dfdfdf;
     background-color: #ffffff;
