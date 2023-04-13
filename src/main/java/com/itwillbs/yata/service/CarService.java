@@ -20,9 +20,9 @@ public class CarService {
 	public CarVO selectCar(int car_id) {
 		return mapper.selectCar(car_id) != null ? mapper.selectCar(car_id) :null ;
 	}
-	public List<CarVO> searchByName(String car_model) {
+	public List<CarVO> searchByName(String car_name) {
 		System.out.println("searchByName");
-		return mapper.searchByName(car_model);
+		return mapper.searchByName(car_name);
 	}
 
 }

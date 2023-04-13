@@ -49,13 +49,13 @@ public class ReservController {
 		return "pay/pay_success";
 	}
 	@GetMapping("/search")
-	public String search(@RequestParam String car_model, Model model) {
+	public String search(@RequestParam String car_name, Model model) {
 		System.out.println("search");
 		
-	    List<CarVO> cars = carService.searchByName(car_model);
-	    System.out.println(cars);
+	    List<CarVO> carList = carService.searchByName(car_name);
+	    System.out.println(carList);
 	    
-	    model.addAttribute("carList", cars);
+	    model.addAttribute("carList", carList);
 	    
 	    return "rent/rent";
 	}

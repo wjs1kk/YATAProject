@@ -743,7 +743,10 @@
 														${review[2].review_content }
 													</div>
 												</div>
+												
 												<div class="index-box-review-bottom-box text-left">
+													<div class="index-txt-review-bottom-box-top text-14">부산에서
+															1일 렌트하신</div>
 													<div class="text-16-b text-white">${review[2].member_name }님</div>
 												</div>
 											</div>
