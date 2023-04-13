@@ -5,6 +5,37 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/css/css.css">
+<!--아래 2개 결제API에 필요한 것들 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+<script type="text/javascript">
+<!-- 결제 API 연동 -->
+	var IMP = window.IMP; 
+		IMP.init("imp08756266"); 
+		function requestPay() {
+		    IMP.request_pay({
+		        pg : 'YATA',
+		        pay_method : 'card', // 테스트 결제 API는 카드 결제만 가능
+		        merchant_uid: "57008833-33004", //주문 번호 넣기
+		        name : '아반떼', // request객체로 넘어온  ${car_name}을 넣어야함
+		        amount : 100, // 결제 금액    결제 금액 쿼리를 넣어야 함
+		        buyer_email : 'Iamport@chai.finance', // 주문자 이메일
+		        buyer_name : '홍길동', // 주문자 이름
+		        buyer_tel : '010-1234-5678', // 주문자 전화번호
+		        buyer_addr : '서울특별시 강남구 삼성동', // 주문자 주소
+		    }, function (rsp) { // callback
+		        if (rsp.success) {
+		        	//성공시 결제 완료 페이지로 이동
+		            console.log(rsp);
+		        } else {
+		        	//실패시 처리하기
+		            console.log(rsp);
+		        }
+		    });
+		}
+</script>
+
 </head>
 <body style="">
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -2237,11 +2268,6 @@
 										<div
 											class="mb-3 dc-flex align-items-center justify-content-between text-16">
 											<span class="color-grey-2 font-weight-bold">결제 정보</span>
-											<div
-												class="js-vcd-btn-round-price box-border-grey-8 box-round-gray px-2 py-1 click-effect-press dc-none"
-												style="display: none;">
-												<span class="color-grey-3 text-12">회차별 금액 확인</span>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -2275,16 +2301,6 @@
 														</div>
 													</li>
 													<li
-														class="js-vcd-txt-delivery list-group-item bg-lg-none px-0 dc-none">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-															차량배달
-															<div class="text-right">
-																<span class="js-vcd-txt-delivery-price">&nbsp;</span>
-															</div>
-														</div>
-													</li>
-													<li
 														class="js-vcd-price-poa-hide js-vcd-login list-group-item bg-lg-none px-0 tmobi-dc-none">
 														<div
 															class="dc-flex justify-content-between align-items-center color-grey-5 wordbreak-keepall">
@@ -2299,28 +2315,6 @@
 														</div>
 													</li>
 													<li
-														class="js-vcd-price-poa-hide js-vcd-txt-point-discount list-group-item bg-lg-none px-0 dc-none"
-														style="display: none;">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-															포인트 사용
-															<div class="text-right">
-																<span class="js-vcd-txt-use-point">0P</span>
-															</div>
-														</div>
-													</li>
-													<li
-														class="js-vcd-price-poa-hide js-vcd-txt-coupon-discount list-group-item bg-lg-none px-0 dc-none"
-														style="display: none;">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-															쿠폰사용
-															<div class="text-right">
-																<span class="js-vcd-txt-use-coupon">0원</span>
-															</div>
-														</div>
-													</li>
-													<li
 														class="js-vcd-price-poa-hide list-group-item bg-lg-none px-0 border-none">
 														<div
 															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall font-weight-bold">
@@ -2331,12 +2325,16 @@
 														</div>
 													</li>
 												</ul>
+												
+												<!-- 결제버튼 -->
+												
+												<!-- 클릭시 requestPay()호출하여 결제 API 연동된 창이 뜸 -->
 												<button
-													class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press">
+													class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press" onclick="requestPay()">
 													<div
 														class="text-18 font-weight-bold text-white line-height-1">
 														<span
-															class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">7,300원
+															class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">8000원
 															바로 예약하기</span><span
 															class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
 															style="display: none;"></span>
@@ -2344,35 +2342,12 @@
 													<div class="js-vcd-txt-price-desc text-12 text-white">가입
 														후 첫 구매 5천원 할인, 완전자차 포함</div>
 												</button>
-												<div class="dc-none" id="js_vcd_read_payment_tooltip">
-													<div
-														class="vreserv-container-tooltip-pc d-inline-flex justify-content-between align-items-center px-3 py-2">
-														<div class="vreserv-container-tooltip-body">할인쿠폰 적용
-															중! 놓치지 마세요</div>
-														<div class="d-flex align-items-center">
-															<img
-																class="m-0 vreserv-container-img-cancel-icon-pc pl-2"
-																src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik04IDYuNTg2bDQuMjkzLTQuMjkzYy4zOS0uMzkgMS4wMjQtLjM5IDEuNDE0IDAgLjM5LjM5LjM5IDEuMDI0IDAgMS40MTRMOS40MTQgOGw0LjI5MyA0LjI5M2MuMzkuMzkuMzkgMS4wMjQgMCAxLjQxNC0uMzkuMzktMS4wMjQuMzktMS40MTQgMEw4IDkuNDE0bC00LjI5MyA0LjI5M2MtLjM5LjM5LTEuMDI0LjM5LTEuNDE0IDAtLjM5LS4zOS0uMzktMS4wMjQgMC0xLjQxNEw2LjU4NiA4IDIuMjkzIDMuNzA3Yy0uMzktLjM5LS4zOS0xLjAyNCAwLTEuNDE0LjM5LS4zOSAxLjAyNC0uMzkgMS40MTQgMEw4IDYuNTg2eiIvPgo8L3N2Zz4K">
-														</div>
-														<div class="vreserv-container-tooltip-polygon-pc">
-															<div class="vreserv-container-tooltip-polygon-inner"></div>
-														</div>
-													</div>
-												</div>
+												
 											</div>
 										</div>
 									</div>
 									<div class="js-vcd-pay-info dc-none"
 										id="js_vcd_subscribe_pay_info" style="display: none;"></div>
-								</div>
-								<div class="row js-vcd-soldout-elmt dc-none"
-									style="display: none;">
-									<div class="col">
-										<div class="pb-3 text-16-b">해당 차량은 마감되었어요 T^T</div>
-										<button
-											class="btn btn-primary btn-block btn-lg mb-2 btn-border-10 text-14 font-weight-bold"
-											disabled="true">마감된 차량</button>
-									</div>
 								</div>
 							</div>
 						</section>

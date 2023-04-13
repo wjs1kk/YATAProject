@@ -52,6 +52,8 @@ public class ReservController {
 	public String search(@RequestParam String car_name, Model model) {
 		System.out.println("search");
 		
+		
+		//통일성을 위해 cars에서 carList로 변경
 	    List<CarVO> carList = carService.searchByName(car_name);
 	    System.out.println(carList);
 	    
