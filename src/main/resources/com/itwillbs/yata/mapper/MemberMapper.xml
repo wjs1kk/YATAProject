@@ -22,4 +22,12 @@
 			#{member_name}, #{member_birth},
 			#{member_gender}, #{member_phone}, now())
 	</insert>
+	
+	<update id="modifyUser">
+		UPDATE member
+			SET member_birth = #{member_birth}
+			   ,member_phone = #{member_phone}
+			WHERE member_email = #{member_email}
+	</update>
+	
   </mapper>
