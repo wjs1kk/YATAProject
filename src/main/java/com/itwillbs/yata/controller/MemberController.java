@@ -1,10 +1,10 @@
 package com.itwillbs.yata.controller;
 
-<<<<<<< HEAD
+
 import java.util.Date;
-=======
+
 import java.util.*;
->>>>>>> branch 'JCY' of https://github.com/wjs1kk/YATAProject.git
+
 
 import javax.servlet.http.HttpSession;
 
@@ -49,11 +49,7 @@ public class MemberController {
 		session.setAttribute("member_date", member.getMember_date());
 		session.setAttribute("member_gender", member.getMember_gender());
 		session.setAttribute("member_name", member.getMember_name());
-<<<<<<< HEAD
-		
-=======
-	
->>>>>>> branch 'JCY' of https://github.com/wjs1kk/YATAProject.git
+
 		return "redirect:/";
 	}
 	
