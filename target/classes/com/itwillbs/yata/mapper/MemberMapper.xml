@@ -22,9 +22,20 @@
 			#{member_name}, #{member_birth},
 			#{member_gender}, #{member_phone}, now())
 	</insert>
+<<<<<<< HEAD
 	<select id="selectPasswd" resultType="string">
 		SELECT member_passwd
 		  FROM member
 		 WHERE member_email = #{member_email}
 	</select>
+=======
+	
+	<update id="modifyUser">
+		UPDATE member
+			SET member_birth = #{member_birth}
+			   ,member_phone = #{member_phone}
+			WHERE member_email = #{member_email}
+	</update>
+	
+>>>>>>> f0a21952a9811bee8336ab57d026da95eb303170
   </mapper>

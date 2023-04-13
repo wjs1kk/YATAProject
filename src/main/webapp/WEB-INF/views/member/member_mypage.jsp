@@ -16,18 +16,18 @@
 			$('#mypage_section_rent_history').hide();
 			$('#myapge_section_my_review').hide();
 			$('#myapge_section_my_coupon').hide();
-			$('#mypage_section_modify').hide()
+// 			$('#mypage_section_modify').hide()
 		})
 		
-		$('#modify-menu').on('click', function() {
-			$('#mypage_section_main').hide();
-			$('#mypage_section_point').hide();
-			$('#mypage_section_mypage').hide();
-			$('#mypage_section_rent_history').hide();
-			$('#myapge_section_my_review').hide();
-			$('#myapge_section_my_coupon').hide();
-			$('#mypage_section_modify').show()
-		})
+// 		$('#modify-menu').on('click', function() {
+// 			$('#mypage_section_main').hide();
+// 			$('#mypage_section_point').hide();
+// 			$('#mypage_section_mypage').hide();
+// 			$('#mypage_section_rent_history').hide();
+// 			$('#myapge_section_my_review').hide();
+// 			$('#myapge_section_my_coupon').hide();
+// 			$('#mypage_section_modify').show()
+// 		})
 	})
 	
 	
@@ -150,11 +150,14 @@
 									<div>
 										<h3 class="color-grey-3 text-14 list-border-bottom">메뉴</h3>
 										<div class="list-group list-group-flush">
-											<a
-												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0" id="modify-menu" style="cursor: pointer;">
-												내 정보 관리</a> <a
-												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
-												data-type="faq">자주묻는 질문</a>
+											<a href="modifyInfo"
+												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0" style="cursor: pointer;">
+												개인 정보 변경
+											</a> 
+											<a href="modifyPasswd"
+												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0" style="cursor: pointer;">
+												비밀번호 변경
+											</a>
 										</div>
 									</div>
 								</div>
@@ -166,7 +169,8 @@
 									<div
 										class="dc-flex justify-content-between align-items-center mt-3">
 										<div class="text-14">
-											<div class="font-weight-bold color-grey-2">1:1 문의</div>
+											<div class="color-grey-2">1:1 문의</div>
+											<div class="color-grey-2">자주 묻는 질문</div>
 										</div>
 										<div class="center-align-container">
 											<button
@@ -188,12 +192,6 @@
 							style="display: block;">
 							<section class="carmore-section pt-md-0">
 								<div class="container">
-									<div class="container-loading-dot"
-										id="mypage_loading_list" style="display: 'none';">
-										<div></div>
-										<div></div>
-										<div></div>
-									</div>
 									<div class="" id="js_mypage_container_none_rent_history"
 										style="display: block;">
 										<div class="text-center pt-5">
@@ -502,70 +500,70 @@
 							</section>
 						</div>
 						<!--  modify -->
-						<div id="mypage_section_modify" style="display: none">
-							<div class="container">
-								<div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
-									<div class="col-lg-8 ftco-animate">
-										<div class="text w-100 text-center mb-md-5 pb-md-5">
-											<form action="modifyMember" method="post">
-												<div>
-													<br>
-													<h1 class="h3 mb-3 fw-normal text-dark">내 정보 수정</h1>
-													<label for="inputEmail" class="visually-hidden">Email</label>
+<!-- 						<div id="mypage_section_modify" style="display: none"> -->
+<!-- 							<div class="container"> -->
+<!-- 								<div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center"> -->
+<!-- 									<div class="col-lg-8 ftco-animate"> -->
+<!-- 										<div class="text w-100 text-center mb-md-5 pb-md-5"> -->
+<!-- 											<form action="modifyMember" method="post"> -->
+<!-- 												<div> -->
+<!-- 													<br> -->
+<!-- 													<h1 class="h3 mb-3 fw-normal text-dark">내 정보 수정</h1> -->
+<!-- 													<label for="inputEmail" class="visually-hidden">Email</label> -->
 
-													<div class="d-flex justify-content-center">
-														<input type="email" id="email_id"
-															class="justify-content-center w-50 form-control"
-															value="${member_email}" readonly="readonly">
-													</div>
-													<label for="inputPassword" class="visually-hidden">Password</label>
-													<div class="d-flex justify-content-center">
-														<input type="text" id="inputPassword"
-															class="w-50 form-control" placeholder="현재 비밀번호" value="${member_passwd }" required>
-													</div>
-													<label for="inputPassword2" class="visually-hidden" >Confirm
-														Password</label>
-													<div class="d-flex justify-content-center">
-														<input type="text" id="inputPassword2"
-															class="w-50 form-control" placeholder="변경할 비밀번호" value="${member_passwd }">
-													</div>
-													<label for="name" class="visually-hidden">Name</label>
-													<div class="d-flex justify-content-center">
-														<input type="text" id="name" class="w-50 form-control"
-															placeholder="이름" value="${member_name}" readonly="readonly">
-													</div>
-													<label for="date" class="visually-hidden">YYYY/MM/DD</label>
-													<div class="d-flex justify-content-center">
-														<input class="w-50 form-control" type="text"
-															name='userBirthday' value="${member_date}" />
-													</div>
-													<label for="gender" class="visually-hidden">Gender</label>
-													<div class="d-flex justify-content-center">
-														<input type="text" id="gender" class="w-50 form-control"
-															placeholder="성별" value="${member_gender}" readonly="readonly">
-													</div>
-													<label for="phone" class="visually-hidden">Phone</label>
-													<div class="d-flex justify-content-center">
-														<input type="text" id="phone" class="w-50 form-control"
-															placeholder="01X-0000-0000" value="${member_phone}" required>
-													</div>
-													<label for="phone" class="visually-hidden">License</label>
-													<div class="d-flex justify-content-center">
-														<input type="text" id="phone" class="w-50 form-control"
-															placeholder="01X-0000-0000" value="${member_license}">
-													</div>
-													<br>
+<!-- 													<div class="d-flex justify-content-center"> -->
+<!-- 														<input type="email" id="email_id" -->
+<!-- 															class="justify-content-center w-50 form-control" -->
+<%-- 															value="${member_email}" readonly="readonly"> --%>
+<!-- 													</div> -->
+<!-- 													<label for="inputPassword" class="visually-hidden">Password</label> -->
+<!-- 													<div class="d-flex justify-content-center"> -->
+<!-- 														<input type="text" id="inputPassword" -->
+<%-- 															class="w-50 form-control" placeholder="현재 비밀번호" value="${member_passwd }" required> --%>
+<!-- 													</div> -->
+<!-- 													<label for="inputPassword2" class="visually-hidden" >Confirm -->
+<!-- 														Password</label> -->
+<!-- 													<div class="d-flex justify-content-center"> -->
+<!-- 														<input type="text" id="inputPassword2" -->
+<%-- 															class="w-50 form-control" placeholder="변경할 비밀번호" value="${member_passwd }"> --%>
+<!-- 													</div> -->
+<!-- 													<label for="name" class="visually-hidden">Name</label> -->
+<!-- 													<div class="d-flex justify-content-center"> -->
+<!-- 														<input type="text" id="name" class="w-50 form-control" -->
+<%-- 															placeholder="이름" value="${member_name}" readonly="readonly"> --%>
+<!-- 													</div> -->
+<!-- 													<label for="date" class="visually-hidden">YYYY/MM/DD</label> -->
+<!-- 													<div class="d-flex justify-content-center"> -->
+<!-- 														<input class="w-50 form-control" type="text" -->
+<%-- 															name='userBirthday' value="${member_date}" /> --%>
+<!-- 													</div> -->
+<!-- 													<label for="gender" class="visually-hidden">Gender</label> -->
+<!-- 													<div class="d-flex justify-content-center"> -->
+<!-- 														<input type="text" id="gender" class="w-50 form-control" -->
+<%-- 															placeholder="성별" value="${member_gender}" readonly="readonly"> --%>
+<!-- 													</div> -->
+<!-- 													<label for="phone" class="visually-hidden">Phone</label> -->
+<!-- 													<div class="d-flex justify-content-center"> -->
+<!-- 														<input type="text" id="phone" class="w-50 form-control" -->
+<%-- 															placeholder="01X-0000-0000" value="${member_phone}" required> --%>
+<!-- 													</div> -->
+<!-- 													<label for="phone" class="visually-hidden">License</label> -->
+<!-- 													<div class="d-flex justify-content-center"> -->
+<!-- 														<input type="text" id="phone" class="w-50 form-control" -->
+<%-- 															placeholder="01X-0000-0000" value="${member_license}"> --%>
+<!-- 													</div> -->
+<!-- 													<br> -->
 													
-													<button class="w-50 btn btn-lg btn-primary" style="width: 300px;margin-bottom: 15px" type="submit">수정</button>
-													<button class="w-50 btn btn-lg btn-primary" style="width: 300px;margin-bottom: 15px " type="reset">취소</button>
-													<button class="w-50 btn btn-lg btn-primary" style="width: 300px;margin-bottom: 15px" >회원탈퇴</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+<!-- 													<button class="w-50 btn btn-lg btn-primary" style="width: 300px;margin-bottom: 15px" type="submit">수정</button> -->
+<!-- 													<button class="w-50 btn btn-lg btn-primary" style="width: 300px;margin-bottom: 15px " type="reset">취소</button> -->
+<!-- 													<button class="w-50 btn btn-lg btn-primary" style="width: 300px;margin-bottom: 15px" >회원탈퇴</button> -->
+<!-- 												</div> -->
+<!-- 											</form> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 			</div>

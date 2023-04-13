@@ -1,13 +1,22 @@
 package com.itwillbs.yata.controller;
 
+
+import java.util.Date;
+
 import java.util.*;
 
+<<<<<<< HEAD
 import javax.servlet.http.*;
+=======
+
+import javax.servlet.http.HttpSession;
+>>>>>>> f0a21952a9811bee8336ab57d026da95eb303170
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +62,7 @@ public class MemberController {
 		session.setAttribute("member_date", member.getMember_date());
 		session.setAttribute("member_gender", member.getMember_gender());
 		session.setAttribute("member_name", member.getMember_name());
-	
+
 		return "redirect:/";
 	}
 	
@@ -84,6 +93,59 @@ public class MemberController {
 	public String mypage() {
 		return "member/member_mypage";
 	}
+	
+	@GetMapping("modifyInfo")
+	public String modifyInfo(MemberVO member,HttpSession session, Model model) {
+		String user = (String)session.getAttribute("member_email");
+		if(user != null) {
+			model.addAttribute("target", "confirm");
+			return "move_to";
+		} else {
+			model.addAttribute("target", "login");
+			return "move_to";
+		}
+		
+	}
+	
+	@GetMapping("confirm")
+	public String confirm() {
+		return "member/confirm";
+	}
+	
+	@GetMapping("modify")
+	public String modify(HttpSession session) {
+		
+		return "member/member_modify";
+	}
+	
+	@PostMapping("modifyPro")
+	public String modifyPro(String member_birth, String member_phone, Model model, HttpSession session) {
+		int updateCount = memberService.modifyUser(member_birth, member_phone, (String)session.getAttribute("member_email"));
+		if(updateCount > 0) {
+			model.addAttribute("msg", "회원 정보 수정 완료!");
+			model.addAttribute("target", "modify");
+			return "success";
+		} else {
+			model.addAttribute("msg", "회원 정보 수정 실패!");
+			return "fail_back";
+		}
+		
+	}
+	
+	@PostMapping("confirmPro")
+	public String confirmPro(@RequestParam String member_passwd, HttpSession session, Model model) {
+		if(memberService.checkUser((String)session.getAttribute("member_email"), member_passwd) != null) {
+			return "redirect:/modify";
+		} else {
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다!");
+			return "fail_back";
+		}
+		
+	}
+	
+	
+	
+	
 	@GetMapping("history")
 	public String history() {
 		return "member/member_history";

@@ -50,12 +50,12 @@ public class ReservController {
 	}
 //	car_model -> car_name 수정
 	@GetMapping("/search")
-	public String search(@RequestParam String car_name, Model model) {
+	public String search(@RequestParam String car_name, String place, Model model) {
 		System.out.println("search");
 		
 	    List<CarVO> cars = carService.searchByName(car_name);
 	    System.out.println(cars);
-	    
+	    model.addAttribute("place",place);
 	    model.addAttribute("carList", cars);
 	    
 	    return "rent/rent";

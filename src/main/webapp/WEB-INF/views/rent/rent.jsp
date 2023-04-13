@@ -17,10 +17,10 @@
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script type="text/javascript">
 
+<!-- 왼쪽 검색 기능 -->
+<script type="text/javascript">
 $(document).ready(function() {
-	
   // 검색 버튼 클릭 이벤트
   $('#search_button').on('click', function() {
 // 	debugger;
@@ -41,6 +41,20 @@ $(document).ready(function() {
   });
 });
 </script>
+
+<!-- 보험 선택 -->
+<script type="text/javascript">
+	function insValue(){
+		var insValue = document.querySelector('input[name="ins"]:checked');
+		if (insValue) {
+		    sessionStorage.setItem('insValue', insValue.value);
+	 	}
+	}
+</script>
+
+
+
+
 <!-- 창용 지도 관련  -->
 <script type="text/javascript">
 	/* 지점선택창 누르면 #zoneSelect로 넘어가지면서 불투명도 0 ->1로 변경이 돼서 팝업창이 보임  */
@@ -409,7 +423,8 @@ $(document).ready(function() {
 										<div
 											class="js-vsl-btn-rent-date dc-flex justify-content-between align-items-center click-effect-press box-border-grey-7 box-round-gray px-25 py-1 h-100"
 											data-type="location" onclick="daySelect()">
-										<input type="text" id="demo" name="demo" value="" style="border:0 solid black; background-color:transparent; width:250px;" />
+											<!-- 날짜 시간 선택창에 메인에서 넘어온 rentalDatetime값이 적용되게함 -->
+										<input type="text" id="demo" name="demo" value="${param.rentalDatetime }" style="border:0 solid black; background-color:transparent; width:250px; font-weight: bolder;" />
 										<script>
 										$(function () {
 										    $('#demo').daterangepicker({
@@ -428,8 +443,9 @@ $(document).ready(function() {
 										            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 										            "firstDay": 1
 										        },
-										        "startDate": new Date(),
-										        "endDate": new Date(),
+										        
+										        // startDate: new Date() 와 endDate: new Date()가 있으면 오늘 날짜가 기본값으로 적용되는 것 같음
+												// request로 넘어온 value가 기본값 때문에 적용되지 않아 지움
 										        "drops": "down",
 										        timePicker: true,
 										        timePicker24Hour: true
@@ -561,23 +577,36 @@ $(document).ready(function() {
 																	<hr>
 																</div>
 															</div>
-															<div class="js-vf-section-fuels">
-																<div class="form-group mb-0">
-																	<div class="text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
-																	<div class="radio">
-																	   
-																	      <input id="radio1" name="radio" type="radio" class="radio" checked="checked" ><label for="radio1"> 일반자차</label><br>
-																	      <input id="radio2" name="radio" type="radio" class="radio"> <label for="radio2">완전자차</label><br>
-																	      <input id="radio3" name="radio" type="radio" class="radio"> <label for="radio3">슈퍼자차</label>
-																	    
+															
+															<!--왼쪽 필터 - 보험 선택 -->
+															<form name="ins" method="post" class="ins" >
+																<div class="js-vf-section-fuels">
+																	<div class="form-group mb-0">
+																		<div class="text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
+																		
+																		<div class="radio text-center">
+																			<label class="ins">
+																			    <input type="radio" name="ins" value=10000  onclick="insValue()">
+																			    <span>일반자차 10,000원
+																				</span>
+																			</label>
+																			<br>
+																			<label class="ins">
+																			    <input type="radio" name="ins" value=15000 onclick="insValue()">
+																			    <span>완전자차 15,000원
+																			    </span>
+																			</label>
+																			<br>
+																			<label class="ins">
+																			    <input type="radio" name="ins" value=20000 onclick="insValue()">
+																			    <span>슈퍼자차 20,000원
+																				</span>
+																			</label>
+																			
+																		</div>
 																	</div>
-																	&nbsp;
-																	
-<!-- 																	<div class="col-6 col-lg-12 pb-lg-3"> -->
-<!-- 																		<img src="resources/images/보험.png" > -->
-<!-- 																	</div> -->
 																</div>
-															</div>
+															</form>
 															<div class="js-vf-section-price-range">
 																<div
 																	class="dc-flex justify-content-between align-items-center">
@@ -846,153 +875,6 @@ $(document).ready(function() {
 												src="https://s3.ap-northeast-2.amazonaws.com/carmore-common/event/banner/banner_214_20230316053616.png?ver=181115">
 										</div>
 									</div>
-									<span class="swiper-notification" aria-live="assertive"
-										aria-atomic="true"></span>
-								</div>
-								<div class="mb-2 vsl-container-car-list-event-banner dc-none"
-									id="js_container_search_list_overseas_banner">
-									<img class="w-100" src="/home/images/banner-overseas.png">
-								</div>
-								<div class="vsl-container-car-list-padding-container">
-									<button class="btn btn-round-blue btn-block text-14 mb-3"
-										id="btn_search_list_ullengdo_info_re_setting"
-										style="display: none;">출발항구, 배편시간 재설정 하기</button>
-									<div id="container_search_list_ullengdo_info"
-										style="display: none;">
-										<div class="box-round p-3 mt-3">
-											<div class="text-14 color-grey-2">출발항구</div>
-											<div class="mb-2">
-												<label class="radiobtn-container inline-radio"><span
-													class="radio-label">강릉</span><input type="radio"
-													name="ullengdo_info_radio_start_harbor" value="1"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">묵호</span><input type="radio"
-													name="ullengdo_info_radio_start_harbor" value="2"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">후포</span><input type="radio"
-													name="ullengdo_info_radio_start_harbor" value="3"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">포항</span><input type="radio"
-													name="ullengdo_info_radio_start_harbor" value="4"><span
-													class="checkmark"></span></label>
-											</div>
-											<div class="text-14 color-grey-2 mb-1">배편시간</div>
-											<div class="form-row mb-3">
-												<div class="col-6">
-													<select class="custom-select form-control form-control-sm"
-														id="ullengdo_info_selectbox_ship_start_hour"><option
-															value="00">00</option>
-														<option value="01">01</option>
-														<option value="02">02</option>
-														<option value="03">03</option>
-														<option value="04">04</option>
-														<option value="05">05</option>
-														<option value="06">06</option>
-														<option value="07">07</option>
-														<option value="08">08</option>
-														<option value="09">09</option>
-														<option value="10">10</option>
-														<option value="11">11</option>
-														<option value="12">12</option>
-														<option value="13">13</option>
-														<option value="14">14</option>
-														<option value="15">15</option>
-														<option value="16">16</option>
-														<option value="17">17</option>
-														<option value="18">18</option>
-														<option value="19">19</option>
-														<option value="20">20</option>
-														<option value="21">21</option>
-														<option value="22">22</option>
-														<option value="23">23</option></select>
-												</div>
-												<div class="col-6">
-													<select class="custom-select form-control form-control-sm"
-														id="ullengdo_info_selectbox_ship_start_minute"><option
-															value="00">00</option>
-														<option value="05">05</option>
-														<option value="10">10</option>
-														<option value="15">15</option>
-														<option value="20">20</option>
-														<option value="25">25</option>
-														<option value="30">30</option>
-														<option value="35">35</option>
-														<option value="40">40</option>
-														<option value="45">45</option>
-														<option value="50">50</option>
-														<option value="55">55</option></select>
-												</div>
-											</div>
-											<div class="text-14 color-grey-2">나가는항구</div>
-											<div class="mb-2">
-												<label class="radiobtn-container inline-radio"><span
-													class="radio-label">도동</span><input type="radio"
-													name="ullengdo_info_radio_end_harbor" value="1"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">사동</span><input type="radio"
-													name="ullengdo_info_radio_end_harbor" value="2"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">저동</span><input type="radio"
-													name="ullengdo_info_radio_end_harbor" value="3"><span
-													class="checkmark"></span></label><label
-													class="radiobtn-container inline-radio"><span
-													class="radio-label">모름</span><input type="radio"
-													name="ullengdo_info_radio_end_harbor" value="4"><span
-													class="checkmark"></span></label>
-											</div>
-											<div class="text-14 color-grey-5">'모름'으로 선택하실경우 직원이 전화나
-												문자로 안내해드립니다.</div>
-										</div>
-										<button class="btn btn-primary my-3 btn-pill btn-block"
-											id="btn_search_list_ullengdo_input_search">검색</button>
-										<div class="box-round p-3 mb-2">
-											<div class="text-16 color-black-2 mb-2">
-												&lt;울릉도 대여 시 꼭 확인해 주세요!&gt;
-												<!--울릉도-->
-											</div>
-											<hr>
-											<p class="text-14 color-black-5">
-												1. 울릉도는 배편으로만 이동이 가능한 섬입니다. 배편을 먼저 예약해 주세요!<br>울릉도 지역의
-												렌트카는 이용하시는 배편의 시간에 맞춰 준비해드립니다. 배편을 먼저 예약한 뒤 렌트카를 예약하셔야 합니다.
-												'가보고 싶은 섬' 어플을 통해 배편을 미리 예약할 수 있습니다.<br>
-											</p>
-											<div class="click-effect-press"
-												id="ullengdo_reservation_ship_app_btn">-&gt; 가보고싶은 섬
-												어플 다운하기</div>
-											<br>2. 매일 비슷한 시간에 도동/저동/사동 항구로 여객선이 도착합니다.<br>이런
-											지리적 특성과 업체 사정으로 대여시간과 반납시간이 고정되어 있습니다.<br>오후 반납을 원하는 고객은
-											업체와 조율하셔서 현장에서 추가 결제를 하셔야 합니다. 정확한 안내는 업체와 전화통화로 조율 가능합니다.<br>
-											<br>3. 자세한 안내를 원할 경우 카모아 고객센터(1544-5344) 또는 카카오톡 카모아로
-											문의하시기 바랍니다.
-											<p></p>
-										</div>
-										<div class="box-round p-2 mb-2">
-											<div class="text-16 color-black-2 mb-2">울릉도 둘러보기</div>
-											<hr>
-											<div class="swiper" id="vsl_root_ulleongdo_swiper">
-												<div class="swiper-wrapper">
-													<div class="w-100 swiper-slide">
-														<img class="w-100"
-															src="/home/images/img_info_ulleongdo_1.png">
-													</div>
-													<div class="w-100 swiper-slide">
-														<img class="w-100"
-															src="/home/images/img_info_ulleongdo_2.png">
-													</div>
-													<div class="w-100 swiper-slide">
-														<img class="w-100"
-															src="/home/images/img_info_ulleongdo_3.png">
-													</div>
-												</div>
-												<div class="swiper-pagination custom-swiper-pagination"></div>
-											</div>
-										</div>
-									</div>
 								</div>
 								<div id="container_search_list_search_hearder"
 									style="display: block;">
@@ -1105,8 +987,10 @@ $(document).ready(function() {
 
 									<c:forEach var="carList" items="${carList }">
 									<form action="rent2">
-																																																
-									<div class="bg-white mb-3 js-vsl-container-search-list-item click-no-effect"  onclick="window.location.href='rent2?car_id=${carList.car_id}&place=${param.place }'">
+									
+									
+										<!-- 카리스트 아이디와, 대여장소, 대여날짜 및 시간이 rent2페이지로 넘어가게 수정 -->																												
+									<div class="bg-white mb-3 js-vsl-container-search-list-item click-no-effect"  onclick="window.location.href='rent2?car_id=${carList.car_id}&place=${param.place }&rentalDatetime=${param.rentalDatetime }'">
 										<div class="row car-list no-gutters">
 											<div class="col-12 col-lg-5 pt-3 pb-2 px-1 p-lg-3">
 												<div class="pt-3 pb-2 px-1 p-lg-3">
@@ -1166,13 +1050,6 @@ $(document).ready(function() {
 																		data-is="7513"
 																		href="container-view-car-detail.html?mt=1&amp;rt=1&amp;srsd=2023-04-06 10:00:00&amp;sred=2023-04-07 10:00:00&amp;ssat=2&amp;ssac=I_2&amp;sls=20&amp;isOverSeas=false&amp;msac=I_2&amp;pet=0&amp;fishing=0&amp;army=0&amp;foreigner=0&amp;isul=0&amp;fda=-1&amp;rcs=59604&amp;sis=7513&amp;eat=여수엑스포역&amp;epos=2&amp;einpos=1&amp;v=230329_1">
 																		<div class="js-vsl-price-top-info dc-flex justify-content-between align-items-center">
-<!-- 																			<div class="js-vsl-price-info-only-top"> -->
-<!-- 																				<img class="js-vsl-img-car-year-icon dc-none mr-1" -->
-<!-- 																					src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjUwNTk0IDExLjk5OTlIMS42OTk1MUMwLjc2MDg5OCAxMS45OTk5IDAgMTEuMjY3MyAwIDEwLjM2MzVWNi41NDU0QzAgNS42NDE2NyAwLjc2MDg5OCA0LjkwOTA1IDEuNjk5NTEgNC45MDkwNUgyLjc0NzYyTDQuODY0MTEgMC4zMjM5MjJDNC45NTUwNCAwLjEyNjk0NCA1LjE1NzkyIDAgNS4zODE3OSAwQzYuNjMzMjggMCA3LjY0NzgxIDAuOTc2ODI1IDcuNjQ3ODEgMi4xODE4VjMuODE4MTVMMTAuMjgxMyAzLjgxODE4QzEwLjc3OTkgMy44MTI3NSAxMS4yNTU4IDQuMDE4NDEgMTEuNTgzIDQuMzgwNjlDMTEuOTEwMiA0Ljc0Mjk3IDEyLjA1NTYgNS4yMjUzMyAxMS45ODA3IDUuNzAwOEwxMS4xOTkxIDEwLjYwOUMxMS4wNzIgMTEuNDE1NyAxMC4zNDcgMTIuMDA5MSA5LjUwNTk0IDExLjk5OTlaTTMuNjgyMzkgMTAuOTA5NEw5LjUxMjQ2IDEwLjkwOTRDOS43OTQ5NCAxMC45MTI1IDEwLjAzNjYgMTAuNzE0NyAxMC4wNzkxIDEwLjQ0NDlMMTAuODYwOCA1LjUzNjYzQzEwLjg4NTcgNS4zNzg0MSAxMC44MzcyIDUuMjE3NjIgMTAuNzI4MSA1LjA5Njg2QzEwLjYxOTEgNC45NzYxIDEwLjQ2MDQgNC45MDc1NSAxMC4yODc4IDQuOTA5NEg3LjA4MTQyQzYuNzY4NTUgNC45MDk0IDYuNTE0OTEgNC42NjUxOSA2LjUxNDkxIDQuMzYzOTVWMi4xODIxNUM2LjUxNDkxIDEuNjk1MyA2LjE4MzY4IDEuMjgyOTQgNS43MjYzNyAxLjE0MjU4TDMuNjgyMzkgNS41NzA2VjEwLjkwOTRaTTEuNjcxMjIgNkgyLjU0OTMxVjEwLjkwOUgxLjY3MTIyQzEuMzU4MzUgMTAuOTA5IDEuMTA0NzIgMTAuNjY0OCAxLjEwNDcyIDEwLjM2MzZWNi41NDU0NUMxLjEwNDcyIDYuMjQ0MjEgMS4zNTgzNSA2IDEuNjcxMjIgNloiIGZpbGw9IiMwRDZGRkMiLz4KPC9zdmc+Cg==" -->
-<!-- 																					style="display: none;"><span -->
-<%-- 																					class="js-vsl-txt-car-year text-12 font-weight-bold car-year-color mb-0">${carList.car_year }ㆍ</span><span --%>
-<%-- 																					class="js-vsl-txt-car-fuel text-12 font-weight-bold color-grey-2 mb-0">${carList.car_fuel }</span> --%>
-<!-- 																			</div> -->
 																			
 																		</div>
 																		<div class="dc-flex justify-content-between align-items-center">
