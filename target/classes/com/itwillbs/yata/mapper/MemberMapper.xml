@@ -22,4 +22,9 @@
 			#{member_name}, #{member_birth},
 			#{member_gender}, #{member_phone}, now())
 	</insert>
+	<select id="selectPasswd" resultType="string">
+		SELECT member_passwd
+		  FROM member
+		 WHERE member_email = #{member_email}
+	</select>
   </mapper>

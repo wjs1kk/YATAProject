@@ -2,7 +2,7 @@ package com.itwillbs.yata.controller;
 
 import java.util.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,19 +25,28 @@ public class MemberController {
 	
 	@GetMapping("login")
 	public String login() {
-		
 		return "member/member_login";
 	}
 	
 	@PostMapping("loginPro")
-	public String loginPro(@RequestParam String member_email, String member_passwd, HttpSession session, Model model) {
-		System.out.println(member_email + " " + member_passwd);
+	public String loginPro(@RequestParam String member_email, String member_passwd, HttpSession session, Model model, MemberVO member) {
+//	public String loginPro(@RequestParam String member_email, String member_passwd, HttpSession session, Model model, MemberVO member) {
+//		System.out.println(member_email + " " + member_passwd);
 		
-		MemberVO member = memberService.checkUser(member_email, member_passwd);
-		if(member == null) {
-			model.addAttribute("msg","로그인 실패!");
+		System.out.println(member);
+		// -----------------------------------------------------------------
+		// db 데이터와 로그인 시 비밀번호 비교
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		String passwd = memberService.getPasswd(member.getMember_email());
+		
+		if(passwd == null || !passwordEncoder.matches(member.getMember_passwd(), passwd)) {
+			model.addAttribute("msg", "로그인 실패!");
 			return "fail_back";
-		}	
+		}
+		// -----------------------------------------------------------------
+//		member = memberService.checkUser(member_email, member_passwd);
+		
 		session.setAttribute("member_email", member.getMember_email());
 		session.setAttribute("member_point", member.getMember_point());
 		session.setAttribute("member_phone", member.getMember_phone());
@@ -91,11 +100,11 @@ public class MemberController {
 	@GetMapping("review")
 	public String review(Model model, HttpSession session, ReviewVO review) {
 		List<ReviewVO> myReviewList = service.myReview((String)session.getAttribute("member_email"));
-		Integer myReviewCount = service.selectMyReviewCount(review);
+		Integer myReviewCount = service.selectMyReviewCount((String)session.getAttribute("member_email"));
 //		System.out.println(myReviewList);
-		model.addAttribute("myReview", myReviewList);
-		model.addAttribute("myReviewCount", myReviewCount);
-		System.out.println(myReviewCount);
+		model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
+		model.addAttribute("myReviewCount", myReviewCount); // 나의 리뷰 개수
+		System.out.println(model.getAttribute("myReviewCount"));
 		return "member/member_review";
 	}
 }

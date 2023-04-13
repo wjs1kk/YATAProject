@@ -29,7 +29,7 @@ public class ReviewService {
 		return mapper.selectMyReview(member_email);
 	}
 
-	public Integer selectMyReviewCount(ReviewVO review) {
-		return mapper.selectMyReviewCount(review);
+	public Integer selectMyReviewCount(String member_email) {
+		return mapper.selectMyReviewCount(member_email);
 	}
 }

@@ -21,5 +21,9 @@ public class MemberService {
 	public int insertUser(MemberVO member) {
 		return mapper.insertUser(member);
 	}
+
+	public String getPasswd(String member_email) {
+		return mapper.selectPasswd(member_email);
+	}
 	
 }

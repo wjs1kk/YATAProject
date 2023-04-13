@@ -10,5 +10,5 @@ public interface ReviewMapper {
 	public int insertReview(ReviewVO review);
 	public List<ReviewVO> selectReview();
 	public List<ReviewVO> selectMyReview(String member_email);
-	public Integer selectMyReviewCount(ReviewVO review);
+	public Integer selectMyReviewCount(String member_email);
 }
