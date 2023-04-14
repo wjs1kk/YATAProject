@@ -51,7 +51,7 @@
 					<td>${carList.car_fuel }</td>
 					<td>
 						<%-- 수정 버튼 클릭 시 회원 정보 조회 페이지로 이동(파라미터 : id) --%>
-						<input type="button" value="수정" onclick="">
+						<input type="button" value="수정" onclick="location.href='AdminCarUpdate.ad'">
 						<input type="button" value="삭제">
 					</td>
 				</tr>			

@@ -31,11 +31,15 @@
 						
 					<li class="nav-item js-container-pc-header-menu active"><a
 						class="nav-link js-pc-header-menu click-effect-press"
-						href="AdminMemberList.me">회원 목록 조회</a></li>
+						href="AdminMemberList.ad">회원 목록 조회</a></li>
 						
 					<li class="nav-item js-container-pc-header-menu active"><a
 						class="nav-link js-pc-header-menu click-effect-press"
-						href="AdminCarList.me">자동차 목록 조회</a></li>
+						href="AdminCarList.ad">자동차 목록 조회</a></li>
+						
+					<li class="nav-item js-container-pc-header-menu active"><a
+						class="nav-link js-pc-header-menu click-effect-press"
+						href="AdminCarRegist.ad">신규 차량 등록</a></li>
 				</ul>
 
 				<ul class="navbar-nav mr-auto">

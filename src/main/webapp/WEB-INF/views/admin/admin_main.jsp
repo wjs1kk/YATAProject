@@ -16,8 +16,8 @@
 	</header>
 	<div id="main" align="center">
 		<h1>관리자 메인페이지</h1>
-		<h3><a href="AdminMemberList.me">회원 목록 조회</a></h3>
-		<h3><a href="AdminCarList.me">자동차 목록 조회</a></h3>
+		<h3><a href="AdminMemberList.ad">회원 목록 조회</a></h3>
+		<h3><a href="AdminCarList.ad">자동차 목록 조회</a></h3>
 		<h3><a href="AdminCarRegist.ad">신규 차량 등록</a></h3>
 	</div>
 </body>

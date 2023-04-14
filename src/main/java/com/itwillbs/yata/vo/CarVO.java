@@ -16,7 +16,6 @@ public class CarVO {
 
 	public CarVO(int car_id, String car_manufacturer, String car_model, String car_name, String car_type, int car_year,
 			int car_price, String car_available, int car_seater, String car_fuel) {
-		super();
 		this.car_id = car_id;
 		this.car_manufacturer = car_manufacturer;
 		this.car_model = car_model;
@@ -28,6 +27,7 @@ public class CarVO {
 		this.car_seater = car_seater;
 		this.car_fuel = car_fuel;
 	}
+
 
 	public int getCar_id() {
 		return car_id;
@@ -108,7 +108,7 @@ public class CarVO {
 	public void setCar_fuel(String car_fuel) {
 		this.car_fuel = car_fuel;
 	}
-	
+
 	
 	
 

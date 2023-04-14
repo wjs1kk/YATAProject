@@ -48,4 +48,28 @@
   			   , #{car_fuel}
   			  )
   	</insert>
+  	
+  	<select id="carInfo" resultType="com.itwillbs.yata.vo.CarVO">
+  		SELECT *
+  		FROM car
+  		WHERE car_id = #{car_id}
+  	
+  	</select>
+  	
+  	<update id="carUpdate">
+		UPDATE car
+			SET car_manufacturer = #{car_manufacturer}
+  			   , car_model = #{car_model}
+  			   , car_name = #{car_name}
+  			   , car_type = #{car_type}
+  			   , car_year = #{car_year}
+  			   , car_price = #{car_price}
+  			   , car_available = #{car_available}
+  			   , car_seater = #{car_seater}
+  			   , car_fuel = #{car_fuel}
+  			   
+  			WHERE car_id = #{car_id}
+			
+	</update>
+	
 </mapper>

@@ -23,8 +23,8 @@
 <!-- car_fuel -->
 
 	<div align="center">
-		<h1>신규 차량 등록</h1>
-		<form action="AdminCarRegistPro.ad" method="post">
+		<h1>차량 정보 수정</h1>
+		<form action="AdminCarUpdatePro.ad" method="post">
 			<table border="1">
 				<tr>
 					<th>제조사</th>
@@ -40,7 +40,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>모델</th><td><input type="text" name="car_model"> </td>
+					<th>모델</th><td><input type="text" name="car_model" value="${car.car_model }"> </td>
 				</tr>
 				<tr>
 					<th>이름</th><td><input type="text" name="car_name"> </td>
@@ -92,7 +92,7 @@
 				<tr>
 					<th colspan="2">
 						<div align="center">
-							<input type="submit" value="등록">
+							<input type="submit" value="수정">
 							<input type="button" value="취소" onclick="history.back()">
 						</div>
 					</th>

@@ -34,5 +34,12 @@ public class CarService {
 	public int adminCarRegist(CarVO car) {
 		return mapper.adminCarRegist(car);
 	}
+	public int carUpdate(CarVO car) {
+		return mapper.carUpdate(car);
+	}
+	public CarVO carInfo(String car_id) {
+		// TODO Auto-generated method stub
+		return mapper.carInfo(car_id);
+	}
 
 }
