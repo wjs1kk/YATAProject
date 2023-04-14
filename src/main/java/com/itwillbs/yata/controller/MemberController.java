@@ -149,6 +149,7 @@ public class MemberController {
 	public String point() {
 		return "member/member_point";
 	}
+
 	
 	@GetMapping("review")
 	public String review(Model model, HttpSession session, ReviewVO review) {

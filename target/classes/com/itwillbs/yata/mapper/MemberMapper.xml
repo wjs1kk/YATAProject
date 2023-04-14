@@ -36,4 +36,9 @@
 			WHERE member_email = #{member_email}
 	</update>
 	
+	<select id="memberList" resultType="com.itwillbs.yata.vo.MemberVO">
+		SELECT *
+		  FROM member
+	</select>
+	
   </mapper>

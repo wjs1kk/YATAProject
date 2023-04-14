@@ -425,7 +425,7 @@ $(document).ready(function() {
 											class="js-vsl-btn-rent-date dc-flex justify-content-between align-items-center click-effect-press box-border-grey-7 box-round-gray px-25 py-1 h-100"
 											data-type="location">
 											<!-- 날짜 시간 선택창에 메인에서 넘어온 rentalDatetime값이 적용되게함 -->
-										<input type="text" id="demo" name="demo" value="${param.rentalDatetime }" style="border:0 solid black; background-color:transparent; width:250px; font-weight: bolder;" />
+										<input type="text" id="demo" name="demo" value="${param.rentalDatetime }" style="border:0 solid black; background-color:transparent; width:450px; font-weight: bolder;" />
 										<script>
 										$(function () {
 										    $('#demo').daterangepicker({
@@ -443,6 +443,7 @@ $(document).ready(function() {
 										            "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
 										            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 										            "firstDay": 1
+										           
 										        },
 										        
 										        // startDate: new Date() 와 endDate: new Date()가 있으면 오늘 날짜가 기본값으로 적용되는 것 같음
@@ -455,7 +456,8 @@ $(document).ready(function() {
 										    	var startDate = start.format('MM-DD HH');
 										    	var endDate = end.format('MM-DD HH');
 										    	var time = (end - start) / (1000*60*60);
-										    	$('#time').text(time + " 시간");
+										    	var intTime = parseInt(time);
+										    	$('#time').text(intTime + " 시간");
 										    });
 										});
 										</script>
