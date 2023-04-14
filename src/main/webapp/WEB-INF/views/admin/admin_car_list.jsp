@@ -13,7 +13,7 @@
 <link href="resources/css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<jsp:include page="../inc/top.jsp"></jsp:include>
+<jsp:include page="../inc/top_admin.jsp"></jsp:include>
 <div align="center">
 	<h1>자동차 목록 조회</h1>
 	<table border="1">

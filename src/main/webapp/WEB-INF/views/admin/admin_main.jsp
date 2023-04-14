@@ -12,7 +12,7 @@
 </head>
 <body>
 	<header>
-		<jsp:include page="../inc/top.jsp"></jsp:include>
+		<jsp:include page="../inc/top_admin.jsp"></jsp:include>
 	</header>
 	<div id="main" align="center">
 		<h1>관리자 메인페이지</h1>
