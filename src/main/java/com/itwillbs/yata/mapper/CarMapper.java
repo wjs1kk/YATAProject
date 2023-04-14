@@ -12,6 +12,6 @@ public interface CarMapper {
 	public CarVO selectCar(int car_id);
 //	car_model -> car_name 수정
 	public List<CarVO> searchByName(@RequestParam String car_name);
-	
 	public List<CarVO> carList(CarVO car);
+	public int adminCarRegist(CarVO car);
 }

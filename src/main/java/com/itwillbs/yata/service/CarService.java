@@ -30,5 +30,9 @@ public class CarService {
 		
 		return mapper.carList(car);
 	}
+	
+	public int adminCarRegist(CarVO car) {
+		return mapper.adminCarRegist(car);
+	}
 
 }
