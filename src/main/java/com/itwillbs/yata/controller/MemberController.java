@@ -152,6 +152,7 @@ public class MemberController {
 	public String point() {
 		return "member/member_point";
 	}
+
 	
 	
 }
