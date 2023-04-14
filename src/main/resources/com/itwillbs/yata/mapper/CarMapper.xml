@@ -27,4 +27,25 @@
   		FROM car
   	
   	</select>
+  	
+  	
+  	<insert id="adminCarRegist">
+  	
+  		<selectKey keyProperty="car_id" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(car_id), 0) FROM car
+		</selectKey>
+		
+  		INSERT INTO car
+  		VALUES(#{car_id} + 1
+  			   , #{car_manufacturer}
+  			   , #{car_model}
+  			   , #{car_name}
+  			   , #{car_type}
+  			   , #{car_year}
+  			   , #{car_price}
+  			   , '1'
+  			   , #{car_seater}
+  			   , #{car_fuel}
+  			  )
+  	</insert>
 </mapper>

@@ -1071,6 +1071,8 @@
 												
 												<!-- 지도 -->
 												<div id="map" style="width:100%;height:350px;"></div>
+												
+												
 												<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac7eaf0b889d2a25e8a1f59096c406a"></script>
 												<script>
 												
@@ -1085,7 +1087,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); 
-														var iwContent = '<input type="text" id="place" value="전포지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="전포지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '부전지점'}){
@@ -1097,7 +1099,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); 
-														var iwContent = '<input type="text" id="place" value="부전지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="부전지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '사상지점'}){
@@ -1109,7 +1111,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); 
-														var iwContent = '<input type="text" id="place" value="사상지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="사상지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style=" color:black;" target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:black;" target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '개금지점'}){
@@ -1121,7 +1123,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); 
-														var iwContent = '<input type="text" id="place" value="개금지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="개금지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:black;" target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); //인포윈도우 표시 위치입니다
 													}
 													
@@ -1152,11 +1154,12 @@
 												</div>
 											</div>
 										<div class="container">
-											<div class="text-14 font-weight-bold color-grey-3 mt-3">주소</div>
+											<div class="text-14 font-weight-bold color-grey-3 mt-3">&nbsp</div>
 											<div class="dc-flex justify-content-between mt-2">
 												<div
 													class="js-sci-txt-company-address text-14 color-grey-4 wordbreak-keepall pr-2">
-													제주특별자치도 제주시 다호북길 111</div>
+
+													</div>
 												<div
 													class="js-sci-btn-company-address-copy btn-copy click-effect-press">
 													<img
@@ -1166,12 +1169,12 @@
 											
 											<div class="mt-3 js-show-devide-elmt" data-sde-s="1"
 												data-sde-m="1" data-sde-sub="1" style="display: block;">
-												<div class="text-14 font-weight-bold color-grey-3">영업시간</div>
+												<div class="text-14 font-weight-bold color-grey-3">&nbsp</div>
 												<div
 													class="js-sci-btn-branch-business-time dc-flex align-items-start mt-2 click-effect-press">
 													<div
 														class="js-sci-txt-company-branch-business-time text-14 color-grey-4 wordbreak-keepall mb-0">
-														08:00~20:00</div>
+														&nbsp</div>
 													<div class="ml-1">
 														<img
 															src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNOCAxNEMxMS4zMTM3IDE0IDE0IDExLjMxMzcgMTQgOEMxNCA0LjY4NjI5IDExLjMxMzcgMiA4IDJDNC42ODYyOSAyIDIgNC42ODYyOSAyIDhDMiAxMS4zMTM3IDQuNjg2MjkgMTQgOCAxNFpNNy40MDE4NiAxMkg4LjU4ODM4VjYuNzE2OEg3LjQwMTg2VjEyWk03LjQ5OTUxIDQuODkwNjJDNy4zODU1OCA1LjAxMTA3IDcuMzI4NjEgNS4xNjI0MyA3LjMyODYxIDUuMzQ0NzNDNy4zMjg2MSA1LjUyMzc2IDcuMzg1NTggNS42NzM1IDcuNDk5NTEgNS43OTM5NUM3LjYxNjcgNS45MTExMyA3Ljc4MjcxIDUuOTY5NzMgNy45OTc1NiA1Ljk2OTczQzguMjEyNCA1Ljk2OTczIDguMzc4NDIgNS45MTExMyA4LjQ5NTYxIDUuNzkzOTVDOC42MTI3OSA1LjY3MzUgOC42NzEzOSA1LjUyMzc2IDguNjcxMzkgNS4zNDQ3M0M4LjY3MTM5IDUuMTYyNDMgOC42MTI3OSA1LjAxMTA3IDguNDk1NjEgNC44OTA2MkM4LjM3ODQyIDQuNzcwMTggOC4yMTI0IDQuNzA5OTYgNy45OTc1NiA0LjcwOTk2QzcuNzgyNzEgNC43MDk5NiA3LjYxNjcgNC43NzAxOCA3LjQ5OTUxIDQuODkwNjJaIiBmaWxsPSIjODU5MkFCIi8+Cjwvc3ZnPgo=">
@@ -2271,20 +2274,7 @@
 															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
 															<span class="js-vcd-txt-rent-price-label">대여요금</span>
 															<div class="text-right">
-																<span class="js-vcd-txt-rent-price">+ 12,300원</span>
-															</div>
-														</div>
-													</li>
-													<li
-														class="js-vcd-txt-insurance-price-container list-group-item bg-lg-none px-0"
-														style="display: none;">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-															<div>
-																<span>보험료</span><span class="js-vcd-txt-insurance-type"></span>
-															</div>
-															<div class="text-right">
-																<span class="js-vcd-txt-insurance-price">&nbsp;</span>
+												<!-- 대여 요금이 잘못 들어가 있어서 동작 안 하고 잘못 들어가 있는 li태그 지우고 이 곳으로 수정 -->
 																<span class="js-vcd-txt-rent-price">${car.car_price }원</span>
 															</div>
 														</div>

@@ -27,8 +27,8 @@
         
         
         <div class="container p-0">
-            <div class="row my-lg-5 reservation-row">
-                <div class="col-lg-7 cm-lg-rounded">
+            <div class="row my-lg-5 reservation-row" style="display: block; margin: 70px">
+                <div class=" cm-lg-rounded"  >
                     <div class="mx-n15px mx-lg-0">
                     
                     
@@ -39,13 +39,15 @@
                     
                     
                     	<!-- 예약이 완료되었습니다 -->
-                        <section class="carmore-section px-3 pb-0 mt-lg-3 ke_align-center">
+                        <section class="carmore-section px-3 pb-0 mt-lg-3 ke_align-center text-center">
                             <header>
 
                                 <p class="">YA-TA와 함께 언제든, 어디로든 떠나보세요!</p>
                                 <h2 id="bo_v_title">
-                                    <span id="bo_v_tit" class="bo_v_tit">
-                                        예약이 완료되었습니다.</span>
+                                  <div id="bo_v_tit" class="bo_v_tit" >
+                              	  <img class="" src="resources/images/check.png" style="width:40px; height:40px;">
+                                  예약이 완료되었습니다.
+                                  </div>
                                 </h2>
 
                             </header>
@@ -96,7 +98,7 @@
                                 <div class="js-cpi-container-branch-info pt-1">
                                     <div class="dc-flex align-items-center"><img
                                             src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM4NTkyQUIiIGQ9Ik03LjY0OCAyLjE0NmMuMTk2LS4xOTUuNTEyLS4xOTUuNzA3IDBsNS43OTMgNS43OTNjLjMxNS4zMTUuMDkyLjg1NC0uMzUzLjg1NEgyLjIwOWMtLjQ0NSAwLS42NjktLjUzOS0uMzU0LS44NTRsNS43OTMtNS43OTN6TTEzLjAwMiA4Ljc5M2gtMTB2NS41YzAgLjI3Ni4yMjQuNS41LjVoOWMuMjc2IDAgLjUtLjIyNC41LS41di01LjV6Ii8+CiAgICA8cmVjdCB3aWR0aD0iMiIgaGVpZ2h0PSI0IiB4PSI3LjAwMiIgeT0iMTEuNzkzIiBmaWxsPSIjRkFGQUZBIiByeD0iMSIvPgo8L3N2Zz4K">
-                                        <div class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1">로그인렌트카</div>
+                                        <div class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1">지점선택</div>
                                     </div>
                                 </div>
                                 <hr class="mb-2">
@@ -223,26 +225,15 @@
                                                 <ul class="list-group list-group-flush">
                                                     <li
                                                         class="vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
-                                                        <span class="js-vreserv-txt-rent-price-label">대여요금
-                                                            (완전자차포함)</span>
-                                                        <div class="text-right"><span
-                                                                class="js-vreserv-txt-rent-price">+ 12,300원</span></div>
+                                                        <span class="js-vreserv-txt-rent-price-label">대여요금</span>
+                                                        <div class="text-right"><span class="js-vreserv-txt-rent-price">+ 12,300원</span></div>
                                                     </li>
                                                     <li class="js-spdl-poa-hide js-verserv-container-insurance-price vreserv-container-price-txt list-group-item px-0 bg-lg-none js-oversea-api-hide"
-                                                        style="display: none;">
+                                                        >
                                                         <div
-                                                            class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-                                                            보험료<div class="text-right"><span
-                                                                    class="vreserv-txt-insurance-price">&nbsp;</span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="js-spdl-poa-hide js-verserv-container-delivery-price vreserv-container-price-txt list-group-item px-0 bg-lg-none js-oversea-api-hide"
-                                                        style="display: none;">
-                                                        <div
-                                                            class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-                                                            차량배달<div class="text-right"><span
-                                                                    class="vreserv-txt-delivery-price">&nbsp;</span>
+                                                            class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">보험요금
+                                                            <div class="text-right">
+                                                            	<span class="vreserv-txt-insurance-price">+10,000원</span>
                                                             </div>
                                                         </div>
                                                     </li>

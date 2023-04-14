@@ -54,4 +54,15 @@ public class AdminController {
 		
 		return "admin/admin_car_list";
 	}
+	
+	@GetMapping("AdminCarRegist.ad")
+	public String AdminCarRegist(CarVO car, Model model) {
+		return "admin/admin_car_regist";
+	}
+	
+	@GetMapping("AdminCarRegistPro.ad")
+	public String AdminCarRegistPro(CarVO car) {
+		carService.adminCarRegist(car);
+		return "redirect:/AdminCarList.me";
+	}
 }

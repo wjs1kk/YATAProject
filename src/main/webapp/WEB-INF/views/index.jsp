@@ -146,10 +146,10 @@
 								
 								<!-- 지도 팝업창 상단 지도 이동 탭 -->
 								<div class="dc-none js-msa-tabs" style="display: block;">
-									<button onclick="전포()">전포</button>
-									<button onclick="부전()">부전</button> 
-								    <button onclick="사상()">사상</button> 
-								    <button onclick="개금()">개금</button> 
+									<button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="전포()">전포</button>
+									<button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="부전()">부전</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="사상()">사상</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="개금()">개금</button> 
 								</div>
 								
 								
@@ -180,25 +180,25 @@
 
 													var positions = [
 															{
-																content : '<input type="text" id="place" value="전포지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="place" size="13" value="전포지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15849019679627,
 																		129.06202404131136)
 															},
 															{
-																content : '<input type="text" id="place" value="부전지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="place" size="13" value="부전지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15975905300518,
 																		129.06186404315977)
 															},
 															{
-																content : '<input type="text" id="place" value="사상지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="place" size="13" value="사상지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.158690073109824,
 																		129.06113477638084)
 															},
 															{
-																content : '<input type="text" id="place" value="개금지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="place" size="13" value="개금지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15730753621485,
 																		129.06294334538524)
