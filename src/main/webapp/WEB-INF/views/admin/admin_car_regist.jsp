@@ -27,7 +27,7 @@
 		<form action="AdminCarRegistPro.ad">
 			<table border="1">
 				<tr>
-					<th>car_manufacturer</th>
+					<th>제조사</th>
 					<td>
 						<select name="car_manufacturer">
 			             	<option value="">선택하기</option>
@@ -40,13 +40,13 @@
 					</td>
 				</tr>
 				<tr>
-					<th>car_model</th><td><input type="text" name="car_model"> </td>
+					<th>모델</th><td><input type="text" name="car_model"> </td>
 				</tr>
 				<tr>
-					<th>car_name</th><td><input type="text" name="car_name"> </td>
+					<th>이름</th><td><input type="text" name="car_name"> </td>
 				</tr>
 				<tr>
-					<th>car_type</th>
+					<th>종류</th>
 					<td>
 						<select name="car_type">
 			             	<option value="">선택하기</option>
@@ -58,13 +58,13 @@
 					</td>
 				</tr>
 				<tr>
-					<th>car_year</th><td><input type="text" name="car_year"> </td>
+					<th>연식</th><td><input type="text" name="car_year"> </td>
 				</tr>
 				<tr>
-					<th>car_price</th><td><input type="text" name="car_price"> </td>
+					<th>가격</th><td><input type="text" name="car_price"> </td>
 				</tr>
 				<tr>
-					<th>car_seater</th>
+					<th>인승</th>
 					<td>
 						<select name="car_seater">
 			             	<option value="">선택하기</option>
@@ -78,7 +78,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>car_fuel</th>
+					<th>연료</th>
 					<td>
 						<select name="car_fuel">
 			             	<option value="">선택하기</option>
