@@ -146,10 +146,10 @@
 								
 								<!-- 지도 팝업창 상단 지도 이동 탭 -->
 								<div class="dc-none js-msa-tabs" style="display: block;">
-									<button onclick="전포()">전포</button>
-									<button onclick="부전()">부전</button> 
-								    <button onclick="사상()">사상</button> 
-								    <button onclick="개금()">개금</button> 
+									<button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="전포()">전포</button>
+									<button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="부전()">부전</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="사상()">사상</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="개금()">개금</button> 
 								</div>
 								
 								

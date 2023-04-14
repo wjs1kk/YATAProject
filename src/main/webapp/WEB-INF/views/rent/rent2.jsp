@@ -1154,12 +1154,12 @@
 												</div>
 											</div>
 										<div class="container">
-											<div class="text-14 font-weight-bold color-grey-3 mt-3">주소</div>
+											<div class="text-14 font-weight-bold color-grey-3 mt-3">&nbsp</div>
 											<div class="dc-flex justify-content-between mt-2">
 												<div
 													class="js-sci-txt-company-address text-14 color-grey-4 wordbreak-keepall pr-2">
 
-													제주특별자치도 제주시 다호북길 111</div>
+													</div>
 												<div
 													class="js-sci-btn-company-address-copy btn-copy click-effect-press">
 													<img
@@ -1169,12 +1169,12 @@
 											
 											<div class="mt-3 js-show-devide-elmt" data-sde-s="1"
 												data-sde-m="1" data-sde-sub="1" style="display: block;">
-												<div class="text-14 font-weight-bold color-grey-3">영업시간</div>
+												<div class="text-14 font-weight-bold color-grey-3">&nbsp</div>
 												<div
 													class="js-sci-btn-branch-business-time dc-flex align-items-start mt-2 click-effect-press">
 													<div
 														class="js-sci-txt-company-branch-business-time text-14 color-grey-4 wordbreak-keepall mb-0">
-														08:00~20:00</div>
+														&nbsp</div>
 													<div class="ml-1">
 														<img
 															src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNOCAxNEMxMS4zMTM3IDE0IDE0IDExLjMxMzcgMTQgOEMxNCA0LjY4NjI5IDExLjMxMzcgMiA4IDJDNC42ODYyOSAyIDIgNC42ODYyOSAyIDhDMiAxMS4zMTM3IDQuNjg2MjkgMTQgOCAxNFpNNy40MDE4NiAxMkg4LjU4ODM4VjYuNzE2OEg3LjQwMTg2VjEyWk03LjQ5OTUxIDQuODkwNjJDNy4zODU1OCA1LjAxMTA3IDcuMzI4NjEgNS4xNjI0MyA3LjMyODYxIDUuMzQ0NzNDNy4zMjg2MSA1LjUyMzc2IDcuMzg1NTggNS42NzM1IDcuNDk5NTEgNS43OTM5NUM3LjYxNjcgNS45MTExMyA3Ljc4MjcxIDUuOTY5NzMgNy45OTc1NiA1Ljk2OTczQzguMjEyNCA1Ljk2OTczIDguMzc4NDIgNS45MTExMyA4LjQ5NTYxIDUuNzkzOTVDOC42MTI3OSA1LjY3MzUgOC42NzEzOSA1LjUyMzc2IDguNjcxMzkgNS4zNDQ3M0M4LjY3MTM5IDUuMTYyNDMgOC42MTI3OSA1LjAxMTA3IDguNDk1NjEgNC44OTA2MkM4LjM3ODQyIDQuNzcwMTggOC4yMTI0IDQuNzA5OTYgNy45OTc1NiA0LjcwOTk2QzcuNzgyNzEgNC43MDk5NiA3LjYxNjcgNC43NzAxOCA3LjQ5OTUxIDQuODkwNjJaIiBmaWxsPSIjODU5MkFCIi8+Cjwvc3ZnPgo=">

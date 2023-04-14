@@ -29,9 +29,12 @@ $(document).ready(function() {
 	//  AJAX 요청 보내기
     $.ajax({
 	      type: 'GET',
-	      url: '/search',
+	      url: 'search',
 	      data: { car_name: $('#search_box').val() },
 	      success: function(data) {
+	    	  for(int i = 0; i < data.length; i++){
+	    		  
+	    	  }
 	      },
 	      error: function(xhr, textStatus, errorThrown) {
 	        console.log(xhr.responseText);
@@ -989,6 +992,7 @@ $(document).ready(function() {
 											<!-- 카리스트 아이디와, 대여장소, 대여날짜 및 시간이 rent2페이지로 넘어가게 수정 -->																												
 											<div class="bg-white mb-3 js-vsl-container-search-list-item click-no-effect"  onclick="window.location.href='rent2?car_id=${carList.car_id}&place=${param.place }&rentalDatetime=${param.rentalDatetime }'">
 												<div class="row car-list no-gutters">
+													
 													<div class="col-12 col-lg-5 pt-3 pb-2 px-1 p-lg-3">
 														<div class="pt-3 pb-2 px-1 p-lg-3">
 																<div class="">			
