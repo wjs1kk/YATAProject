@@ -18,8 +18,8 @@
 		        pg : 'YATA',
 		        pay_method : 'card', // 테스트 결제 API는 카드 결제만 가능
 		        merchant_uid: "57008833-33004", //주문 번호 넣기
-		        name : '아반떼', // request객체로 넘어온  ${car_name}을 넣어야함
-		        amount : 100, // 결제 금액    결제 금액 쿼리를 넣어야 함
+		        name : '${car.car_name }', // request객체로 넘어온  ${car_name}을 넣어야함
+		        amount : ${car.car_price }+ insValue, // 결제 금액    결제 금액 쿼리를 넣어야 함
 		        buyer_email : 'Iamport@chai.finance', // 주문자 이메일
 		        buyer_name : '홍길동', // 주문자 이름
 		        buyer_tel : '010-1234-5678', // 주문자 전화번호
@@ -196,20 +196,7 @@
 														class="js-vcd-txt-origin-price text-12 text-right color-grey-5 mb-0 text-line-through"
 														style="display: none;"></span>
 													<div class="js-vcd-overseas-poa-badge dc-none"></div>
-													<div class="js-vcd-txt-none-member-price text-right">
-														<span class="text-12 color-grey-4 mr-1">비회원가</span><span
-															class="js-vcd-none-member-price text-12 color-grey-3 font-weight-bold">12,300원</span>
-													</div>
 													<div class="dc-flex justify-content-end align-items-center">
-														<div
-															class="js-vcd-txt-first-discount text-12 color-grey-4 font-weight-bold">
-															첫 구매 할인,&nbsp;</div>
-														<span class="text-12 color-grey-4 mr-1"
-															id="vcd_txt_include_insu_price" style="display: block;"><b>완전자차</b>
-															포함가</span><span
-															class="js-vcd-txt-expected-price js-vcd-welcome-coupon-applied-expected-price text-20 font-weight-bold color-red-brown mb-0 line-height-1">${car.car_price }원</span><span
-															class="js-vcd-txt-expected-poa-price js-vcd-welcome-coupon-applied-expected-price text-20 font-weight-bold color-red-brown mb-0 line-height-1 dc-none"
-															style="display: none;">원</span>
 													</div>
 												</div>
 											</div>
@@ -2258,6 +2245,8 @@
 						<div class="floating-btn-page-bottom dc-lg-none"></div>
 					</div>
 				</div>
+				
+				<!--오른쪽 결제 정보 확인 카드 -->
 				<div class="col-lg-5 dc-none dc-lg-block">
 					<div
 						class="cm-rounded bg-shadow bg-white sticky mx-n15px mx-lg-0 sticky-pc-menu-top sticky-element-inner-scroll">
@@ -2280,8 +2269,7 @@
 													<li class="list-group-item bg-lg-none px-0">
 														<div
 															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-															<span class="js-vcd-txt-rent-price-label">대여요금
-																(완전자차포함)</span>
+															<span class="js-vcd-txt-rent-price-label">대여요금</span>
 															<div class="text-right">
 																<span class="js-vcd-txt-rent-price">+ 12,300원</span>
 															</div>
@@ -2297,6 +2285,7 @@
 															</div>
 															<div class="text-right">
 																<span class="js-vcd-txt-insurance-price">&nbsp;</span>
+																<span class="js-vcd-txt-rent-price">${car.car_price }원</span>
 															</div>
 														</div>
 													</li>
@@ -2304,13 +2293,15 @@
 														class="js-vcd-price-poa-hide js-vcd-login list-group-item bg-lg-none px-0 tmobi-dc-none">
 														<div
 															class="dc-flex justify-content-between align-items-center color-grey-5 wordbreak-keepall">
-															할인 적용
+															보험요금
 															<div
 																class="text-right js-vcd-btn-login dc-flex click-effect-press">
-																<span class="color-blue-dark-light mr-2">3초
-																	가입하고&nbsp;<span class="js-none-member-coupon-price">5,000원</span>&nbsp;할인받기!
-																</span><img
-																	src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
+																<span class="color-blue-dark-light mr-2">
+																	<script type="text/javascript">
+																		var insValue = parseInt(sessionStorage.getItem("insValue"));
+																		document.write(insValue + "원");
+																	</script>
+																</span>
 															</div>
 														</div>
 													</li>
@@ -2320,7 +2311,11 @@
 															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall font-weight-bold">
 															<span class="text-primary">예상 결제액</span>
 															<div class="text-right text-primary">
-																<span class="js-vcd-txt-expected-price">12,300원</span>
+																<span class="js-vcd-txt-expected-price">
+																	<script type="text/javascript">
+																		document.write(${car.car_price } + insValue + "원");
+																	</script>
+																</span>
 															</div>
 														</div>
 													</li>
@@ -2333,14 +2328,18 @@
 													class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press" onclick="requestPay()">
 													<div
 														class="text-18 font-weight-bold text-white line-height-1">
+														
 														<span
-															class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">8000원
-															바로 예약하기</span><span
+															class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
+															<script type="text/javascript">
+																document.write(${car.car_price } + insValue + "원 바로 예약하기");
+															</script>
+														</span><span
 															class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
 															style="display: none;"></span>
 													</div>
-													<div class="js-vcd-txt-price-desc text-12 text-white">가입
-														후 첫 구매 5천원 할인, 완전자차 포함</div>
+													<div class="js-vcd-txt-price-desc text-12 text-white">
+														</div>
 												</button>
 												
 											</div>

@@ -20,5 +20,16 @@ public class ReviewService {
 	public int insertReview(ReviewVO review) {
 		return mapper.insertReview(review);
 	}
+	
+//	public List<ReviewVO> myReview(String member_email) {
+//		return mapper.selectMyReview(member_email);
+//	}
+	
+	public List<ReviewVO> myReview(String member_email) {
+		return mapper.selectMyReview(member_email);
+	}
 
+	public Integer selectMyReviewCount(String member_email) {
+		return mapper.selectMyReviewCount(member_email);
+	}
 }

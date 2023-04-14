@@ -14,6 +14,7 @@
 			from car 
 			where car_id = #{car_id}
 	</select>
+<!-- 	car_model -> car_name 수정 -->
 	<select id="searchByName" parameterType="String" resultType="com.itwillbs.yata.vo.CarVO">
   	 	SELECT * 
   	 		FROM car 

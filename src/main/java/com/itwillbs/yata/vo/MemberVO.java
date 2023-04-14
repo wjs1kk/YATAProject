@@ -81,7 +81,12 @@ public class MemberVO {
 	public void setMember_license(String member_license) {
 		this.member_license = member_license;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "MemberVO [member_email=" + member_email + ", member_passwd=" + member_passwd + ", member_name="
+				+ member_name + ", member_birth=" + member_birth + ", member_gender=" + member_gender
+				+ ", member_phone=" + member_phone + ", member_date=" + member_date + ", member_point=" + member_point
+				+ ", member_license=" + member_license + "]";
+	}
 }

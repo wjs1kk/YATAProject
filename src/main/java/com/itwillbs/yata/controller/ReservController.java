@@ -48,8 +48,9 @@ public class ReservController {
 	public String pay_success() {
 		return "pay/pay_success";
 	}
+//	car_model -> car_name 수정
 	@GetMapping("/search")
-	public String search(@RequestParam String car_name, Model model) {
+	public String search(@RequestParam String car_name, String place, Model model) {
 		System.out.println("search");
 		
 		
@@ -58,6 +59,10 @@ public class ReservController {
 	    System.out.println(carList);
 	    
 	    model.addAttribute("carList", carList);
+	    List<CarVO> cars = carService.searchByName(car_name);
+	    System.out.println(cars);
+	    model.addAttribute("place",place);
+	    model.addAttribute("carList", cars);
 	    
 	    return "rent/rent";
 	}
