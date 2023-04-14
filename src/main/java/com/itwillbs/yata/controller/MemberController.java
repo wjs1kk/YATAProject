@@ -1,11 +1,8 @@
 package com.itwillbs.yata.controller;
 
 
-import java.util.Date;
 
 import java.util.*;
-
-import javax.servlet.http.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -131,6 +127,7 @@ public class MemberController {
 	
 	@PostMapping("confirmPro")
 	public String confirmPro(@RequestParam String member_passwd, HttpSession session, Model model) {
+		
 		if(memberService.checkUser((String)session.getAttribute("member_email"), member_passwd) != null) {
 			return "redirect:/modify";
 		} else {
@@ -153,5 +150,14 @@ public class MemberController {
 		return "member/member_point";
 	}
 	
-	
+	@GetMapping("review")
+	public String review(Model model, HttpSession session, ReviewVO review) {
+		List<ReviewVO> myReviewList = service.myReview((String)session.getAttribute("member_email"));
+		Integer myReviewCount = service.selectMyReviewCount((String)session.getAttribute("member_email"));
+//		System.out.println(myReviewList);
+		model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
+		model.addAttribute("myReviewCount", myReviewCount); // 나의 리뷰 개수
+		System.out.println(model.getAttribute("myReviewCount"));
+		return "member/member_review";
+	}
 }

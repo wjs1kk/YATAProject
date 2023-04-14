@@ -16,6 +16,7 @@ import com.itwillbs.yata.vo.CarVO;
 
 @Controller
 public class ReservController {
+	
 	@Autowired
 	private CarService carService;
 	@GetMapping("rent1")
@@ -23,6 +24,7 @@ public class ReservController {
 		model.addAttribute("carList",carService.selectCars());
 		return "rent/rent";
 	}
+	
 //	예약확인 
 	@GetMapping("rent2")
 	public String car_view(Model model, int car_id, String place, HttpSession session) {
@@ -38,8 +40,6 @@ public class ReservController {
 		return "rent/rent2";
 	}
 	
-	
-	
 	@GetMapping("pay")
 	public String pay() {
 		return "pay/pay";
@@ -53,16 +53,12 @@ public class ReservController {
 	public String search(@RequestParam String car_name, String place, Model model) {
 		System.out.println("search");
 		
-		
 		//통일성을 위해 cars에서 carList로 변경
 	    List<CarVO> carList = carService.searchByName(car_name);
 	    System.out.println(carList);
 	    
-	    model.addAttribute("carList", carList);
-	    List<CarVO> cars = carService.searchByName(car_name);
-	    System.out.println(cars);
 	    model.addAttribute("place",place);
-	    model.addAttribute("carList", cars);
+	    model.addAttribute("carList", carList);
 	    
 	    return "rent/rent";
 	}
