@@ -20,4 +20,11 @@
   	 		FROM car 
   	 		WHERE car_name LIKE CONCAT('%',#{car_name},'%');
   	</select>
+  	
+  	<select id="carList" resultType="com.itwillbs.yata.vo.CarVO">
+  	
+  		SELECT *
+  		FROM car
+  	
+  	</select>
 </mapper>

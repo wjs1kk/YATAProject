@@ -17,5 +17,7 @@ public interface MemberMapper {
 	public String selectPasswd(String member_email);
 	// 회원정보 수정 
 	public int modifyUser(String member_birth, String member_phone, String member_email);
+	//회원 정보 조회
+	public List<MemberVO> memberList(MemberVO member);
 	
 }

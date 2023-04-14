@@ -25,5 +25,10 @@ public class CarService {
 		System.out.println("searchByName");
 		return mapper.searchByName(car_name);
 	}
+	public List<CarVO> carList(CarVO car) {
+		// TODO Auto-generated method stub
+		
+		return mapper.carList(car);
+	}
 
 }
