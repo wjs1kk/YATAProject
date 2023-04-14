@@ -180,25 +180,25 @@
 
 													var positions = [
 															{
-																content : '<input type="text" id="place" size="13" value="전포지점" style="padding:5px; text-align: center; border: none; background: #20c997; color: white; font-weight: bold;">',
+																content : '<input type="text" id="place" size="13" value="전포지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15849019679627,
 																		129.06202404131136)
 															},
 															{
-																content : '<input type="text" id="place" size="13" value="부전지점" style="padding:5px; text-align: center; border: none; background: #20c997; color: white; font-weight: bold;">',
+																content : '<input type="text" id="place" size="13" value="부전지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15975905300518,
 																		129.06186404315977)
 															},
 															{
-																content : '<input type="text" id="place" size="13" value="사상지점" style="padding:5px; text-align: center; border: none; background: #20c997; color: white; font-weight: bold;">',
+																content : '<input type="text" id="place" size="13" value="사상지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.158690073109824,
 																		129.06113477638084)
 															},
 															{
-																content : '<input type="text" id="place" size="13" value="개금지점" style="padding:5px; text-align: center; border: none; background: #20c997; color: white; font-weight: bold;">',
+																content : '<input type="text" id="place" size="13" value="개금지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15730753621485,
 																		129.06294334538524)

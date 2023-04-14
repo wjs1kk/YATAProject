@@ -1087,7 +1087,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); 
-														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="전포지점" style="padding:5px; text-align: center; border: none;  background: #20c997; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style="font-weight: bolder; color:orange" target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="font-weight: bolder; color:orange" target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="전포지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '부전지점'}){
@@ -1099,7 +1099,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); 
-														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="부전지점" style="padding:5px; text-align: center; border: none;  background: #20c997; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style="font-weight: bolder; color:orange" target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="font-weight: bolder; color:orange" target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="부전지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '사상지점'}){
@@ -1111,7 +1111,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); 
-														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="사상지점" style="padding:5px; text-align: center; border: none;  background: #20c997; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style="font-weight: bolder; color:orange" target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="font-weight: bolder; color:orange" target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="사상지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style=" color:black;" target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:black;" target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '개금지점'}){
@@ -1123,7 +1123,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); 
-														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="개금지점" style="padding:5px; text-align: center; border: none;  background: #20c997; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style="font-weight: bolder; color:orange" target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="font-weight: bolder; color:orange" target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="place" value="개금지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:black;" target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); //인포윈도우 표시 위치입니다
 													}
 													
