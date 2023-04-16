@@ -44,15 +44,6 @@
 }
 </style>
 
-<!-- 차량검색 클릭 이벤트(클릭시rent 페이지에 대여장소와 날짜가 request객체로 이동) -->
-<script type="text/javascript">
-	$(function() {
-		$("#search").on("click", function() {
-			location.href = "rent1?place=${param.place}&rentalDatetime="+$('#demo').val();
-		})
-	})
-</script>
-
 </head>
 <body>
 	<main id="content" role="main">
@@ -180,25 +171,25 @@
 
 													var positions = [
 															{
-																content : '<input type="text" id="place" value="전포지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15849019679627,
 																		129.06202404131136)
 															},
 															{
-																content : '<input type="text" id="place" value="부전지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15975905300518,
 																		129.06186404315977)
 															},
 															{
-																content : '<input type="text" id="place" value="사상지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.158690073109824,
 																		129.06113477638084)
 															},
 															{
-																content : '<input type="text" id="place" value="개금지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15730753621485,
 																		129.06294334538524)
@@ -252,8 +243,7 @@
 																							"#place")
 																							.val();
 																					
-																					location.href = "?place="
-																							+ place;
+																					location.href = "?place="+place+"&rentalDatetime=+"+$('#demo').val();
 																				})
 																			});
 														})(marker, infowindow);
@@ -353,7 +343,6 @@
 					</div>
 				</div>
 
-				<!-- 			메인 이미지 영역 -->
 				<section
 					class="index-container-first-section bg-color-primary-blue-light loading-shimmer"
 					id="js_section_main_banner" style="display: block;">
@@ -484,11 +473,12 @@
 						</div>
 						<!-- 						차량 검색버튼  -->
 						<!-- 						창용 차량 검색버튼에 rent화면에 장소데이터 전송  -->
-						<a class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press" >
+						<div class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press" onclick="rent1()">
 							<div class="index-btn-search border-radius-normal dc-flex flex-column justify-content-center align-items-center" id="search" >
 								<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNSAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0yMyAyMi41IDcgNyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTE1LjUgMjMuNWM1LjI0NyAwIDkuNS00LjAzIDkuNS05cy00LjI1My05LTkuNS05Yy01LjI0NiAwLTkuNSA0LjAzLTkuNSA5czQuMjU0IDkgOS41IDl6IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIvPgo8L3N2Zz4K">
 								<div class="text-16 font-weight-bold mt-2" >차량 검색</div>
-							</div></a>
+							</div>
+						</div>
 					</div>
 				</section>
 

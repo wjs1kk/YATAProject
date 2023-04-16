@@ -19,10 +19,11 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		List<ReviewVO> reviewList = service.getReview();
-//	    System.out.println(reviewList);
 	    model.addAttribute("review", reviewList);
 	    return "index";
 	}
+	
+	
 	@GetMapping("event")
 	public String event() {
 		return "notice/event";

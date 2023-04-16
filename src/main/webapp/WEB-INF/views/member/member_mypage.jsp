@@ -18,19 +18,7 @@
 			$('#myapge_section_my_coupon').hide();
 // 			$('#mypage_section_modify').hide()
 		})
-		
-// 		$('#modify-menu').on('click', function() {
-// 			$('#mypage_section_main').hide();
-// 			$('#mypage_section_point').hide();
-// 			$('#mypage_section_mypage').hide();
-// 			$('#mypage_section_rent_history').hide();
-// 			$('#myapge_section_my_review').hide();
-// 			$('#myapge_section_my_coupon').hide();
-// 			$('#mypage_section_modify').show()
-// 		})
 	})
-	
-	
 </script>
 
 <link rel="stylesheet" href="resources/css/style.css">
@@ -66,10 +54,10 @@
 												<div>
 													<div class="is-only-member pr-2">
 														<div class="text-20">
-															<span class="js-mypage-txt-nickname wordbreak-breakword">${member_name}</span>님
+															<span class="js-mypage-txt-nickname wordbreak-breakword">${member.member_name}</span>님
 														</div>
 														<div
-															class="js-mypage-txt-user-id color-grey-5 text-12 mb-0 wordbreak-breakall">${sId}</div>
+															class="js-mypage-txt-user-id color-grey-5 text-12 mb-0 wordbreak-breakall">${member.member_email}</div>
 													</div>
 
 													<div
@@ -119,7 +107,7 @@
 												id="point-menu" style="flex-basis: 50%">
 												<div
 													class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press">
-													<div class="js-mypage-txt-point text-16-b">${member_point}
+													<div class="js-mypage-txt-point text-16-b">${member.member_point}
 														P</div>
 													포인트
 												</div>
@@ -132,12 +120,6 @@
 													id="coupon-menu">
 													<div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>
 													쿠폰
-												</div>
-												<div class="mypage-talk-coupon dc-none"
-													id="js_mypage_talk_coupon" style="display: none;">
-													<div
-														class="talk-coupon text-white line-height-1 white-space-nowrap">소멸예정
-														쿠폰이 있어요!</div>
 												</div>
 											</div>
 										</div>
@@ -152,11 +134,11 @@
 										<div class="list-group list-group-flush">
 											<a href="modifyInfo"
 												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0" style="cursor: pointer;">
-												개인 정보 변경
+												내 정보 관리
 											</a> 
-											<a href="modifyPasswd"
+											<a href="#"
 												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0" style="cursor: pointer;">
-												비밀번호 변경
+												자주묻는 질문
 											</a>
 										</div>
 									</div>
@@ -170,7 +152,6 @@
 										class="dc-flex justify-content-between align-items-center mt-3">
 										<div class="text-14">
 											<div class="color-grey-2">1:1 문의</div>
-											<div class="color-grey-2">자주 묻는 질문</div>
 										</div>
 										<div class="center-align-container">
 											<button
@@ -499,6 +480,7 @@
 								</div>
 							</section>
 						</div>
+						<!-- 화면 합칠 때 수정 -->
 						<!--  modify -->
 <!-- 						<div id="mypage_section_modify" style="display: none"> -->
 <!-- 							<div class="container"> -->

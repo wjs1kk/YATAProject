@@ -7,15 +7,16 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.yata.vo.CarVO;
 import com.itwillbs.yata.vo.MemberVO;
+import com.itwillbs.yata.vo.Member_modifyVO;
 
 
 
 public interface MemberMapper {
 	
-	public MemberVO selectUser(@Param("member_email") String member_email,@Param("member_passwd") String member_passwd);
+	public MemberVO selectUser(String member_email);
 	public int insertUser(MemberVO member);
-	// 회원정보 수정 
-	public int modifyUser(String member_birth, String member_phone, String member_email);
-	
-	
+	public String selectPasswd(String member_email);
+	public int modifyUser(MemberVO memberVO);
+	public int deleteUser(String member_email);
+
 }

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body style="">	

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 	
 window.onload = function () {

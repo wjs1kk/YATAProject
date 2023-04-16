@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/main.css">
+<script type="text/javascript">
+	function rent1() {
+			location.href = "rent1?place=${param.place }&rentalDatetime="+$('#demo').val()
+	}
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-white dc-none dc-lg-block border-bottom sticky-top header-pc" id="container_pc_navbar" style="display: flex;">
@@ -25,7 +30,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item js-container-pc-header-menu active">
-						<a href="rent1?place=${param.place }" class="nav-link js-pc-header-menu click-effect-press" data-mt="1">
+						<a onclick="rent1()" class="nav-link js-pc-header-menu click-effect-press" data-mt="1">
 							<div class="dc-flex justify-content-center align-items-center">
 								<img class="mr-1" src="${pageContext.request.contextPath }/resources/images/car.png">예약하기
 							</div>
@@ -54,7 +59,7 @@
 						<a class="nav-link js-pc-header-menu click-effect-press" href="customer_service" data-mt="3">고객센터</a>
 					</li>
 				</ul>
-				<!-- 					로그인 하기전이랑 하고난후 바꿔야함 -->
+				
 				<c:choose>
 					<c:when test="${empty sessionScope.member_email }">
 						<a href = "join" class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 " id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
@@ -92,7 +97,6 @@
 			</div>
 		</div>
 	</nav>
-	
-	
+
 </body>
 </html>

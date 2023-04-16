@@ -17,26 +17,26 @@
 	<insert id="insertReview" useGeneratedKeys="true"
 		keyProperty="review_idx">
 		insert into review (
-		review_idx,
-		member_email,
-		member_name,
-		review_title,
-		review_content,
-		review_regdate,
-		review_updateDate,
-		review_star,
-		review_viewcnt
+		review_idx
+	  , member_email
+	  , member_name
+	  , review_title
+	  , review_content
+	  , review_regdate
+	  , review_updateDate
+	  , review_star
+	  , review_viewcnt
 		)
 		value (
-		#{review_idx},
-		#{member_email},
-		#{member_name},
-		#{review_title},
-		#{review_content},
-		CURRENT_TIMESTAMP(),
-		CURRENT_TIMESTAMP(),
-		#{review_star},
-		0
+		#{review_idx}
+	  , #{member_email}
+	  , #{member_name}
+	  , #{review_title}
+	  , #{review_content}
+	  , CURRENT_TIMESTAMP()
+	  , CURRENT_TIMESTAMP()
+	  , #{review_star}
+	  , 0
 		)
 	</insert>
 	
@@ -51,6 +51,6 @@
 	<select id="selectMyReviewCount" resultType="Integer">
 		SELECT COUNT(member_email)
 		  FROM review
-		 WHERE member_email IN (SELECT member_email FROM member WHERE member_email = #{member_email})
+		 WHERE member_email = #{member_email}
 	</select>
 </mapper>

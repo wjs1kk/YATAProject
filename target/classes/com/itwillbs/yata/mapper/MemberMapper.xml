@@ -9,7 +9,6 @@
 			from member
 			where 
 				member_email = #{member_email} 
-				and member_passwd = #{member_passwd}
 	</select>
 	<insert id="insertUser">
 		insert into member (
@@ -22,12 +21,24 @@
 			#{member_name}, #{member_birth},
 			#{member_gender}, #{member_phone}, now())
 	</insert>
-	
+	<select id="selectPasswd" resultType="string">
+		SELECT member_passwd
+		  FROM member
+		 WHERE member_email = #{member_email}
+	</select>
+	<!-- 회원수정 -->
 	<update id="modifyUser">
-		UPDATE member
-			SET member_birth = #{member_birth}
-			   ,member_phone = #{member_phone}
+		UPDATE member			
+			SET member_passwd = #{member_passwd},
+				member_phone = #{member_phone}
 			WHERE member_email = #{member_email}
 	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteUser">
+		DELETE
+			FROM member
+				WHERE member_email = #{member_email}
+	</delete>
 	
   </mapper>

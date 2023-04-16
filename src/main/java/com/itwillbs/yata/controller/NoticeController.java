@@ -34,9 +34,7 @@ public class NoticeController {
 	@GetMapping("notice")
 	public String notice(Model model) {
 		List<NoticeVO> noticeList = noticeService.getNoticeList();
-		
 		model.addAttribute("noticeList", noticeList);
-		
 		return "notice";
 	}
 	

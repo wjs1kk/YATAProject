@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/main.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <head>
 <meta charset="UTF-8">
 </head>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
-<jsp:include page="../inc/js_top.jsp" />
+
 <jsp:include page="../inc/top.jsp" />
 <div class="pc-mobile-header-container">
 	<div class="pc-header space-2 text-center dc-none dc-lg-block">
@@ -2855,4 +2855,3 @@
 	</div>
 </div>
 <jsp:include page="../inc/footer.jsp" />
-<jsp:include page="../inc/js_bottom.jsp" />
