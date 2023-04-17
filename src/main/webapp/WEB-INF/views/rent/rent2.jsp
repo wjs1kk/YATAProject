@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html class="no-fouc">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/css/css.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+	function pay(){
+		
+		location.href="pay?car_id=${param.car_id}&place=${param.place}&rentalDatetime=${param.rentalDatetime}&ins=${param.ins}";
+		
+	}
+</script>
 </head>
 <body style="">
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -55,8 +64,8 @@
 														<div class="text-12 color-grey-5">대여시간</div>
 														<div class="dc-flex text-16-b color-grey-3">
 															<span class="txt-rent-start-date mr-1"
-																style="display: block;">4.6(목)</span><span
-																class="txt-rent-start-time" style="display: block;">10:00</span>
+																style="display: block;">${fn:substring(param.rentalDatetime, 0, 5)}</span><span
+																class="txt-rent-start-time" style="display: block;">${fn:substring(param.rentalDatetime, 5, 11)}</span>
 														</div>
 													</div>
 													<span
@@ -64,10 +73,11 @@
 														class="txt-rent-period" style="display: block;">24시간</span></span>
 													<div class="text-center">
 														<div class="text-12 color-grey-5">반납시간</div>
+														
 														<div class="dc-flex text-16-b color-grey-3">
 															<span class="txt-rent-end-date mr-1"
-																style="display: block;">4.7(금)</span><span
-																class="txt-rent-end-time" style="display: block;">10:00</span>
+																style="display: block;">${fn:substring(param.rentalDatetime, 13, 19)}</span><span
+																class="txt-rent-end-time" style="display: block;">${fn:substring(param.rentalDatetime, 19, 25)}</span>
 														</div>
 													</div>
 												</div>
@@ -1054,7 +1064,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); 
-														var iwContent = '<input type="text" id="place" value="전포지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" id="place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '부전지점'}){
@@ -1066,7 +1076,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); 
-														var iwContent = '<input type="text" id="place" value="부전지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" id="place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '사상지점'}){
@@ -1078,7 +1088,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); 
-														var iwContent = '<input type="text" id="place" value="사상지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" id="place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); //인포윈도우 표시 위치입니다
 													}
 													if(${param.place eq '개금지점'}){
@@ -1090,7 +1100,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); 
-														var iwContent = '<input type="text" id="place" value="개금지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" id="place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); //인포윈도우 표시 위치입니다
 													}
 													
@@ -2173,13 +2183,7 @@
 															</div>
 														</div>
 													</div>
-													<button
-														class="btn btn-outline-primary btn-block ml-2 mr-2 click-effect-press rpc-btn-more-review"
-														id="rpc_btn_more_review">
-														<span class="spinner-border spinner-border-sm mr-2"
-															role="status" area-hidden="true" style="display: none;"></span>리뷰
-														더보기
-													</button>
+													
 												</div>
 											</div>
 										</section>
@@ -2252,10 +2256,8 @@
 															<div
 																class="text-right js-vcd-btn-login dc-flex click-effect-press">
 																<span class="color-blue-dark-light mr-2">
-																	<script type="text/javascript">
-																		var insValue = parseInt(sessionStorage.getItem("insValue"));
-																		document.write(insValue + "원");
-																	</script>
+																	${param.ins}원
+																	
 																</span>
 															</div>
 														</div>
@@ -2290,7 +2292,7 @@
 															<div class="text-right text-primary">
 																<span class="js-vcd-txt-expected-price">
 																	<script type="text/javascript">
-																		document.write(${car.car_price } + insValue + "원");
+																		document.write(${car.car_price } + ${param.ins} + "원");
 																	</script>
 																</span>
 															</div>
@@ -2302,10 +2304,10 @@
 													<div
 														class="text-18 font-weight-bold text-white line-height-1">
 														
-														<span
+														<span onclick="pay()"
 															class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
 															<script type="text/javascript">
-																document.write(${car.car_price } + insValue + "원 바로 예약하기");
+																document.write(${car.car_price } + ${param.ins} + "원 바로 예약하기");
 															</script>
 														</span><span
 															class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"

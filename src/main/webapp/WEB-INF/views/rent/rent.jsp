@@ -17,6 +17,10 @@
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
 <!-- 왼쪽 검색 기능 -->
 <script type="text/javascript">
@@ -579,35 +583,69 @@ $(document).ready(function() {
 															</div>
 															
 															<!--왼쪽 필터 - 보험 선택 -->
-															<form name="ins" method="post" class="ins" >
-																<div class="js-vf-section-fuels">
-																	<div class="form-group mb-0">
-																		<div class="text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
-																		
-																		<div class="radio text-center">
-																			<label class="ins">
-																			    <input type="radio" name="ins" value=10000  onclick="insValue()">
-																			    <span>일반자차 10,000원
-																				</span>
-																			</label>
-																			<br>
-																			<label class="ins">
-																			    <input type="radio" name="ins" value=15000 onclick="insValue()">
-																			    <span>완전자차 15,000원
-																			    </span>
-																			</label>
-																			<br>
-																			<label class="ins">
-																			    <input type="radio" name="ins" value=20000 onclick="insValue()">
-																			    <span>슈퍼자차 20,000원
-																				</span>
-																			</label>
-																			
-																		</div>
+															 <div class="ins" >
+															    <div class=" text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
+																  <div class="content">
+																    <input type="radio" name="ins" id="ins1" value=10000>
+																    <input type="radio" name="ins" id="ins2" value=15000>
+																    <input type="radio" name="ins" id="ins3" value=20000>
+																
+																    <label for="ins1" class="box first">
+																      <div class="plan">
+																      <span class="circle"></span>
+																      <span class="yearly">일반자차</span>
+																    </div>
+																        <span class="price">10,000원/일</span>
+																    </label>
+																    <label for="ins2" class="box second">
+																      <div class="plan">
+																      <span class="circle"></span>
+																      <span class="yearly">완전자차</span>
+																    </div>
+																        <span class="price">15,000원/일</span>
+																    </label>
+																    <label for="ins3" class="box third">
+																      <div class="plan">
+																      <span class="circle"></span>
+																        <span class="yearly">슈퍼자차</span>
+																      </div>
+																        <span class="price">20,000원/일</span>
+																    </label>
+																  </div>
+																 </div>
+															
+																<div class="index-box-faq click-effect-press collapsed" data-toggle="collapse" data-target="#index_faq_1" aria-expanded="false">
+																	<div class="dc-flex justify-content-between">
+																		<div class="text-16 color-grey-2">보험 이용 안내</div>
+																	<img id="js_index_faq_arrow_1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI1IDI1Ij4KICAgIDxwYXRoIGZpbGw9IiM2NjYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTE0IDVoLTJ2Nkg2djJoNnY2aDJ2LTZoNnYtMmgtNlY1eiIgY2xpcC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=">
 																	</div>
 																</div>
-															</form>
-															<div class="js-vf-section-price-range">
+																
+																<div class="js-index-faq-collapse collapse mt-3" id="index_faq_1" data-idx="1" data-arrow="js_index_faq_arrow_1">
+																	<div class="text-16 color-grey-4">
+																		
+																		<b>일반자차</b><br>
+																		▷보상한도 내에서 면책금이 있는 보험<br>
+																		<b>완전자차</b><br>
+																		▷보상한도 내에서 면책금이 없는 보험<br>
+																		<b>슈퍼자차</b><br>
+																		▷보상한도 무한, 면책금이 없는 보험<br>
+																		<hr>
+																		YATA의 모든 차량은 자동차 보험 및 자기차량손해제도에 가입되어 있습니다.<br>
+																		면책금이 발생할 수 있으며,<br>
+																		배정되는 차량에 보험 내용이 조금 달라질 수 있다는 점 참고 부탁드립니다.
+																		<hr>
+																		단독사고 시에는 적용이 어려울 수 있으며, 업체마다 보험 규정이 상이합니다.<br>
+																		문의사항이 있으신 경우 YATA와 충분한 상담 후 예약 진행해주세요.
+																		
+																	</div>
+																</div>
+																
+												
+																
+																
+																
+																<div class="js-vf-section-price-range">
 																<div
 																	class="dc-flex justify-content-between align-items-center">
 																	
