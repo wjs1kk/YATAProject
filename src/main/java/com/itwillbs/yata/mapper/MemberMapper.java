@@ -4,6 +4,8 @@ package com.itwillbs.yata.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import com.itwillbs.yata.vo.MemberVO;
 
 
@@ -16,5 +18,7 @@ public interface MemberMapper {
 	public int modifyUser(String member_birth, String member_phone, String member_email);
 	//회원 정보 조회
 	public List<MemberVO> memberList(MemberVO member);
+	//쿠폰에서 회원 이메일 조회
+	public String searchMemberEmail(MemberVO member);
 	
 }

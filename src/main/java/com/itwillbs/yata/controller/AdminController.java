@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.yata.service.CarService;
+import com.itwillbs.yata.service.CouponService;
 import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.ReviewService;
 import com.itwillbs.yata.vo.CarVO;
+import com.itwillbs.yata.vo.CouponVO;
 import com.itwillbs.yata.vo.MemberVO;
 
 
@@ -31,6 +33,8 @@ public class AdminController {
 	@Autowired
 	private CarService carService;
 			
+	@Autowired
+	private CouponService couponService;
 	
 	@GetMapping("admin")
 	public String Admin(){
@@ -91,7 +95,59 @@ public class AdminController {
 		} else {
 			model.addAttribute("msg", "차량 정보 수정 실패!");
 			return "fail_back";
+		}		
+	}
+	// 쿠폰
+		@GetMapping("AdminCouponList.ad")
+		public String AdminCouponList(Model model) {
+			List<CouponVO> couponList = couponService.couponList();
+
+			model.addAttribute("couponList", couponList);
+			return "admin/admin_coupon_list";
+		}
+
+		@GetMapping("AdminCouponRegist.ad")
+		public String AdminCouponRegist() {
+			
+			return "admin/admin_coupon_regist";
 		}
 		
-	}
+		//이메일 확인 후 쿠폰배급
+		@PostMapping("AdminCouponRegistPro.ad")
+		public String AdminCouponRegistPro(CouponVO coupon, MemberVO member , Model model) {	
+			
+			String registEmail = memberService.searchMemberEmail(member);
+			
+			if(registEmail != null)	{		
+				couponService.adminCouponRegist(coupon);
+				return "redirect:/AdminCouponList.ad";
+			} else {
+				model.addAttribute("msg", "해당 회원이 없습니다!");
+				return "fail_back";
+			}
+
+		}
+		
+		@GetMapping("AdminCouponDelete.ad")
+		public String couponDelete(Model model, int coup_idx) {
+			CouponVO coupon = couponService.selectCoupon(coup_idx);
+			
+			model.addAttribute("coupon", coupon);
+			return "admin/admin_coupon_delete";
+		}
+		
+		@PostMapping("AdminCouponDeletePro.ad")
+		public String couponDeletePro(Model model, int coup_idx) {
+			int deleteCount = couponService.deleteCoupon(coup_idx);
+			
+			if(deleteCount > 0) {			
+				
+				model.addAttribute("msg", "삭제가 완료되었습니다!");
+				model.addAttribute("target", "AdminCouponList.ad");
+				return "success";
+			} else {
+				model.addAttribute("msg", "삭제 실패!");
+				return "fail_back";
+			}
+		}
 }

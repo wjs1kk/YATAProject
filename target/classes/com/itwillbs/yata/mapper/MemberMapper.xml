@@ -40,5 +40,10 @@
 		SELECT *
 		  FROM member
 	</select>
-	
+<!-- 	쿠폰 등록시 사용자 존재 확인 -->
+	<select id="searchMemberEmail" resultType="String">
+		SELECT *
+		  FROM member
+		 WHERE member_email = #{member_email}
+	</select>
   </mapper>
