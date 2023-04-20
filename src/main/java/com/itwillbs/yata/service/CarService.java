@@ -35,5 +35,9 @@ public class CarService {
 	public int deleteCar(int car_id) {
 		return mapper.deleteCar(car_id);
 	}
+	public List<CarVO> car_type(String car_type) {
+
+		return mapper.car_type(car_type);
+	}
 
 }

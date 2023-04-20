@@ -70,9 +70,6 @@ public class ReservController {
 		System.out.println(res_startDate);
 		return "pay/pay";
 	}
-//	#{res_id}, #{member_email},
-//	#{car_id}, #{res_startDate},
-//	#{res_endDate}, now(), #{res_totalPrice}, #{res_place})
 	@GetMapping("payPro")
 	public String payPro(HttpSession session, ReservVO reservVO, String rentalDatetime, Model model) {
 		String member_eamil = (String)session.getAttribute("member_email");
@@ -92,6 +89,16 @@ public class ReservController {
 	@GetMapping("pay_success")
 	public String pay_success() {
 		return "pay/pay_success";
+	}
+	@GetMapping("car_type")
+	public String car_type(@RequestParam(defaultValue = "") String car_type, Model model) {
+		System.out.println("차종 : " + car_type);
+		
+		List<CarVO> carList = carService.car_type(car_type);
+		model.addAttribute("carList", carList);
+		
+		
+		return "rent/rent";
 	}
 
 }

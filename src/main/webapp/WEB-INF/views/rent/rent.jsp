@@ -13,10 +13,8 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<script type="text/javascript"
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <!-- 차 검색  -->
 <script type="text/javascript">
 	$(function() {
@@ -24,6 +22,14 @@
 			location.href = "search?res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&car_name="+$('#car_name').val();
 		})
 	})
+</script>
+<!-- car_type에 따른 분류 -->
+<script type="text/javascript">
+$(function() {
+	$("input[name=car_type]").on("click", function() {
+		location.href = "car_type?res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&car_name="+$('#car_name').val() +"&car_type="+$("input[name=car_type]:checked").val();
+	})
+})
 </script>
 <!-- rent2페이지 이동  -->
 <script type="text/javascript">
@@ -629,61 +635,37 @@
 										</div>
 									</div>
 									
-									<div class="js-no-data-hide-elmt" style="display: block;">
-										<div class="dc-none dc-lg-flex">
-											<div class="btn-group btn-group-toggle flex-1"
-												data-toggle="buttons">
-												<label class="btn btn-white js-tab-car-type-pc" data-i="1"><input
-													id="option1" type="radio" name="radio_car_type"
-													autocomplete="off" checked="" value="1"> 전체</label><label
-													class="btn btn-white js-tab-car-type-pc" data-i="2"
-													style="display: block;"><input id="option2"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="2"> 전기</label><label
-													class="btn btn-white js-tab-car-type-pc" data-i="3"
-													style="display: block;"><input id="option3"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="3"> 경형</label><label
-													class="btn btn-white js-tab-car-type-pc" data-i="4"
-													style="display: none;"><input id="option4"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="4"> 소형</label><label
-													class="btn btn-white js-tab-car-type-pc" data-i="5"
-													style="display: block;"><input id="option5"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="5"> 준중형</label><label
-													class="btn btn-white js-tab-car-type-pc" data-i="6"
-													style="display: block;"><input id="option6"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="6"> 중형</label><label
-													class="btn btn-white js-tab-car-type-pc" data-i="7"
-													style="display: block;"><input id="option7"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="7"> 대형</label><label
-													class="btn btn-white js-tab-car-type-pc active" data-i="8"
-													style="display: block;"><input id="option8"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="8"> 수입</label><label
-													class="btn btn-white js-tab-car-type-pc" data-i="9"
-													style="display: block;"><input id="option9"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="9"> 승합RV</label><label
-													class="btn btn-white js-tab-car-type-pc" data-i="10"
-													style="display: block;"><input id="option10"
-													type="radio" name="radio_car_type" autocomplete="off"
-													value="10"> SUV</label>
+									<section id="typeArea">
+										<div class="js-no-data-hide-elmt" style="display: block;">
+											<div class="dc-none dc-lg-flex ">
+												<form action="car_type" id="car_type">
+													<div class="btn-group btn-group-toggle flex-1" >
+													
+													
+												 	<label class="btn btn-white js-tab-car-type-pc " data-i="1" style="display: block;" >
+												   		<input type="radio" name="car_type" value="전체" autocomplete="on" id="option1" >전체</label>
+												    
+												    <label class="btn btn-white js-tab-car-type-pc " style="display: block;">
+												    	<input type="radio" name="car_type" value="전기"  autocomplete="off" id="option2">전기</label>
+												    
+												    <label class="btn btn-white js-tab-car-type-pc " style="display: block;">
+												    	<input type="radio" name="car_type" value="경형"  autocomplete="off" id="option3">경형</label>
+												    
+												    <label class="btn btn-white js-tab-car-type-pc" style="display: block;">
+													    <input type="radio" name="car_type" value="중형" autocomplete="off"  id="option4">중형</label>
+												   
+												    <label class="btn btn-white js-tab-car-type-pc" style="display: block;">
+												    	<input type="radio" name="car_type" value="대형" autocomplete="off"  id="option5">대형</label>
+												   
+												    <label class="btn btn-white js-tab-car-type-pc" style="display: block;">
+												    	<input type="radio" name="car_type" value="SUV" autocomplete="off"  id="option6">SUV</label>
+												    
+												    	
+									  				</div>
+								  				</form>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="position-relative mt-2" id="container_search_list_short_car">
-<!-- 									칸 -->
-									<div class="js-vsl-container-progress-bar vsl-container-progress-bar" style="opacity: 0;">
-										<div class="vsl-progress-bar-wrap">
-											<div class="js-vsl-progress-bar vsl-progress-bar" style="width: 0%;">
-											</div>
-										</div>
-									</div>
+								</section>
 									
 <!-- 									차 카드표시  -->
 
