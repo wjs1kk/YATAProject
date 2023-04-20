@@ -20,17 +20,14 @@ public class CouponService {
 	}
 
 	public int adminCouponRegist(CouponVO coupon) {
-		// TODO Auto-generated method stub
 		return mapper.couponRegist(coupon);
 	}
 
 	public CouponVO selectCoupon(int coup_idx) {
-		// TODO Auto-generated method stub
 		return mapper.selectCoupon(coup_idx);
 	}
 
 	public int deleteCoupon(int coup_idx) {
-		// TODO Auto-generated method stub
 		return mapper.deleteCoupon(coup_idx);
 	}
 

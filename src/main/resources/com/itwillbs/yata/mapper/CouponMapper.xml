@@ -17,12 +17,13 @@
 		
   		INSERT INTO coupon
   		VALUES(#{coup_idx} + 1
-  			   , #{member_email}
+  				, 'test'
   			   , #{coup_name}
-  			   , #{coup_code}
+  			   , (SELECT SUBSTR(MD5(RAND()), 1, 8))
   			   , #{coup_start}
   			   , #{coup_end}
-  			   , #{coup_useable}
+  			   , 'Y'
+  			   , #{coup_percent}
   			  )
   	</insert>
   	

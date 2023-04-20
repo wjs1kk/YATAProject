@@ -19,11 +19,11 @@
 	<table border="1">
 		<tr>
 			<th>번호</th>
-			<th>사용자 이메일</th>
 			<th>이름</th>
 			<th>번호</th>
 			<th>등록일</th>
-			<th>만료일</th>
+			<th>만료일</th>			
+			<th>할인율</th>
 			<th>사용 가능 여부</th>
 
 		</tr>
@@ -37,11 +37,11 @@
 				<c:forEach var="couponList" items="${couponList }">
 				<tr>
 					<td>${couponList.coup_idx }</td>
-					<td>${couponList.member_email }</td>
 					<td>${couponList.coup_name }</td>
 					<td>${couponList.coup_code }</td>
 					<td>${couponList.coup_start }</td>
 					<td>${couponList.coup_end }</td>
+					<td>${couponList.coup_percent }</td>
 					<td>${couponList.coup_useable }</td>
 					<td>
 						<%-- 수정 버튼 클릭 시 회원 정보 조회 페이지로 이동(파라미터 : id) --%>

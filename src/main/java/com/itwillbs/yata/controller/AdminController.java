@@ -112,20 +112,11 @@ public class AdminController {
 			return "admin/admin_coupon_regist";
 		}
 		
-		//이메일 확인 후 쿠폰배급
+		//쿠폰 발급
 		@PostMapping("AdminCouponRegistPro.ad")
-		public String AdminCouponRegistPro(CouponVO coupon, MemberVO member , Model model) {	
-			
-			String registEmail = memberService.searchMemberEmail(member);
-			
-			if(registEmail != null)	{		
-				couponService.adminCouponRegist(coupon);
-				return "redirect:/AdminCouponList.ad";
-			} else {
-				model.addAttribute("msg", "해당 회원이 없습니다!");
-				return "fail_back";
-			}
-
+		public String AdminCouponRegistPro(CouponVO coupon) {		
+			couponService.adminCouponRegist(coupon);
+			return "redirect:/AdminCouponList.ad";
 		}
 		
 		@GetMapping("AdminCouponDelete.ad")

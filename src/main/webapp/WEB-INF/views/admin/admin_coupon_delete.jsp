@@ -22,18 +22,10 @@
 	<div align="center">
 		<h1>신규 쿠폰 등록</h1>
 		<form action="AdminCouponDeletePro.ad?coup_idx=${param.coup_idx }" method="post">
-			<table border="1">
-				<tr>
-					<th>사용자</th>
-					<td><input type="text" name="member_email" value="${coupon.member_email }"></td>
-				</tr>
+			<table border="1" >
 				<tr>
 					<th>쿠폰 이름</th>
 					<td><input type="text" name="coup_name" value="${coupon.coup_name }"></td>
-				</tr>
-				<tr>
-					<th>쿠폰 번호</th>
-					<td><input type="text" name="coup_code" value="${coupon.coup_code }"></td>
 				</tr>
 				<tr>
 					<th>쿠폰 등록일</th>
@@ -44,7 +36,14 @@
 					<td><input type="text" name="coup_end" value="${coupon.coup_end }"></td>
 				</tr>
 				<tr>
-					<th>사용가능 여부</th>
+					<th>쿠폰 할인율</th>
+					<td>
+						<select id="coup_percent" name="coup_percent" >
+			             	<option value="">${coupon.coup_percent }</option>
+					</td>
+				</tr>
+				<tr>
+					<th>사용가능</th>
 					<td>
 						<select id="coup_useable" name="coup_useable" >
 			             	<option value="">${coupon.coup_useable }</option>
