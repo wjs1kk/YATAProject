@@ -20,4 +20,22 @@
   	 		FROM car 
   	 		WHERE car_name LIKE CONCAT('%',#{car_name},'%');
   	</select>
+  	
+<!--   	car_type 카테고리 -->
+  	<select id="car_type" parameterType="String" resultType="com.itwillbs.yata.vo.CarVO">
+  	 	SELECT *
+  	 		FROM car 
+  	 			WHERE car_type LIKE 
+	  	 		<choose>
+	  	 			<when test="car_type.equals('전체')"> '%' </when>
+	  	 			<when test="car_type.equals('전기')"> '전기' </when>
+	  	 			<when test="car_type.equals('경형')"> '경형' </when>
+	  	 			<when test="car_type.equals('중형')"> '중형' </when>
+	  	 			<when test="car_type.equals('대형')"> '대형' </when>
+	  	 			<when test="car_type.equals('SUV')"> 'SUV' </when>
+  	 			</choose> 	                                                                                                                                                                                                                                                                           
+  	</select>
+  	
+  
+  	
 </mapper>

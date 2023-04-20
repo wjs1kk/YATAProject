@@ -25,5 +25,12 @@ public class CarService {
 		System.out.println("searchByName");
 		return mapper.searchByName(car_name);
 	}
+	
+	
+	public List<CarVO> car_type(String car_type) {
+		System.out.println("serviceCar_type");
+
+		return mapper.car_type(car_type);
+	}
 
 }
