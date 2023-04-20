@@ -17,6 +17,7 @@ import com.itwillbs.yata.service.CouponService;
 import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.ReviewService;
 import com.itwillbs.yata.vo.CarVO;
+import com.itwillbs.yata.vo.CouponUsedVO;
 import com.itwillbs.yata.vo.CouponVO;
 import com.itwillbs.yata.vo.MemberVO;
 
@@ -111,14 +112,13 @@ public class AdminController {
 			
 			return "admin/admin_coupon_regist";
 		}
-		
 		//쿠폰 발급
 		@PostMapping("AdminCouponRegistPro.ad")
 		public String AdminCouponRegistPro(CouponVO coupon) {		
 			couponService.adminCouponRegist(coupon);
 			return "redirect:/AdminCouponList.ad";
 		}
-		
+
 		@GetMapping("AdminCouponDelete.ad")
 		public String couponDelete(Model model, int coup_idx) {
 			CouponVO coupon = couponService.selectCoupon(coup_idx);
@@ -140,5 +140,21 @@ public class AdminController {
 				model.addAttribute("msg", "삭제 실패!");
 				return "fail_back";
 			}
+		}
+		
+		@GetMapping("couponEnroll")
+		public String Enroll(CouponVO coupon, CouponUsedVO used, MemberVO member, Model model) {
+			
+			int EnrollCount = couponService.couponEnroll(coupon, used, member);
+			
+			if(EnrollCount > 0) {
+				model.addAttribute("msg", "등록 완료!");
+				model.addAttribute("target", "event");
+				return "success";
+			} else {
+				model.addAttribute("msg", "등록 실패!");
+				return "fail_back";
+			}
+			
 		}
 }

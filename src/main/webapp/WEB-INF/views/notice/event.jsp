@@ -41,6 +41,8 @@
 </script>
 </head>
 <body>
+<!-- 쿠폰땜에 있는거 무시하삼 -->
+<input type="hidden" name="coup_idx" value="0">											
 
 	<div class="main-contents">
 		<!-- 전체 레이아웃 div  -->
@@ -152,21 +154,11 @@
 											</div>
 											<img src="resources/images/coupon.png">
 											<div class="text-center display-3 font-weight-bold">
-												<script type="text/javascript">
-											const generateRandomString = (num) => {
-												  const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-												  let result = '';
-												  const charactersLength = characters.length;
-												  for (let i = 0; i < num; i++) {
-												      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-												  }
-	
-												  return result;
-												}
-	
-												let randomStr = generateRandomString(10);
-												document.write(randomStr)
-											</script>
+													<a href="couponEnroll">쿠폰발급
+													<script type="text/javascript">
+														
+													</script>
+													</a>																										
 											</div>
 										</div>
 									</div>
@@ -232,21 +224,11 @@
 											</div>
 											<img src="resources/images/coupon.png">
 											<div class="text-center display-3 font-weight-bold">
-												<script type="text/javascript">
-											const generateRandomString2 = (num) => {
-												  const characters2 ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-												  let result2 = '';
-												  const charactersLength2 = characters2.length;
-												  for (let i = 0; i < num; i++) {
-												      result2 += characters2.charAt(Math.floor(Math.random() * charactersLength2));
-												  }
-	
-												  return result2;
-												}
-	
-												let randomStr2 = generateRandomString2(10);
-												document.write(randomStr2)
-											</script>
+												<a href="">쿠폰발급												
+													<script type="text/javascript">
+														alert("${coupon }")
+													</script>
+													</a>	
 											</div>
 										</div>
 									</div>

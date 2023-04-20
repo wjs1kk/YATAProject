@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.yata.mapper.CouponMapper;
 import com.itwillbs.yata.vo.CarVO;
+import com.itwillbs.yata.vo.CouponUsedVO;
 import com.itwillbs.yata.vo.CouponVO;
 import com.itwillbs.yata.vo.MemberVO;
 
@@ -29,6 +30,14 @@ public class CouponService {
 
 	public int deleteCoupon(int coup_idx) {
 		return mapper.deleteCoupon(coup_idx);
+	}
+
+	public String getCouponNum(String coup_code) {
+		return mapper.getNum(coup_code);
+	}
+
+	public int couponEnroll(CouponVO coupon, CouponUsedVO used, MemberVO member) {
+		return mapper.couponEnroll(coupon, used, member);
 	}
 
 }

@@ -17,15 +17,20 @@
 		
   		INSERT INTO coupon
   		VALUES(#{coup_idx} + 1
-  				, 'test'
   			   , #{coup_name}
   			   , (SELECT SUBSTR(MD5(RAND()), 1, 8))
   			   , #{coup_start}
   			   , #{coup_end}
-  			   , 'Y'
   			   , #{coup_percent}
   			  )
   	</insert>
+  	
+  	<select id="getNum" resultType="string">
+  		SELECT coup_code
+  		FROM coupon
+  		ORDER BY coup_idx
+  		LIMIT 1
+  	</select>
   	
   	<select id="selectCoupon" resultType="com.itwillbs.yata.vo.CouponVO">
   		SELECT *
@@ -39,4 +44,16 @@
 		FROM coupon
 		WHERE coup_idx = #{coup_idx}
 	</delete>
+	
+	<insert id="couponEnroll">
+		INSERT INTO coupon_used
+		VALUES(coup_idx = (SELECT coup_idx
+						   FROM coupon
+						   LIMIT 1),
+			   member_email = (SELECT member_email
+						   	   FROM member
+						   	   LIMIT 1),
+			   'Y'						
+		)
+	</insert>
 </mapper>

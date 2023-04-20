@@ -43,13 +43,6 @@
 					</td>
 				</tr>
 				<tr>
-					<th>사용가능</th>
-					<td>
-						<select id="coup_useable" name="coup_useable" >
-			             	<option value="">${coupon.coup_useable }</option>
-					</td>
-				</tr>
-				<tr>
 					<th colspan="2">
 						<div align="center">
 							<input type="submit" value="삭제"> <input type="button"
