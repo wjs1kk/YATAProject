@@ -78,6 +78,7 @@ public class MemberController {
 		if(tab.equals("history")) {	
 			List<ReservVO> reservationList = reservService.myReservation(member_email);
 			model.addAttribute("reservationList", reservationList);
+			
 			return "member/member_history";
 
 		// 나의리뷰	
@@ -186,27 +187,38 @@ public class MemberController {
 		}
 
 	}
+	// 후기 작성
 	@GetMapping("reviewWrite")
-	public String reviewWrite(HttpSession session, Model model, MemberVO member) {
+	public String reviewWrite(HttpSession session, Model model, MemberVO member, ReviewVO review) {
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
-
 		return "member/member_review_write";
 	}
-
+//	#{review_idx} + 1
+//	  , #{res_id}
+//	  , #{member_email}
+//	  ,	#{member_name}
+//	  , #{review_title}
+//	  , #{review_content}
+//	  , CURRENT_TIMESTAMP()
+//	  , 0
+//	  , #{review_place}
 	@PostMapping("reviewWritePro")
-	public String reviewWritePro(HttpSession session, Model model, MemberVO member, ReviewVO review) {
+	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String review_place) {
 		String member_email = (String)session.getAttribute("member_email");
-		member = memberService.selectUser(member_email);
-		model.addAttribute("member", member);
+		MemberVO member = memberService.selectUser(member_email);
+		System.out.println(res_id);
 
 		review.setMember_email(member_email);
-
-		int insertCount = reviewService.writeReview(review);
+		review.setRes_id(res_id);
+		review.setMember_name(member.getMember_name());
+		review.setReview_place("부전");
+		
+		int insertCount = reviewService.insertReview(review);
 		System.out.println(insertCount);
 		if (insertCount > 0) {
-			return "member/member_review";
+			return "redirect:/mypage?tab=history";
 		} else {
 			model.addAttribute("msg", "후기 등록 실패!");
 			return "fail_back";

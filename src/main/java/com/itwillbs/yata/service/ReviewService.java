@@ -17,7 +17,7 @@ public class ReviewService {
 		return mapper.selectReview();
 	}
 	
-	public int writeReview(ReviewVO review) {
+	public int insertReview(ReviewVO review) {
 		return mapper.insertReview(review);
 	}
 	

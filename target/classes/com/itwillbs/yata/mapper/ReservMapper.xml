@@ -18,6 +18,7 @@
 			#{car_id}, #{res_startDate},
 			#{res_endDate}, now(), #{res_totalPrice}, #{res_place})
 	</insert>
+	<!-- 나의 예약내역 -->
 	<select id="myReservationList" resultType="com.itwillbs.yata.vo.ReservVO">
 		SELECT res_id -- 예약 id
 			  ,member_email -- 사용자 id
@@ -25,7 +26,14 @@
 			  ,res_startDate -- 시작일
 			  ,res_endDate -- 종료일
 			  ,res_date -- 예약한 일자
-			  ,res_totalPrice -- 총 대여 금액 
-		FROM reservation
+			  ,res_totalPrice -- 총 대여 금액
+			  ,res_place 
+			FROM reservation
+			 	WHERE member_email
+			 		IN (SELECT member_email
+			 			FROM member
+			 			WHERE member_email = #{member_email}
+			 		)
+			 	ORDER BY res_id DESC
 	</select>
 </mapper>

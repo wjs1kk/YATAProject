@@ -105,13 +105,12 @@
 									<div>
 										<h3 class="color-grey-3 text-14 list-border-bottom">메뉴</h3>
 										<div class="list-group list-group-flush">
-											<a class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0" onclick="location.href='#'" style="cursor: pointer;">
-											내정보 관리
-											</a> 
-											<a class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
-											data-type="faq">
-											자주묻는 질문
-											</a>
+											<a
+												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
+												onclick="location.href='#'" style="cursor: pointer;">
+												내정보 관리 </a> <a
+												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
+												data-type="faq"> 자주묻는 질문 </a>
 										</div>
 									</div>
 								</div>
@@ -139,53 +138,37 @@
 						</div>
 					</div>
 
-					<!-- history -->
+					<!-- 후기 작성-->
 					<div class="col-md-8 pb-6">
 						<div class="mypage-section" id="mypage_section_rent_history">
 							<section class="carmore-section pt-0 mobile-header-container">
 								<div class="container">
-									<h3 class="mt-0 pt-3">예약 내역</h3>
+									<h3 class="mt-0 pt-3">후기 작성</h3>
 									<br>
-									<table class="search_list_tbl for_web">
-										<colgroup>
-											<col style="width: 11.666%;">
-											<col style="width: 11.666%;">
-											<col style="width: 65%;">
-											<col style="width: 11.666%;">
-										</colgroup>
-										<thead>
-											<tr>
-												<th scope="col">No</th>
-												<th scope="col">대여기간</th>
-												<th scope="col" style="text-align: center;">상품정보</th>
-												<th scope="col">상세내역</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${reservationList}" var="res">
-												<tr>
-													<td>${res.res_id}</td>
-													<td>${res.res_endDate} 
-														<div style="text-align: center;">~</div> <br> 
-														${res.res_endDate}
-													</td>
-													<td>
-														<div class="link_wrap ">
-															<a href="javascript:;" class="detailLink" data-id="65">
-																${res.car_id} </a>
-														</div>
-													</td>
-													<td class="clip "><input class="btn-primary"
-<%-- 														type="button" value="후기작성" onclick="location.href='reviewWrite?resIdx=${resIdx}'"> --%>
-														type="button" value="후기작성" onclick="location.href='reviewWrite?res_id=${res.res_id}&review_place=${res.res_place }'">
-													</td>
-												</tr>
-												<c:if test="${res eq null}">
-													<td>내역 없음</td>
-												</c:if>
-											</c:forEach>
-										</tbody>
-									</table>
+									<form action="reviewWritePro" method="post">
+										<div class="form-group">
+											<label for="exampleFormControlInput1">예약번호</label> <input
+												type="text" class="form-control"
+												id="res_id" name="res_id"
+												value="${param.res_id }"
+												readonly="readonly">
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1">제목</label> <input
+												type="text" class="form-control"
+												id="review_title" name="review_title"
+												placeholder="제목을 작성해주세요.">
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlTextarea1">내용</label>
+											<textarea class="form-control"
+												id="review_content" name="review_content" rows="10"></textarea>
+										</div>
+										<div style="text-align: right">
+											<button type="submit" class="btn btn-info" >등록하기</button>
+											<button type="button" class="btn btn-secondary">목록으로</button>
+										</div>
+									</form>
 								</div>
 							</section>
 						</div>

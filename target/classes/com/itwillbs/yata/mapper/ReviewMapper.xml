@@ -18,17 +18,20 @@
 	<!-- 별점, 카운트 수정 예정 -->
 	<insert id="insertReview"
 		 parameterType="com.itwillbs.yata.vo.ReviewVO" keyProperty="review_idx">
+		 <selectKey keyProperty="review_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(review_idx), 1) FROM review
+		</selectKey>
 		INSERT INTO review 
 					value (
-						#{review_idx}
+						#{review_idx} + 1
+					  , #{res_id}
 					  , #{member_email}
 					  ,	#{member_name}
 					  , #{review_title}
 					  , #{review_content}
 					  , CURRENT_TIMESTAMP()
-					  , 0
+					  , "s"
 					  , #{review_place}
-					  , 0
 					)
 	</insert>			
 	
@@ -48,7 +51,16 @@
 	</select>
 	<!-- rent2 리뷰 표시 -->
 	<select id="listReview" resultType="com.itwillbs.yata.vo.ReviewVO" parameterType="string">
-		SELECT review_idx, member_email, member_name, review_title, review_content, review_updateDate, review_star, review_place, review_viewcnt
+		SELECT    review_idx
+				, res_id
+				, member_email
+				, member_name
+				, review_title
+				, review_content
+				, review_updateDate
+				, review_star
+				, review_place
+			
   		  FROM review
  		  WHERE review_place = #{place}
   		 ORDER BY review_idx DESC

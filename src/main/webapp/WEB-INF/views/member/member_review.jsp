@@ -148,14 +148,14 @@
 									<br>
 									<table class="search_list_tbl for_web">
 										<colgroup>
-											<col style="width: 11.666%;">
-											<col style="width: 11.666%;">
-											<col style="width: 65%;">
-											<col style="width: 11.666%;">
+											<col style="width: 11%;">
+											<col style="width: 11%;">
+											<col style="width: 67%;">
+											<col style="width: 11%;">
 										</colgroup>
 										<thead>
 											<tr>
-												<th scope="col">No</th>
+												<th scope="col">예약번호</th>
 												<th scope="col">등록일</th>
 												<th scope="col" style="text-align: center;">제목</th>
 												<th scope="col">답변내역</th>
@@ -164,18 +164,16 @@
 										<tbody>
 											<c:forEach items="${myReview}" var="myReview">
 												<tr>
-													<td>${myReview.review_idx }</td>
+													<td>${myReview.res_id }</td>
 													<td>${myReview.review_updateDate }</td>
 													<td>
 														<div class="link_wrap ">
-															<a href="/mypage?tab=review&idx=${myReview.review_idx}" class="detailLink" data-id="65">
+															<a href="/mypage?tab=review&idx=${myReview.review_idx}" class="detailLink">
 																${myReview.review_title } </a>
 														</div>
 													</td>
 													<td>${myReview.review_title }</td>
-													<td class="clip "><input class="btn-primary"
-														type="button" value="내역보기">
-													</td>
+													
 												</tr>
 											</c:forEach>
 										</tbody>
