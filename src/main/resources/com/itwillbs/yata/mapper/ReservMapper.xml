@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.yata.mapper.ReservMapper">
+	<insert id="insertReserv">
+		<selectKey keyProperty="res_id" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(res_id), 0) FROM reservation
+		</selectKey>
+		insert into reservation (
+			res_id, member_email, 
+			car_id, res_startDate, 
+			res_endDate, res_date, res_totalPrice, res_place
+			) 
+			value(
+			#{res_id}+1, #{member_email},
+			#{car_id}, #{res_startDate},
+			#{res_endDate}, now(), #{res_totalPrice}, #{res_place})
+	</insert>
+	<select id="myReservationList" resultType="com.itwillbs.yata.vo.ReservVO">
+		SELECT res_id -- 예약 id
+			  ,member_email -- 사용자 id
+			  ,car_id -- 차량 id
+			  ,res_startDate -- 시작일
+			  ,res_endDate -- 종료일
+			  ,res_date -- 예약한 일자
+			  ,res_totalPrice -- 총 대여 금액 
+		FROM reservation
+	</select>
+</mapper>

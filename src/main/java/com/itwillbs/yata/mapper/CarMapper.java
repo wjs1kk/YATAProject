@@ -10,4 +10,11 @@ public interface CarMapper {
 	public CarVO selectCar(int car_id);
 //	car_model -> car_name 수정
 	public List<CarVO> searchByName(String car_name);
+
+	
+//	admin
+	public int adminCarRegist(CarVO car);
+	int carUpdate(CarVO car);
+	int deleteCar(int car_id);
+	
 }

@@ -40,5 +40,36 @@
 			FROM member
 				WHERE member_email = #{member_email}
 	</delete>
+	<!-- 	쿠폰 등록시 사용자 존재 확인 -->
+	<select id="searchMemberEmail" resultType="String">
+		SELECT *
+		  FROM member
+		 WHERE member_email = #{member_email}
+	</select>
 	
+	
+	
+	<update id="AdminMemberModify">
+		UPDATE member
+			SET member_name = #{member_name}
+				<if test='member_passwd neq ""'>
+			    , member_passwd = #{member_passwd}
+				</if>
+			    , member_birth = #{member_birth}
+			    , member_phone = #{member_phone}
+			    , member_point = #{member_point}
+			    <if test='member_license neq ""'>
+			    , member_license = #{member_license}
+				</if>
+			WHERE member_email = #{member_email}
+	</update>
+
+	<delete id="AdminMemberDelete">
+		DELETE FROM member
+		WHERE member_email = #{member_email}
+	</delete>
+	<select id="memberList" resultType="com.itwillbs.yata.vo.MemberVO">
+		SELECT *
+		  FROM member
+	</select>
   </mapper>

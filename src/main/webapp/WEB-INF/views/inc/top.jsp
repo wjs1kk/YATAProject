@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="resources/css/main.css">
 <script type="text/javascript">
 	function rent1() {
-			location.href = "rent1?place=${param.place }&rentalDatetime="+$('#demo').val()
+			location.href = "rent1?res_place=${param.res_place }&rentalDatetime="+$('#demo').val()+"&time="+$('#time').text().split(" ")[0];
 	}
 </script>
 </head>
@@ -49,7 +49,7 @@
 			</div>
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item js-container-pc-header-menu naver-dc-none">
-						<a href="notice_view" class="nav-link js-pc-header-menu click-effect-press" data-mt="6">
+						<a href="notice" class="nav-link js-pc-header-menu click-effect-press" data-mt="6">
 							<div class="dc-flex justify-content-center align-items-center">
 								<img class="mr-1" src="${pageContext.request.contextPath }/resources/images/notification.png">공지사항
 							</div>

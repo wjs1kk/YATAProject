@@ -13,13 +13,15 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <!-- 차 검색  -->
 <script type="text/javascript">
 	$(function() {
 		$("#car_search").on("click", function() {
-			location.href = "search?place=${param.place}&rentalDatetime="+$('#demo').val()+"&car_name="+$('#car_name').val();
+			location.href = "search?res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&car_name="+$('#car_name').val();
 		})
 	})
 </script>
@@ -27,8 +29,7 @@
 <script type="text/javascript">
 	function rent2(car_id){
 		var ins = $("input[name='ins']:checked").val();
-		location.href="rent2?car_id="+car_id+"&place=${param.place}&rentalDatetime="+$('#demo').val()+"&ins="+ins;
-		
+		location.href="rent2?car_id="+car_id+"&res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&ins="+ins+"&time="+$('#time').text().split(" ")[0];
 	}
 </script>
 
@@ -125,19 +126,19 @@
 
 													var positions = [
 															{
-																content : '<input type="text" id="place" value="전포지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="전포지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(35.15849019679627, 129.06202404131136)
 															},
 															{
-																content : '<input type="text" id="place" value="부전지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="부전지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(35.15975905300518, 129.06186404315977)
 															},
 															{
-																content : '<input type="text" id="place" value="사상지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="사상지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(35.158690073109824, 129.06113477638084)
 															},
 															{
-																content : '<input type="text" id="place" value="개금지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="개금지점" style="padding:5px; background: #20c997; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(35.15730753621485, 129.06294334538524)
 															} ];
 
@@ -171,8 +172,8 @@
 															kakao.maps.event.addListener( marker, 'click',
 																			function() {
 																				$(function() {
-																					let place = $("#place").val();
-																					location.href = "rent1?place="+place+"&rentalDatetime="+$('#demo').val();		
+																					let res_place = $("#res_place").val();
+																					location.href = "rent1?res_place="+res_place+"&rentalDatetime="+$('#demo').val()+"&ins=${param.ins}&time=${param.time}";		
 																				})
 																			});
 														})(marker, infowindow);
@@ -243,8 +244,8 @@
 										<div class="js-vsl-btn-select-area click-effect-press dc-flex box-round-gray px-25 py-1 align-items-center h-100" data-type="location" onclick="zoneSelect()">
 											<img class="mr-1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNBQUI0QzYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTggMTVzNS01Ljk0NiA1LTguODEyQzEzIDMuMzIzIDEwLjc2MSAxIDggMVMzIDMuMzIzIDMgNi4xODhDMyA5LjA1NCA4IDE1IDggMTV6bTAtN2MxLjEwNSAwIDItLjg5NSAyLTJzLS44OTUtMi0yLTItMiAuODk1LTIgMiAuODk1IDIgMiAyeiIgY2xpcC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=">
 											<div class="js-vsl-txt-select-area text-16 font-weight-bold color-grey-3 ellipsis">
-											<c:if test="${param.place eq '' }">대여 위치 선택</c:if>
-											<c:if test="${not empty param.place }">${param.place }</c:if> </div>
+											<c:if test="${param.res_place eq '' }">대여 위치 선택</c:if>
+											<c:if test="${not empty param.res_place }">${param.res_place }</c:if> </div>
 											<div class="js-vsl-txt-select-area-short dc-none ml-1 text-14 color-grey-3 flex-1 ellipsis" style="display: none;"></div>
 										</div>
 									</div>
@@ -289,7 +290,7 @@
 										$(function () {
 										    $('#demo').daterangepicker({
 										        "locale": {
-										            "format": "MM.DD HH:00",
+										            "format": "MM.DD HH:mm",
 										            "separator": " ~ ",
 										            "applyLabel": "확인",
 										            "cancelLabel": "취소",
@@ -299,7 +300,7 @@
 										            "todayHighlight" : "true",
 										            "customRangeLabel": "Custom",
 										            "weekLabel": "W",
-										            "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+										            "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"], 
 										            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 										            "firstDay": 1
 										        },
@@ -313,16 +314,16 @@
 										    }, function (start, end) {
 										    	var startDate = start.format('MM-DD HH');
 										    	var endDate = end.format('MM-DD HH');
-										    	var time = (end - start) / (1000*60*60);
-										    	$('#time').text(time + " 시간");
+										    	var time = Math.ceil((end - start) / (1000*60*60));
+										    	$('#time').text(time+ " 시간");
 										    	
 										    });
 										});
 										</script>
 										<!-- 	시간표시 -->
-										<p id="time" style="border:0 solid black; background-color:transparent;">시간</p>
+										<p id="time" style="border:0 solid black; background-color:transparent;">${param.time } 시간</p>
 										</div>
-									</div>
+									</div> 
 								</div>
 							</div>
 						</div>
@@ -439,27 +440,63 @@
 															
 															<!--왼쪽 필터 - 보험 선택 -->
 															
-															<div class="js-vf-section-fuels">
-																<div class="form-group mb-0">
-																	<div class="text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
-																	<div class="radio text-center">
-																		<label class="ins">
-																		    <input type="radio" name="ins" value=10000 >
-																		    <span>일반자차 10,000원</span>
-																		</label>
-																		<br>
-																		<label class="ins">
-																		    <input type="radio" name="ins" value=15000 >
-																		    <span>완전자차 15,000원</span>
-																		</label>
-																		<br>
-																		<label class="ins">
-																		    <input type="radio" name="ins" value=20000 >
-																		    <span>슈퍼자차 20,000원</span>
-																		</label>																		
+															<div class="ins" >
+															    <div class=" text-14 font-weight-bold color-grey-5 mb-2">보험선택</div>
+																  <div class="content">
+																    <input type="radio" name="ins" id="ins1" value=10000>
+																    <input type="radio" name="ins" id="ins2" value=15000>
+																    <input type="radio" name="ins" id="ins3" value=20000>
+																
+																    <label for="ins1" class="box first">
+																      <div class="plan">
+																      <span class="circle"></span>
+																      <span class="yearly">일반자차</span>
+																    </div>
+																        <span class="price">10,000원/일</span>
+																    </label>
+																    <label for="ins2" class="box second">
+																      <div class="plan">
+																      <span class="circle"></span>
+																      <span class="yearly">완전자차</span>
+																    </div>
+																        <span class="price">15,000원/일</span>
+																    </label>
+																    <label for="ins3" class="box third">
+																      <div class="plan">
+																      <span class="circle"></span>
+																        <span class="yearly">슈퍼자차</span>
+																      </div>
+																        <span class="price">20,000원/일</span>
+																    </label>
+																  </div>
+																 </div>
+															
+																<div class="index-box-faq click-effect-press collapsed" data-toggle="collapse" data-target="#index_faq_1" aria-expanded="false">
+																	<div class="dc-flex justify-content-between">
+																		<div class="text-16 color-grey-2">보험 이용 안내</div>
+																	<img id="js_index_faq_arrow_1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI1IDI1Ij4KICAgIDxwYXRoIGZpbGw9IiM2NjYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTE0IDVoLTJ2Nkg2djJoNnY2aDJ2LTZoNnYtMmgtNlY1eiIgY2xpcC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=">
 																	</div>
 																</div>
-															</div>
+																
+																<div class="js-index-faq-collapse collapse mt-3" id="index_faq_1" data-idx="1" data-arrow="js_index_faq_arrow_1">
+																	<div class="text-16 color-grey-4">
+																		
+																		<b>일반자차</b><br>
+																		▷보상한도 내에서 면책금이 있는 보험<br>
+																		<b>완전자차</b><br>
+																		▷보상한도 내에서 면책금이 없는 보험<br>
+																		<b>슈퍼자차</b><br>
+																		▷보상한도 무한, 면책금이 없는 보험<br>
+																		<hr>
+																		YATA의 모든 차량은 자동차 보험 및 자기차량손해제도에 가입되어 있습니다.<br>
+																		면책금이 발생할 수 있으며,<br>
+																		배정되는 차량에 보험 내용이 조금 달라질 수 있다는 점 참고 부탁드립니다.
+																		<hr>
+																		단독사고 시에는 적용이 어려울 수 있으며, 업체마다 보험 규정이 상이합니다.<br>
+																		문의사항이 있으신 경우 YATA와 충분한 상담 후 예약 진행해주세요.
+																		
+																	</div>
+																</div>
 														
 															<div class="js-vf-section-price-range">
 																<div
@@ -720,8 +757,7 @@
 																			</div>
 																			<div class="d-flex align-items-center">
 
-																				<div
-																					class="js-vsl-txt-company-discount-price text-right text-16-b color-red-brown mb-0 dc-inline-block">${carList.car_price }원(쿼리짜서 가격 넣어야함.)</div>
+																				
 																			</div>
 																		</div>
 																		</a>

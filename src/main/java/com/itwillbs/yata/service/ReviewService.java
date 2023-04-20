@@ -17,7 +17,7 @@ public class ReviewService {
 		return mapper.selectReview();
 	}
 	
-	public int insertReview(ReviewVO review) {
+	public int writeReview(ReviewVO review) {
 		return mapper.insertReview(review);
 	}
 	
@@ -27,5 +27,8 @@ public class ReviewService {
 
 	public Integer selectMyReviewCount(String member_email) {
 		return mapper.selectMyReviewCount(member_email);
+	}
+	public List<ReviewVO> listReview(String place) {
+		return mapper.listReview(place);
 	}
 }

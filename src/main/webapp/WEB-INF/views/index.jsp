@@ -171,25 +171,25 @@
 
 													var positions = [
 															{
-																content : '<input type="text" id="place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15849019679627,
 																		129.06202404131136)
 															},
 															{
-																content : '<input type="text" id="place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15975905300518,
 																		129.06186404315977)
 															},
 															{
-																content : '<input type="text" id="place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.158690073109824,
 																		129.06113477638084)
 															},
 															{
-																content : '<input type="text" id="place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15730753621485,
 																		129.06294334538524)
@@ -239,11 +239,11 @@
 																			'click',
 																			function() {
 																				$(function() {
-																					let place = $(
-																							"#place")
+																					let res_place = $(
+																							"#res_place")
 																							.val();
 																					
-																					location.href = "?place="+place+"&rentalDatetime=+"+$('#demo').val();
+																					location.href = "?res_place="+res_place+"&rentalDatetime="+$('#demo').val();
 																				})
 																			});
 														})(marker, infowindow);
@@ -409,7 +409,7 @@
 											<div
 												class="wordbreak-keepall text-14 font-weight-bold color-grey-3 ellipsis"
 												id="js_index_txt_location">
-												<input type="text" value="${param.place }"
+												<input type="text" value="${param.res_place }"
 													placeholder="대여 위치 선택" readonly="readonly"
 													style="border: none; font-weight: bolder;">
 											</div>
@@ -435,7 +435,7 @@
 														$(function () {
 														    $('#demo').daterangepicker({
 														        "locale": {
-														            "format": "MM.DD HH:00",
+														            "format": "MM.DD HH:mm",
 														            "separator": " ~ ",
 														            "applyLabel": "확인",
 														            "cancelLabel": "취소",
@@ -458,7 +458,7 @@
 														    }, function (start, end) {
 														    	var startDate = start.format('MM-DD HH');
 														    	var endDate = end.format('MM-DD HH');
-														    	var time = (end - start) / (1000*60*60);
+														    	var time = Math.ceil((end - start) / (1000*60*60));
 														    	$('#time').text(time + " 시간");
 														    });
 														});

@@ -18,7 +18,7 @@ resources 디렉토리에 위치해야한다!
 	</header>
 	<!-- 게시판 등록 -->
 	<article id="writeForm">
-		<h1>게시판 글 등록</h1>
+		<h1>공지사항-공지사항(관리자테스트용) 작성</h1>
 		<form action="writePro.no" name="writeForm" method="post">
 			<table>
 				<tr>
@@ -31,11 +31,7 @@ resources 디렉토리에 위치해야한다!
 						<textarea id="board_content" name="board_content" required="required"></textarea>
 					</td>
 				</tr>
-				<tr>
-					<td class="write_td_left"><label for="board_file">파일 첨부</label></td>
-					<!-- 파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
-					<td class="write_td_right"><input type="file" name="board_file" required="required" /></td>
-				</tr>
+			
 			</table>
 			<section id="btnArea">
 				<input type="submit" value="등록">&nbsp;&nbsp;

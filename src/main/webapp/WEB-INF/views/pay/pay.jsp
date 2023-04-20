@@ -1,10 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="resources/css/main.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+    <script type="text/javascript">
+		function pay_success() {
+	    	location.href="payPro?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&res_totalPrice=10000";
+		}
+
+
+// 이용약관 전체 선택 시에만 결제하기 버튼 활성화
+	$(document).ready(function(){
+		
+	    $("input[name=agree]").click(function(){    
+	    	var isCheck = true;
+	    	var agrees = $("input[name=agree]");
+	    	$.each(agrees, (index, el) => {
+	    		if(!el.checked) {
+	    			isCheck = false;
+	    			return;
+	    		}
+	    	});
+	    	
+	    	if(isCheck){	// 다 동의 했으면
+	    		$("#btnPay").removeClass('disabled');
+	    		$("#btnPay").click(function() {
+					return pay_success();
+				})	
+	    	
+	    	
+	    	} else {
+	    		$("#btnPay").attr("disabled", false);
+	    		
+	    	}
+	
+	    });    
+	});
+
+
+</script>
 </head>
 <body>
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -28,7 +65,7 @@
                                 <div class="js-cpi-container-branch-info pt-1">
                                     <div class="dc-flex align-items-center">
                                     	<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM4NTkyQUIiIGQ9Ik03LjY0OCAyLjE0NmMuMTk2LS4xOTUuNTEyLS4xOTUuNzA3IDBsNS43OTMgNS43OTNjLjMxNS4zMTUuMDkyLjg1NC0uMzUzLjg1NEgyLjIwOWMtLjQ0NSAwLS42NjktLjUzOS0uMzU0LS44NTRsNS43OTMtNS43OTN6TTEzLjAwMiA4Ljc5M2gtMTB2NS41YzAgLjI3Ni4yMjQuNS41LjVoOWMuMjc2IDAgLjUtLjIyNC41LS41di01LjV6Ii8+CiAgICA8cmVjdCB3aWR0aD0iMiIgaGVpZ2h0PSI0IiB4PSI3LjAwMiIgeT0iMTEuNzkzIiBmaWxsPSIjRkFGQUZBIiByeD0iMSIvPgo8L3N2Zz4K">
-                                        <div class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1">${param.place }</div>
+                                        <div class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1">${param.res_place }</div>
                                     </div>
                                 </div>
                                 <hr class="mb-2">
@@ -37,18 +74,18 @@
                                         <div class="text-center">
                                             <div class="text-12 color-grey-5">대여시간</div>
                                             <div class="dc-flex text-16-b color-grey-3">
-                                            	<span class="txt-rent-start-date mr-1"  style="display: block;">4.6(목)</span>
-                                            	<span class="txt-rent-start-time" style="display: block;">10:00</span>
+                                            	<span class="txt-rent-start-date mr-1"  style="display: block;">${fn:substring(param.rentalDatetime, 0, 5)}</span>
+                                            	<span class="txt-rent-start-time" style="display: block;">${fn:substring(param.rentalDatetime, 5, 11)}</span>
                                             </div>
                                         </div>
                                         <span class="badge badge-pill badge-bluegreylight color-light-purple text-12 font-weight-normal">
-                                       		<span class="txt-rent-period" style="display: block;">24시간</span>
+                                       		<span class="txt-rent-period" style="display: block;">${param.time } 시간</span>
                                         </span>
                                         <div class="text-center">
                                             <div class="text-12 color-grey-5">반납시간</div>
                                             <div class="dc-flex text-16-b color-grey-3">
-                                            	<span class="txt-rent-end-date mr-1" style="display: block;">4.7(금)</span>
-                                            	<span class="txt-rent-end-time" style="display: block;">10:00</span>
+                                            	<span class="txt-rent-end-date mr-1" style="display: block;">${fn:substring(param.rentalDatetime, 13, 19)}</span>
+                                            	<span class="txt-rent-end-time" style="display: block;">${fn:substring(param.rentalDatetime, 19, 25)}</span>
                                            	</div>
                                         </div>
                                     </div>
@@ -57,10 +94,7 @@
                             <hr class="mt-2">
                             <div class="mt-3" data-toggle="collapse" data-target="#js_vreserv_car_detail_desc"
                                 aria-expanded="false">
-                                <div class="dc-flex justify-content-center align-items-center">
-                                	<img class="click-effect-press" id="js_vreserv_car_detail_arrow_top"
-                                         src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgdmlld0JveD0iMCAwIDI1IDI1Ij4KICAgIDxwYXRoIGZpbGw9IiM5Nzk3OTciIGQ9Ik0xMi42MTU1NTQsMTIuODAyMTc3OCBMMTcuNjcxNzA4OSw5LjE4NjY0NzU2IEMxOC4xMjA5NTM3LDguODY1NDAzOCAxOC43NDU1NTgxLDguOTY5MTY5MTUgMTkuMDY2ODAxOCw5LjQxODQxMzk1IEMxOS4zODgwNDU2LDkuODY3NjU4NzYgMTkuMjg0MjgwMiwxMC40OTIyNjMxIDE4LjgzNTAzNTQsMTAuODEzNTA2OSBMMTMuMTk1OTI3MywxNC44NDU4OTI1IEMxMi44NDc0MiwxNS4wOTUxMDE0IDEyLjM3ODg4MDMsMTUuMDk0NjEwMiAxMi4wMzA4OTYzLDE0Ljg0NDY3MSBMNi40MTY3MDc3MywxMC44MTIyODU0IEM1Ljk2ODEzNzU1LDEwLjQ5MDEwMDMgNS44NjU2ODIyMSw5Ljg2NTI3OTY4IDYuMTg3ODY3MzEsOS40MTY3MDk1IEM2LjUxMDA1MjQxLDguOTY4MTM5MzIgNy4xMzQ4NzMwMiw4Ljg2NTY4Mzk3IDcuNTgzNDQzMiw5LjE4Nzg2OTA3IEwxMi42MTU1NTQsMTIuODAyMTc3OCBaIi8+Cjwvc3ZnPgo=">
-                                </div>
+                                
                             </div>
                         </section><!-- 맨위 모닝 정보 영역 끝 -->
 
@@ -206,19 +240,8 @@
                                     <div class="text-12 color-grey-4 mt-1">면허증 확인 및 계약서 작성이 꼭 필요합니다.</div>
                                 </div>
                             </section>
-                        </div><!-- 운전자 정보 div 끝 -->
-                        
-                        
-                       
-                        
-              
-                        
-                       
-                        
-                        
-                        
-                        
-                        
+                        </div>
+                        <!-- 운전자 정보 div 끝 -->  
                         <!-- 쿠폰 할인 정보 나중에 가능하다면 사용가능한 쿠폰 목록 나오면 좋을듯-->
 <!--                         <section class="carmore-section px-3 only-none-member-elmt" -->
 <!--                             id="js_vreserv_section_discount_non_member"> -->
@@ -285,11 +308,14 @@
                                                 <ul class="list-group list-group-flush">
                                                     <li
                                                         class="vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
-                                                        <span class="js-vreserv-txt-rent-price-label">대여요금</span>
+                                                        <span class="js-vreserv-txt-rent-price-label">대여요금
+                                       								
+                                                        </span>
                                                         <div class="text-right">
                                                         <span class="js-vreserv-txt-rent-price">
-                                                        	+ ${car.car_price } 원
-                                                        	
+                                                        	<script type="text/javascript">
+                                                        		document.write("+ " + (${car.car_price }/2)*${param.time} +"원");
+                                                        	</script>                                          	
 														</span>
 														</div>
                                                     </li>
@@ -326,7 +352,7 @@
                                                         총 결제금액<div class="text-right">
                                                         <span class="vreserv-txt-total-price">
                                                         	<script type="text/javascript">
-                                                        		document.write(${car.car_price } + ${param.ins} + "원");
+                                                        		document.write((${car.car_price }/2)*${param.time} + ${param.ins} + "원");
                                                         	</script>
 														</span>
 													</div>
@@ -379,36 +405,50 @@
                             </div>
                         </section> <!-- 결제 정보 끝 -->
                                     
-                        <section class="carmore-section px-3">
+                        <section class="carmore-section px-3 text-14 color-grey-4">
+                      	  
                             <div class="text-14 color-grey-4 is-only-reservation pt-2 mb-3">대여하신 렌터카 업체 사정에 따라 동급 또는 상급
                                 차량이 배차될 수 있습니다.</div>
-                            <div
-                                class="is-only-none-member dc-flex justify-content-between align-items-center mb-2 tmobi-dc-flex">
-                                <div class="text-14 color-grey-4">서비스 이용약관</div><button
-                                    class="btn btn-sm btn-white text-12 color-grey-4 border-light"
-                                    id="js_vreserv_btn_user_agreement">보기</button>
-                            </div>
-                            <div class="dc-flex justify-content-between align-items-center mb-2">
-                                <div class="text-14 color-grey-4" id="js_vreserv_text_cancel_info">YATA 이용 및 취소수수료 안내
-                                </div><button class="btn btn-sm btn-white text-12 color-grey-4 border-light"
-                                    id="js_vreserv_btn_cancel_info">보기</button>
-                            </div>
-                            <div class="dc-flex justify-content-between align-items-center mb-2">
-                                <div class="text-14 color-grey-4"><span
-                                        class="vreserv-txt-comp-name font-weight-bold">로그인렌트카</span>&nbsp;대여규정</div>
-                                <button class="btn btn-sm btn-white text-12 color-grey-4 border-light"
-                                    id="js_vreserv_btn_branch_policy">보기</button>
-                            </div>
-                            <div class="dc-flex justify-content-between align-items-center mb-2">
-                                <div class="text-14 color-grey-4">개인정보 수집·이용</div><button
-                                    class="btn btn-sm btn-white text-12 color-grey-4 border-light"
-                                    id="js_vreserv_btn_privacy_policy">보기</button>
-                            </div>
-                            <div class="dc-flex justify-content-between align-items-center mb-2">
-                                <div class="text-14 color-grey-4">개인정보 제3자 제공</div><button
-                                    class="btn btn-sm btn-white text-12 color-grey-4 border-light"
-                                    id="js_vreserv_btn_privacy_third_parties">보기</button>
-                            </div>
+                           
+                            <div class="is-only-none-member dc-flex justify-content-between align-items-center mb-2 tmobi-dc-flex">
+	                            <label for="agree">
+	                            	<input type="checkbox" name="agree" id="agree1">
+	                            	<span>서비스 이용약관</span>
+	                          	</label>
+                           	</div>
+
+                            <div class="is-only-none-member dc-flex justify-content-between align-items-center mb-2 tmobi-dc-flex">
+	                            <label for="agree">
+	                            	<input type="checkbox" name="agree" id="agree2" >
+	                            	<span>YATA 이용 및 취소수수료 안내</span>
+	                          	</label>
+                           	</div>
+
+                            <div class="is-only-none-member dc-flex justify-content-between align-items-center mb-2 tmobi-dc-flex">
+	                            <label for="agree">
+	                            	<input type="checkbox" name="agree" id="agree3">
+	                            	<span>YATA 대여규정</span>
+	                          	</label>
+                           	</div>
+
+                            <div class="is-only-none-member dc-flex justify-content-between align-items-center mb-2 tmobi-dc-flex">
+	                            <label for="agree">
+	                            	<input type="checkbox" name="agree" id="agree4">
+	                            	<span>개인정보 수집·이용</span>
+	                          	</label>
+                           	</div>
+
+                            <div class="is-only-none-member dc-flex justify-content-between align-items-center mb-2 tmobi-dc-flex">
+	                            <label for="agree">
+	                            	<input type="checkbox" name="agree" id="agree5">
+	                            	<span>개인정보 제3자 제공</span>
+	                          	</label>
+                           	</div>
+                         
+                           
+                           
+                           
+                           
                             <div class="border bg-white px-3 py-2 text-12 color-grey-5 mt-3 tmobi-dc-none">주식회사 팀오투는
                                 통신판매중개자로서 카모아의 거래당사자가 아니며 상품정보, 거래조건 및 거래에 관련한 의무와 책임은 각 판매자에게 있습니다.</div>
                             <div class="border bg-white px-3 py-2 text-12 color-grey-5 mt-3 dc-none tmobi-dc-block">주식회사
@@ -438,8 +478,13 @@
                                                 <li
                                                     class="bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
                                                     <span class="js-vreserv-txt-rent-price-label">대여요금</span>
-                                                    <div class="text-right"><span class="js-vreserv-txt-rent-price">
-                                                            +${car.car_price }</span></div>
+                                                    <div class="text-right">
+                                                    <span class="js-vreserv-txt-rent-price">
+                                                            <script type="text/javascript">
+                                                        		document.write("+ " + (${car.car_price }/2)*${param.time} + "원");
+                                                        	</script>
+                                                            
+                                                    </span></div>
                                                 </li>
                                                 <li class="js-verserv-container-insurance-price bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none js-oversea-api-hide"
                                                     >보험요금<div class="text-right"><span
@@ -467,35 +512,44 @@
                                                     </div>
                                                 </li>
                                                 
+                                                 <li class="js-vreserv-container-discount-price bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
+                                                   	포인트 사용
+                                                	<div class="text-right">
+                                                		<span class="vreserv-txt-discount-price" style="display: none;">0원</span>
+														<div class="js-vreserv-btn-login">
+															<div class="dc-flex click-effect-press">
+																<span class="color-blue-dark-light mr-2 font-weight-bold">
+																	<input type="text" name="point" id="point" placeholder="{사용가능한 포인트}">
+																</span>
+															</div>
+														</div>
+                                                    </div>
+                                                </li>
+                                                
                                                 <li
                                                     class="bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall text-14">
                                                     총 결제금액<div class="text-right text-20"><span
                                                             class="vreserv-txt-total-price">
                                                             <script type="text/javascript">
-                                                        		document.write(${car.car_price } + ${param.ins} + "원");
-                                                        	</script></span></div>
+                                                        		document.write((${car.car_price }/2)*${param.time} + ${param.ins} + "원");
+                                                        	</script>
+                                                        	</span></div>
                                                 </li>
                                                 <li
                                                     class="bg-white list-group-item text-14 color-grey-3 text-center border-none">
                                                     위 내용을 모두 확인하였으며, 결제에 동의합니다</li>
-                                                <li class="bg-white list-group-item px-0 pb-0"><button
+                                                <li class="bg-white list-group-item px-0 pb-0">
+                                                <button id="btnPay" onclick="pay_success()"
                                                         class="js-vreserv-btn-do-pay btn btn-primary btn-block btn-lg btn-border-6 line-height-12 click-effect-press disabled">
-                                                        <div class="text-18 font-weight-bold text-white"><span
-                                                                class="js-vreserv-txt-total-pay-price js-vreserv-welcome-coupon-applied-total-pay-price">7,300원</span>
+                                                        <div class="text-18 font-weight-bold text-white">
+                                                        <span class="js-vreserv-txt-total-pay-price js-vreserv-welcome-coupon-applied-total-pay-price">
+															<script type="text/javascript">
+                                                        		document.write((${car.car_price }/2)*${param.time} + ${param.ins} + "원");
+                                                        	</script>
+															</span>
                                                             <sapn class="js-vreserv-txt-pay-btn">&nbsp;결제하기</sapn>
                                                         </div>
-                                                        <div class="text-12 text-white"><span
-                                                                class="js-vreserv-text-non-member-first-purchase-desc">가입
-                                                                후 첫 구매 5천원 할인, </span><span
-                                                                class="js-vreserv-txt-total-pay-price-desc">완전자차
-                                                                포함</span></div>
-                                                    </button><button
-                                                        class="js-vreserv-btn-do-pay-none-member btn btn-grey-4 btn-block btn-lg btn-border-6 line-height-12 dc-none"
-                                                        style="display: none;">
-                                                        <div class="text-16 font-weight-bold text-white"><span
-                                                                class="js-vreserv-txt-none-member-pay-price">12,300원</span>
-                                                            <sapn>&nbsp;비회원 예약하기</sapn>
-                                                        </div>
+                                                        
                                                     </button></li>
                                             </ul>
                                         </div>

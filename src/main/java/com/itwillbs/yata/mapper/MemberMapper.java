@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.yata.vo.CarVO;
 import com.itwillbs.yata.vo.MemberVO;
-import com.itwillbs.yata.vo.Member_modifyVO;
+
 
 
 
@@ -18,5 +18,13 @@ public interface MemberMapper {
 	public String selectPasswd(String member_email);
 	public int modifyUser(MemberVO memberVO);
 	public int deleteUser(String member_email);
-
+	
+	//쿠폰에서 회원 이메일 조회
+	public String searchMemberEmail(MemberVO member);
+	//관리자 회원 정보 수정
+	public int AdminMemberModify(MemberVO member);
+	//관리자 회원 삭제
+	public int AdminMemberDelete(@Param("member_email") String member_email);
+	public List<MemberVO> memberList();
+	
 }

@@ -1,57 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-  <mapper namespace="com.itwillbs.yata.mapper.NoticeMapper">
-  
-  <insert id="insertNotice">
-  	INSERT
-  		INTO board
-  		VALUES (
-  			#{board_num} + 1,
-  			#{board_name},
-  			#{board_pass},
-  			#{board_subject},
-  			#{board_content},
-  			#{board_file},
-  			#{board_num} + 1,
-  			0,
-  			0,
-  			0,
-  			now()
-  		)
-  </insert>
-  
-  <select id="selectMaxNoticeNum" resultType="int">
-  	SELECT IFNULL(MAX(board_num), 0) FROM board
-  </select>
-  
-  <insert id="insertBoard2">
-  	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
-  		SELECT IFNULL(MAX(board_num), 0) FROM board
-  	</selectKey>
-  	INSERT
-  		INTO board
-  		VALUES (
-  			#{board_num} + 1,
-  			#{board_name},
-  			#{board_pass},
-  			#{board_subject},
-  			#{board_content},
-  			#{board_file},
-  			#{board_num} + 1,
-  			0,
-  			0,
-  			0,
-  			now()
-  		)
-  </insert>
-  
-  <select id="selectNoticeList" resultType="com.itwillbs.yata.vo.NoticeVO">
-  	SELECT *
-  		FROM board
-  		ORDER BY
-  			board_re_ref DESC,
-  			board_re_seq ASC
-  		LIMIT 10
-  </select>
-  
+<mapper namespace="com.itwillbs.yata.mapper.NoticeMapper">
+
+	<insert id="insertNotice">
+		INSERT
+		INTO notice
+		VALUES (
+		#{board_num} + 1,
+		#{board_subject},
+		#{board_content},
+		#{board_num} + 1,
+		0,
+		)
+	</insert>
+
+	<select id="selectMaxNoticeNum" resultType="int">
+		SELECT
+		IFNULL(MAX(board_num), 0) FROM notice
+	</select>
+
+	<insert id="insertNotice2">
+		<selectKey keyProperty="board_num" resultType="int"
+			order="BEFORE">
+			SELECT IFNULL(MAX(board_num), 0) FROM notice
+		</selectKey>
+		INSERT
+		INTO notice
+		VALUES (
+		#{board_num} + 1,
+		#{board_subject},
+		#{board_content},
+		#{board_num} + 1,
+		0
+		)
+	</insert>
+
+	<select id="selectNoticeList"
+		resultType="com.itwillbs.yata.vo.NoticeVO">
+		SELECT *
+		FROM notice
+		ORDER BY
+		board_re_ref DESC,
+		board_re_seq
+		ASC
+		LIMIT 10
+	</select>
+
+	<select id="searchByNotice" parameterType="String"
+		resultType="com.itwillbs.yata.vo.NoticeVO">
+		SELECT *
+		FROM notice
+		WHERE board_subject LIKE
+		CONCAT('%',#{board_subject},'%');
+	</select>
+
+	<select id="getNotice"
+		resultType="com.itwillbs.yata.vo.NoticeVO">
+		SELECT *
+		FROM notice
+		WHERE board_num = #{board_num}
+	</select>
+
+	<delete id="deleteNoticeView">
+		DELETE
+		FROM notice
+		WHERE board_num = #{board_num}
+	</delete>
+
 </mapper>

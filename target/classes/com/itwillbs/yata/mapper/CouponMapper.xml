@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.yata.mapper.CouponMapper">
+
+	<select id="couponList" resultType="com.itwillbs.yata.vo.CouponVO">
+		select * from coupon
+	</select>	  	
+
+  	<insert id="couponRegist">
+
+  		<selectKey keyProperty="coup_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(coup_idx), 0) FROM coupon
+		</selectKey>
+
+  		INSERT INTO coupon
+  		VALUES(#{coup_idx} + 1
+  			   , #{member_email}
+  			   , #{coup_name}
+  			   , #{coup_code}
+  			   , #{coup_start}
+  			   , #{coup_end}
+  			   , #{coup_useable}
+  			  )
+  	</insert>
+
+  	<select id="selectCoupon" resultType="com.itwillbs.yata.vo.CouponVO">
+  		SELECT *
+  		FROM coupon
+  		WHERE coup_idx = #{coup_idx}
+
+  	</select>
+
+	<delete id="deleteCoupon">
+		DELETE
+		FROM coupon
+		WHERE coup_idx = #{coup_idx}
+	</delete>
+</mapper>

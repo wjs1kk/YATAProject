@@ -22,5 +22,15 @@ public class NoticeService {
 		
 		return mapper.selectNoticeList();
 	}
+	public List<NoticeVO> searchByNotice(String board_subject) {
+		return mapper.searchByNotice(board_subject);
+	}
 
+	public NoticeVO getNotice(String board_num) {
+		return mapper.getNotice(board_num);
+	}
+
+	public int deleteNoticeView(int board_num) {
+		return mapper.deleteNoticeView(board_num);
+	}
 }

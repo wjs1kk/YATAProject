@@ -20,4 +20,46 @@
   	 		FROM car 
   	 		WHERE car_name LIKE CONCAT('%',#{car_name},'%');
   	</select>
+  	
+  	
+<!--   	관리자  	 -->
+	<update id="carUpdate">
+		UPDATE car
+		SET car_manufacturer = #{car_manufacturer}
+  			   , car_model = #{car_model}
+  			   , car_name = #{car_name}
+  			   , car_type = #{car_type}
+  			   , car_year = #{car_year}
+  			   , car_price = #{car_price}  			
+  			   , car_seater = #{car_seater}
+  			   , car_fuel = #{car_fuel}
+  			   
+  		WHERE car_id = #{car_id}
+			
+	</update>
+	
+	<delete id="deleteCar">
+		DELETE
+		FROM car
+		WHERE car_id = #{car_id}
+	</delete>
+  	<insert id="adminCarRegist">
+  	
+  		<selectKey keyProperty="car_id" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(car_id), 0) FROM car
+		</selectKey>
+		
+  		INSERT INTO car
+  		VALUES(#{car_id} + 1
+  			   , #{car_manufacturer}
+  			   , #{car_model}
+  			   , #{car_name}
+  			   , #{car_type}
+  			   , #{car_year}
+  			   , #{car_price}
+  			   , '1'
+  			   , #{car_seater}
+  			   , #{car_fuel}
+  			  )
+  	</insert>
 </mapper>

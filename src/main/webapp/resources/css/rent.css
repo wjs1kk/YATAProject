@@ -35183,20 +35183,79 @@ img.object-fit.contain {
 }
 
 /* 왼쪽 필터 보험 선택란 css 추가 */
-.ins input[type="radio"] {
-      display: inherit;
-  }
 
-.ins input[type="radio"] + span {
-    display: inline-flex;
-    padding: 15px 10px;
-    border: 1px solid #dfdfdf;
-    background-color: #ffffff;
-    text-align: center;
+.ins{
+  max-width: 350px;
+  width: 100%;
+  border-radius: 5px;
+  border: 0px;
+  padding: 7px;
+}
+.ins  label.box{
+  background: #F3F3F3;
+  margin-top: 12px;
+  padding: 10px 12px;
+  display: flex;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+#ins1:checked ~ label.first,
+#ins2:checked ~ label.second,
+#ins3:checked ~ label.third{
+  border-color: #0D6FFC;
+  background: #D9E8FF;
+}
+.ins  label.box:hover{
+  background: #D9E8FF;
+}
+.ins  label.box .circle{
+  height: 22px;
+  width: 22px;
+  background: #F3F3F3;
+  border: 5px solid #fff;
+  display: inline-block;
+  margin-right: 15px;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+}
+#ins1:checked ~ label.first .circle,
+#ins2:checked ~ label.second .circle,
+#ins3:checked ~ label.third .circle{
+  border-color: #F3F3F3;
+  background: #0D6FFC;
+}
+.ins  label.box .plan{
+  display: flex;
+  width:  70%;
+/*   align-items: center; */
+}
+.ins input[type="radio"]{
+  display: none;
+}
+
+/* 보험안내 */
+.index-box-faq {
+    border: solid 1px #f3f3f3;
+    background: #fff;
+    padding: 11px 8px;
+}
+
+.click-effect-press {
     cursor: pointer;
+    transition: all .3s ease;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+div {
+    display: block;
+}
+.mt-3, .my-3 {
+    margin-top: 1rem !important;
+}
+.collapse:not(.show) {
+    display: none;
 }
 
-.ins input[type="radio"]:checked + span {
-    background-color: #0d6ffc;
-    color: #ffffff;
-}

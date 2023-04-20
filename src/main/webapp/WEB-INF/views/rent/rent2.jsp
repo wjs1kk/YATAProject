@@ -9,9 +9,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 	function pay(){
-		
-		location.href="pay?car_id=${param.car_id}&place=${param.place}&rentalDatetime=${param.rentalDatetime}&ins=${param.ins}";
-		
+		location.href="pay?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&ins=${param.ins}&time=${param.time}";
 	}
 </script>
 </head>
@@ -70,7 +68,7 @@
 													</div>
 													<span
 														class="badge badge-pill badge-bluegreylight color-light-purple text-12 font-weight-normal"><span
-														class="txt-rent-period" style="display: block;">24시간</span></span>
+														class="txt-rent-period" style="display: block;">${param.time } 시간</span></span>
 													<div class="text-center">
 														<div class="text-12 color-grey-5">반납시간</div>
 														
@@ -265,7 +263,7 @@
 										<div
 											class="dc-flex justify-content-between align-items-center click-effect-press js-vcd-not-soldout-elmt mt-3"
 											id="vcd_btn_go_review_compnay">
-											<div class="js-company-branch-name text-16-b color-grey-3">${param.place }</div>
+											<div class="js-company-branch-name text-16-b color-grey-3">${param.res_place }</div>
 											<div
 												class="js-vcd-evaluation-wrapper dc-flex align-items-center">
 												<img
@@ -1023,7 +1021,7 @@
 													
 														<div
 															class="js-sci-txt-company-name text-16-b color-grey-2 mb-0">
-															${param.place }</div>
+															${param.res_place }</div>
 														<div class="" id="sci_container_review_info_old_company"
 															style="display: block;">
 															<div class="dc-flex align-items-center">
@@ -1055,7 +1053,7 @@
 												
 												window.onload = function() {
 													
-													if(${param.place eq '전포지점'}){
+													if(${param.res_place eq '전포지점'}){
 														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 													    mapOption = { 
 													        center: new kakao.maps.LatLng(35.15849019679627, 129.06202404131136), // 지도의 중심좌표
@@ -1064,10 +1062,10 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); 
-														var iwContent = '<input type="text" id="place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" id="res_place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); //인포윈도우 표시 위치입니다
 													}
-													if(${param.place eq '부전지점'}){
+													if(${param.res_place eq '부전지점'}){
 														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 													    mapOption = { 
 													        center: new kakao.maps.LatLng(35.15975905300518, 129.06186404315977), // 지도의 중심좌표
@@ -1076,10 +1074,10 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); 
-														var iwContent = '<input type="text" id="place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" id="res_place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); //인포윈도우 표시 위치입니다
 													}
-													if(${param.place eq '사상지점'}){
+													if(${param.res_place eq '사상지점'}){
 														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 													    mapOption = { 
 													        center: new kakao.maps.LatLng(35.158690073109824, 129.06113477638084), // 지도의 중심좌표
@@ -1088,10 +1086,10 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); 
-														var iwContent = '<input type="text" id="place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" id="res_place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); //인포윈도우 표시 위치입니다
 													}
-													if(${param.place eq '개금지점'}){
+													if(${param.res_place eq '개금지점'}){
 														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 													    mapOption = { 
 													        center: new kakao.maps.LatLng(35.15730753621485, 129.06294334538524), // 지도의 중심좌표
@@ -1100,7 +1098,7 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); 
-														var iwContent = '<input type="text" id="place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" id="res_place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); //인포윈도우 표시 위치입니다
 													}
 													
@@ -1167,7 +1165,7 @@
 											<div class="container">
 												<div class="js-company-introduce pt-3 pb-3 clearfix"
 													style="display: block;">
-													<div class="text-16 font-weight-bold color-grey-3">${param.place }의 한마디</div>
+													<div class="text-16 font-weight-bold color-grey-3">${param.res_place }의 한마디</div>
 													<div
 														class="js-txt-company-introduce text-14 color-grey-4 mt-1 mb-0 wordbreak-breakword">안녕하세요.
 														특별한 렌트카와 특별한 부산 여행을 시작해보세요~!</div>

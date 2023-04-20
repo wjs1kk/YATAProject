@@ -26,4 +26,14 @@ public class CarService {
 		return mapper.searchByName(car_name);
 	}
 
+	public int adminCarRegist(CarVO car) {
+		return mapper.adminCarRegist(car);
+	}
+	public int carUpdate(CarVO car) {
+		return mapper.carUpdate(car);
+	}
+	public int deleteCar(int car_id) {
+		return mapper.deleteCar(car_id);
+	}
+
 }

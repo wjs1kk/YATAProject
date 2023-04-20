@@ -11,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.yata.service.MemberService;
+import com.itwillbs.yata.service.ReservService;
 import com.itwillbs.yata.service.ReviewService;
 import com.itwillbs.yata.vo.MemberVO;
-import com.itwillbs.yata.vo.Member_modifyVO;
+import com.itwillbs.yata.vo.ReservVO;
 import com.itwillbs.yata.vo.ReviewVO;
 
 @Controller
@@ -23,8 +25,9 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
-	private ReviewService service;
-	
+	private ReviewService reviewService;
+	@Autowired
+	private ReservService reservService;
 	@GetMapping("login")
 	public String login() {
 		return "member/member_login";
@@ -40,8 +43,8 @@ public class MemberController {
 			return "fail_back";
 		}
 		System.out.println();
-		MemberVO member = memberService.selectUser(member_email);
-		session.setAttribute("member_email", member.getMember_email());
+		session.setAttribute("member_email", member_email);
+		System.out.println(session.getAttribute("member_email"));
 		return "redirect:/";
 	}
 
@@ -68,10 +71,32 @@ public class MemberController {
 	}
 
 	@GetMapping("mypage")
-	public String mypage(MemberVO member, Model model, HttpSession session) {
+	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member, Model model, HttpSession session) {
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
+		if(tab.equals("history")) {	
+			List<ReservVO> reservationList = reservService.myReservation(member_email);
+			model.addAttribute("reservationList", reservationList);
+			return "member/member_history";
+
+		// 나의리뷰	
+		} else if(tab.equals("review")) {
+			List<ReviewVO> myReviewList = reviewService.myReview(member_email);
+			Integer myReviewCount = reviewService.selectMyReviewCount((String) session.getAttribute("member_email"));
+			model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
+			model.addAttribute("myReviewCount", myReviewCount); // 나의 리뷰 개수
+
+			return "member/member_review";
+
+		// 포인트
+		} else if(tab.equals("point")) {
+
+			return "member/member_point";
+		} else if(tab.equals("coupon")) {
+		// 쿠폰
+			return "member/member_coupon";
+		}
 		return "member/member_mypage";
 	}
 	// 내정보관리
@@ -161,30 +186,32 @@ public class MemberController {
 		}
 
 	}
+	@GetMapping("reviewWrite")
+	public String reviewWrite(HttpSession session, Model model, MemberVO member) {
+		String member_email = (String) session.getAttribute("member_email");
+		member = memberService.selectUser(member_email);
+		model.addAttribute("member", member);
 
-	@GetMapping("history")
-	public String history() {
-		return "member/member_history";
+		return "member/member_review_write";
 	}
 
-	@GetMapping("coupon")
-	public String coupon() {
-		return "member/member_coupon";
+	@PostMapping("reviewWritePro")
+	public String reviewWritePro(HttpSession session, Model model, MemberVO member, ReviewVO review) {
+		String member_email = (String)session.getAttribute("member_email");
+		member = memberService.selectUser(member_email);
+		model.addAttribute("member", member);
+
+		review.setMember_email(member_email);
+
+		int insertCount = reviewService.writeReview(review);
+		System.out.println(insertCount);
+		if (insertCount > 0) {
+			return "member/member_review";
+		} else {
+			model.addAttribute("msg", "후기 등록 실패!");
+			return "fail_back";
+		}
+
 	}
 
-	@GetMapping("point")
-	public String point() {
-		return "member/member_point";
-	}
-
-	@GetMapping("review")
-	public String review(Model model, HttpSession session, ReviewVO review) {
-		List<ReviewVO> myReviewList = service.myReview((String) session.getAttribute("member_email"));
-		Integer myReviewCount = service.selectMyReviewCount((String) session.getAttribute("member_email"));
-
-		model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
-		model.addAttribute("myReviewCount", myReviewCount); // 나의 리뷰 개수
-		System.out.println(model.getAttribute("myReviewCount"));
-		return "member/member_review";
-	}
 }
