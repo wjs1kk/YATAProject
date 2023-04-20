@@ -16,6 +16,14 @@
 <body style="">
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 	<div class="pc-mobile-header-container">
+	
+	===========================수정시작====================================
+<!-- 		pay와 상단부분 디자인 통일시킴 -->
+	 	<div class="pc-header space-2 text-center dc-none dc-lg-block">
+            <div class="container">
+                <h2 class="text-grey-3 underline-bg dc-inline-block">선택정보</h2>
+            </div>
+        </div>
 		<div class="container p-0">
 			<div class="row my-lg-5 reservation-row">
 				<div class="col-lg-7 cm-lg-rounded">
@@ -41,17 +49,19 @@
 												src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS43NTQ0IDQuMDA5NzlMMTIuODIwNCA2Ljg0NzQyQzEzLjI0NyA2LjkwMzk4IDEzLjk5NzMgNy40MTcxNSAxNCA4LjM4ODMyVjExLjE3NDlDMTQgMTEuNjMyOSAxMy42NDAyIDEyLjAwMjYgMTMuMTk3NSAxMi4wMDI2SDEyLjk1OTVWMTIuNDgwOEMxMi45NTk1IDEzLjkwMyAxMS4wMDgxIDEzLjg4NjUgMTEuMDAyOCAxMi40ODA4VjEyLjAwMjZIMy45ODc4N1YxMi40ODA4QzMuOTg3ODcgMTMuODg2NSAyLjAzNjUzIDEzLjkwMyAyLjAzOTIxIDEyLjQ4MDhWMTIuMDAyNkgxLjgwMjQ4QzEuMzU5NzggMTIuMDAyNiAxIDExLjYzMTUgMSAxMS4xNzQ5VjguMzg4MzJDMC45OTg2NzEgNy40MTcxNSAxLjc0NzY0IDYuOTAzOTggMi4xNzAyNyA2Ljg0NzQyTDMuMjM2MjIgNC4wMDk3OUMzLjQzOTUxIDMuNDY2MjcgMy44NzU1MyAzLjAwNDE0IDQuNjk1MzcgM0gxMC4yOTUzQzExLjExOTEgMy4wMDQxNCAxMS41NTUxIDMuNDY2MjcgMTEuNzU0NCA0LjAwOTc5Wk0xMC44MzI5IDYuODIxMjFDMTEuMTI3MiA2LjgyMTIxIDExLjMyNjUgNi41MTIyMSAxMS4yMTE0IDYuMjMyMTZMMTAuNjQ5NyA0Ljg2MjMyTDEwLjYzNzIgNC44MzY0MUMxMC40ODA1IDQuNTA5OTkgMTAuMzg4IDQuMzE3MjggMTAuMDQ2NSA0LjMxMTlINC45NDE0N0M0LjU4NTcxIDQuMzE3NDIgNC40MjI1NSA0LjY0NTc0IDQuMzM4MjggNC44NjIzMkwzLjc3NjU1IDYuMjMyMTZDMy42NjE1MyA2LjUxMjIxIDMuODYwODEgNi44MjEyMSA0LjE1NTA0IDYuODIxMjFIMTAuODMyOVpNMTIuNjM1NiA4LjgzMTQzQzEyLjYzNTYgOS4zMjc5NyAxMi4yMzg4IDkuNzMwNDkgMTEuNzQ5MiA5LjczMDQ5QzExLjI1OTcgOS43MzA0OSAxMC44NjI5IDkuMzI3OTcgMTAuODYyOSA4LjgzMTQzQzEwLjg2MjkgOC4zMzQ5IDExLjI1OTcgNy45MzIzNyAxMS43NDkyIDcuOTMyMzdDMTIuMjM4OCA3LjkzMjM3IDEyLjYzNTYgOC4zMzQ5IDEyLjYzNTYgOC44MzE0M1pNMy4xNzM1OSA5LjczMDQ5QzMuNjYzMTIgOS43MzA0OSA0LjA1OTk1IDkuMzI3OTcgNC4wNTk5NSA4LjgzMTQzQzQuMDU5OTUgOC4zMzQ5IDMuNjYzMTIgNy45MzIzNyAzLjE3MzU5IDcuOTMyMzdDMi42ODQwNyA3LjkzMjM3IDIuMjg3MjMgOC4zMzQ5IDIuMjg3MjMgOC44MzE0M0MyLjI4NzIzIDkuMzI3OTcgMi42ODQwNyA5LjczMDQ5IDMuMTczNTkgOS43MzA0OVoiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg=="><span
 												class="js-cpi-txt-car-type ml-1">${car.car_type }</span></a>
 											<div
-												class="js-cpi-txt-car-model text-20 font-weight-bold color-grey-3 mb-0">
-												${car.car_name }</div>
-											<div class="js-cpi-container-branch-info pt-1 dc-none"
-												style="display: none;">
+												class="js-cpi-txt-car-model text-20 font-weight-bold color-grey-3 mb-0">${car.car_name }</div>
+											
+											
+											<div class="js-cpi-container-branch-info pt-1 dc-none" style="display: none;">
 												<div class="dc-flex align-items-center">
 													<img
 														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM4NTkyQUIiIGQ9Ik03LjY0OCAyLjE0NmMuMTk2LS4xOTUuNTEyLS4xOTUuNzA3IDBsNS43OTMgNS43OTNjLjMxNS4zMTUuMDkyLjg1NC0uMzUzLjg1NEgyLjIwOWMtLjQ0NSAwLS42NjktLjUzOS0uMzU0LS44NTRsNS43OTMtNS43OTN6TTEzLjAwMiA4Ljc5M2gtMTB2NS41YzAgLjI3Ni4yMjQuNS41LjVoOWMuMjc2IDAgLjUtLjIyNC41LS41di01LjV6Ii8+CiAgICA8cmVjdCB3aWR0aD0iMiIgaGVpZ2h0PSI0IiB4PSI3LjAwMiIgeT0iMTEuNzkzIiBmaWxsPSIjRkFGQUZBIiByeD0iMSIvPgo8L3N2Zz4K">
 													<div
-														class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1"></div>
+														class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1">${param.res_place }</div>
 												</div>
 											</div>
+											
+											==========================수정끝========================
 											
 <!-- 											대여시간 날짜 앞에서 데이터 받아와서 넣어야함. -->
 											<hr class="mb-2">
@@ -2297,19 +2307,14 @@
 														</div>
 													</li>
 												</ul>
-												<button
-													class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press">
-													<div
-														class="text-18 font-weight-bold text-white line-height-1">
-														
-														<span onclick="pay()"
-															class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
+												<button onclick="pay()" class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press">
+													<div class="text-18 font-weight-bold text-white line-height-1">
+														 <span class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
 															<script type="text/javascript">
 																document.write(${car.car_price } + ${param.ins} + "원 바로 예약하기");
 															</script>
-														</span><span
-															class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
-															style="display: none;"></span>
+														</span>
+														<span class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none" style="display: none;"></span>
 													</div>
 													<div class="js-vcd-txt-price-desc text-12 text-white">
 														</div>
