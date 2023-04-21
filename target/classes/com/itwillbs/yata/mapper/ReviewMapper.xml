@@ -16,9 +16,8 @@
 
 	<!-- 리뷰 작성 -->
 	<!-- 별점, 카운트 수정 예정 -->
-	<insert id="insertReview"
-		 parameterType="com.itwillbs.yata.vo.ReviewVO" keyProperty="review_idx">
-		 <selectKey keyProperty="review_idx" resultType="int" order="BEFORE">
+	<insert id="insertReview">
+		<selectKey keyProperty="review_idx" resultType="int" order="BEFORE">
 			SELECT IFNULL(MAX(review_idx), 1) FROM review
 		</selectKey>
 		INSERT INTO review 
@@ -30,17 +29,17 @@
 					  , #{review_title}
 					  , #{review_content}
 					  , CURRENT_TIMESTAMP()
-					  , "s"
+					  , 0
 					  , #{review_place}
 					)
-	</insert>			
+	</insert>					
 	
 	<!-- 나의 리뷰 select -->
 	<select id="selectMyReview" resultType="com.itwillbs.yata.vo.ReviewVO">
 	 	SELECT *
  	 	  FROM review
  		 WHERE member_email 
- 		 IN (SELECT member_email FROM member WHERE member_email = #{member_email}) ORDER BY review_idx DESC;
+ 		 IN (SELECT member_email FROM member WHERE member_email = #{member_email}) ORDER BY res_id DESC;
 	</select>
 	
 	<!-- 나의 리뷰 개수 -->

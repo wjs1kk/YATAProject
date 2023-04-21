@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -145,7 +145,7 @@
 								<div class="container">
 									<h3 class="mt-0 pt-3">후기 작성</h3>
 									<br>
-									<form action="reviewWritePro" method="post">
+									<form action="reviewWritePro?res_place=${param.res_place }" method="post">
 										<div class="form-group">
 											<label for="exampleFormControlInput1">예약번호</label> <input
 												type="text" class="form-control"

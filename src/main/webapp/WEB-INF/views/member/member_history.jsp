@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -148,41 +148,48 @@
 									<br>
 									<table class="search_list_tbl for_web">
 										<colgroup>
-											<col style="width: 11.666%;">
-											<col style="width: 11.666%;">
-											<col style="width: 65%;">
-											<col style="width: 11.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
 										</colgroup>
 										<thead>
 											<tr>
-												<th scope="col">No</th>
+												<th scope="col">예약번호</th>
 												<th scope="col">대여기간</th>
-												<th scope="col" style="text-align: center;">상품정보</th>
-												<th scope="col">상세내역</th>
+												<th scope="col">대여지점</th>
+												<th scope="col">차량명</th>
+												<th scope="col">금액</th>
+												<th colspan="2" scope="col">주문상태</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${reservationList}" var="res">
+											<c:forEach items="${resList}" var="resList">
 												<tr>
-													<td>${res.res_id}</td>
-													<td>${res.res_endDate} 
-														<div style="text-align: center;">~</div> <br> 
-														${res.res_endDate}
+													<td>${resList.res_id}</td>
+													<td>${resList.res_startDate} 
+														<div style="text-align: center;">~</div>
+														${resList.res_endDate}
 													</td>
+													<td>${resList.res_place}</td>
 													<td>
 														<div class="link_wrap ">
-															<a href="javascript:;" class="detailLink" data-id="65">
-																${res.car_id} </a>
+															<a href="historyPro?res_id=${resList.res_id}">
+															${resList.car_name}</a>
 														</div>
+													</td>
+													<td>${resList.res_totalPrice }원</td>
+													<td class="clip "><input class="btn-danger"
+<%-- 														type="button" value="후기작성" onclick="location.href='reviewWrite?resIdx=${resIdx}'"> --%>
+														type="button" value="예약취소">
 													</td>
 													<td class="clip "><input class="btn-primary"
 <%-- 														type="button" value="후기작성" onclick="location.href='reviewWrite?resIdx=${resIdx}'"> --%>
-														type="button" value="후기작성" onclick="location.href='reviewWrite?res_id=${res.res_id}&review_place=${res.res_place }'">
+														type="button" value="리뷰작성" onclick="location.href='reviewWrite?res_id=${resList.res_id}&review_place=${resList.res_place }'">
 													</td>
 												</tr>
-												<c:if test="${res eq null}">
-													<td>내역 없음</td>
-												</c:if>
 											</c:forEach>
 										</tbody>
 									</table>

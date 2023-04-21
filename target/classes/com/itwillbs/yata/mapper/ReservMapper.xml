@@ -20,20 +20,29 @@
 	</insert>
 	<!-- 나의 예약내역 -->
 	<select id="myReservationList" resultType="com.itwillbs.yata.vo.ReservVO">
-		SELECT res_id -- 예약 id
-			  ,member_email -- 사용자 id
-			  ,car_id -- 차량 id
-			  ,res_startDate -- 시작일
-			  ,res_endDate -- 종료일
-			  ,res_date -- 예약한 일자
-			  ,res_totalPrice -- 총 대여 금액
-			  ,res_place 
-			FROM reservation
+		SELECT r.res_id -- 예약 id
+			  ,r.member_email -- 사용자 id
+			  ,c.car_name
+			  ,r.res_startDate -- 시작일
+			  ,r.res_endDate -- 종료일
+			  ,r.res_date -- 예약한 일자
+			  ,r.res_totalPrice -- 총 대여 금액
+			  ,r.res_place 
+			FROM reservation r join car c
+              ON r.car_id = c.car_id
 			 	WHERE member_email
-			 		IN (SELECT member_email
+			 		IN (
+			 			SELECT member_email
 			 			FROM member
 			 			WHERE member_email = #{member_email}
-			 		)
-			 	ORDER BY res_id DESC
+			 			)
+			 	ORDER BY res_id DESC;
+	</select>
+	
+	<!-- 예약 상세내역 -->
+	<select id="selectReserveList" resultType="com.itwillbs.yata.vo.ReservVO">
+		SELECT *
+			FROM reservation
+				WHERE res_id = #{res_id}
 	</select>
 </mapper>

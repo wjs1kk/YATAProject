@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.yata.service.CarService;
 import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.ReservService;
 import com.itwillbs.yata.service.ReviewService;
+import com.itwillbs.yata.vo.CarVO;
 import com.itwillbs.yata.vo.MemberVO;
 import com.itwillbs.yata.vo.ReservVO;
 import com.itwillbs.yata.vo.ReviewVO;
@@ -28,6 +30,10 @@ public class MemberController {
 	private ReviewService reviewService;
 	@Autowired
 	private ReservService reservService;
+	@Autowired
+	private CarService carService;
+	
+	
 	@GetMapping("login")
 	public String login() {
 		return "member/member_login";
@@ -71,14 +77,15 @@ public class MemberController {
 	}
 
 	@GetMapping("mypage")
-	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member, Model model, HttpSession session) {
+	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member, Model model, HttpSession session, ReservVO reserve, CarVO car) {
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
+		
 		if(tab.equals("history")) {	
-			List<ReservVO> reservationList = reservService.myReservation(member_email);
-			model.addAttribute("reservationList", reservationList);
-			
+			List<ReservVO> resList = reservService.myReservation(member_email);
+			model.addAttribute("resList", resList);
+			System.out.println(resList);
 			return "member/member_history";
 
 		// 나의리뷰	
@@ -187,7 +194,7 @@ public class MemberController {
 		}
 
 	}
-	// 후기 작성
+	// 리뷰 작성
 	@GetMapping("reviewWrite")
 	public String reviewWrite(HttpSession session, Model model, MemberVO member, ReviewVO review) {
 		String member_email = (String) session.getAttribute("member_email");
@@ -195,17 +202,9 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "member/member_review_write";
 	}
-//	#{review_idx} + 1
-//	  , #{res_id}
-//	  , #{member_email}
-//	  ,	#{member_name}
-//	  , #{review_title}
-//	  , #{review_content}
-//	  , CURRENT_TIMESTAMP()
-//	  , 0
-//	  , #{review_place}
+	// 리뷰 작성
 	@PostMapping("reviewWritePro")
-	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String review_place) {
+	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place) {
 		String member_email = (String)session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
 		System.out.println(res_id);
@@ -213,7 +212,7 @@ public class MemberController {
 		review.setMember_email(member_email);
 		review.setRes_id(res_id);
 		review.setMember_name(member.getMember_name());
-		review.setReview_place("부전");
+		review.setReview_place(res_place);
 		
 		int insertCount = reviewService.insertReview(review);
 		System.out.println(insertCount);
@@ -224,6 +223,23 @@ public class MemberController {
 			return "fail_back";
 		}
 
+	}
+	
+	@GetMapping("historyPro")
+	public String historyPro(HttpSession session, Model model, @RequestParam int res_id, CarVO car, ReservVO res) {
+		String member_email = (String)session.getAttribute("member_email");
+		MemberVO member = memberService.selectUser(member_email);
+		model.addAttribute("member", member);
+
+		ReservVO reserve = reservService.getReserveList(res_id);
+		car.setCar_id(res.getRes_id());
+	
+		car = carService.selectCar(car.getCar_id());
+		
+		model.addAttribute("reserve", reserve);
+		model.addAttribute("car", car);
+
+		return "member/member_historyForm";
 	}
 
 }

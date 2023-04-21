@@ -18,4 +18,7 @@ public class ReservService {
 	public List<ReservVO> myReservation(String member_email) {
 		return mapper.myReservationList(member_email);
 	}
+	public ReservVO getReserveList(int res_id) {
+		return mapper.selectReserveList(res_id);
+	}
 }
