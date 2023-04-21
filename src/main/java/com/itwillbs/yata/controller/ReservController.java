@@ -5,17 +5,18 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.yata.service.CarService;
+import com.itwillbs.yata.service.CouponService;
+import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.ReservService;
 import com.itwillbs.yata.service.ReviewService;
 import com.itwillbs.yata.vo.CarVO;
+import com.itwillbs.yata.vo.MemberVO;
 import com.itwillbs.yata.vo.ReservVO;
 import com.itwillbs.yata.vo.ReviewVO;
 
@@ -27,6 +28,10 @@ public class ReservController {
 	private ReservService reservService;
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private MemberService memberService;
+	
+	
 	
 	@GetMapping("rent1")
 	public String rent1(Model model,String place_res) {
@@ -62,14 +67,22 @@ public class ReservController {
 	}
 
 	@GetMapping("pay")
-	public String pay(Model model, int car_id, String rentalDatetime) {
+	public String pay(Model model, MemberVO member, int car_id, String rentalDatetime, HttpSession session) {
 		model.addAttribute("car", carService.selectCar(car_id));
+		
+//		>>>>추가(파라미터에 MemberVO member 도 추가했씀 + @autowire 1개 추가)
+		String member_email = (String) session.getAttribute("member_email");
+		member = memberService.selectUser(member_email);
+		model.addAttribute("member", member);
+//		<<<<
+		
 		String res_startDate = rentalDatetime.split("~")[0];
 		String res_endDate = rentalDatetime.split("~")[1];
 		System.out.println(res_endDate);
 		System.out.println(res_startDate);
 		return "pay/pay";
 	}
+	
 	@GetMapping("payPro")
 	public String payPro(HttpSession session, ReservVO reservVO, String rentalDatetime, Model model) {
 		String member_eamil = (String)session.getAttribute("member_email");
@@ -100,5 +113,6 @@ public class ReservController {
 		
 		return "rent/rent";
 	}
+	
 
 }
