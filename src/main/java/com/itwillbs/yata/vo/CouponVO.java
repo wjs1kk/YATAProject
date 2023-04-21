@@ -4,7 +4,7 @@ package com.itwillbs.yata.vo;
 import java.sql.*;
 
 public class CouponVO {
-	private int coup_idx;
+	private Integer coup_idx;
 	private String coup_name;
 	private String coup_code;
 	private Date coup_start;
@@ -12,7 +12,7 @@ public class CouponVO {
 	private String coup_percent;
 	
 	
-	public CouponVO(int coup_idx, String coup_name, String coup_code, Date coup_start, Date coup_end,
+	public CouponVO(Integer coup_idx, String coup_name, String coup_code, Date coup_start, Date coup_end,
 			String coup_percent) {
 		this.coup_idx = coup_idx;
 		this.coup_name = coup_name;
@@ -22,10 +22,10 @@ public class CouponVO {
 		this.coup_percent = coup_percent;
 	}
 	
-	public int getCoup_idx() {
+	public Integer getCoup_idx() {
 		return coup_idx;
 	}
-	public void setCoup_idx(int coup_idx) {
+	public void setCoup_idx(Integer coup_idx) {
 		this.coup_idx = coup_idx;
 	}
 	public String getCoup_name() {

@@ -36,8 +36,15 @@ public class CouponService {
 		return mapper.getNum(coup_code);
 	}
 
-	public int couponEnroll(CouponVO coupon, CouponUsedVO used, MemberVO member) {
-		return mapper.couponEnroll(coupon, used, member);
+	public int couponEnroll(CouponVO coupon, CouponUsedVO used, String member_email) {
+		return mapper.couponEnroll(coupon, used, member_email);
 	}
 
+	public String checkCode(String member_email, CouponUsedVO used) {
+		return mapper.checkCode(member_email, used);
+	}
+
+	public String checkEmail(String member_email) {
+		return mapper.checkEmail(member_email);
+	}
 }

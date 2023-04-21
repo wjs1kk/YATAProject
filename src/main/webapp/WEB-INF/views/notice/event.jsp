@@ -224,9 +224,9 @@
 											</div>
 											<img src="resources/images/coupon.png">
 											<div class="text-center display-3 font-weight-bold">
-												<a href="">쿠폰발급												
+												<a href="couponEnroll2">쿠폰발급2
 													<script type="text/javascript">
-														alert("${coupon }")
+														
 													</script>
 													</a>	
 											</div>

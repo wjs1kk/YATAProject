@@ -20,6 +20,10 @@ public interface CouponMapper {
 
 	String getNum(String coup_code);
 
-	int couponEnroll(@Param("coupon") CouponVO coupon, @Param("coupon_used") CouponUsedVO used, @Param("member") MemberVO member);
+	int couponEnroll(@Param("coupon") CouponVO coupon, @Param("coupon_used") CouponUsedVO used, @Param("member_email") String member_email);
+
+	String checkCode(@Param("member_email")String member_email, CouponUsedVO used);
+
+	String checkEmail(String member_email);
 
 }
