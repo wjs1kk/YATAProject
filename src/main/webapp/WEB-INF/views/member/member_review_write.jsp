@@ -7,8 +7,23 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-
+<!--  폰트어썸 -->
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!--  JQuery 최신버전 -->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="resources/css/style.css">
+<script type="text/javascript">
+/*
+ 리뷰작성 - 별점 찍기
+ */
+$(function() {	
+	$('.make_star i').click(function() {
+		var targetNum = $(this).index() + 1;
+		$('.make_star i').css({color:'#000'});
+		$('.make_star i:nth-child(-n+' + targetNum + ')').css({color: '#F05522'});
+	});
+});
+</script>
 </head>
 <body>
 	<main id="content" role="main">
@@ -45,14 +60,6 @@
 														</div>
 														<div
 															class="js-mypage-txt-user-id color-grey-5 text-12 mb-0 wordbreak-breakall">${member.member_email}</div>
-													</div>
-													<div
-														class="js-mypage-btn-login is-only-none-member dc-none click-effect-press"
-														style="display: none;">
-														<div class="color-grey-3 text-20 wordbreak-breakword">3초
-															가입/로그인 해주세요</div>
-														<div class="color-grey-5 text-12 mb-0 wordbreak-keepall">회원
-															전용 혜택을 누려보세요 :D</div>
 													</div>
 												</div>
 											</div>
@@ -154,14 +161,26 @@
 												readonly="readonly">
 										</div>
 										<div class="form-group">
-											<label for="exampleFormControlInput1">제목</label> <input
+											<label for="exampleFormControlInput1">상품정보</label> <input
 												type="text" class="form-control"
-												id="review_title" name="review_title"
-												placeholder="제목을 작성해주세요.">
+												id="review_title" name="review_title" 
+												readonly="readonly">
 										</div>
 										<div class="form-group">
-											<label for="exampleFormControlTextarea1">내용</label>
-											<textarea class="form-control"
+											<label for="exampleFormControlInput1">별점을 매겨주세요</label> 
+											<div class="make_star">
+												<div class="rating">
+													<i class="fas fa-star" id="review_star"></i>
+													<i class="fas fa-star" id="2"></i>
+													<i class="fas fa-star" id="3"></i>
+													<i class="fas fa-star" id="4"></i>
+													<i class="fas fa-star" id="5"></i>
+												</div>
+											</div>	
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlTextarea1">상품에 대한 평가를 20자 이상 작성해 주세요</label>
+											<textarea class="form-control" placeholder="내용"
 												id="review_content" name="review_content" rows="10"></textarea>
 										</div>
 										<div style="text-align: right">

@@ -76,16 +76,17 @@ public class MemberController {
 		return "redirect:/login";
 	}
 
+	// 마이페이지
 	@GetMapping("mypage")
-	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member, Model model, HttpSession session, ReservVO reserve, CarVO car) {
+	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member, Model model, HttpSession session) {
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
 		
+		// 예약내역
 		if(tab.equals("history")) {	
 			List<ReservVO> resList = reservService.myReservation(member_email);
 			model.addAttribute("resList", resList);
-			System.out.println(resList);
 			return "member/member_history";
 
 		// 나의리뷰	
@@ -107,6 +108,7 @@ public class MemberController {
 		}
 		return "member/member_mypage";
 	}
+	
 	// 내정보관리
 	@GetMapping("modifyInfo")
 	public String modifyInfo(MemberVO member, HttpSession session, Model model) {
@@ -194,12 +196,13 @@ public class MemberController {
 		}
 
 	}
-	// 리뷰 작성
+	// 예약내역 -> 리뷰 작성
 	@GetMapping("reviewWrite")
 	public String reviewWrite(HttpSession session, Model model, MemberVO member, ReviewVO review) {
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
+		
 		return "member/member_review_write";
 	}
 	// 리뷰 작성
@@ -225,12 +228,21 @@ public class MemberController {
 
 	}
 	
+	// 리뷰작성 - 상세보기
+	@GetMapping("revivewDetails")
+	public String revivewDetails(ReviewVO review) {
+		
+		return "member/member_review_details";
+	}
+	
+	// 예약내역 상세보기
 	@GetMapping("historyPro")
 	public String historyPro(HttpSession session, Model model, @RequestParam int res_id, CarVO car, ReservVO res) {
 		String member_email = (String)session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
 
+		
 		ReservVO reserve = reservService.getReserveList(res_id);
 		car.setCar_id(res.getRes_id());
 	
@@ -239,7 +251,7 @@ public class MemberController {
 		model.addAttribute("reserve", reserve);
 		model.addAttribute("car", car);
 
-		return "member/member_historyForm";
+		return "member/member_history_details";
 	}
 
 }

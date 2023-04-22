@@ -50,14 +50,6 @@
 														<div
 															class="js-mypage-txt-user-id color-grey-5 text-12 mb-0 wordbreak-breakall">${member.member_email}</div>
 													</div>
-													<div
-														class="js-mypage-btn-login is-only-none-member dc-none click-effect-press"
-														style="display: none;">
-														<div class="color-grey-3 text-20 wordbreak-breakword">3초
-															가입/로그인 해주세요</div>
-														<div class="color-grey-5 text-12 mb-0 wordbreak-keepall">회원
-															전용 혜택을 누려보세요 :D</div>
-													</div>
 												</div>
 											</div>
 										</div>
@@ -90,12 +82,6 @@
 												<div class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press">
 													<div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>
 													쿠폰
-												</div>
-												<div class="mypage-talk-coupon dc-none"
-													id="js_mypage_talk_coupon" style="display: none;">
-													<div
-														class="talk-coupon text-white line-height-1 white-space-nowrap">소멸예정
-														쿠폰이 있어요!</div>
 												</div>
 											</div>
 										</div>

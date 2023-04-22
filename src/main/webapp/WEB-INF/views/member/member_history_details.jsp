@@ -46,17 +46,10 @@
 														<div
 															class="js-mypage-txt-user-id color-grey-5 text-12 mb-0 wordbreak-breakall">${member.member_email}</div>
 													</div>
-													<div
-														class="js-mypage-btn-login is-only-none-member dc-none click-effect-press"
-														style="display: none;">
-														<div class="color-grey-3 text-20 wordbreak-breakword">3초
-															가입/로그인 해주세요</div>
-														<div class="color-grey-5 text-12 mb-0 wordbreak-keepall">회원
-															전용 혜택을 누려보세요 :D</div>
-													</div>
 												</div>
 											</div>
 										</div>
+
 										<div
 											class="dc-flex justify-content-between px-2 mb-4 is-only-member">
 											<div
@@ -94,12 +87,6 @@
 													<div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>
 													쿠폰
 												</div>
-												<div class="mypage-talk-coupon dc-none"
-													id="js_mypage_talk_coupon" style="display: none;">
-													<div
-														class="talk-coupon text-white line-height-1 white-space-nowrap">소멸예정
-														쿠폰이 있어요!</div>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -112,11 +99,10 @@
 										<div class="list-group list-group-flush">
 											<a
 												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
-												onclick="location.href='modifyInfo'"
-												style="cursor: pointer;">내 정보 관리</a> <a
+												onclick="location.href='#'" style="cursor: pointer;">
+												내정보 관리 </a> <a
 												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
-												onclick="location.href='#'" style="cursor: pointer;"
-												data-type="faq">자주묻는 질문</a>
+												data-type="faq"> 자주묻는 질문 </a>
 										</div>
 									</div>
 								</div>
@@ -143,49 +129,136 @@
 							</div>
 						</div>
 					</div>
-					<!-- review -->
+
+					<!-- history -->
 					<div class="col-md-8 pb-6">
 						<div class="mypage-section" id="mypage_section_rent_history">
 							<section class="carmore-section pt-0 mobile-header-container">
 								<div class="container">
-									<h3 class="mt-0 pt-3">리뷰 내역</h3>
+									<h3 class="mt-0 pt-3">예약 내역</h3>
 									<br>
-									<thead>
-										<c:choose>
-											<c:when test="${empty myReview}">
-												<p class="space-1 text-center">조회된 기록이 없습니다.</p>
-											</c:when>
-											<c:otherwise>
-												<table class="search_list_tbl for_web">
-													<colgroup>
-														<col style="width: 10%;">
-														<col style="width: 10%;">
-														<col style="width: 80%;">
-													</colgroup>
-													<tr>
-														<th scope="col" style="text-align: center;">예약번호</th>
-														<th scope="col" style="text-align: center;">등록일</th>
-														<th scope="col" style="text-align: center;">내용</th>
-													</tr>
-											</c:otherwise>
-										</c:choose>
-									</thead>
-									<tbody>
-										<c:forEach items="${myReview}" var="myReview">
+									<table class="search_list_tbl for_web">
+										<colgroup>
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+											<col style="width: 16.666%;">
+										</colgroup>
+										<thead>
 											<tr>
-												<td>${myReview.res_id }</td>
-												<td>${myReview.review_updateDate }</td>
+												<th scope="col">예약번호</th>
+												<th scope="col">대여기간</th>
+												<th scope="col">대여지점</th>
+												<th scope="col">차량명</th>
+												<th scope="col">결제금액</th>
+												<th colspan="2" scope="col">주문상태</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>${reserve.res_id}</td>
+												<td>${reserve.res_startDate}
+													<div style="text-align: center;">~</div>
+													${reserve.res_endDate}
+												</td>
+												<td>${reserve.res_place}</td>
 												<td>
 													<div class="link_wrap ">
-														<a
-															href="mypage?tab=review_details&idx=${myReview.review_idx}">
-															${myReview.review_title } </a>
+														<a href="historyPro?res_id=${reserve.res_id}">
+															${reserve.car_name}</a>
 													</div>
 												</td>
+												<td>${reserve.res_totalPrice }원</td>
+												<td class="clip "><input class="btn-danger"
+													type="button" value="예약취소"></td>
+												<td class="clip "><input class="btn-primary"
+													type="button" value="리뷰작성"
+													onclick="location.href='reviewWrite?res_id=${reserve.res_id}&review_place=${reserve.res_place }'">
+												</td>
 											</tr>
-										</c:forEach>
-									</tbody>
+										</tbody>
 									</table>
+										<section class="n-section-block block-discount">
+											<header class="n-table-title">
+												<h2>할인 정보</h2>
+											</header>
+											<table class="n-table table-row">
+												<colgroup>
+													<col style="width: 190px">
+													<col style="width: *">
+												</colgroup>
+												<tbody>
+													<tr>
+														<th scope="row">바로접속</th>
+														<td class="txt-info ">ON 회원 구매</td>
+													</tr>
+													<tr>
+														<th scope="row">배송비</th>
+														<td class="txt-info">0원</td>
+													</tr>
+													<tr>
+														<th scope="row">상품 할인</th>
+														<td class="txt-info">-10,000원</td>
+													</tr>
+													<tr>
+														<th scope="row">등급/제휴 할인</th>
+														<td class="txt-info">-780원 (Lv.4 브론즈)</td>
+													</tr>
+													<tr>
+														<th scope="row">쿠폰 할인</th>
+														<td class="txt-info">-5,850원</td>
+													</tr>
+													<tr>
+														<th scope="row">적립금 선할인</th>
+														<td class="txt-info">-975원</td>
+													</tr>
+													<tr>
+														<th scope="row">적립금 사용</th>
+														<td class="txt-info">-0원</td>
+													</tr>
+													<tr>
+														<th scope="row"><strong>할인 합계</strong></th>
+														<td class="txt-info"><strong>-<span
+																id="total_dc_amt">17,605</span>원
+														</strong> <span class="ml-8 txt-danger total_dc_rate">36%
+																SAVE</span></td>
+													</tr>
+												</tbody>
+											</table>
+										</section>
+										<!-- //할인 정보 -->
+									<section class="n-section-block">
+										<header class="n-table-title bw">
+											<h2>최종 결제 정보</h2>
+										</header>
+
+										<table class="n-table table-row">
+											<colgroup>
+												<col style="width: 190px">
+												<col style="width: *">
+											</colgroup>
+											<tbody>
+												<tr>
+													<th scope="row">상품 합계</th>
+													<td><span id="total_pay_amt">49,000</span>원</td>
+												</tr>
+												<tr>
+													<th scope="row">할인 합계</th>
+													<td class="txt-info">-17,605원</td>
+												</tr>
+												<tr>
+													<th scope="row">결제 수수료</th>
+													<td>0원</td>
+												</tr>
+												<tr>
+													<th scope="row">최종 결제 금액</th>
+													<td><strong class="total">31,395원</strong></td>
+												</tr>
+											</tbody>
+										</table>
+									</section>
 								</div>
 							</section>
 						</div>

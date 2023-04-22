@@ -57,6 +57,7 @@
 												</div>
 											</div>
 										</div>
+
 										<div
 											class="dc-flex justify-content-between px-2 mb-4 is-only-member">
 											<div
@@ -94,12 +95,6 @@
 													<div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>
 													쿠폰
 												</div>
-												<div class="mypage-talk-coupon dc-none"
-													id="js_mypage_talk_coupon" style="display: none;">
-													<div
-														class="talk-coupon text-white line-height-1 white-space-nowrap">소멸예정
-														쿠폰이 있어요!</div>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -112,11 +107,10 @@
 										<div class="list-group list-group-flush">
 											<a
 												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
-												onclick="location.href='modifyInfo'"
-												style="cursor: pointer;">내 정보 관리</a> <a
+												onclick="location.href='#'" style="cursor: pointer;">
+												내정보 관리 </a> <a
 												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
-												onclick="location.href='#'" style="cursor: pointer;"
-												data-type="faq">자주묻는 질문</a>
+												data-type="faq"> 자주묻는 질문 </a>
 										</div>
 									</div>
 								</div>
@@ -143,53 +137,37 @@
 							</div>
 						</div>
 					</div>
-					<!-- review -->
-					<div class="col-md-8 pb-6">
-						<div class="mypage-section" id="mypage_section_rent_history">
-							<section class="carmore-section pt-0 mobile-header-container">
-								<div class="container">
-									<h3 class="mt-0 pt-3">리뷰 내역</h3>
-									<br>
-									<thead>
-										<c:choose>
-											<c:when test="${empty myReview}">
-												<p class="space-1 text-center">조회된 기록이 없습니다.</p>
-											</c:when>
-											<c:otherwise>
-												<table class="search_list_tbl for_web">
-													<colgroup>
-														<col style="width: 10%;">
-														<col style="width: 10%;">
-														<col style="width: 80%;">
-													</colgroup>
-													<tr>
-														<th scope="col" style="text-align: center;">예약번호</th>
-														<th scope="col" style="text-align: center;">등록일</th>
-														<th scope="col" style="text-align: center;">내용</th>
-													</tr>
-											</c:otherwise>
-										</c:choose>
-									</thead>
-									<tbody>
-										<c:forEach items="${myReview}" var="myReview">
-											<tr>
-												<td>${myReview.res_id }</td>
-												<td>${myReview.review_updateDate }</td>
-												<td>
-													<div class="link_wrap ">
-														<a
-															href="mypage?tab=review_details&idx=${myReview.review_idx}">
-															${myReview.review_title } </a>
-													</div>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-									</table>
-								</div>
-							</section>
-						</div>
-					</div>
+
+					<!-- 후기 작성-->
+<!-- 					<div class="col-md-8 pb-6"> -->
+<!-- 						<div class="mypage-section" id="mypage_section_rent_history"> -->
+<!-- 							<section class="carmore-section pt-0 mobile-header-container"> -->
+<!-- 								<div class="container"> -->
+<!-- 									<br> -->
+<!-- 									<div class="form-group"> -->
+<!-- 										<label for="exampleFormControlInput1">예약번호</label> <input -->
+<!-- 											type="text" class="form-control" id="res_id" name="res_id" -->
+<%-- 											value="${param.res_id }" readonly="readonly"> --%>
+<!-- 									</div> -->
+<!-- 									<div class="form-group"> -->
+<!-- 										<label for="exampleFormControlInput1">제목</label> <input -->
+<!-- 											type="text" class="form-control" id="review_title" -->
+<%-- 											name="review_title" value="${myReview.review_title }" --%>
+<!-- 											placeholder="제목을 작성해주세요."> -->
+<!-- 									</div> -->
+<!-- 									<div class="form-group"> -->
+<!-- 										<label for="exampleFormControlTextarea1">내용</label> -->
+<!-- 										<textarea class="form-control" -->
+<%-- 											value="${myReview.review_content }" id="review_content" --%>
+<!-- 											name="review_content" rows="10"></textarea> -->
+<!-- 									</div> -->
+<!-- 									<div style="text-align: right"> -->
+<!-- 										<button type="button" class="btn btn-secondary">목록으로</button> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</section> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 				</div>
 			</div>
 		</div>

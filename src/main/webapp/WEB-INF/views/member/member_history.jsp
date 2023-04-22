@@ -46,14 +46,6 @@
 														<div
 															class="js-mypage-txt-user-id color-grey-5 text-12 mb-0 wordbreak-breakall">${member.member_email}</div>
 													</div>
-													<div
-														class="js-mypage-btn-login is-only-none-member dc-none click-effect-press"
-														style="display: none;">
-														<div class="color-grey-3 text-20 wordbreak-breakword">3초
-															가입/로그인 해주세요</div>
-														<div class="color-grey-5 text-12 mb-0 wordbreak-keepall">회원
-															전용 혜택을 누려보세요 :D</div>
-													</div>
 												</div>
 											</div>
 										</div>
@@ -105,13 +97,12 @@
 									<div>
 										<h3 class="color-grey-3 text-14 list-border-bottom">메뉴</h3>
 										<div class="list-group list-group-flush">
-											<a class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0" onclick="location.href='#'" style="cursor: pointer;">
-											내정보 관리
-											</a> 
-											<a class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
-											data-type="faq">
-											자주묻는 질문
-											</a>
+											<a
+												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
+												onclick="location.href='modifyInfo'"
+												style="cursor: pointer;">내 정보 관리</a> <a
+												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
+												data-type="faq"> 자주묻는 질문 </a>
 										</div>
 									</div>
 								</div>
@@ -146,52 +137,57 @@
 								<div class="container">
 									<h3 class="mt-0 pt-3">예약 내역</h3>
 									<br>
-									<table class="search_list_tbl for_web">
-										<colgroup>
-											<col style="width: 16.666%;">
-											<col style="width: 16.666%;">
-											<col style="width: 16.666%;">
-											<col style="width: 16.666%;">
-											<col style="width: 16.666%;">
-											<col style="width: 16.666%;">
-										</colgroup>
-										<thead>
+									<thead>
+										<c:choose>
+											<c:when test="${empty resList}">
+												<p class="space-1 text-center">조회된 기록이 없습니다.</p>
+											</c:when>
+											<c:otherwise>
+												<table class="search_list_tbl for_web">
+													<colgroup>
+														<col style="width: 16.666%;">
+														<col style="width: 16.666%;">
+														<col style="width: 16.666%;">
+														<col style="width: 16.666%;">
+														<col style="width: 16.666%;">
+														<col style="width: 16.666%;">
+													</colgroup>
+													<tr>
+														<th scope="col" style="text-align: center;">예약번호</th>
+														<th scope="col" style="text-align: center;">대여기간</th>
+														<th scope="col" style="text-align: center;">대여지점</th>
+														<th scope="col" style="text-align: center;">차량명</th>
+														<th scope="col" style="text-align: center;">결제금액</th>
+														<th colspan="2" scope="col" style="text-align: center;">주문상태</th>
+													</tr>
+											</c:otherwise>
+										</c:choose>
+									</thead>
+									<tbody>
+										<c:forEach items="${resList}" var="resList">
 											<tr>
-												<th scope="col">예약번호</th>
-												<th scope="col">대여기간</th>
-												<th scope="col">대여지점</th>
-												<th scope="col">차량명</th>
-												<th scope="col">금액</th>
-												<th colspan="2" scope="col">주문상태</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${resList}" var="resList">
-												<tr>
-													<td>${resList.res_id}</td>
-													<td>${resList.res_startDate} 
-														<div style="text-align: center;">~</div>
-														${resList.res_endDate}
-													</td>
-													<td>${resList.res_place}</td>
-													<td>
-														<div class="link_wrap ">
-															<a href="historyPro?res_id=${resList.res_id}">
+												<td>${resList.res_id}</td>
+												<td>${resList.res_startDate}
+													<div style="text-align: center;">~</div>
+													${resList.res_endDate}
+												</td>
+												<td>${resList.res_place}</td>
+												<td>
+													<div class="link_wrap ">
+														<a href="historyPro?res_id=${resList.res_id}">
 															${resList.car_name}</a>
-														</div>
-													</td>
-													<td>${resList.res_totalPrice }원</td>
-													<td class="clip "><input class="btn-danger"
-<%-- 														type="button" value="후기작성" onclick="location.href='reviewWrite?resIdx=${resIdx}'"> --%>
-														type="button" value="예약취소">
-													</td>
-													<td class="clip "><input class="btn-primary"
-<%-- 														type="button" value="후기작성" onclick="location.href='reviewWrite?resIdx=${resIdx}'"> --%>
-														type="button" value="리뷰작성" onclick="location.href='reviewWrite?res_id=${resList.res_id}&review_place=${resList.res_place }'">
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
+													</div>
+												</td>
+												<td>${resList.res_totalPrice }원</td>
+												<td class="clip "><input class="btn-danger"
+													type="button" value="예약취소"></td>
+												<td class="clip "><input class="btn-primary"
+													type="button" value="리뷰작성"
+													onclick="location.href='reviewWrite?res_id=${resList.res_id}&review_place=${resList.res_place }'">
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
 									</table>
 								</div>
 							</section>

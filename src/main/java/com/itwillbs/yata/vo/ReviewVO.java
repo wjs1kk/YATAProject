@@ -1,6 +1,4 @@
 package com.itwillbs.yata.vo;
-// review_idx, review_writer, review_title, review_content, review_regdate, review_updateDate, review_viewcnt
-
 import java.sql.*;
 /*
 CREATE TABLE review(
@@ -25,7 +23,8 @@ public class ReviewVO {
 	private String review_content;
 	private Date review_updateDate;
 	private String review_star; 
-	private String review_place;
+	private String review_place;	
+	
 	public ReviewVO() {}
 	public ReviewVO(int review_idx, int res_id, String member_email, String member_name, String review_title,
 			String review_content, Date review_updateDate, String review_star, String review_place) {
