@@ -26,4 +26,8 @@ public interface CouponMapper {
 
 	String checkEmail(String member_email);
 
+	int couponEnroll2(@Param("coupon") CouponVO coupon, @Param("coupon_used") CouponUsedVO used, @Param("member_email") String member_email);
+
+	String checkCode2(@Param("member_email")String member_email, CouponUsedVO used);
+
 }

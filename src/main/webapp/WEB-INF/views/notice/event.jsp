@@ -152,13 +152,10 @@
 												</button>
 
 											</div>
-											<img src="resources/images/coupon.png">
+											<img src="resources/images/10P_coupon.jpg">
 											<div class="text-center display-3 font-weight-bold">
-													<a href="couponEnroll">쿠폰발급
-													<script type="text/javascript">
-														
-													</script>
-													</a>																										
+													<button class="w-50 h-10 btn btn-lg btn-primary text-28" style="top: 700px; left: 200px; position: absolute;"
+													onclick="location.href='couponEnroll'">쿠폰 발급</button>																										
 											</div>
 										</div>
 									</div>
@@ -222,13 +219,10 @@
 												</button>
 
 											</div>
-											<img src="resources/images/coupon.png">
+											<img src="resources/images/30P_coupon.jpg">
 											<div class="text-center display-3 font-weight-bold">
-												<a href="couponEnroll2">쿠폰발급2
-													<script type="text/javascript">
-														
-													</script>
-													</a>	
+													<button class="w-50 h-10 btn btn-lg btn-primary text-28" style="top: 750px; left: 200px; position: absolute;"
+													onclick="location.href='couponEnroll2'">쿠폰 발급2</button>																										
 											</div>
 										</div>
 									</div>

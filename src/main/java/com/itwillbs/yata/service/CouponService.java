@@ -47,4 +47,13 @@ public class CouponService {
 	public String checkEmail(String member_email) {
 		return mapper.checkEmail(member_email);
 	}
+
+	public int couponEnroll2(CouponVO coupon, CouponUsedVO used, String member_email) {
+		return mapper.couponEnroll2(coupon, used, member_email);
+	}
+
+	public String checkCode2(String member_email, CouponUsedVO used) {
+		// TODO Auto-generated method stub
+		return mapper.checkCode2(member_email, used);
+	}
 }

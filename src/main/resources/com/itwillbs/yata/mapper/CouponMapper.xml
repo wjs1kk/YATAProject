@@ -49,20 +49,38 @@
 	</delete>
 
 	<select id="checkEmail" resultType="string">
-		SELECT coup_code
+		SELECT member_email
 		FROM coupon_used
 		WHERE member_email = #{member_email}
+		AND coup_code = (SELECT coup_code
+						FROM coupon
+						WHERE coup_percent = 0.1
+						AND coup_percent = 0.3)	
 	</select>
-
+	
+<!-- 	10% 쿠폰이 있는지 확인 -->
 	<select id="checkCode" resultType="string">
 		SELECT coup_code
-		FROM coupon_used
+		FROM coupon_used 
 		WHERE member_email = #{member_email}
+		AND coup_code = (SELECT coup_code
+					     FROM coupon
+					     WHERE coup_percent = 0.1)
 	</select>
-
+<!-- 	30% 쿠폰이 있는지 확인 -->
+	<select id="checkCode2" resultType="string">
+		SELECT coup_code
+		FROM coupon_used
+		WHERE member_email = #{member_email}  
+		AND	coup_code = (SELECT coup_code
+			  		     FROM coupon
+						 WHERE coup_percent = 0.3)
+	</select>
+	
+<!-- 	10% 쿠폰 발급 -->
 	<insert id="couponEnroll">
 
-		INSERT INTO coupon_used(used_idx, member_email, coup_useable, coup_code)
+		INSERT INTO coupon_used(used_idx, member_email, coup_useable, coup_code, coup_percent)
 		VALUES( null,
 				(SELECT MEMBER_EMAIL
 				FROM member
@@ -70,7 +88,33 @@
 				'Y',
 				(SELECT coup_code
 				 FROM coupon c
-				 limit 1)
+				 where coup_percent = 0.1
+				 ),
+				 
+				 (SELECT coup_percent
+				 FROM coupon c
+				 where coup_percent = 0.1
+				 )
+		)
+	</insert>
+	
+<!-- 	30% 쿠폰 발급 -->
+	<insert id="couponEnroll2">
+
+		INSERT INTO coupon_used(used_idx, member_email, coup_useable, coup_code, coup_percent)
+		VALUES( null,
+				(SELECT MEMBER_EMAIL
+				FROM member
+				WHERE MEMBER_EMAIL = #{member_email}),
+				'Y',
+				(SELECT coup_code
+				 FROM coupon c
+				 WHERE coup_percent = 0.3
+				 ),
+				(SELECT coup_percent
+				 FROM coupon c
+				 WHERE coup_percent = 0.3
+				 )
 		)
 	</insert>
 </mapper>

@@ -142,7 +142,7 @@ public class AdminController {
 			}
 		}
 		
-		//쿠폰발급
+		//쿠폰발급 10%
 		@GetMapping("couponEnroll")
 		public String Enroll(
 				MemberVO member, CouponUsedVO used, CouponVO coupon,  Model model, HttpSession session) {
@@ -153,15 +153,15 @@ public class AdminController {
 				model.addAttribute("msg", "로그인 필수!");
 				return "fail_back";
 			} else {			
-				//사용자 중복 확인
-				String checkEmail = couponService.checkEmail(member_email);
-
-				if(checkEmail == null) {
-					//이미 발급받은 쿠폰인지 확인
-					String checkIdx = couponService.checkCode(member_email, used);
-					if(checkIdx != null) {
-						model.addAttribute("msg", "이미 발급 받으신 쿠폰입니다");
-						return "fail_back";
+				//이미 발급받은 쿠폰인지 확인
+				String checkIdx = couponService.checkCode(member_email, used);
+				if(checkIdx == null) {
+					//사용자 중복 확인
+						String checkEmail = couponService.checkEmail(member_email);
+						
+						if(checkEmail != null) {
+							model.addAttribute("msg", "이미 발급 받으신 사용자입니다.");
+							return "fail_back";
 					} else {
 						//발급					
 						int EnrollCount = couponService.couponEnroll(coupon, used, member_email);
@@ -176,10 +176,49 @@ public class AdminController {
 						}
 					}
 				} else {
-					model.addAttribute("msg", "이미 발급 받으신 사용자입니다.");
+					model.addAttribute("msg", "이미 발급 받으신 쿠폰입니다");
 					return "fail_back";
 				}
 			}											
 		}
 		
+		//쿠폰발급 30%
+				@GetMapping("couponEnroll2")
+				public String Enroll2(
+						MemberVO member, CouponUsedVO used, CouponVO coupon,  Model model, HttpSession session) {
+				
+					String member_email = (String)session.getAttribute("member_email");
+
+					if(member_email == null){
+						model.addAttribute("msg", "로그인 필수!");
+						return "fail_back";
+					} else {			
+						//이미 발급받은 쿠폰인지 확인
+
+						String checkIdx = couponService.checkCode2(member_email, used);
+						if(checkIdx == null) {
+							//사용자 중복 확인
+							String checkEmail = couponService.checkEmail(member_email);
+							if(checkEmail != null) {
+								model.addAttribute("msg", "이미 발급 받으신 사용자입니다.");
+								return "fail_back";
+							} else {
+								//발급					
+								int EnrollCount = couponService.couponEnroll2(coupon, used, member_email);
+								
+								if(EnrollCount > 0) {
+									model.addAttribute("msg", "등록 완료!");
+									model.addAttribute("target", "event");
+									return "success";
+								} else{
+									model.addAttribute("msg", "등록 실패!");
+									return "fail_back";
+								}
+							}
+						} else {
+							model.addAttribute("msg", "이미 발급 받으신 쿠폰입니다");
+							return "fail_back";
+						}
+					}											
+				}
 }
