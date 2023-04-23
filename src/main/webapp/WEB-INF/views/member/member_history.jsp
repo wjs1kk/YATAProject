@@ -137,12 +137,12 @@
 								<div class="container">
 									<h3 class="mt-0 pt-3">예약 내역</h3>
 									<br>
-									<thead>
-										<c:choose>
-											<c:when test="${empty resList}">
-												<p class="space-1 text-center">조회된 기록이 없습니다.</p>
-											</c:when>
-											<c:otherwise>
+									<c:choose>
+										<c:when test="${empty resList}">
+											<p class="space-1 text-center">조회된 기록이 없습니다.</p>
+										</c:when>
+										<c:otherwise>
+											<thead>
 												<table class="search_list_tbl for_web">
 													<colgroup>
 														<col style="width: 16.666%;">
@@ -160,35 +160,36 @@
 														<th scope="col" style="text-align: center;">결제금액</th>
 														<th colspan="2" scope="col" style="text-align: center;">주문상태</th>
 													</tr>
-											</c:otherwise>
-										</c:choose>
-									</thead>
-									<tbody>
-										<c:forEach items="${resList}" var="resList">
-											<tr>
-												<td>${resList.res_id}</td>
-												<td>${resList.res_startDate}
-													<div style="text-align: center;">~</div>
-													${resList.res_endDate}
-												</td>
-												<td>${resList.res_place}</td>
-												<td>
-													<div class="link_wrap ">
-														<a href="historyPro?res_id=${resList.res_id}">
-															${resList.car_name}</a>
-													</div>
-												</td>
-												<td>${resList.res_totalPrice }원</td>
-												<td class="clip "><input class="btn-danger"
-													type="button" value="예약취소"></td>
-												<td class="clip "><input class="btn-primary"
-													type="button" value="리뷰작성"
-													onclick="location.href='reviewWrite?res_id=${resList.res_id}&review_place=${resList.res_place }'">
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-									</table>
+
+													</thead>
+													<tbody>
+														<c:forEach items="${resList}" var="resList">
+															<tr>
+																<td>${resList.res_id}</td>
+																<td>${resList.res_startDate}
+																	<div style="text-align: center;">~</div>
+																	${resList.res_endDate}
+																</td>
+																<td>${resList.res_place}</td>
+																<td>
+																	<div class="link_wrap ">
+																		<a href="historyPro?res_id=${resList.res_id}">
+																			${resList.car_name}</a>
+																	</div>
+																</td>
+																<td>${resList.res_totalPrice }원</td>
+																<td class="clip "><input class="btn-primary"
+																	type="button" value="리뷰작성"
+																	onclick="location.href='reviewWrite?res_id=${resList.res_id}&review_place=${resList.res_place }'">
+																</td>
+																<td class="clip "><input class="btn-danger"
+																	type="button" value="예약취소"></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</section>
 						</div>

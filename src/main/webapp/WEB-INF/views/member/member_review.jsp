@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
@@ -158,13 +157,15 @@
 											<c:otherwise>
 												<table class="search_list_tbl for_web">
 													<colgroup>
-														<col style="width: 10%;">
-														<col style="width: 10%;">
-														<col style="width: 80%;">
+														<col style="width: 5%;">
+														<col style="width: 15%;">
+														<col style="width: 20%;">
+														<col style="width: 60%;">
 													</colgroup>
 													<tr>
 														<th scope="col" style="text-align: center;">예약번호</th>
 														<th scope="col" style="text-align: center;">등록일</th>
+														<th scope="col" style="text-align: center;">별점</th>
 														<th scope="col" style="text-align: center;">내용</th>
 													</tr>
 											</c:otherwise>
@@ -176,12 +177,10 @@
 												<td>${myReview.res_id }</td>
 												<td>${myReview.review_updateDate }</td>
 												<td>
-													<div class="link_wrap ">
-														<a
-															href="mypage?tab=review_details&idx=${myReview.review_idx}">
-															${myReview.review_title } </a>
-													</div>
+<%-- 												<c:forEach begin="1" end="${myReview.review_star}">★</c:forEach> --%>
+													${myReview.review_star }
 												</td>
+												<td>${myReview.review_title }</td>
 											</tr>
 										</c:forEach>
 									</tbody>

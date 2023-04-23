@@ -2,6 +2,8 @@ package com.itwillbs.yata.controller;
 
 import java.util.List;
 
+import javax.print.attribute.standard.OrientationRequested;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -207,18 +209,20 @@ public class MemberController {
 	}
 	// 리뷰 작성
 	@PostMapping("reviewWritePro")
-	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place) {
+	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place,
+			@RequestParam String review_star) {
 		String member_email = (String)session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
-		System.out.println(res_id);
-
+		
+		
 		review.setMember_email(member_email);
 		review.setRes_id(res_id);
 		review.setMember_name(member.getMember_name());
 		review.setReview_place(res_place);
+		review.setReview_star(review_star);
+		System.out.println("review_star: " + review_star);
 		
 		int insertCount = reviewService.insertReview(review);
-		System.out.println(insertCount);
 		if (insertCount > 0) {
 			return "redirect:/mypage?tab=history";
 		} else {
@@ -226,13 +230,6 @@ public class MemberController {
 			return "fail_back";
 		}
 
-	}
-	
-	// 리뷰작성 - 상세보기
-	@GetMapping("revivewDetails")
-	public String revivewDetails(ReviewVO review) {
-		
-		return "member/member_review_details";
 	}
 	
 	// 예약내역 상세보기

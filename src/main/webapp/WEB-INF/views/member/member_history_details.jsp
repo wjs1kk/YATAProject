@@ -180,9 +180,10 @@
 											</tr>
 										</tbody>
 									</table>
+									
 										<section class="n-section-block block-discount">
 											<header class="n-table-title">
-												<h2>할인 정보</h2>
+												<h4>할인 정보</h4>
 											</header>
 											<table class="n-table table-row">
 												<colgroup>
@@ -191,49 +192,32 @@
 												</colgroup>
 												<tbody>
 													<tr>
-														<th scope="row">바로접속</th>
-														<td class="txt-info ">ON 회원 구매</td>
-													</tr>
-													<tr>
-														<th scope="row">배송비</th>
-														<td class="txt-info">0원</td>
-													</tr>
-													<tr>
 														<th scope="row">상품 할인</th>
 														<td class="txt-info">-10,000원</td>
-													</tr>
-													<tr>
-														<th scope="row">등급/제휴 할인</th>
-														<td class="txt-info">-780원 (Lv.4 브론즈)</td>
 													</tr>
 													<tr>
 														<th scope="row">쿠폰 할인</th>
 														<td class="txt-info">-5,850원</td>
 													</tr>
 													<tr>
-														<th scope="row">적립금 선할인</th>
-														<td class="txt-info">-975원</td>
-													</tr>
-													<tr>
-														<th scope="row">적립금 사용</th>
+														<th scope="row">포인트 사용</th>
 														<td class="txt-info">-0원</td>
 													</tr>
 													<tr>
 														<th scope="row"><strong>할인 합계</strong></th>
 														<td class="txt-info"><strong>-<span
-																id="total_dc_amt">17,605</span>원
-														</strong> <span class="ml-8 txt-danger total_dc_rate">36%
-																SAVE</span></td>
+																id="total_dc_amt">15,850</span>원
+														</strong>
+													
 													</tr>
 												</tbody>
 											</table>
 										</section>
-										<!-- //할인 정보 -->
+									<!-- //할인 정보 -->
 									<section class="n-section-block">
 										<header class="n-table-title bw">
-											<h2>최종 결제 정보</h2>
+											<h4>최종 결제 정보</h4>
 										</header>
-
 										<table class="n-table table-row">
 											<colgroup>
 												<col style="width: 190px">

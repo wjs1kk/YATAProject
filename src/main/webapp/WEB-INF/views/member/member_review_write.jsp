@@ -8,21 +8,65 @@
 <meta charset="UTF-8">
 <title>YATA</title>
 <!--  폰트어썸 -->
-<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!--  JQuery 최신버전 -->
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style type="text/css">
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reviewContents {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
+</style>
 <link rel="stylesheet" href="resources/css/style.css">
 <script type="text/javascript">
-/*
- 리뷰작성 - 별점 찍기
- */
-$(function() {	
-	$('.make_star i').click(function() {
-		var targetNum = $(this).index() + 1;
-		$('.make_star i').css({color:'#000'});
-		$('.make_star i:nth-child(-n+' + targetNum + ')').css({color: '#F05522'});
+	/*
+	 리뷰작성 - 별점 찍기
+	 */
+	$(function() {
+		$('.make_star i').click(function() {
+			var targetNum = $(this).index() + 1;
+			$('.make_star i').css({
+				color : '#000'
+			});
+			$('.make_star i:nth-child(-n+' + targetNum + ')').css({
+				color : '#F05522'
+			});
+
+		});
+
 	});
-});
 </script>
 </head>
 <body>
@@ -152,39 +196,49 @@ $(function() {
 								<div class="container">
 									<h3 class="mt-0 pt-3">후기 작성</h3>
 									<br>
-									<form action="reviewWritePro?res_place=${param.res_place }" method="post">
+									<form name="myform" id="myform"
+										action="reviewWritePro?res_place=${param.res_place}&review_star=${review.star}"
+										method="post">
 										<div class="form-group">
-											<label for="exampleFormControlInput1">예약번호</label> <input
-												type="text" class="form-control"
-												id="res_id" name="res_id"
-												value="${param.res_id }"
-												readonly="readonly">
+											<p>예약번호</p> 
+											<input
+												type="text" class="form-control" id="res_id" name="res_id"
+												value="${param.res_id }" readonly="readonly">
 										</div>
 										<div class="form-group">
-											<label for="exampleFormControlInput1">상품정보</label> <input
-												type="text" class="form-control"
-												id="review_title" name="review_title" 
-												readonly="readonly">
+											<p>상품정보</p> 
+											<input type="text" class="form-control" id="review_title"
+												name="review_title" readonly="readonly">	
 										</div>
 										<div class="form-group">
-											<label for="exampleFormControlInput1">별점을 매겨주세요</label> 
+											<p>별점을 매겨주세요</p>
 											<div class="make_star">
-												<div class="rating">
-													<i class="fas fa-star" id="review_star"></i>
-													<i class="fas fa-star" id="2"></i>
-													<i class="fas fa-star" id="3"></i>
-													<i class="fas fa-star" id="4"></i>
-													<i class="fas fa-star" id="5"></i>
-												</div>
-											</div>	
+												<fieldset>
+														<input type="radio" name="review_star" value="5" id="rate1">
+														<label for="rate1">★</label> 
+														<input type="radio" name="review_star" value="4" id="rate2">
+														<label for="rate2">★</label> 
+														<input type="radio" name="review_star" value="3" id="rate3">
+														<label for="rate3">★</label> 
+														<input type="radio" name="review_star" value="2" id="rate4">
+														<label for="rate4">★</label> 
+														<input type="radio" name="review_star" value="1" id="rate5">
+														<label for="rate5">★</label>
+												</fieldset>
+											</div>
 										</div>
 										<div class="form-group">
-											<label for="exampleFormControlTextarea1">상품에 대한 평가를 20자 이상 작성해 주세요</label>
+											<p>제목</p> 
+											<input type="text" class="form-control" id="review_title"
+												name="review_title" readonly="readonly">	
+										</div>
+										<div class="form-group">
+											<p>상품에 대한 평가를 20자 이상 작성해 주세요</p>
 											<textarea class="form-control" placeholder="내용"
 												id="review_content" name="review_content" rows="10"></textarea>
 										</div>
 										<div style="text-align: right">
-											<button type="submit" class="btn btn-info" >등록하기</button>
+											<button type="submit" class="btn btn-info">등록하기</button>
 											<button type="button" class="btn btn-secondary">목록으로</button>
 										</div>
 									</form>

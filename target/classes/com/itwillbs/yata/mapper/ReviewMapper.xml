@@ -15,7 +15,6 @@
 	</select>
 
 	<!-- 리뷰 작성 -->
-	<!-- 별점, 카운트 수정 예정 -->
 	<insert id="insertReview">
 		<selectKey keyProperty="review_idx" resultType="int" order="BEFORE">
 			SELECT IFNULL(MAX(review_idx), 1) FROM review
@@ -29,7 +28,7 @@
 					  , #{review_title}
 					  , #{review_content}
 					  , CURRENT_TIMESTAMP()
-					  , 0
+					  , #{review_star}
 					  , #{review_place}
 					)
 	</insert>					
