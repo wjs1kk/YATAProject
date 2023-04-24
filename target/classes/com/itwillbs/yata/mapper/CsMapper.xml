@@ -1,100 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-  <mapper namespace="com.itwillbs.yata.mapper.CsMapper">
+<mapper namespace="com.itwillbs.yata.mapper.CsMapper">
+	
+	<select id="selectCsList"
+		resultType="com.itwillbs.yata.vo.NoticeVO">
+		SELECT *
+		FROM cs
+		ORDER BY
+		board_re_ref DESC
+		, board_re_seq ASC
+		LIMIT 10
+	</select>
 
-  <insert id="insertCs">
-  	INSERT
-  		INTO cs
-  		VALUES (
-  			#{board_num} + 1
-  			, #{board_subject}
-  			, #{board_content}
-  			, #{board_num} + 1
-  			, 0
-  		)
-  </insert>
+	<select id="searchByCs" parameterType="String"
+		resultType="com.itwillbs.yata.vo.NoticeVO">
+		SELECT *
+		FROM cs
+		WHERE board_subject LIKE CONCAT('%',#{board_subject},'%');
+	</select>
 
-  <select id="selectMaxCsNum" resultType="int">
-  	SELECT IFNULL(MAX(board_num), 0) FROM cs
-  </select>
+	<select id="getMailForm"
+		resultType="com.itwillbs.yata.vo.MailFormVO">
+		SELECT *
+		FROM mailForm
+		WHERE board_num = #{board_num}
+	</select>
+	
+	<insert id="insertMailForm">
+		<selectKey keyProperty="board_num" resultType="int"
+			order="BEFORE">
+			SELECT IFNULL(MAX(board_num), 0) FROM mailForm
+		</selectKey>
+		INSERT
+		INTO mailForm
+		VALUES (
+		  #{board_num} + 1
+		, #{member_email}
+		, '진행중'
+		, #{board_subject}
+		, #{board_content}
+		, #{board_num} + 1
+		, 0
+		, 0
+		, now()
+		)
+	</insert>
 
-  <insert id="insertCs2">
-  	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
-  		SELECT IFNULL(MAX(board_num), 0) FROM cs
-  	</selectKey>
-  	INSERT
-  		INTO cs
-  		VALUES (
-  			#{board_num} + 1
-  			, #{board_subject}
-  			, #{board_content}
-  			, #{board_num} + 1
-  			, 0
-  		)
-  </insert>
-
-  <select id="selectCsList" resultType="com.itwillbs.yata.vo.NoticeVO">
-  	SELECT *
-  		FROM cs
-  		ORDER BY
-  			board_re_ref DESC
-  			, board_re_seq ASC
-  		LIMIT 10
-  </select>
-
-  <select id="searchByCs" parameterType="String" resultType="com.itwillbs.yata.vo.NoticeVO">
-  	 	SELECT * 
-  	 		FROM cs 
-  	 		WHERE board_subject LIKE CONCAT('%',#{board_subject},'%');
-  	</select>
-
-  	<select id="selectMailFormList" resultType="com.itwillbs.yata.vo.MailFormVO">
-  	SELECT *
-  		FROM mailForm
-  		ORDER BY
-  			board_re_ref DESC
-  			, board_re_seq ASC
-  		LIMIT 10
-  </select>
-
-  <insert id="insertMailForm2">
-  	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
-  		SELECT IFNULL(MAX(board_num), 0) FROM mailForm
-  	</selectKey>
-  	INSERT
-  		INTO mailForm
-  		VALUES (
-  			#{board_num} + 1
-  			, '진행중'
-  			, #{board_subject}
-  			, #{board_content}
-  			, #{board_num} + 1
-  			, 0
-  			, now()
-  		)
-  </insert>
-
-  <delete id="deleteView">
-  	DELETE
-  		FROM mailForm
-  			WHERE board_num = #{board_num}
-  </delete>
-
-  <select id="getMailForm" resultType="com.itwillbs.yata.vo.MailFormVO">
-  	SELECT *
-  	FROM mailForm
-  	WHERE board_num = #{board_num}
-  </select>
-
-  <delete id="deleteCsView">
-  	DELETE
-  		FROM cs
-  		WHERE board_num = #{board_num}
-  </delete>
-
-  <select id="getCs">
-  	SELECT *
-  	FROM cs
-  	WHERE board_num = #{board_num}
-  </select>
+	<delete id="deleteView">
+		DELETE
+		FROM mailForm
+		WHERE board_num = #{board_num}
+	</delete>
+	
+	<select id="selectMyMail" resultType="com.itwillbs.yata.vo.MailFormVO">
+		SELECT *
+		FROM mailForm
+		WHERE member_email = #{member_email}
+		ORDER BY
+				board_re_ref DESC
+				, board_re_seq ASC
+			LIMIT 
+				#{startRow}
+				, #{listLimit};
+	</select>
+	
+	<select id="selectMyMailCount" resultType="Integer">
+		SELECT COUNT(member_email)
+		FROM mailForm
+		WHERE member_email = #{member_email}
+	</select>
+	
 </mapper>
