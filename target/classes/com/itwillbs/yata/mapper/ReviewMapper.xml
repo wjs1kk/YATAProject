@@ -21,15 +21,15 @@
 		</selectKey>
 		INSERT INTO review 
 					value (
-						#{review_idx} + 1
-					  , #{res_id}
-					  , #{member_email}
-					  ,	#{member_name}
-					  , #{review_title}
-					  , #{review_content}
-					  , CURRENT_TIMESTAMP()
-					  , #{review_star}
-					  , #{review_place}
+					   #{review_idx} + 1
+					  ,#{res_id}
+					  ,#{member_email}
+					  ,#{member_name}
+					  ,#{review_title}
+					  ,#{review_content}
+					  ,CURRENT_TIMESTAMP()
+					  ,#{review_star}
+					  ,#{review_place}
 					)
 	</insert>					
 	
@@ -63,5 +63,13 @@
  		  WHERE review_place = #{place}
   		 ORDER BY review_idx DESC
   		 LIMIT 10
+	</select>
+	
+	<select id="selectResId" parameterType="int">
+		SELECT res_id
+		  FROM review
+		WHERE member_email = #{member_email}
+		  AND res_id = #{res_id}
+		LIMIT 1;
 	</select>
 </mapper>

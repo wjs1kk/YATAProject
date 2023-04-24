@@ -2,6 +2,7 @@ package com.itwillbs.yata.mapper;
 
 import java.util.*;
 
+import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.yata.vo.*;
 
@@ -12,4 +13,5 @@ public interface ReviewMapper {
 	public List<ReviewVO> selectMyReview(String member_email);
 	public Integer selectMyReviewCount(String member_email);
 	public List<ReviewVO> listReview(String res_place);
+	public ReviewVO selectResId(@Param("member_email") String member_email,@Param("res_id")  int res_id);
 }

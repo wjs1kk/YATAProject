@@ -174,8 +174,8 @@
 												<td class="clip "><input class="btn-danger"
 													type="button" value="예약취소"></td>
 												<td class="clip "><input class="btn-primary"
-													type="button" value="리뷰작성"
-													onclick="location.href='reviewWrite?res_id=${reserve.res_id}&review_place=${reserve.res_place }'">
+												type="button" value="리뷰작성"
+												onclick="location.href='reviewWrite?res_id=${reserve.res_id}&review_place=${reserve.res_place }'">
 												</td>
 											</tr>
 										</tbody>

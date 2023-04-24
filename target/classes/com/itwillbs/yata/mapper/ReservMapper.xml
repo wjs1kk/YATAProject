@@ -58,4 +58,5 @@
               ON r.car_id = c.car_id
 			 	WHERE res_id = #{res_id}
 	</select>
+
 </mapper>

@@ -31,4 +31,8 @@ public class ReviewService {
 	public List<ReviewVO> listReview(String place) {
 		return mapper.listReview(place);
 	}
+
+	public ReviewVO getResId(String member_email, int res_id) {
+		return mapper.selectResId(member_email, res_id);
+	}
 }

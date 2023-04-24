@@ -80,7 +80,9 @@ public class MemberController {
 
 	// 마이페이지
 	@GetMapping("mypage")
-	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member, Model model, HttpSession session) {
+	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member
+			, Model model, HttpSession session, @RequestParam int res_id) {
+			
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
@@ -89,14 +91,15 @@ public class MemberController {
 		if(tab.equals("history")) {	
 			List<ReservVO> resList = reservService.myReservation(member_email);
 			model.addAttribute("resList", resList);
+			
+			ReviewVO reviewResId = reviewService.getResId(member_email, res_id);
+			model.addAttribute("reviewResId", reviewResId);
 			return "member/member_history";
 
 		// 나의리뷰	
 		} else if(tab.equals("review")) {
 			List<ReviewVO> myReviewList = reviewService.myReview(member_email);
-			Integer myReviewCount = reviewService.selectMyReviewCount((String) session.getAttribute("member_email"));
 			model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
-			model.addAttribute("myReviewCount", myReviewCount); // 나의 리뷰 개수
 
 			return "member/member_review";
 

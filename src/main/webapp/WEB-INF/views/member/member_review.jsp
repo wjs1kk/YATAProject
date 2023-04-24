@@ -149,42 +149,56 @@
 								<div class="container">
 									<h3 class="mt-0 pt-3">리뷰 내역</h3>
 									<br>
-									<thead>
-										<c:choose>
-											<c:when test="${empty myReview}">
-												<p class="space-1 text-center">조회된 기록이 없습니다.</p>
-											</c:when>
-											<c:otherwise>
-												<table class="search_list_tbl for_web">
-													<colgroup>
+									
+									<c:choose>
+										<c:when test="${empty myReview}">
+											<p class="space-1 text-center">조회된 기록이 없습니다.</p>
+										</c:when>
+										<c:otherwise>
+											<table class="search_list_tbl for_web">
+												<colgroup>
 														<col style="width: 5%;">
 														<col style="width: 15%;">
 														<col style="width: 20%;">
 														<col style="width: 60%;">
-													</colgroup>
+												</colgroup>
+												<thead>
 													<tr>
 														<th scope="col" style="text-align: center;">예약번호</th>
 														<th scope="col" style="text-align: center;">등록일</th>
-														<th scope="col" style="text-align: center;">별점</th>
+														<th scope="col" style="text-align: center;">@</th>
 														<th scope="col" style="text-align: center;">내용</th>
 													</tr>
-											</c:otherwise>
-										</c:choose>
-									</thead>
-									<tbody>
-										<c:forEach items="${myReview}" var="myReview">
-											<tr>
-												<td>${myReview.res_id }</td>
-												<td>${myReview.review_updateDate }</td>
-												<td>
-<%-- 												<c:forEach begin="1" end="${myReview.review_star}">★</c:forEach> --%>
-													${myReview.review_star }
-												</td>
-												<td>${myReview.review_title }</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-									</table>
+												</thead>	
+												<tbody>
+												<c:forEach items="${myReview}" var="myReview">
+													<tr>
+														<td>${myReview.res_id }</td>
+														<td>${myReview.review_updateDate }</td>
+														<td>
+															<c:if test="${myReview.review_star == '5' }">
+																★★★★★
+															</c:if>
+															<c:if test="${myReview.review_star == '4' }">
+																★★★★
+															</c:if>	
+															<c:if test="${myReview.review_star == '3' }">
+																★★★
+															</c:if>	
+															<c:if test="${myReview.review_star == '2' }">
+																★★
+															</c:if>		
+															<c:if test="${myReview.review_star == '1' }">
+																★
+															</c:if>	
+														</td>
+														<td>${myReview.review_title }</td>
+													</tr>
+												</c:forEach>
+												</tbody>
+											</table>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</section>
 						</div>
