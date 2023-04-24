@@ -1,5 +1,6 @@
 package com.itwillbs.yata;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +25,17 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		List<ReviewVO> reviewList = service.getReview();
-//	    System.out.println(reviewList);
 	    model.addAttribute("review", reviewList);
 	    return "index";
 	}
-	//쿠폰번호 전달
+	//쿠폰정보
 	@GetMapping("event")
-	public String event(String coup_code, Model model) {
-		String coupon = couponService.getCouponNum(coup_code);
-		model.addAttribute("coupon", coupon);
-		System.out.println(coupon);
+	public String event(CouponVO coupon, Model model) {
+		List<CouponVO> couponList = couponService.couponList();
+		model.addAttribute("couponList", couponList);
 		return "notice/event";
 	}
+	
 	@GetMapping("notice_view")
 	public String notice_view() {
 

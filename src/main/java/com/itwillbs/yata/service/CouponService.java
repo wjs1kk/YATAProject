@@ -1,5 +1,6 @@
 package com.itwillbs.yata.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,24 +37,21 @@ public class CouponService {
 		return mapper.getNum(coup_code);
 	}
 
-	public int couponEnroll(CouponVO coupon, CouponUsedVO used, String member_email) {
-		return mapper.couponEnroll(coupon, used, member_email);
+	public int couponEnroll(int coup_idx, String member_email) {
+		return mapper.couponEnroll(coup_idx, member_email);
 	}
 
-	public String checkCode(String member_email, CouponUsedVO used) {
-		return mapper.checkCode(member_email, used);
+	public Integer checkCode(int coup_idx, String member_email) {
+		return mapper.checkCode(coup_idx, member_email);
 	}
 
 	public String checkEmail(String member_email) {
 		return mapper.checkEmail(member_email);
 	}
 
-	public int couponEnroll2(CouponVO coupon, CouponUsedVO used, String member_email) {
-		return mapper.couponEnroll2(coupon, used, member_email);
+	public CouponVO couponNext(CouponVO coupon) {
+		return mapper.coupNext(coupon);
 	}
 
-	public String checkCode2(String member_email, CouponUsedVO used) {
-		// TODO Auto-generated method stub
-		return mapper.checkCode2(member_email, used);
-	}
+
 }

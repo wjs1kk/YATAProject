@@ -1,5 +1,6 @@
 package com.itwillbs.yata.mapper;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -20,14 +21,14 @@ public interface CouponMapper {
 
 	String getNum(String coup_code);
 
-	int couponEnroll(@Param("coupon") CouponVO coupon, @Param("coupon_used") CouponUsedVO used, @Param("member_email") String member_email);
 
-	String checkCode(@Param("member_email")String member_email, CouponUsedVO used);
+	Integer checkCode(@Param("coup_idx") int coup_idx,@Param("member_email") String member_email);
 
 	String checkEmail(String member_email);
 
-	int couponEnroll2(@Param("coupon") CouponVO coupon, @Param("coupon_used") CouponUsedVO used, @Param("member_email") String member_email);
+	CouponVO coupNext(CouponVO coupon);
 
-	String checkCode2(@Param("member_email")String member_email, CouponUsedVO used);
+	int couponEnroll(@Param("coup_idx") int coup_idx,@Param("member_email") String member_email);
+
 
 }
