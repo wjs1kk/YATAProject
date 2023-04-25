@@ -197,18 +197,13 @@
 									<h3 class="mt-0 pt-3">후기 작성</h3>
 									<br>
 									<form name="myform" id="myform"
-										action="reviewWritePro?res_place=${param.res_place}&review_star=${review.star}"
+										action="reviewWritePro?res_place=${param.res_place}"
 										method="post">
 										<div class="form-group">
 											<p>예약번호</p> 
 											<input
 												type="text" class="form-control" id="res_id" name="res_id"
 												value="${param.res_id }" readonly="readonly">
-										</div>
-										<div class="form-group">
-											<p>상품정보</p> 
-											<input type="text" class="form-control" id="review_title"
-												name="review_title" readonly="readonly">	
 										</div>
 										<div class="form-group">
 											<p>별점을 매겨주세요</p>
@@ -228,13 +223,8 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<p>제목</p> 
-											<input type="text" class="form-control" id="review_title"
-												name="review_title" readonly="readonly">	
-										</div>
-										<div class="form-group">
 											<p>상품에 대한 평가를 20자 이상 작성해 주세요</p>
-											<textarea class="form-control" placeholder="내용"
+											<textarea class="form-control" placeholder="내용" required="required"
 												id="review_content" name="review_content" rows="10"></textarea>
 										</div>
 										<div style="text-align: right">
@@ -244,7 +234,7 @@
 									</form>
 								</div>
 							</section>
-						</div>
+						</div> 
 					</div>
 				</div>
 			</div>

@@ -157,6 +157,7 @@
 														<th scope="col" style="text-align: center;">대여지점</th>
 														<th scope="col" style="text-align: center;">차량명</th>
 														<th scope="col" style="text-align: center;">결제금액</th>
+<!-- 														<th scope="col" style="text-align: center;">주문상태</th> -->
 														<th colspan="2" scope="col" style="text-align: center;">주문상태</th>
 													</tr>
 												</thead>
@@ -171,15 +172,20 @@
 															<td>${resList.res_place}</td>
 															<td>
 																<div class="link_wrap ">
-																	<a href="historyPro?res_id=${resList.res_id}">
+																	<a href="historyDetails?res_id=${resList.res_id}">
 																		${resList.car_name}</a>
 																</div>
 															</td>
 															<td>${resList.res_totalPrice }원</td>
-															<td class="clip "><input class="btn-danger"
-																type="button" value="예약취소">
+															<td class="clip ">
+															<a href="deleteReserve?res_id=${resList.res_id}">취소링크</a>
+<!-- 															<input class="btn-danger" -->
+<!-- 																type="button" value="예약취소" -->
+<%-- 																onclick="location.href='deleteReserve?res_id=${reserve.res_id}'"> --%>
 															</td>
-															<td class="clip "><input class="btn-primary"
+															<td class="clip ">
+															
+																<input class="btn-primary"
 																type="button" value="리뷰작성"
 																onclick="location.href='reviewWrite?res_id=${resList.res_id}&review_place=${resList.res_place }'">
 															</td>

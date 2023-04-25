@@ -32,7 +32,8 @@ public class ReviewService {
 		return mapper.listReview(place);
 	}
 
-	public ReviewVO getResId(String member_email, int res_id) {
-		return mapper.selectResId(member_email, res_id);
+	public Integer getResId(Integer res_id) {
+		return mapper.selectResId(res_id);
 	}
+
 }

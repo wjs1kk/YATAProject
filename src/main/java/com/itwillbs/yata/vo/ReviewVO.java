@@ -15,7 +15,7 @@ CREATE TABLE review(
  */
 
 public class ReviewVO {
-	private int review_idx;
+	private Integer review_idx;
 	private int res_id;
 	private String member_email;
 	private String member_name;
@@ -39,7 +39,7 @@ public class ReviewVO {
 		this.review_star = review_star;
 		this.review_place = review_place;
 	}
-	public int getReview_idx() {
+	public Integer getReview_idx() {
 		return review_idx;
 	}
 	public void setReview_idx(int review_idx) {

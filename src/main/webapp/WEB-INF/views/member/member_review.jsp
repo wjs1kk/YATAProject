@@ -166,7 +166,7 @@
 													<tr>
 														<th scope="col" style="text-align: center;">예약번호</th>
 														<th scope="col" style="text-align: center;">등록일</th>
-														<th scope="col" style="text-align: center;">@</th>
+														<th scope="col" style="text-align: center;">rating</th>
 														<th scope="col" style="text-align: center;">내용</th>
 													</tr>
 												</thead>	

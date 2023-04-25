@@ -1,9 +1,8 @@
 package com.itwillbs.yata.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
-import javax.print.attribute.standard.OrientationRequested;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -34,7 +33,6 @@ public class MemberController {
 	private ReservService reservService;
 	@Autowired
 	private CarService carService;
-	
 	
 	@GetMapping("login")
 	public String login() {
@@ -78,29 +76,22 @@ public class MemberController {
 		return "redirect:/login";
 	}
 
-	// 마이페이지
 	@GetMapping("mypage")
-	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member
-			, Model model, HttpSession session, @RequestParam int res_id) {
-			
+	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member, Model model, HttpSession session) {
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
 		
-		// 예약내역
 		if(tab.equals("history")) {	
-			List<ReservVO> resList = reservService.myReservation(member_email);
-			model.addAttribute("resList", resList);
-			
-			ReviewVO reviewResId = reviewService.getResId(member_email, res_id);
-			model.addAttribute("reviewResId", reviewResId);
+			List<ReservVO> resList = reservService.myReservation(member_email);	
+			model.addAttribute("resList", resList); // 예약 내역 가져오기
 			return "member/member_history";
 
 		// 나의리뷰	
 		} else if(tab.equals("review")) {
 			List<ReviewVO> myReviewList = reviewService.myReview(member_email);
 			model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
-
+			
 			return "member/member_review";
 
 		// 포인트
@@ -113,7 +104,6 @@ public class MemberController {
 		}
 		return "member/member_mypage";
 	}
-	
 	// 내정보관리
 	@GetMapping("modifyInfo")
 	public String modifyInfo(MemberVO member, HttpSession session, Model model) {
@@ -201,15 +191,24 @@ public class MemberController {
 		}
 
 	}
+	
 	// 예약내역 -> 리뷰 작성
 	@GetMapping("reviewWrite")
-	public String reviewWrite(HttpSession session, Model model, MemberVO member, ReviewVO review) {
+	public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
 		
+		Integer review = reviewService.getResId(res_id);
+		
+		if(review != null) {
+			model.addAttribute("msg", "이미 작성된 리뷰입니다!");
+			return "fail_back";
+		}
+		
 		return "member/member_review_write";
 	}
+	
 	// 리뷰 작성
 	@PostMapping("reviewWritePro")
 	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place,
@@ -217,13 +216,12 @@ public class MemberController {
 		String member_email = (String)session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
 		
-		
 		review.setMember_email(member_email);
 		review.setRes_id(res_id);
 		review.setMember_name(member.getMember_name());
 		review.setReview_place(res_place);
 		review.setReview_star(review_star);
-		System.out.println("review_star: " + review_star);
+		
 		
 		int insertCount = reviewService.insertReview(review);
 		if (insertCount > 0) {
@@ -234,18 +232,17 @@ public class MemberController {
 		}
 
 	}
-	
+		
 	// 예약내역 상세보기
-	@GetMapping("historyPro")
-	public String historyPro(HttpSession session, Model model, @RequestParam int res_id, CarVO car, ReservVO res) {
+	@GetMapping("historyDetails")
+	public String historyDetails(HttpSession session, Model model, @RequestParam Integer res_id, CarVO car, ReservVO res) {
 		String member_email = (String)session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
 
-		
 		ReservVO reserve = reservService.getReserveList(res_id);
 		car.setCar_id(res.getRes_id());
-	
+		
 		car = carService.selectCar(car.getCar_id());
 		
 		model.addAttribute("reserve", reserve);
@@ -253,5 +250,24 @@ public class MemberController {
 
 		return "member/member_history_details";
 	}
+	
+	// 예약 내역 ->예약 취소
+	@GetMapping("deleteReserve")
+	public String deleteReserve(Model model, ReservVO reserve, @RequestParam Integer res_id) {
+		reserve = reservService.getReserveList(res_id);
+		
+		int deleteCount = reservService.deleteReserve(reserve.getRes_id());
+		System.out.println(deleteCount);
+		
+		if(deleteCount > 0) {
+			model.addAttribute("msg", "예약이 취소 되었습니다!");
+			model.addAttribute("target", "redirect:/mypage?tab=history");
+			return "success";
+		} else {
+			model.addAttribute("msg", "실패");
+			return "fail_back";
+		}
 
+	}
+	
 }

@@ -142,7 +142,7 @@
 											<col style="width: 16.666%;">
 											<col style="width: 16.666%;">
 											<col style="width: 16.666%;">
-											<col style="width: 16.666%;">
+											<col style="width: 25.666%;">
 											<col style="width: 16.666%;">
 											<col style="width: 16.666%;">
 										</colgroup>
@@ -153,7 +153,7 @@
 												<th scope="col">대여지점</th>
 												<th scope="col">차량명</th>
 												<th scope="col">결제금액</th>
-												<th colspan="2" scope="col">주문상태</th>
+												<th scope="col">주문상태</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -166,16 +166,14 @@
 												<td>${reserve.res_place}</td>
 												<td>
 													<div class="link_wrap ">
-														<a href="historyPro?res_id=${reserve.res_id}">
 															${reserve.car_name}</a>
 													</div>
 												</td>
 												<td>${reserve.res_totalPrice }원</td>
-												<td class="clip "><input class="btn-danger"
-													type="button" value="예약취소"></td>
-												<td class="clip "><input class="btn-primary"
-												type="button" value="리뷰작성"
-												onclick="location.href='reviewWrite?res_id=${reserve.res_id}&review_place=${reserve.res_place }'">
+												<td class="clip ">
+												<input class="btn-danger"
+												type="button" value="예약취소"
+												onclick="location.href='deleteReserve?res_id=${reserve.res_id}'">
 												</td>
 											</tr>
 										</tbody>

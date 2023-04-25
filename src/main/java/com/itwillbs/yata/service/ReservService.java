@@ -21,4 +21,7 @@ public class ReservService {
 	public ReservVO getReserveList(int res_id) {
 		return mapper.selectReserveList(res_id);
 	}
+	public Integer deleteReserve(Integer res_id) {
+		return mapper.deleteReserve(res_id);
+	}
 }

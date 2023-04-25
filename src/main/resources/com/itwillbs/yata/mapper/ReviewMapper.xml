@@ -65,11 +65,18 @@
   		 LIMIT 10
 	</select>
 	
-	<select id="selectResId" parameterType="int">
-		SELECT res_id
-		  FROM review
-		WHERE member_email = #{member_email}
-		  AND res_id = #{res_id}
-		LIMIT 1;
+	<!-- 작성된 리뷰가 있는지 확인 -->
+	<select id="selectResId" resultType="Integer">
+		select *
+			from review
+			where res_id = #{res_id}
 	</select>
+	
+	<!-- 예약 취소 -->
+	<delete id="deleteReserve">
+		DELETE 
+			FROM reservation
+				WHERE res_id = #{res_id}
+	</delete>
+
 </mapper>
