@@ -58,11 +58,11 @@
                                         <div>
                                             <h3 class="color-grey-3 text-14 list-border-bottom">고객센터</h3>
                                             <div class="list-group list-group-flush">
-                                             <a
-                                                    class="js-mypage-btn-left-menu js-mypage-btn-family-intro py-2 text-decoration-none px-0 click-effect-press active" onclick="history.back()">1:1문의</a>
-                                                <a class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0 click-effect-press"
+                                             
+                                                <a class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0 click-effect-press active"
                                                     data-type="faq" onclick="history.back()">자주묻는질문</a>
-
+												<a
+                                                    class="js-mypage-btn-left-menu js-mypage-btn-family-intro py-2 text-decoration-none px-0 click-effect-press" onclick="history.back()">1:1문의</a>
                                             </div>
                                         </div>
                                     </div>
