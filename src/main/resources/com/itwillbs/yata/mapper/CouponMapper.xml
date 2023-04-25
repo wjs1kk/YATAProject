@@ -48,13 +48,6 @@
 		WHERE coup_idx = #{coup_idx}
 	</delete>
 
-<!-- 	이메일 중복 -->
-	<select id="checkEmail" resultType="string">
-		SELECT member_email
-		FROM coupon_used
-		WHERE member_email = #{member_email}
-	</select>
-	
 <!-- 	해당 쿠폰이 있는지 확인 -->
 	<select id="checkCode" resultType="Integer">
 		SELECT coup_idx
@@ -76,11 +69,5 @@
 				'Y'
 		)
 	</insert>
-
-
-	<select id="coupNext" resultType="com.itwillbs.yata.vo.CouponVO">
-		SELECT *
-		FROM coupon
-	</select>
 
 </mapper>

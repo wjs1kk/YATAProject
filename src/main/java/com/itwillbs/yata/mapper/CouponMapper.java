@@ -21,12 +21,7 @@ public interface CouponMapper {
 
 	String getNum(String coup_code);
 
-
 	Integer checkCode(@Param("coup_idx") int coup_idx,@Param("member_email") String member_email);
-
-	String checkEmail(String member_email);
-
-	CouponVO coupNext(CouponVO coupon);
 
 	int couponEnroll(@Param("coup_idx") int coup_idx,@Param("member_email") String member_email);
 

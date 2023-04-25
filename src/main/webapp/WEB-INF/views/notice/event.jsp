@@ -9,27 +9,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/main.css">
-
+<script src="resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
-	window.onload = function() {
-		document.getElementById('event_list_container').style.display = 'block';
-		var coupon1 = document.getElementById("coupon1");
-
-		var modalC = document.getElementById("modal_close");
-
-		coupon1.onclick = click_Coupon1
-		modalC.onclick = close
-	}
-	//쿠폰 누를 시 해당 쿠폰의 쿠폰창 오픈
-	function click_Coupon1() {
-		document.getElementById("modal_select_area").style.display = 'block';
-	}
-
-	// 	폼닫기
-	function close() {
-		document.getElementById("modal_select_area").style.display = 'none';
-	}
-
+	$(document).ready(function(){
+			$('.link-container').css('display', 'block');
+			$('.coupon').on('click', click_Coupon);
+			$('.js-btn-modal-close').on('click', close);
+// 								document.getElementById('${vs.count}event_list_container').style.display = 'block';
+// 								var coupon = document.getElementById('${vs.count}coupon');
+						
+// 								var modalC = document.getElementById('${vs.count}modal_close');
+// 								coupon.onclick = click_Coupon
+// 								modalC.onclick = close
+	});
+		//쿠폰 누를 시 해당 쿠폰의 쿠폰창 오픈
+		function click_Coupon() {
+			for (var i = 1; i <= 3; i++) {
+			$('#' + i + 'modal_select_area').css('display', 'block');				
+			}
+// 			document.getElementById('${vs.count}modal_select_area').style.display = 'block';
+// 			document.write('${vs.count}modal_select_area');
+		}
+						
+		// 	폼닫기
+		function close() {
+			for (var i = 1; i <= 3; i++) {
+				$('#' + i + 'modal_select_area').css('display', 'none');
+					
+				}
+		}
 </script>
 </head>
 <body>
@@ -73,26 +81,23 @@
 
 
 					<!-- 레이아웃 바텀의 센터 -->
-					<c:forEach var="couponList" items="${couponList }">
+					<c:forEach var="couponList" items="${couponList }" varStatus="vs">
 						<div class="col-12 col-lg-8">
-							<div class="link-container" id="event_list_container">
+							<div class="link-container" id="${vs.count}event_list_container">
 								<h2>
 									<script type="text/javascript">
-									document.write(${couponList.coup_percent} * 100 +"% 할인쿠폰");
-								</script>
+									document.write(${couponList.coup_percent} * 100 +"% 할인쿠폰");									
+									</script>
 								</h2>
-								<c:set var="now" value="<%=new java.util.Date()%>" />
-								<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"
-									var="nowDate" />
-
 								<a
-									class="js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press"
-									id="coupon1" data-s="153" data-p="0" data-i="0"
+									class="coupon js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press"
+									id="${vs.count}coupon" data-s="153" data-p="0" data-i="0"
 									data-l="event_tap" style="display: block;">
 									<div class="cm-rounded bg-white">
 										<img
 											class="js-event-list-item-img event-list-item-img center-crop object-fit w-100"
 											src="resources/images/${couponList.coup_percent }c.jpg">
+
 										<div class="px-3 py-2">
 											<div
 												class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1">
@@ -104,12 +109,13 @@
 											</div>
 										</div>
 									</div>
+
 								</a>
 								<!-- 	쿠폰발급창 -->
 								<div class="contents-modal" id="eventSelect">
-									<div class="modal fade pr-0 show" id="modal_select_area"
-										tabindex="-1" role="dialog" data-backdrop="true"
-										data-keyboard="true" data-pageview="1"
+									<div class="modal fade pr-0 show"
+										id="${vs.count }modal_select_area" tabindex="-1" role="dialog"
+										data-backdrop="true" data-keyboard="true" data-pageview="1"
 										style="z-index: 1050; display: hidden; padding-right: 17px;"
 										aria-modal="true">
 										<div
@@ -119,13 +125,13 @@
 												<div class="modal-header">
 													<div class="modal-title-wrapper dc-flex align-items-center">
 														<h5 class="modal-title line-height-1 text-16 color-grey-3"
-															id="modal_common_popup_txt_title">쿠폰</h5>
+															id="modal_common_popup_txt_title">${couponList.coup_name }</h5>
 														<div class="ml-2" id="js_modal_common_title_sub_button"
 															style="display: block;"></div>
 													</div>
 
 													<!-- 닫기 버튼 -->
-													<button id="modal_close"
+													<button id="${vs.count}modal_close"
 														class="js-btn-modal-close btn btn-xs btn-icon btn-soft-secondary right-auto"
 														type="button" data-dismiss="modal" aria-label="Close"
 														onclick="close()">
@@ -138,7 +144,7 @@
 													</button>
 
 												</div>
-												<img src="resources/images/${couponList.coup_percent }.jpg">
+												<img src="resources/images/${couponList.coup_percent}b.jpg">
 												<div class="text-center display-3 font-weight-bold">
 													<button class="w-50 h-10 btn btn-lg btn-primary text-28"
 														style="top: 700px; left: 200px; position: absolute;"
@@ -151,78 +157,10 @@
 											</div>
 										</div>
 									</div>
+
+
 								</div>
 					</c:forEach>
-
-					<%-- 					<c:forEach var="couponList" items="${couponList }"> --%>
-					<!-- 						<h2>30% 할인 쿠폰</h2> -->
-
-					<%-- 						쿠폰 코드 위치 확인용 (나중에 지울것) --%>
-					<!-- 						<a -->
-					<!-- 							class="js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press" -->
-					<!-- 							id="coupon2" data-s="214" data-p="0" data-i="1" -->
-					<!-- 							data-l="event_tap" style="display: block;"> -->
-					<!-- 							<div class="cm-rounded bg-white"> -->
-					<!-- 								<img -->
-					<!-- 									class="js-event-list-item-img event-list-item-img center-crop object-fit w-100" -->
-					<!-- 									src="resources/images/30P.jpg"> -->
-					<!-- 								<div class="px-3 py-2"> -->
-					<!-- 									<div -->
-					<!-- 										class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1"> -->
-					<!-- 										<span -->
-					<%-- 											class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">${couponList.coup_start }~${couponList.coup_end }</span> --%>
-					<!-- 										<span -->
-					<!-- 											class="js-event-list-item-badge badge badge-pill badge-soft-primary font-weight-normal dc-none">멤버십 -->
-					<!-- 											전용</span> -->
-					<!-- 									</div> -->
-					<!-- 								</div> -->
-					<!-- 							</div> -->
-					<!-- 						</a> -->
-
-					<!-- 							쿠폰발급창2 -->
-					<!-- 						<div class="contents-modal" id="eventSelect2"> -->
-					<!-- 							<div class="modal fade pr-0 show" id="modal_select_area2" -->
-					<!-- 								tabindex="-1" role="dialog" data-backdrop="true" -->
-					<!-- 								data-keyboard="true" data-pageview="1" -->
-					<!-- 								style="z-index: 1050; display: hidden; padding-right: 17px;" -->
-					<!-- 								aria-modal="true"> -->
-					<!-- 								<div -->
-					<!-- 									class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable stretched-modal" -->
-					<!-- 									role="document"> -->
-					<!-- 									<div class="modal-content"> -->
-					<!-- 										<div class="modal-header"> -->
-					<!-- 											<div class="modal-title-wrapper dc-flex align-items-center"> -->
-					<!-- 												<h5 class="modal-title line-height-1 text-16 color-grey-3" -->
-					<!-- 													id="modal_common_popup_txt_title">쿠폰2</h5> -->
-					<!-- 												<div class="ml-2" id="js_modal_common_title_sub_button" -->
-					<!-- 													style="display: block;"></div> -->
-					<!-- 											</div> -->
-
-					<!-- 											닫기 버튼 -->
-					<!-- 											<button id="modal_close2" -->
-					<!-- 												class="js-btn-modal-close btn btn-xs btn-icon btn-soft-secondary right-auto" -->
-					<!-- 												type="button" data-dismiss="modal" aria-label="Close"> -->
-					<!-- 												<svg aria-hidden="true" width="16" height="16" -->
-					<!-- 													viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> -->
-					<!-- 										<path fill="currentColor" -->
-					<!-- 														d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"> -->
-					<!-- 										</path> -->
-					<!-- 										</svg> -->
-					<!-- 											</button> -->
-
-					<!-- 										</div> -->
-					<!-- 										<img src="resources/images/30P_coupon.jpg"> -->
-					<!-- 										<div class="text-center display-3 font-weight-bold"> -->
-					<!-- 											<button class="w-50 h-10 btn btn-lg btn-primary text-28" -->
-					<!-- 												style="top: 700px; left: 200px; position: absolute;" -->
-					<%-- 												onclick="location.href='couponEnroll?coup_idx=${coupon.coup_idx}'">30% --%>
-					<!-- 												쿠폰 발급</button> -->
-					<!-- 										</div> -->
-					<!-- 									</div> -->
-					<!-- 								</div> -->
-					<!-- 							</div> -->
-					<!-- 						</div> -->
-					<%-- 					</c:forEach> --%>
 				</div>
 
 			</div>

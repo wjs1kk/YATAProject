@@ -81,13 +81,6 @@ public class CouponController {
 				//이미 발급받은 쿠폰인지 확인
 				Integer checkIdx = couponService.checkCode(coup_idx, member_email);
 				if(checkIdx == null) {
-					//사용자 중복 확인
-						String checkEmail = couponService.checkEmail(member_email);
-						
-						if(checkEmail != null) {
-							model.addAttribute("msg", "이미 발급 받으신 사용자입니다.");
-							return "fail_back";
-					} else {
 						//발급					
 						int EnrollCount = couponService.couponEnroll(coup_idx, member_email);
 
@@ -100,10 +93,9 @@ public class CouponController {
 							model.addAttribute("msg", "등록 실패!");
 							return "fail_back";
 						}
-					}
-				} else {
-					model.addAttribute("msg", "이미 발급 받으신 쿠폰입니다");
-					return "fail_back";
+					}else {
+						model.addAttribute("msg", "이미 발급 받으신 쿠폰입니다");
+						return "fail_back";
 				}
 			}											
 		}

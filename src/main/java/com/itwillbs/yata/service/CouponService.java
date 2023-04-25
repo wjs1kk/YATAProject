@@ -44,14 +44,4 @@ public class CouponService {
 	public Integer checkCode(int coup_idx, String member_email) {
 		return mapper.checkCode(coup_idx, member_email);
 	}
-
-	public String checkEmail(String member_email) {
-		return mapper.checkEmail(member_email);
-	}
-
-	public CouponVO couponNext(CouponVO coupon) {
-		return mapper.coupNext(coupon);
-	}
-
-
 }
