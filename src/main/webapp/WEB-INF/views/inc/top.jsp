@@ -17,8 +17,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-white dc-none dc-lg-block border-bottom sticky-top header-pc" id="container_pc_navbar" style="display: flex;">
 		<div class="container h-100">
 			<a	href="./"
-				class="js-btn-navbar-brand dc-flex align-items-center navbar-brand h-100 click-effect-press"
-				style="font-size: initial;">YA-TA<img
+				class="js-btn-navbar-brand dc-flex align-items-center navbar-brand h-100 click-effect-press">YA-TA<img
 				class="js-img-header-logo mh-100 opacity-0 animated-fadein"
 				src=""></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -32,14 +31,14 @@
 					<li class="nav-item js-container-pc-header-menu active">
 						<a onclick="rent1()" class="nav-link js-pc-header-menu click-effect-press" data-mt="1">
 							<div class="dc-flex justify-content-center align-items-center">
-								<img class="mr-1" src="${pageContext.request.contextPath }/resources/images/car.png">예약하기
+								예약하기
 							</div>
 						</a>
 					</li>
 					<li class="nav-item js-container-pc-header-menu">
 						<a href="event" class="nav-link js-pc-header-menu click-effect-press" data-mt="5">
 						<div class="dc-flex justify-content-center align-items-center">
-							<img class="mr-1" src="${pageContext.request.contextPath }/resources/images/event.png">이벤트
+							이벤트
 						</div>
 						</a>
 					</li>
@@ -51,7 +50,7 @@
 					<li class="nav-item js-container-pc-header-menu naver-dc-none">
 						<a href="notice" class="nav-link js-pc-header-menu click-effect-press" data-mt="6">
 							<div class="dc-flex justify-content-center align-items-center">
-								<img class="mr-1" src="${pageContext.request.contextPath }/resources/images/notification.png">공지사항
+								공지사항
 							</div>
 						</a>
 					</li>

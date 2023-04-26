@@ -32,6 +32,14 @@
 
 <style type="text/css">
 
+/* 메인 시작*/
+
+.index-container-main-banner {
+	max-width: 1920px !important;
+}
+
+/* 메인 끝 */
+
 /* 	팝업창 초기에 불투명도 0 설정*/
 .contents-modal {
 	opacity: 0;
@@ -364,10 +372,14 @@
 										data-i="14" href=""
 										style="background-color: rgb(198, 219, 237);">
 										<div class="container index-container-main-banner">
+											<div class="banner-title">
+												<p>YA-TA와 함께하는 신나는 여행</p>
+												<h1>YA-TA와 함께</h1>
+											</div>
 											<img
 												class="js-index-img-banner index-img-main-banner swiper-lazy swiper-lazy-loaded"
 												draggable="false"
-												src="${pageContext.request.contextPath }/resources/images/yata.png">
+												src="https://www.billycar.co.kr/pc_assets/img/contents/main_visual01.png" height="450px">
 											<!-- 												 메인 이미지 넣는곳 -->
 										</div>
 									</a>
@@ -494,131 +506,72 @@
 							<div
 								class="index-pc-swiper-root-recommend-location swiper-root overflow-hidden swiper-initialized swiper-horizontal swiper-pointer-events"
 								id="js_index_pc_swiper_root_recommend_location">
-								<div class="swiper-wrapper"
-									id="js_index_pc_swiper_container_recommend_location"
-									aria-live="polite"
-									style="transform: translate3d(0px, 0px, 0px);">
-									<div class="swiper-slide swiper-slide-active" role="group"
-										aria-label="1 / 11" style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_0">
+								<div class="swiper-wrapper" id="js_index_pc_swiper_container_recommend_location" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+									<div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_0">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="제주도" data-i="0"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=Q_1&amp;ssat=2&amp;sls=5"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_6_1581563026894_602.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="제주도" data-i="0" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=Q_1&amp;ssat=2&amp;sls=5"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://post-phinf.pstatic.net/MjAxNzA4MDFfMiAg/MDAxNTAxNTU1MDYwNzcz.KQ4kkG9xSZ67lO8OzYWlX6L8fduoXhJ53vhtNh7piLwg.0PXWV4GqdSGy0BqUYoOPmHW4HJUU4cJwmbHq7FYVug8g.JPEG/_DSC7331%ED%8C%94%EB%A0%88%EB%93%9C%EC%8B%9C%EC%A6%88%EC%95%BC%EA%B2%BD.jpg?type=w1200&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">제주도</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">보랏빛이
-															유혹한 석양 명소</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">해운대</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">부산 대표 관광지</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide swiper-slide-next" role="group"
-										aria-label="2 / 11" style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_1">
+									<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_1">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="울릉도" data-i="1"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=O_24&amp;ssat=2&amp;sls=8"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_4_1581563284855_304.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="울릉도" data-i="1" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=O_24&amp;ssat=2&amp;sls=8"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">울릉도</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">나의
-															인생 버킷리스트</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">광안리</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">야경이 아름다운 광안대교</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide" role="group" aria-label="3 / 11"
-										style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_2">
+									<div class="swiper-slide" role="group" aria-label="3 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_2">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="여수" data-i="2"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=I_2&amp;ssat=2&amp;sls=20"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_7_1581563056368_795.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="여수" data-i="2" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=I_2&amp;ssat=2&amp;sls=20"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/2470640579/B.jpg?636000000&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">여수</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">감성
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">여수</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">감성
 															충전 밤바다</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide" role="group" aria-label="4 / 11"
-										style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_3">
+									<div class="swiper-slide" role="group" aria-label="4 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_3">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="부산" data-i="3"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=M_3&amp;ssat=2&amp;sls=26"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_2_1581563104989_615.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="부산" data-i="3" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=M_3&amp;ssat=2&amp;sls=26"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191222180830266_oen&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">부산</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">살아있는
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">부산</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">살아있는
 															한국 제2의 수도</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide" role="group" aria-label="5 / 11"
-										style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_4">
+									<div class="swiper-slide" role="group" aria-label="5 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_4">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="서울" data-i="4"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=A&amp;ssat=2&amp;sls=18"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_8_1581563079560_507.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="서울" data-i="4" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=A&amp;ssat=2&amp;sls=18"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://image14.hanatour.com/uploads/2020/03/20191122-FAN06055_63343935.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">서울</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">유니크한
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">서울</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">유니크한
 															매력의 도시 여행</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide" role="group" aria-label="6 / 11"
-										style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_5">
+									<div class="swiper-slide" role="group" aria-label="6 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_5">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="강릉" data-i="5"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=P_3&amp;ssat=2&amp;sls=6"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_10_1581568823489_213.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="강릉" data-i="5" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=P_3&amp;ssat=2&amp;sls=6"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://png.pngtree.com/thumb_back/fw800/background/20230322/pngtree-haedong-yonggungsa-temple-on-sea-shore-busan-photo-image_2095026.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">강릉</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">문득문득
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">강릉</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">문득문득
 															그리운 바다 도시</div>
 													</div></a>
 											</div>
