@@ -11,33 +11,13 @@
 <link rel="stylesheet" href="resources/css/main.css">
 <script src="resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-			$('.link-container').css('display', 'block');
-			$('.coupon').on('click', click_Coupon);
-			$('.js-btn-modal-close').on('click', close);
-// 								document.getElementById('${vs.count}event_list_container').style.display = 'block';
-// 								var coupon = document.getElementById('${vs.count}coupon');
-						
-// 								var modalC = document.getElementById('${vs.count}modal_close');
-// 								coupon.onclick = click_Coupon
-// 								modalC.onclick = close
-	});
-		//쿠폰 누를 시 해당 쿠폰의 쿠폰창 오픈
-		function click_Coupon() {
-			for (var i = 1; i <= 3; i++) {
-			$('#' + i + 'modal_select_area').css('display', 'block');				
-			}
-// 			document.getElementById('${vs.count}modal_select_area').style.display = 'block';
-// 			document.write('${vs.count}modal_select_area');
-		}
-						
-		// 	폼닫기
-		function close() {
-			for (var i = 1; i <= 3; i++) {
-				$('#' + i + 'modal_select_area').css('display', 'none');
-					
-				}
-		}
+	function couponOpen(coup_idx){
+		$('#' + coup_idx + 'modal_select_area').css('display', 'block');
+	}
+	
+	function couponClose(coup_idx){
+		$('#' + coup_idx + 'modal_select_area').css('display', 'none');
+	}
 </script>
 </head>
 <body>
@@ -83,7 +63,8 @@
 					<!-- 레이아웃 바텀의 센터 -->
 					<c:forEach var="couponList" items="${couponList }" varStatus="vs">
 						<div class="col-12 col-lg-8">
-							<div class="link-container" id="${vs.count}event_list_container">
+							<div class="link-container"
+								id="${couponList.coup_idx}event_list_container">
 								<h2>
 									<script type="text/javascript">
 									document.write(${couponList.coup_percent} * 100 +"% 할인쿠폰");									
@@ -91,8 +72,9 @@
 								</h2>
 								<a
 									class="coupon js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press"
-									id="${vs.count}coupon" data-s="153" data-p="0" data-i="0"
-									data-l="event_tap" style="display: block;">
+									id="coupon" data-s="153" data-p="0" data-i="0"
+									data-l="event_tap" onclick="couponOpen(${couponList.coup_idx})"
+									style="display: block;">
 									<div class="cm-rounded bg-white">
 										<img
 											class="js-event-list-item-img event-list-item-img center-crop object-fit w-100"
@@ -114,8 +96,9 @@
 								<!-- 	쿠폰발급창 -->
 								<div class="contents-modal" id="eventSelect">
 									<div class="modal fade pr-0 show"
-										id="${vs.count }modal_select_area" tabindex="-1" role="dialog"
-										data-backdrop="true" data-keyboard="true" data-pageview="1"
+										id="${couponList.coup_idx }modal_select_area" tabindex="-1"
+										role="dialog" data-backdrop="true" data-keyboard="true"
+										data-pageview="1"
 										style="z-index: 1050; display: hidden; padding-right: 17px;"
 										aria-modal="true">
 										<div
@@ -131,10 +114,10 @@
 													</div>
 
 													<!-- 닫기 버튼 -->
-													<button id="${vs.count}modal_close"
+													<button id="${couponList.coup_idx}modal_close"
 														class="js-btn-modal-close btn btn-xs btn-icon btn-soft-secondary right-auto"
 														type="button" data-dismiss="modal" aria-label="Close"
-														onclick="close()">
+														onclick="couponClose(${couponList.coup_idx})">
 														<svg aria-hidden="true" width="16" height="16"
 															viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 										<path fill="currentColor"
