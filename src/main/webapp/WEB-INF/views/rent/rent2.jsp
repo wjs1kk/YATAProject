@@ -1195,23 +1195,22 @@
 																class="color-grey-6 text-18 wordbreak-keepall">/
 																5.0</span>
 														</div>
-
 													</div>
-													<p class="text-14 color-grey-4" id="rpc_txt_summary_info">최근
-														예약수 11593건 | 누적 예약수 26013건 | 입점일 2019-11-28</p>
+<!-- 													<p class="text-14 color-grey-4" id="rpc_txt_summary_info">최근 -->
+<!-- 														예약수 11593건 | 누적 예약수 26013건 | 입점일 2019-11-28</p> -->
 													<hr>
 													<div
 														class="dc-flex justify-content-between align-items-center mb-2">
-														<div>
-															<p class="color-grey-4 text-14 mb-0">차량 관리 상태</p>
-														</div>
+<!-- 														<div> -->
+<!-- 															<p class="color-grey-4 text-14 mb-0">차량 관리 상태</p> -->
+<!-- 														</div> -->
 														<div class="dc-flex align-items-center">
 															<div class="progress" style="width: 128px; height: 4px">
 																<div class="progress-bar" id="rpc_review_progress_1"
 																	style="width: 94%;"></div>
 															</div>
-															<div class="ml-1 text-12 font-weight-bold text-primary"
-																id="rpc_review_1_point">4.7</div>
+<!-- 															<div class="ml-1 text-12 font-weight-bold text-primary" -->
+<!-- 																id="rpc_review_1_point">4.7</div> -->
 														</div>
 													</div>
 													<div

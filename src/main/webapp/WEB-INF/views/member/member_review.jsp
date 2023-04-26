@@ -192,7 +192,7 @@
 																★
 															</c:if>	
 														</td>
-														<td>${myReview.review_title }</td>
+														<td>${myReview.review_content }</td>
 													</tr>
 												</c:forEach>
 												</tbody>

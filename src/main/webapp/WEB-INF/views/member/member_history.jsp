@@ -178,16 +178,14 @@
 															</td>
 															<td>${resList.res_totalPrice }원</td>
 															<td class="clip ">
-															<a href="deleteReserve?res_id=${resList.res_id}">취소링크</a>
-<!-- 															<input class="btn-danger" -->
-<!-- 																type="button" value="예약취소" -->
-<%-- 																onclick="location.href='deleteReserve?res_id=${reserve.res_id}'"> --%>
+															<input class="btn-danger"
+																type="button" value="예약취소"
+																onclick="location.href='deleteReserve?res_id=${resList.res_id}'">
 															</td>
 															<td class="clip ">
-															
 																<input class="btn-primary"
 																type="button" value="리뷰작성"
-																onclick="location.href='reviewWrite?res_id=${resList.res_id}&review_place=${resList.res_place }'">
+																onclick="location.href='reviewWrite?res_id=${resList.res_id}&res_place=${resList.res_place }'">
 															</td>
 														</tr>
 													</c:forEach>

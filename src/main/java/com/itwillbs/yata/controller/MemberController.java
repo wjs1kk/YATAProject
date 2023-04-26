@@ -197,7 +197,7 @@ public class MemberController {
 	
 	// 예약내역 -> 리뷰 작성
 		@GetMapping("reviewWrite")
-		public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
+		public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id, String review_place) {
 			String member_email = (String) session.getAttribute("member_email");
 			member = memberService.selectUser(member_email);
 			model.addAttribute("member", member);

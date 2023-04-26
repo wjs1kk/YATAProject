@@ -26,7 +26,6 @@
 					  , #{res_id}
 					  , #{member_email}
 					  ,	#{member_name}
-					  , #{review_title}
 					  , #{review_content}
 					  , CURRENT_TIMESTAMP()
 					  , 0
@@ -54,22 +53,20 @@
 				, res_id
 				, member_email
 				, member_name
-				, review_title
 				, review_content
 				, review_updateDate
 				, review_star
 				, review_place
-			
   		  FROM review
  		  WHERE review_place = #{place}
-  		 ORDER BY review_idx DESC
+  		ORDER BY review_idx DESC
   		 LIMIT 10
 	</select>
 	<!-- 작성된 리뷰가 있는지 확인 -->
 	<select id="selectResId" resultType="Integer">
-		select *
-			from review
-			where res_id = #{res_id}
+		SELECT *
+			FROM review
+			WHERE res_id = #{res_id}
 	</select>
 
 	<!-- 예약 취소 -->
