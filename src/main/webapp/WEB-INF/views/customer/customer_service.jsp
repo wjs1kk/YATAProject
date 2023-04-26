@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>title here</title>
-<link href="${pageContext.request.contextPath }/resources/css/style.css"
+<link href="${pageContext.request.contextPath }/resources/css/css.css"
 	rel="stylesheet" type="text/css">
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
@@ -25,9 +25,12 @@
 			$(this).next().toggleClass('dc-none');
 		});
 		// 오른쪽영역 검색
-		$(".csSearchBtn").on("click", function() {
-			location.href = "search.cs?board_subject=" + $('.csSearchBar').val();
-		});
+		$(".csSearchBtn").on(
+				"click",
+				function() {
+					location.href = "search.cs?board_subject="
+							+ $('.csSearchBar').val();
+				});
 	});
 </script>
 <style type="text/css">
@@ -62,7 +65,6 @@
 										class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0 click-effect-press active"
 										data-type="faq">자주묻는질문</a> <a
 										class="js-mypage-btn-left-menu js-mypage-btn-family-intro py-2 text-decoration-none px-0 click-effect-press">1:1문의</a>
-
 								</div>
 							</div>
 						</div>
@@ -90,10 +92,6 @@
 				</div>
 			</div>
 			<div class="col-md-8 pb-6">
-
-
-
-
 
 				<div class="mypage-section on" id="mypage_section_help">
 					<div class="container-help-search-bar">
@@ -130,10 +128,6 @@
 							</div>
 						</div>
 					</div>
-					<section id="buttonArea">
-						<input type="button" value="관리자 전 테스트용 글쓰기"
-							onclick="location.href='write.cs'">
-					</section>
 					<div class="container-help-contents">
 						<div class="mt-6">
 							<div id="section_help_category">
@@ -162,15 +156,6 @@
 									</c:forEach>
 								</div>
 							</div>
-							<div class="container-help-search-list dc-none"
-								id="section_help_search">
-								<div class="mx-n15px">
-									<ul class="list-group list-group-flush"
-										id="js_help_container_search_list"></ul>
-								</div>
-								<div class="text-14 text-center dc-none"
-									id="js_help_container_search_list_empty">일치하는 질문이 없습니다.</div>
-							</div>
 							<li
 								class="js-container-help-item color-grey-2 list-group-item list-group-item-lightb py-0 dc-none"
 								id="js_help_item_templete"><label
@@ -186,6 +171,7 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="mypage-section" id="mypage_section_setting">
 					<table class="tb-list">
 						<colgroup>
@@ -201,33 +187,72 @@
 							</tr>
 						</thead>
 						<tbody id="notice_list">
-							<c:forEach var="mailForm" items="${mailFormList}">
-
-								<tr>
-									<td>${mailForm.board_num}</td>
-									<td class="tb-subj"><a
-										href="view.mf?board_num=${mailForm.board_num }"> <span
-											class="it-notice">${mailForm.board_progress}</span>
-											${mailForm.board_subject}
-									</a></td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd"
-											value="${mailForm.board_date}" /></td>
-								</tr>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${empty myMailForm}">
+									<tr>
+										<td colspan="3" class="noMailForm">로그인 후 확인가능합니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="myMailForm" items="${myMailForm}">
+										<tr>
+											<td>${myMailForm.board_num}</td>
+											<td class="tb-subj"><c:if
+													test="${myMailForm.board_re_lev > 0 }">
+													<c:forEach var="i" begin="1"
+														end="${myMailForm.board_re_lev }">&nbsp;&nbsp;</c:forEach>
+													<img
+														src="https://static.thenounproject.com/png/88514-200.png"
+														width="10px" height="10px" style="margin: 0 5px 0 20px;">
+													<a href="view.mf?board_num=${myMailForm.board_num -1}">
+												</c:if> <c:if test="${myMailForm.board_re_lev < 1 }">
+													<span class="it-notice">${myMailForm.board_progress}</span>
+													<a href="view.mf?board_num=${myMailForm.board_num}">
+												</c:if> ${myMailForm.board_subject} </a></td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd"
+													value="${myMailForm.board_date}" /></td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
+
 					<section id="buttonArea">
 						<input class="writeBtn" type="button" value="문의하기"
 							onclick="location.href='write.mf'">
 					</section>
+
+					<c:choose>
+						<c:when test="${empty param.pageNum }">
+							<c:set var="pageNum" value="1" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="pageNum" value="${param.pageNum }" />
+						</c:otherwise>
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${empty param.pageNum }">
+							<c:set var="pageNum" value="1" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="pageNum" value="${param.pageNum }" />
+						</c:otherwise>
+					</c:choose>
+
 					<section id="pageList">
 						<c:choose>
-							<c:when test="${pageNum > 1 }">
-								<input class="prevBtn" type="button" value="이전"
-									onclick="location.href='BoardList.bo?pageNum=${pageNum - 1}'">
+							<c:when test="${pageNum > 1 and empty param.searchKeyword }">
+								<input type="button" value="이전"
+									onclick="location.href='customer_service?pageNum=${pageNum - 1 }'">
+							</c:when>
+							<c:when test="${pageNum > 1 and not empty param.searchKeyword }">
+								<input type="button" value="이전"
+									onclick="location.href='customer_service?pageNum=${pageNum - 1 }&searchKeyword=${param.searchKeyword }'">
 							</c:when>
 							<c:otherwise>
-								<input class="prevBtn" type="button" value="이전">
+								<input type="button" value="이전">
 							</c:otherwise>
 						</c:choose>
 
@@ -235,27 +260,39 @@
 							end="${pageInfo.endPage }">
 							<c:choose>
 								<c:when test="${pageNum eq num }">
-									<%-- 현재 페이지 번호일 경우 --%>
 									<b>${num }</b>
 								</c:when>
-								<c:otherwise>
-									<a class="pagingNum" href="BoardList.bo?pageNum=${num }">${num }</a>
-								</c:otherwise>
+								<c:when test="${pageNum ne num and empty param.searchKeyword }">
+									<a href="customer_service?pageNum=${num }">${num }</a>
+								</c:when>
+								<c:when
+									test="${pageNum ne num and not empty param.searchKeyword }">
+									<a
+										href="customer_service?pageNum=${num }&searchKeyword=${param.searchKeyword }">${num }</a>
+								</c:when>
 							</c:choose>
 						</c:forEach>
 
 						<c:choose>
-							<c:when test="${pageNum < pageInfo.maxPage }">
-								<input class="nextBtn" type="button" value="다음"
-									onclick="location.href='BoardList.bo?pageNum=${pageNum + 1}'">
+							<c:when
+								test="${pageNum < pageInfo.maxPage and empty param.searchKeyword }">
+								<input type="button" value="다음"
+									onclick="location.href='customer_service?pageNum=${pageNum + 1}'">
+							</c:when>
+							<c:when
+								test="${pageNum < pageInfo.maxPage and not empty param.searchKeyword }">
+								<input type="button" value="다음"
+									onclick="location.href='customer_service?pageNum=${pageNum + 1 }&searchKeyword=${param.searchKeyword }'">
 							</c:when>
 							<c:otherwise>
-								<input class="nextBtn" type="button" value="다음">
+								<input type="button" value="다음">
 							</c:otherwise>
 						</c:choose>
 
 					</section>
 				</div>
+
+
 			</div>
 		</div>
 	</div>

@@ -39,5 +39,20 @@ public class CarService {
 
 		return mapper.car_type(car_type);
 	}
+	
+	public List<CarVO> getCarShippedList() {
+		return mapper.selectCarShippedList();
+	}
+	public int getCarListCount(String searchType, String searchKeyword) {
+		return mapper.selectCarListCount(searchType, searchKeyword);
+	}
+
+	public int removeCarModel(int car_id) {
+		return mapper.deleteCarModel(car_id);
+	}
+	
+	public List<CarVO> getCarList(int startRow, int listLimit, String searchType, String searchKeyword) {	
+		return mapper.selectCarList(startRow, listLimit, searchType, searchKeyword);
+	}
 
 }

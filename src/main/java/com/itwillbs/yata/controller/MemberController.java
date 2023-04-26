@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.yata.service.CarService;
 import com.itwillbs.yata.service.MemberService;
+import com.itwillbs.yata.service.PointService;
 import com.itwillbs.yata.service.ReservService;
 import com.itwillbs.yata.service.ReviewService;
+import com.itwillbs.yata.vo.CarVO;
 import com.itwillbs.yata.vo.MemberVO;
+import com.itwillbs.yata.vo.PointVO;
 import com.itwillbs.yata.vo.ReservVO;
 import com.itwillbs.yata.vo.ReviewVO;
 
@@ -28,6 +32,10 @@ public class MemberController {
 	private ReviewService reviewService;
 	@Autowired
 	private ReservService reservService;
+	@Autowired
+	private CarService carService;
+	@Autowired
+	private PointService pointService;
 	@GetMapping("login")
 	public String login() {
 		return "member/member_login";
@@ -71,27 +79,28 @@ public class MemberController {
 	}
 
 	@GetMapping("mypage")
-	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, MemberVO member, Model model, HttpSession session) {
+	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, Model model, HttpSession session) {
 		String member_email = (String) session.getAttribute("member_email");
-		member = memberService.selectUser(member_email);
+		MemberVO member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
+		
 		if(tab.equals("history")) {	
-			List<ReservVO> reservationList = reservService.myReservation(member_email);
-			model.addAttribute("reservationList", reservationList);
+			List<ReservVO> resList = reservService.myReservation(member_email);
+			model.addAttribute("resList", resList);
 			return "member/member_history";
 
 		// 나의리뷰	
 		} else if(tab.equals("review")) {
 			List<ReviewVO> myReviewList = reviewService.myReview(member_email);
-			Integer myReviewCount = reviewService.selectMyReviewCount((String) session.getAttribute("member_email"));
 			model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
-			model.addAttribute("myReviewCount", myReviewCount); // 나의 리뷰 개수
 
 			return "member/member_review";
 
 		// 포인트
 		} else if(tab.equals("point")) {
-
+			List<PointVO> myPoint = pointService.myPoint(member_email);
+			model.addAttribute("myPoint", myPoint);
+			System.out.println(myPoint);
 			return "member/member_point";
 		} else if(tab.equals("coupon")) {
 		// 쿠폰
@@ -184,34 +193,83 @@ public class MemberController {
 			model.addAttribute("msg", "회원 탈퇴 실패!");
 			return "fail_back";
 		}
-
 	}
-	@GetMapping("reviewWrite")
-	public String reviewWrite(HttpSession session, Model model, MemberVO member) {
-		String member_email = (String) session.getAttribute("member_email");
-		member = memberService.selectUser(member_email);
-		model.addAttribute("member", member);
-
-		return "member/member_review_write";
-	}
-
+	
+	// 예약내역 -> 리뷰 작성
+		@GetMapping("reviewWrite")
+		public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
+			String member_email = (String) session.getAttribute("member_email");
+			member = memberService.selectUser(member_email);
+			model.addAttribute("member", member);
+			
+			Integer review = reviewService.getResId(res_id);
+			
+			if(review != null) {
+				model.addAttribute("msg", "이미 작성된 리뷰입니다!");
+				return "fail_back";
+			}
+			
+			return "member/member_review_write";
+		}
+	
+	// 리뷰 작성
 	@PostMapping("reviewWritePro")
-	public String reviewWritePro(HttpSession session, Model model, MemberVO member, ReviewVO review) {
+	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place, String review_star) {
 		String member_email = (String)session.getAttribute("member_email");
-		member = memberService.selectUser(member_email);
-		model.addAttribute("member", member);
+		MemberVO member = memberService.selectUser(member_email);
 
 		review.setMember_email(member_email);
-
-		int insertCount = reviewService.writeReview(review);
+		review.setRes_id(res_id);
+		review.setMember_name(member.getMember_name());
+		review.setReview_place(res_place);
+		review.setReview_star(review_star);
+		
+		int insertCount = reviewService.insertReview(review);
 		System.out.println(insertCount);
 		if (insertCount > 0) {
-			return "member/member_review";
+			return "redirect:/mypage?tab=history";
 		} else {
 			model.addAttribute("msg", "후기 등록 실패!");
 			return "fail_back";
 		}
-
 	}
+	
+	// 예약내역 상세보기
+		@GetMapping("historyDetails")
+		public String historyDetails(HttpSession session, Model model, @RequestParam Integer res_id, CarVO car, ReservVO res) {
+			String member_email = (String)session.getAttribute("member_email");
+			MemberVO member = memberService.selectUser(member_email);
+			model.addAttribute("member", member);
+
+			ReservVO reserve = reservService.getReserveList(res_id);
+			car.setCar_id(res.getRes_id());
+			
+			car = carService.selectCar(car.getCar_id());
+			
+			model.addAttribute("reserve", reserve);
+			model.addAttribute("car", car);
+
+			return "member/member_history_details";
+		}
+		
+		// 예약 내역 ->예약 취소
+		@GetMapping("deleteReserve")
+		public String deleteReserve(Model model, ReservVO reserve, @RequestParam Integer res_id) {
+			reserve = reservService.getReserveList(res_id);
+			
+			int deleteCount = reservService.deleteReserve(reserve.getRes_id());
+			System.out.println(deleteCount);
+			
+			if(deleteCount > 0) {
+				model.addAttribute("msg", "예약이 취소 되었습니다!");
+				model.addAttribute("target", "redirect:/mypage?tab=history");
+				return "success";
+			} else {
+				model.addAttribute("msg", "실패");
+				return "fail_back";
+			}
+
+		}
+
 
 }

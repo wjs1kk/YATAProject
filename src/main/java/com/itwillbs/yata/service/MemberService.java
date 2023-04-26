@@ -46,8 +46,16 @@ public class MemberService {
 	public int AdminMemberDeletePro(String member_email) {
 		return  mapper.AdminMemberDelete(member_email);
 	}
-	public List<MemberVO> memberList() {
-		return mapper.memberList();
+	public List<MemberVO> memberList(int startRow, int listLimit, String searchType, String searchKeyword) {
+		return mapper.memberList(startRow, listLimit, searchType, searchKeyword);
+	}
+
+	public String isAdmin(String member_email) {
+		return mapper.isAdmin(member_email);
+	}
+
+	public int getMemberListCount(String searchType, String searchKeyword) {
+		return mapper.selectMemberListCount(searchType, searchKeyword);
 	}
 }
 

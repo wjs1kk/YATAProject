@@ -20,18 +20,6 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 
-	// 공지사항 글쓰기
-	@GetMapping("write.no")
-	public String writeForm() {
-		return "notice/write_form";
-	}
-
-	@PostMapping("writePro.no")
-	public String writePro(NoticeVO notice) {
-		int insertCount = noticeService.registNotice(notice);
-		return "redirect:/notice";
-	}
-
 	// 공지사항 검색
 	@GetMapping("search.no")
 	public String noticeSearch(String board_subject, Model model) {
@@ -40,25 +28,12 @@ public class NoticeController {
 		return "notice/notice";
 	}
 
-	// 공지사항 뷰(폼)페이지
+	// 공지사항 조회
 	@GetMapping("view.no")
 	public String viewNotice(NoticeVO notice, Model model, String board_num) {
 		notice = noticeService.getNotice(board_num);
 		model.addAttribute("notice", notice);
 		return "notice/view_notice_form";
-	}
-	
-	@GetMapping("deleteView.no")
-	public String deleteNoticeView(int board_num, Model model) {
-		int deleteCount = noticeService.deleteNoticeView(board_num);
-		if (deleteCount > 0) {
-			model.addAttribute("msg", "삭제 완료!");
-			model.addAttribute("target", "redirect:/");
-			return "redirect:/customer_service";
-		} else {
-			model.addAttribute("msg", "삭제 실패!");
-			return "fail_back";
-		}
 	}
 
 }

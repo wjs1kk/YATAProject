@@ -19,7 +19,7 @@
 <script type="text/javascript">
 	$(function() {
 		$("#car_search").on("click", function() {
-			location.href = "search?res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&car_name="+$('#car_name').val();
+			location.href = "search?res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&car_name="+$('#car_name').val()+"&time="+$('#time').text().split(" ")[0];
 		})
 	})
 </script>
@@ -27,15 +27,28 @@
 <script type="text/javascript">
 $(function() {
 	$("input[name=car_type]").on("click", function() {
-		location.href = "car_type?res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&car_name="+$('#car_name').val() +"&car_type="+$("input[name=car_type]:checked").val();
+		location.href = "car_type?res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&car_name="+$('#car_name').val() +"&car_type="+$("input[name=car_type]:checked").val()+"&time="+$('#time').text().split(" ")[0];
 	})
 })
 </script>
 <!-- rent2페이지 이동  -->
 <script type="text/javascript">
 	function rent2(car_id){
+		
 		var ins = $("input[name='ins']:checked").val();
-		location.href="rent2?car_id="+car_id+"&res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&ins="+ins+"&time="+$('#time').text().split(" ")[0];
+		const regex = /[^0-9]/g;
+		let time = $('#time').text();
+		time = time.replace(regex, "");
+		
+		if(ins == null){
+			alert("보험 선택 필수");
+			return false;
+		}
+		if(time == ""){
+			alert("시간 선택 필수");
+			return false;
+		}
+		location.href="rent2?car_id="+car_id+"&res_place=${param.res_place}&rentalDatetime="+$('#demo').val()+"&ins="+ins+"&time="+time;	
 	}
 </script>
 
@@ -178,8 +191,13 @@ $(function() {
 															kakao.maps.event.addListener( marker, 'click',
 																			function() {
 																				$(function() {
+																					const regex = /[^0-9]/g;
+																					let time = $('#time').text();
+																					time = time.replace(regex, "");
+																					
 																					let res_place = $("#res_place").val();
-																					location.href = "rent1?res_place="+res_place+"&rentalDatetime="+$('#demo').val()+"&ins=${param.ins}&time=${param.time}";		
+																					
+																					location.href = "rent1?res_place="+res_place+"&rentalDatetime="+$('#demo').val()+"&ins=${param.ins}&time="+time;		
 																				})
 																			});
 														})(marker, infowindow);
@@ -638,8 +656,8 @@ $(function() {
 									<section id="typeArea">
 										<div class="js-no-data-hide-elmt" style="display: block;">
 											<div class="dc-none dc-lg-flex ">
-												<form action="car_type" id="car_type">
-													<div class="btn-group btn-group-toggle flex-1" >
+												<form action="car_type" id="car_type" style="width:100%">
+													<div class="btn-group btn-group-toggle flex-1" style="width:100%">
 													
 													
 												 	<label class="btn btn-white js-tab-car-type-pc " data-i="1" style="display: block;" >

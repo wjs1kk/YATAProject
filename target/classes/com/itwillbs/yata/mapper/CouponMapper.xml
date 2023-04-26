@@ -30,7 +30,6 @@
   		SELECT *
   		FROM coupon
   		WHERE coup_idx = #{coup_idx}
-
   	</select>
 
 	<delete id="deleteCoupon">
@@ -38,4 +37,12 @@
 		FROM coupon
 		WHERE coup_idx = #{coup_idx}
 	</delete>
+	
+	<select id="selectCouponUser" resultType="com.itwillbs.yata.vo.Coupon_usedVO">
+  		SELECT *
+  		FROM coupon
+  		WHERE coup_idx in (select coup_idx
+  							from coupon_used
+  							where coup_useable = 'Y' and member_email=#{member_email});
+  	</select>
 </mapper>

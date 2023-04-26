@@ -37,20 +37,16 @@
 								<div class="d-flex justify-content-center">
 									<input type="email" id="member_email" value="${member.member_email }" name="member_email" class="justify-content-center w-50 form-control" readonly="readonly" placeholder="이메일" required autofocus>
 								</div>
-								<label for="inputPassword" class="visually-hidden ">Password</label>
-								<div class="d-flex justify-content-center">
-								<input type="password" id="member_passwd" name="member_passwd" class="w-50 form-control" placeholder="변경할 비밀번호">
-								</div>
 								<label for="name" class="visually-hidden">Name</label>
 								<div class="d-flex justify-content-center">
-									<input type="text" id="member_name" value="${member.member_name }" name="member_name" class="w-50 form-control" placeholder="이름" required>
+									<input type="text" id="member_name" value="${member.member_name }" class="w-50 form-control" readonly="readonly">
 								</div>
 								<label for="date" class="visually-hidden">YYYY/MM/DD</label>
 								<div class="d-flex justify-content-center">
-									<input class="w-50 form-control" id="member_birth" value="${member.member_birth }" name="member_birth" type="date" name='userBirthday'/>
+									<input class="w-50 form-control" id="member_birth" value="${member.member_birth }" type="date" name='userBirthday' readonly="readonly"/>
 								</div>
 								<label for="gender" class="visually-hidden">Gender</label>
-								<div class="d-flex justify-content-center" id="member_gender" name="member_gender">
+								<div class="d-flex justify-content-center" id="member_gender">
 									<select class="form-control w-50" id="member_gender" name="member_gender">
 										<option selected">
 											<c:choose>
@@ -70,11 +66,15 @@
 								</div>
 								<label for="point" class="visually-hidden">Point</label>
 								<div class="d-flex justify-content-center">
-									<input type="text" id="member_phone" value="${member.member_point }" name="member_point" class="w-50 form-control" required>
+									<input type="text" id="member_point" value="${member.member_point }" name="member_point" class="w-50 form-control" required>
 								</div>
-								<label for="phone" class="visually-hidden">license</label>
+								<label for="license" class="visually-hidden">license</label>
 								<div class="d-flex justify-content-center">
-									<input type="text" id="member_phone" value="${member.member_license }" name="member_license" class="w-50 form-control">
+									<input type="text" id="member_license" value="${member.member_license }" name="member_license" class="w-50 form-control">
+								</div>
+								<label for="isAdmin" class="visually-hidden">isAdmin</label>
+								<div class="d-flex justify-content-center">
+									<input type="text" id="member_isAdmin" value="${member.member_isadmin }" name="member_isadmin" class="w-50 form-control">
 								</div>
 								<br>
 								<button class="w-50 btn btn-lg btn-primary" style="width: 350px;" type="submit" >수정</button>

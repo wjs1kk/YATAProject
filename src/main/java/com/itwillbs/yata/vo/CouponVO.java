@@ -11,8 +11,6 @@ public class CouponVO {
 	private Date coup_end;
 	private String coup_useable;
 
-
-
 	public CouponVO(int coup_idx, String member_email, String coup_name, String coup_code, Date coup_start,
 			Date coup_end, String coup_useable) {
 		this.coup_idx = coup_idx;

@@ -21,7 +21,50 @@
   	 		WHERE car_name LIKE CONCAT('%',#{car_name},'%');
   	</select>
   	
-  	
+  	<select id="selectCarList" resultType="com.itwillbs.yata.vo.CarVO">
+		select *
+		from car
+		<if test="!searchType.equals('')">
+			WHERE
+			<choose>
+				<when test="searchType.equals('car_manufacturer')">
+					car_manufacturer LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_name')">
+					car_name LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_fuel')">
+					car_fuel LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_available')">
+					car_available LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+		ORDER BY car_id DESC
+		LIMIT #{startRow}, #{listLimit}
+	</select>
+  	<select id="selectCarListCount" resultType="int">
+		SELECT COUNT(car_id)
+		FROM car
+		<if test="!searchType.equals('')">
+			WHERE
+			<choose>
+				<when test="searchType.equals('car_manufacturer')">
+					car_manufacturer LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_name')">
+					car_name LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_fuel')">
+					car_fuel LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_available')">
+					car_available LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
 <!--   	관리자  	 -->
 	<update id="carUpdate">
 		UPDATE car
@@ -76,4 +119,15 @@
 	  	 			<when test="car_type.equals('SUV')"> 'SUV' </when>
   	 			</choose> 	                                                                                                                                                                                                                                                                           
   	</select>
+  	<select id="selectCarShippedList" resultType="com.itwillbs.yata.vo.CarVO">
+  		SELECT *
+  		FROM car
+  		WHERE car_available = '0'
+  	</select>
+  	
+  	<update id="deleteCarModel">
+  		UPDATE car SET car_model = ""
+  		WHERE car_id = #{car_id}
+  	</update>
+
 </mapper>

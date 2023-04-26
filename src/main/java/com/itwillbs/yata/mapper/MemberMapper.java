@@ -25,6 +25,7 @@ public interface MemberMapper {
 	public int AdminMemberModify(MemberVO member);
 	//관리자 회원 삭제
 	public int AdminMemberDelete(@Param("member_email") String member_email);
-	public List<MemberVO> memberList();
-	
+	public List<MemberVO> memberList(@Param("startRow")int startRow, @Param("listLimit")int listLimit, @Param("searchType")String searchType, @Param("searchKeyword")String searchKeyword);
+	public String isAdmin(String member_email);
+	public int selectMemberListCount(@Param("searchType")String searchType, @Param("searchKeyword")String searchKeyword);
 }

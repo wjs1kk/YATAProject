@@ -13,24 +13,21 @@ public class NoticeService {
 	
 	@Autowired
 	private NoticeMapper mapper;
-	
-	public int registNotice(NoticeVO board) {
-		return mapper.insertNotice2(board);
+
+	// 공지사항 리스트 조회
+	public List<NoticeVO> getNoticeList(String searchType, String searchKeyword, int startRow, int listLimit) {
+		return mapper.getNoticeList(searchType, searchKeyword, startRow, listLimit);
 	}
-	
-	public List<NoticeVO> getNoticeList() {
-		
-		return mapper.selectNoticeList();
+	// 공지사항 리스트 갯수 조회
+	public int getNoticeListCount(String searchType, String searchKeyword) {
+		return mapper.getNoticeListCount(searchType, searchKeyword);
 	}
+	// 공지사항 검색
 	public List<NoticeVO> searchByNotice(String board_subject) {
 		return mapper.searchByNotice(board_subject);
 	}
-
+	// 공지사항 조회
 	public NoticeVO getNotice(String board_num) {
 		return mapper.getNotice(board_num);
-	}
-
-	public int deleteNoticeView(int board_num) {
-		return mapper.deleteNoticeView(board_num);
 	}
 }

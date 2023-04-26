@@ -1,21 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html class="no-fouc">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/css/css.css">
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
-	function pay(){
-		location.href="pay?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&ins=${param.ins}&time=${param.time}";
+	function pay(car_price){
+		location.href="pay?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&ins=${param.ins}&time=${param.time}&car_price="+car_price;
 	}
 </script>
 </head>
 <body style="">
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 	<div class="pc-mobile-header-container">
+		<!-- 		pay와 상단부분 디자인 통일시킴 -->
+	 	<div class="pc-header space-2 text-center dc-none dc-lg-block">
+            <div class="container">
+                <h2 class="text-grey-3 underline-bg dc-inline-block">선택정보</h2>
+            </div>
+        </div>
 		<div class="container p-0">
 			<div class="row my-lg-5 reservation-row">
 				<div class="col-lg-7 cm-lg-rounded">
@@ -41,19 +49,18 @@
 												src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS43NTQ0IDQuMDA5NzlMMTIuODIwNCA2Ljg0NzQyQzEzLjI0NyA2LjkwMzk4IDEzLjk5NzMgNy40MTcxNSAxNCA4LjM4ODMyVjExLjE3NDlDMTQgMTEuNjMyOSAxMy42NDAyIDEyLjAwMjYgMTMuMTk3NSAxMi4wMDI2SDEyLjk1OTVWMTIuNDgwOEMxMi45NTk1IDEzLjkwMyAxMS4wMDgxIDEzLjg4NjUgMTEuMDAyOCAxMi40ODA4VjEyLjAwMjZIMy45ODc4N1YxMi40ODA4QzMuOTg3ODcgMTMuODg2NSAyLjAzNjUzIDEzLjkwMyAyLjAzOTIxIDEyLjQ4MDhWMTIuMDAyNkgxLjgwMjQ4QzEuMzU5NzggMTIuMDAyNiAxIDExLjYzMTUgMSAxMS4xNzQ5VjguMzg4MzJDMC45OTg2NzEgNy40MTcxNSAxLjc0NzY0IDYuOTAzOTggMi4xNzAyNyA2Ljg0NzQyTDMuMjM2MjIgNC4wMDk3OUMzLjQzOTUxIDMuNDY2MjcgMy44NzU1MyAzLjAwNDE0IDQuNjk1MzcgM0gxMC4yOTUzQzExLjExOTEgMy4wMDQxNCAxMS41NTUxIDMuNDY2MjcgMTEuNzU0NCA0LjAwOTc5Wk0xMC44MzI5IDYuODIxMjFDMTEuMTI3MiA2LjgyMTIxIDExLjMyNjUgNi41MTIyMSAxMS4yMTE0IDYuMjMyMTZMMTAuNjQ5NyA0Ljg2MjMyTDEwLjYzNzIgNC44MzY0MUMxMC40ODA1IDQuNTA5OTkgMTAuMzg4IDQuMzE3MjggMTAuMDQ2NSA0LjMxMTlINC45NDE0N0M0LjU4NTcxIDQuMzE3NDIgNC40MjI1NSA0LjY0NTc0IDQuMzM4MjggNC44NjIzMkwzLjc3NjU1IDYuMjMyMTZDMy42NjE1MyA2LjUxMjIxIDMuODYwODEgNi44MjEyMSA0LjE1NTA0IDYuODIxMjFIMTAuODMyOVpNMTIuNjM1NiA4LjgzMTQzQzEyLjYzNTYgOS4zMjc5NyAxMi4yMzg4IDkuNzMwNDkgMTEuNzQ5MiA5LjczMDQ5QzExLjI1OTcgOS43MzA0OSAxMC44NjI5IDkuMzI3OTcgMTAuODYyOSA4LjgzMTQzQzEwLjg2MjkgOC4zMzQ5IDExLjI1OTcgNy45MzIzNyAxMS43NDkyIDcuOTMyMzdDMTIuMjM4OCA3LjkzMjM3IDEyLjYzNTYgOC4zMzQ5IDEyLjYzNTYgOC44MzE0M1pNMy4xNzM1OSA5LjczMDQ5QzMuNjYzMTIgOS43MzA0OSA0LjA1OTk1IDkuMzI3OTcgNC4wNTk5NSA4LjgzMTQzQzQuMDU5OTUgOC4zMzQ5IDMuNjYzMTIgNy45MzIzNyAzLjE3MzU5IDcuOTMyMzdDMi42ODQwNyA3LjkzMjM3IDIuMjg3MjMgOC4zMzQ5IDIuMjg3MjMgOC44MzE0M0MyLjI4NzIzIDkuMzI3OTcgMi42ODQwNyA5LjczMDQ5IDMuMTczNTkgOS43MzA0OVoiIGZpbGw9IiM4NTkyQUIiLz4KPC9zdmc+Cg=="><span
 												class="js-cpi-txt-car-type ml-1">${car.car_type }</span></a>
 											<div
-												class="js-cpi-txt-car-model text-20 font-weight-bold color-grey-3 mb-0">
-												${car.car_name }</div>
-											<div class="js-cpi-container-branch-info pt-1 dc-none"
-												style="display: none;">
+												class="js-cpi-txt-car-model text-20 font-weight-bold color-grey-3 mb-0">${car.car_name }</div>
+											
+											
+											<div class="js-cpi-container-branch-info pt-1 dc-none" style="display: none;">
 												<div class="dc-flex align-items-center">
 													<img
 														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM4NTkyQUIiIGQ9Ik03LjY0OCAyLjE0NmMuMTk2LS4xOTUuNTEyLS4xOTUuNzA3IDBsNS43OTMgNS43OTNjLjMxNS4zMTUuMDkyLjg1NC0uMzUzLjg1NEgyLjIwOWMtLjQ0NSAwLS42NjktLjUzOS0uMzU0LS44NTRsNS43OTMtNS43OTN6TTEzLjAwMiA4Ljc5M2gtMTB2NS41YzAgLjI3Ni4yMjQuNS41LjVoOWMuMjc2IDAgLjUtLjIyNC41LS41di01LjV6Ii8+CiAgICA8cmVjdCB3aWR0aD0iMiIgaGVpZ2h0PSI0IiB4PSI3LjAwMiIgeT0iMTEuNzkzIiBmaWxsPSIjRkFGQUZBIiByeD0iMSIvPgo8L3N2Zz4K">
 													<div
-														class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1"></div>
+														class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1">${param.res_place }</div>
 												</div>
 											</div>
-											
-<!-- 											대여시간 날짜 앞에서 데이터 받아와서 넣어야함. -->
+											<!-- 											대여시간 날짜 앞에서 데이터 받아와서 넣어야함. -->
 											<hr class="mb-2">
 											<div class="js-cpi-container-rent-period">
 												<div
@@ -68,10 +75,11 @@
 													</div>
 													<span
 														class="badge badge-pill badge-bluegreylight color-light-purple text-12 font-weight-normal"><span
-														class="txt-rent-period" style="display: block;">${param.time } 시간</span></span>
+														class="txt-rent-period" style="display: block;">${param.time }
+															시간</span></span>
 													<div class="text-center">
 														<div class="text-12 color-grey-5">반납시간</div>
-														
+
 														<div class="dc-flex text-16-b color-grey-3">
 															<span class="txt-rent-end-date mr-1"
 																style="display: block;">${fn:substring(param.rentalDatetime, 13, 19)}</span><span
@@ -257,7 +265,7 @@
 															src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 										<div
@@ -282,7 +290,7 @@
 								</div>
 							</div>
 						</section>
-						
+
 						<div class="js-vcd-not-soldout-elmt">
 							<div class="" id="vcd_container_tabs" style="top: 80px;">
 								<nav
@@ -315,7 +323,7 @@
 													<div class="text-14">
 														<div
 															class="d-flex flex-wrap align-items-center wordbreak-breakword">
-															
+
 															<div class="js-container-car-info-icon pr-4">
 																<div class="d-flex align-items-center">
 																	<img
@@ -336,7 +344,7 @@
 																		src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM3ODhBQUMiIGQ9Ik0xMi41IDEzLjA2MXYtMS40OTVjMC0xLjg1MS0xLjE2NC0zLjQyNC0yLjc2Ni0zLjk2Ny43Ny0uNDUyIDEuMjkzLTEuMzEzIDEuMjkzLTIuMjk5IDAtMS40NTEtMS4xMzQtMi42MzQtMi41MjctMi42MzQtMS4zOTMgMC0yLjUyNyAxLjE4My0yLjUyNyAyLjYzNCAwIC45ODYuNTIzIDEuODQ3IDEuMjkzIDIuMjk5QzUuNjYyIDguMTQyIDQuNSA5LjcxNSA0LjUgMTEuNTY2djEuNDk1YzAgLjE1LjExNi4yNzIuMjYuMjcyaDcuNDg0Yy4xNC0uMDAyLjI1Ni0uMTIyLjI1Ni0uMjcyeiIvPgo8L3N2Zz4K"><span
 																		class="js-car-info-txt-passenger ml-1">${car.car_seater }</span>
 																</div>
-															</div>																				
+															</div>
 															<div class="js-container-car-info-icon pr-4">
 																<div class="d-flex align-items-center">
 																	<img
@@ -359,11 +367,11 @@
 																		class="js-car-info-txt-air-condition ml-1">에어컨</span>
 																</div>
 															</div>
-															
-															
+
+
 														</div>
 													</div>
-													
+
 												</div>
 											</div>
 											<div class="mt-4 dc-none" id="klook_section_rent_return">
@@ -414,15 +422,16 @@
 												style="display: block;">
 												<div class="text-14 font-weight-bold color-grey-3">차량옵션</div>
 												<div class="mt-2" id="vcd_container_car_options">
-													<div class="container-car-option js-vcd-radio-car-option p-3 mb-2 dc-block active"
+													<div
+														class="container-car-option js-vcd-radio-car-option p-3 mb-2 dc-block active"
 														id="template_car_option">
 														<label class="checkbox-container inline-radio mb-0"
 															id="template_container_car_option_item">
 															<div class="checkbox-label ml-3"
 																id="template_txt_car_option_item">가죽시트 · 금연 ·
 																네비게이션 · 시트열선 · 운전석에어백 · 조수석에어백 · 후방센서 · 후방카메라 · ABS ·
-																블루투스 · AUX · iPod · USB · 스마트키</div> 
-																<input id="template_radio_car_option" type="radio"
+																블루투스 · AUX · iPod · USB · 스마트키</div> <input
+															id="template_radio_car_option" type="radio"
 															name="js_template_radio_car_option_name" value="0">
 														</label>
 													</div>
@@ -444,8 +453,8 @@
 												id="js_vcd_container_additional_service" data-sde-s="1"
 												data-sde-m="1" data-sde-sub="1" data-sde-g="0"
 												data-sde-ag="0" style="display: block;">
-												
-												
+
+
 												<div class="align-items-start dc-none"
 													id="js_subscribe_vehicle_maintenance_guide"
 													style="display: none;">
@@ -509,13 +518,13 @@
 														</div>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 									</section>
-									
 
-									
+
+
 									<section class="carmore-section dc-none"
 										id="js_vcd_section_car_review" style="display: none;">
 										<div class="container">
@@ -553,11 +562,11 @@
 											</div>
 										</div>
 									</section>
-									
+
 									<div class="js-show-devide-elmt"
 										id="js_vcd_container_korean_branch_terms" data-sde-s="1"
 										data-sde-m="1" data-sde-sub="1" style="display: block;">
-										
+
 									</div>
 									<section class="carmore-section"
 										id="js_section_vcd_korean_attention" style="display: block;">
@@ -607,7 +616,7 @@
 															data-group="vcp_use_category_korean"
 															data-target="vcp_use_contents_korean_99">취소규정</button>
 													</div>
-													
+
 												</div>
 												<div class="js-vcp-container-overseas-attention dc-none"
 													style="display: none;">
@@ -989,7 +998,7 @@
 														계약 조항에 위배되는 행동이나 위의 조항에 대한 위반행위를 한 경우, 회사(카모아)는 서비스를 제공하지
 														않을 권리를 가집니다.</div>
 												</div>
-												
+
 												<button
 													class="click-effect-press text-center mt-2 btn-block btn btn-outline-light-purple line-height-1 js-vcp-btn-open-attention-overseas"
 													id="" style="display: none;">
@@ -1009,16 +1018,15 @@
 											<div
 												class="dc-flex justify-content-between align-items-center">
 												<h3 class="mt-0 pt-2">업체 정보</h3>
-												
+
 											</div>
 											<div class="text-decoration-none mb-3">
 												<div class="dc-flex align-items-center">
 													<div class="img-comp-logo mr-1 rounded korean"
-														id="sci_img_comp_logo">
-													</div>
-<!-- 													렌트카 이미지 넣기 리뷰 별점 넣기 후순위-->
+														id="sci_img_comp_logo"></div>
+													<!-- 													렌트카 이미지 넣기 리뷰 별점 넣기 후순위-->
 													<div>
-													
+
 														<div
 															class="js-sci-txt-company-name text-16-b color-grey-2 mb-0">
 															${param.res_place }</div>
@@ -1030,26 +1038,27 @@
 																<div
 																	class="js-sci-txt-evaluation text-12 color-grey-2 ml-1">
 																	4.3</div>
-																
+
 															</div>
 														</div>
-														
+
 													</div>
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="container">
 											<div class="click-effect-press" id="sci_btn_open_branch_map">
-											
+
 												<!-- 지도 영역 -->
 												<div class="map-wrap w-100" style="height: 164px;">
-												
-												
-												<!-- 지도 -->
-												<div id="map" style="width:100%;height:350px;"></div>
-												<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac7eaf0b889d2a25e8a1f59096c406a"></script>
-												<script>
+
+
+													<!-- 지도 -->
+													<div id="map" style="width: 100%; height: 350px;"></div>
+													<script type="text/javascript"
+														src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac7eaf0b889d2a25e8a1f59096c406a"></script>
+													<script>
 												
 												window.onload = function() {
 													
@@ -1122,12 +1131,12 @@
 													
 												}
 												</script>
-													
+
 												</div>
 												<!-- 지도 영역 끝 -->
-												
-												</div>
+
 											</div>
+										</div>
 										<div class="container">
 											<div class="text-14 font-weight-bold color-grey-3 mt-3">주소</div>
 											<div class="dc-flex justify-content-between mt-2">
@@ -1140,7 +1149,7 @@
 														src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMyAyQzIuNDQ3NzIgMiAyIDIuNDQ3NzIgMiAzVjEwQzIgMTAuNTUyMyAyLjQ0NzcyIDExIDMgMTFINlYxM0M2IDEzLjU1MjMgNi40NDc3MiAxNCA3IDE0SDEzQzEzLjU1MjMgMTQgMTQgMTMuNTUyMyAxNCAxM1Y2QzE0IDUuNDQ3NzIgMTMuNTUyMyA1IDEzIDVIMTBWM0MxMCAyLjQ0NzcyIDkuNTUyMjggMiA5IDJIM1pNOSA1VjNIM1YxMEg2VjZDNiA1LjQ0NzcyIDYuNDQ3NzIgNSA3IDVIOVpNNyA2VjEzSDEzVjZIN1oiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=">
 												</div>
 											</div>
-											
+
 											<div class="mt-3 js-show-devide-elmt" data-sde-s="1"
 												data-sde-m="1" data-sde-sub="1" style="display: block;">
 												<div class="text-14 font-weight-bold color-grey-3">영업시간</div>
@@ -1155,7 +1164,7 @@
 													</div>
 												</div>
 											</div>
-											
+
 										</div>
 									</section>
 									<div id="js_vcd_company_review_sections"
@@ -1165,11 +1174,12 @@
 											<div class="container">
 												<div class="js-company-introduce pt-3 pb-3 clearfix"
 													style="display: block;">
-													<div class="text-16 font-weight-bold color-grey-3">${param.res_place }의 한마디</div>
+													<div class="text-16 font-weight-bold color-grey-3">${param.res_place }의
+														한마디</div>
 													<div
 														class="js-txt-company-introduce text-14 color-grey-4 mt-1 mb-0 wordbreak-breakword">안녕하세요.
 														특별한 렌트카와 특별한 부산 여행을 시작해보세요~!</div>
-										
+
 												</div>
 											</div>
 										</section>
@@ -1185,7 +1195,7 @@
 																class="color-grey-6 text-18 wordbreak-keepall">/
 																5.0</span>
 														</div>
-														
+
 													</div>
 													<p class="text-14 color-grey-4" id="rpc_txt_summary_info">최근
 														예약수 11593건 | 누적 예약수 26013건 | 입점일 2019-11-28</p>
@@ -1308,78 +1318,84 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-lg-12 review-list-container dc-none"
-													id="review_item">
-													<div class="bg-white p-3 mb-3 border">
-														<div class="dc-flex justify-content-between mb-1">
-															<div class="js-btn-review-driver-info click-effect-press">
-																<div class="dc-flex align-items-center">
-																	<img
-																		class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																		class="js-review-item-user-grade-icon mr-1 dc-none"
-																		style="width: 16px;"><span
-																		class="color-grey-1 text-16 mr-2" id="review_txt_name">김**</span>
+												<div class="col-lg-12 container" id="review_item">
+													<c:forEach var="listReview" items="${listReview }">
+														<div class="bg-white p-3 mb-3 border">
+															<div class="dc-flex justify-content-between mb-1">
+																<div
+																	class="js-btn-review-driver-info click-effect-press">
+																	<div class="dc-flex align-items-center">
+																		<img
+																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
+																			class="js-review-item-user-grade-icon mr-1 dc-none"
+																			style="width: 16px;"><span
+																			class="color-grey-1 text-16 mr-2"
+																			id="review_txt_name">${listReview.member_name }</span>
+																	</div>
+																</div>
+																<div class="flex-shrink-0">
+																	<div class="text-right dc-none"
+																		id="js_container_review_report_btn">
+																		<div
+																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
+																	</div>
+																	<div class="text-right dc-none"
+																		id="js_container_review_my_btns">
+																		<button
+																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
+																		<button
+																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
+																	</div>
 																</div>
 															</div>
-															<div class="flex-shrink-0">
-																<div class="text-right dc-none"
-																	id="js_container_review_report_btn">
-																	<div
-																		class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																</div>
-																<div class="text-right dc-none"
-																	id="js_container_review_my_btns">
-																	<button
-																		class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																	<button
-																		class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																</div>
-															</div>
-														</div>
-														<div
-															class="dc-flex justify-content-between align-items-centers">
-															<div>
-																<span class="color-grey-2 text-24 wordbreak-keepall"
-																	id="review_txt_evaluation">4.5</span><span
-																	class="color-grey-5 text-10 wordbreak-keepall">/
-																	5.0</span>
-															</div>
-															<div class="text-right">
-																<p class="color-grey-5 text-10 mb-0"
-																	id="review_txt_detail_evaluation">차량상태 3.4 | 친절도
-																	4.4 | 이용안내 3.4</p>
-																<p class="color-grey-5 text-10 mb-0"
-																	id="review_txt_rent_info">2018.09.04 ~ 2018.09.07 |
-																	아반떼</p>
-															</div>
-														</div>
-														<hr>
-														<p class="color-grey-4 text-14 wordbreak-breakword"
-															id="review_txt_msg">쿠폰 사용해서 저렴하게 렌터카 렌트 했네요. 업체도 친절하고
-															대응 잘해주셔서 편하게 렌트했습니다. 크게 불편한 점도 없었구요. 앞으로도 사업 번창하세요. :)!</p>
-														<div
-															class="dc-flex justify-content-between align-items-center mb-2">
-															<span class="text-10 color-grey-5"
-																id="review_txt_write_date">2018.09.20</span>
 															<div
-																class="review-btn-good dc-flex align-items-center click-effect-press">
-																<img class="btn-good-icon mr-1"
-																	src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4xODY3IDE1LjY2NjdIM0MxLjg5NTQzIDE1LjY2NjcgMSAxNC43NzEyIDEgMTMuNjY2N1Y5QzEgNy44OTU0MyAxLjg5NTQzIDcgMyA3SDQuMjMzNDJMNi43MjQxMyAxLjM5NTkxQzYuODMxMTMgMS4xNTUxNiA3LjA2OTg3IDEgNy4zMzMzMyAxQzguODA2MDkgMSAxMCAyLjE5MzkxIDEwIDMuNjY2NjdWNS42NjY2N0wxMy4wOTkxIDUuNjY2NzFDMTMuNjg1OSA1LjY2MDA2IDE0LjI0NTkgNS45MTE0MyAxNC42MzEgNi4zNTQyMkMxNS4wMTYgNi43OTcwMiAxNS4xODcyIDcuMzg2NTYgMTUuMDk5IDcuOTY3NzFMMTQuMTc5MSAxMy45NjY2QzE0LjAyOTYgMTQuOTUyNyAxMy4xNzY0IDE1LjY3NzkgMTIuMTg2NyAxNS42NjY3Wk01LjMzMzM0IDE0LjMzMzRMMTIuMTk0MiAxNC4zMzM0QzEyLjUyNjYgMTQuMzM3MSAxMi44MTEgMTQuMDk1NCAxMi44NjEgMTMuNzY1NkwxMy43ODA5IDcuNzY2NjFDMTMuODEwMiA3LjU3MzIzIDEzLjc1MzIgNy4zNzY3MSAxMy42MjQ4IDcuMjI5MTFDMTMuNDk2NSA3LjA4MTUyIDEzLjMwOTggNi45OTc3MyAxMy4xMDY3IDYuOTk5OTlIOS4zMzMzNEM4Ljk2NTE1IDYuOTk5OTkgOC42NjY2OCA2LjcwMTUxIDguNjY2NjggNi4zMzMzMlYzLjY2NjY1QzguNjY2NjggMy4wNzE2MSA4LjI3Njg4IDIuNTY3NjEgNy43Mzg3MSAyLjM5NjA2TDUuMzMzMzQgNy44MDgxM1YxNC4zMzM0Wk0yLjk2NjY3IDguMzMzMzFINFYxNC4zMzMzSDIuOTY2NjdDMi41OTg0OCAxNC4zMzMzIDIuMyAxNC4wMzQ4IDIuMyAxMy42NjY2VjguOTk5OThDMi4zIDguNjMxNzkgMi41OTg0OCA4LjMzMzMxIDIuOTY2NjcgOC4zMzMzMVoiIGZpbGw9IiNGRjYzNjMiLz4KPC9zdmc+Cg=="><span
-																	class="text-12 wordbreak-keepall line-height-1"
-																	id="review_txt_good">도움돼요 0</span>
+																class="dc-flex justify-content-between align-items-centers">
+																<div>
+																	<span class="color-grey-2 text-24 wordbreak-keepall"
+																		id="review_txt_evaluation">${listReview.review_star }</span><span
+																		class="color-grey-5 text-10 wordbreak-keepall">/
+																		5.0</span>
+																</div>
+																<div class="text-right">
+																	<p class="color-grey-5 text-10 mb-0"
+																		id="review_txt_detail_evaluation">차량상태 3.4 | 친절도
+																		4.4 | 이용안내 3.4</p>
+																	<p class="color-grey-5 text-10 mb-0"
+																		id="review_txt_rent_info">2018.09.04 ~ 2018.09.07
+																		| 아반떼</p>
+																</div>
 															</div>
-														</div>
-														<div class="p-3 bg-light dc-none"
-															id="review_company_reply_box">
-															<span class="color-blue text-12"
-																id="review_txt_company_reply_name">업체명</span>
-															<p
-																class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																id="review_txt_company_reply_msg">언제나 친절한 고고렌트카 입니다.
-																알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가 되겠습니다.</p>
-															<span class="text-10 color-grey-5"
-																id="review_txt_company_reply_date">2018.09.20</span>
-														</div>
+															<hr>
+															<p class="color-grey-4 text-14 wordbreak-breakword"
+																id="review_txt_msg">${listReview.review_content }</p>
+															<div
+																class="dc-flex justify-content-between align-items-center mb-2">
+																<span class="text-10 color-grey-5"
+																	id="review_txt_write_date">${listReview.review_updateDate }</span>
+																<div
+																	class="review-btn-good dc-flex align-items-center click-effect-press">
+																	<img class="btn-good-icon mr-1"
+																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4xODY3IDE1LjY2NjdIM0MxLjg5NTQzIDE1LjY2NjcgMSAxNC43NzEyIDEgMTMuNjY2N1Y5QzEgNy44OTU0MyAxLjg5NTQzIDcgMyA3SDQuMjMzNDJMNi43MjQxMyAxLjM5NTkxQzYuODMxMTMgMS4xNTUxNiA3LjA2OTg3IDEgNy4zMzMzMyAxQzguODA2MDkgMSAxMCAyLjE5MzkxIDEwIDMuNjY2NjdWNS42NjY2N0wxMy4wOTkxIDUuNjY2NzFDMTMuNjg1OSA1LjY2MDA2IDE0LjI0NTkgNS45MTE0MyAxNC42MzEgNi4zNTQyMkMxNS4wMTYgNi43OTcwMiAxNS4xODcyIDcuMzg2NTYgMTUuMDk5IDcuOTY3NzFMMTQuMTc5MSAxMy45NjY2QzE0LjAyOTYgMTQuOTUyNyAxMy4xNzY0IDE1LjY3NzkgMTIuMTg2NyAxNS42NjY3Wk01LjMzMzM0IDE0LjMzMzRMMTIuMTk0MiAxNC4zMzM0QzEyLjUyNjYgMTQuMzM3MSAxMi44MTEgMTQuMDk1NCAxMi44NjEgMTMuNzY1NkwxMy43ODA5IDcuNzY2NjFDMTMuODEwMiA3LjU3MzIzIDEzLjc1MzIgNy4zNzY3MSAxMy42MjQ4IDcuMjI5MTFDMTMuNDk2NSA3LjA4MTUyIDEzLjMwOTggNi45OTc3MyAxMy4xMDY3IDYuOTk5OTlIOS4zMzMzNEM4Ljk2NTE1IDYuOTk5OTkgOC42NjY2OCA2LjcwMTUxIDguNjY2NjggNi4zMzMzMlYzLjY2NjY1QzguNjY2NjggMy4wNzE2MSA4LjI3Njg4IDIuNTY3NjEgNy43Mzg3MSAyLjM5NjA2TDUuMzMzMzQgNy44MDgxM1YxNC4zMzM0Wk0yLjk2NjY3IDguMzMzMzFINFYxNC4zMzMzSDIuOTY2NjdDMi41OTg0OCAxNC4zMzMzIDIuMyAxNC4wMzQ4IDIuMyAxMy42NjY2VjguOTk5OThDMi4zIDguNjMxNzkgMi41OTg0OCA4LjMzMzMxIDIuOTY2NjcgOC4zMzMzMVoiIGZpbGw9IiNGRjYzNjMiLz4KPC9zdmc+Cg=="><span
+																		class="text-12 wordbreak-keepall line-height-1"
+																		id="review_txt_good">도움돼요 0</span>
+																</div>
+															</div>
+															<!------------------------------------------- 리뷰 답글 ------------------------------------->
+<!-- 															<div class="p-3 bg-light dc-none" -->
+<!-- 																id="review_company_reply_box"> -->
+<!-- 																<span class="color-blue text-12" -->
+<!-- 																	id="review_txt_company_reply_name">업체명</span> -->
+<!-- 																<p -->
+<!-- 																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword" -->
+<!-- 																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카 -->
+<!-- 																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가 -->
+<!-- 																	되겠습니다.</p> -->
+<!-- 																<span class="text-10 color-grey-5" -->
+<!-- 																	id="review_txt_company_reply_date">2018.09.20</span> -->
+<!-- 															</div> -->
+															<!----------------------------------------------------------------------------------------->
+															</div>
+														</c:forEach>
 													</div>
 												</div>
 												<button
@@ -1394,1002 +1410,209 @@
 													<div></div>
 													<div></div>
 												</div>
-												<div class="form-row mb-5" id="rpc_review_container_items">
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="111110">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjExLjk5OSIgY3k9IjExLjk5OSIgcj0iMTAuNDk5IiBmaWxsPSIjNURBRUY5Ii8+CiAgICA8cGF0aCBkPSJNMTIuMTUyIDYuNzVDOS44OTIgNi43NSA4LjEgNy44MyA4LjEgOS42MzVjMCAxLjg3OSAxLjE3OSAyLjc3NSAzLjM1MiAzLjE4IDEuNzguMzMyIDIuNDU2LjY1MSAyLjQ1NiAxLjQ1IDAgLjY1LS42NzUgMS4xMDUtMS41ODQgMS4xMDUtMS4yNzcgMC0yLjExMi0uNjM5LTIuMjM1LTEuNTk3SDcuNzkzYy4wOTggMi4xMzcgMS45MDMgMy40NzUgNC4zNzEgMy40NzUgMi4yMzUgMCA0LjA0LTEuMTY2IDQuMDQtMy4wODIgMC0xLjQ5OC0uNzg2LTIuNjQtMy4wOTQtMy4xMTktMS45NTMtLjQwNS0yLjcyNi0uNjYzLTIuNzI2LTEuNDEyIDAtLjYwMi41NzctMS4wMTkgMS42Mi0xLjAxOSAxLjA2OSAwIDEuNzIuNTI4IDEuODU1IDEuNGgyLjMwOGMtLjExLTEuOTAzLTEuNzgtMy4yNjYtNC4wMTUtMy4yNjZ6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo="><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">강**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
+											</section>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="dc-none text-primary text-12 text-right"
+								id="template_next_price">
+								<span class="js-next-price-txt-period"></span><span
+									class="js-next-price-txt-price"></span>
+							</div>
+							<div class="table-row dc-none" id="template_table_row">
+								<div class="dc-flex">
+									<div class="w-60 bg-very-light-purple p-2">
+										<div class="pl-2 dc-flex align-items-center">
+											<div
+												class="js-table-row-key text-14 font-weight-bold color-light-purple"></div>
+											<div
+												class="js-table-row-key-badge badge badge-primary ml-1 px-1 text-10">6개월
+												선택중</div>
+										</div>
+									</div>
+									<div
+										class="w-40 p-2 dc-flex align-items-center justify-content-end">
+										<div class="js-table-row-discount text-12 color-blue mr-1"></div>
+										<div class="js-table-row-value text-14"></div>
+									</div>
+								</div>
+							</div>
+							<div class="floating-btn-page-bottom dc-lg-none"></div>
+						</div>
+					</div>
+
+					<!--오른쪽 결제 정보 확인 카드 -->
+					<div class="col-lg-5 dc-none dc-lg-block">
+						<div
+							class="cm-rounded bg-shadow bg-white sticky mx-n15px mx-lg-0 sticky-pc-menu-top sticky-element-inner-scroll">
+							<section class="mt-3 p-3">
+								<div class="container">
+									<div class="row section-title">
+										<div class="col">
+											<div
+												class="mb-3 dc-flex align-items-center justify-content-between text-16">
+												<span class="color-grey-2 font-weight-bold">결제 정보</span>
+											</div>
+										</div>
+									</div>
+									<div class="js-vcd-not-soldout-elmt">
+										<div class="js-vcd-pay-info" id="js_vcd_short_month_pay_info"
+											style="">
+											<div class="row">
+												<div class="col">
+													<ul class="list-group list-group-flush">
+														<li class="list-group-item bg-lg-none px-0">
 															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
+																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
+																<span class="js-vcd-txt-rent-price-label">대여요금</span>
 																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.07~2023.03.09 |
-																		코나 1세대 EV</p>
+																	<span class="js-vcd-txt-rent-price">${car.car_price }원</span>
 																</div>
 															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">저렴하게 이용 잘했어요! 공항에서 렌트카사무실까지
-																이동해주시는 기사분 너무 친절하셨어요^_^!</p>
+														</li>
+														<li
+															class="js-vcd-price-poa-hide js-vcd-login list-group-item bg-lg-none px-0 tmobi-dc-none">
 															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.05</span>
+																class="dc-flex justify-content-between align-items-center color-grey-5 wordbreak-keepall">
+																보험요금
 																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
+																	class="text-right js-vcd-btn-login dc-flex click-effect-press">
+																	<span class="color-blue-dark-light mr-2">
+																		${param.ins} </span>
 																</div>
 															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
+														</li>
+														<li
+															class="js-vcd-price-poa-hide js-vcd-txt-point-discount list-group-item bg-lg-none px-0 dc-none"
+															style="display: none;">
+															<div
+																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
+																포인트 사용
+																<div class="text-right">
+																	<span class="js-vcd-txt-use-point">0P</span>
+																</div>
+															</div>
+														</li>
+														<li
+															class="js-vcd-price-poa-hide js-vcd-txt-coupon-discount list-group-item bg-lg-none px-0 dc-none"
+															style="display: none;">
+															<div
+																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
+																쿠폰사용
+																<div class="text-right">
+																	<span class="js-vcd-txt-use-coupon">0원</span>
+																</div>
+															</div>
+														</li>
+														<li
+															class="js-vcd-price-poa-hide list-group-item bg-lg-none px-0 border-none">
+															<div
+																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall font-weight-bold">
+																<span class="text-primary">예상 결제액</span>
+																<div class="text-right text-primary">
+																	<span class="js-vcd-txt-expected-price"> <script
+																			type="text/javascript">
+																		document.write(${car.car_price } + ${param.ins} + "원");
+																	</script>
+																	</span>
+																</div>
+															</div>
+														</li>
+													</ul>
+													<button
+														class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press">
+														<div
+															class="text-18 font-weight-bold text-white line-height-1">
+
+															<span onclick="pay(${car.car_price})"
+																class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
+																<script type="text/javascript">
+																document.write(${car.car_price } + ${param.ins} + "원 바로 예약하기");
+															</script>
+															</span><span
+																class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
+																style="display: none;"></span>
+														</div>
+														<div class="js-vcd-txt-price-desc text-12 text-white">
+														</div>
+													</button>
+													<div class="dc-none" id="js_vcd_read_payment_tooltip">
+														<div
+															class="vreserv-container-tooltip-pc d-inline-flex justify-content-between align-items-center px-3 py-2">
+															<div class="vreserv-container-tooltip-body">할인쿠폰 적용
+																중! 놓치지 마세요</div>
+															<div class="d-flex align-items-center">
+																<img
+																	class="m-0 vreserv-container-img-cancel-icon-pc pl-2"
+																	src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik04IDYuNTg2bDQuMjkzLTQuMjkzYy4zOS0uMzkgMS4wMjQtLjM5IDEuNDE0IDAgLjM5LjM5LjM5IDEuMDI0IDAgMS40MTRMOS40MTQgOGw0LjI5MyA0LjI5M2MuMzkuMzkuMzkgMS4wMjQgMCAxLjQxNC0uMzkuMzktMS4wMjQuMzktMS40MTQgMEw4IDkuNDE0bC00LjI5MyA0LjI5M2MtLjM5LjM5LTEuMDI0LjM5LTEuNDE0IDAtLjM5LS4zOS0uMzktMS4wMjQgMC0xLjQxNEw2LjU4NiA4IDIuMjkzIDMuNzA3Yy0uMzktLjM5LS4zOS0xLjAyNCAwLTEuNDE0LjM5LS4zOSAxLjAyNC0uMzkgMS40MTQgMEw4IDYuNTg2eiIvPgo8L3N2Zz4K">
+															</div>
+															<div class="vreserv-container-tooltip-polygon-pc">
+																<div class="vreserv-container-tooltip-polygon-inner"></div>
 															</div>
 														</div>
 													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="111096">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNCAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwLjUiIGZpbGw9IiMyQTQ5Q0MiLz4KICAgIDxwYXRoIGQ9Im0xNi42OTcgMTYuOTc1LTIuMzA4LTMuNTc3YzEuMTcyLS41NSAxLjgyLTEuNiAxLjgyLTIuOTY3IDAtMi4wNjMtMS40NzgtMy40MDYtNC4wMDUtMy40MDZIOC4xOTl2OS45NWgyLjIyMnYtMy4xMzhoMS43N2wxLjkzIDMuMTM4aDIuNTc2ek0xMC40MiA4Ljk5MWgxLjY4NWMxLjE3MiAwIDEuODguNSAxLjg4IDEuNDRzLS43MDggMS40NC0xLjg4IDEuNDRoLTEuNjg1di0yLjg4eiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K"><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">이**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.16~2023.03.18 |
-																		K5 3세대</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">차량상태 및 청소상태좋습니다 친절합니다</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.05</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="111007">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNCAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwLjUiIGZpbGw9IiMyQTQ5Q0MiLz4KICAgIDxwYXRoIGQ9Im0xNi42OTcgMTYuOTc1LTIuMzA4LTMuNTc3YzEuMTcyLS41NSAxLjgyLTEuNiAxLjgyLTIuOTY3IDAtMi4wNjMtMS40NzgtMy40MDYtNC4wMDUtMy40MDZIOC4xOTl2OS45NWgyLjIyMnYtMy4xMzhoMS43N2wxLjkzIDMuMTM4aDIuNTc2ek0xMC40MiA4Ljk5MWgxLjY4NWMxLjE3MiAwIDEuODguNSAxLjg4IDEuNDRzLS43MDggMS40NC0xLjg4IDEuNDRoLTEuNjg1di0yLjg4eiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K"><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">석**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.23~2023.03.24 |
-																		코나 1세대 EV</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">
-																업무용으로 렌트했습니다.<br>공항 가까워서 좋았습니다.
-															</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.05</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="110972">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjExLjk5OSIgY3k9IjExLjk5OSIgcj0iMTAuNDk5IiBmaWxsPSIjNURBRUY5Ii8+CiAgICA8cGF0aCBkPSJNMTIuMTUyIDYuNzVDOS44OTIgNi43NSA4LjEgNy44MyA4LjEgOS42MzVjMCAxLjg3OSAxLjE3OSAyLjc3NSAzLjM1MiAzLjE4IDEuNzguMzMyIDIuNDU2LjY1MSAyLjQ1NiAxLjQ1IDAgLjY1LS42NzUgMS4xMDUtMS41ODQgMS4xMDUtMS4yNzcgMC0yLjExMi0uNjM5LTIuMjM1LTEuNTk3SDcuNzkzYy4wOTggMi4xMzcgMS45MDMgMy40NzUgNC4zNzEgMy40NzUgMi4yMzUgMCA0LjA0LTEuMTY2IDQuMDQtMy4wODIgMC0xLjQ5OC0uNzg2LTIuNjQtMy4wOTQtMy4xMTktMS45NTMtLjQwNS0yLjcyNi0uNjYzLTIuNzI2LTEuNDEyIDAtLjYwMi41NzctMS4wMTkgMS42Mi0xLjAxOSAxLjA2OSAwIDEuNzIuNTI4IDEuODU1IDEuNGgyLjMwOGMtLjExLTEuOTAzLTEuNzgtMy4yNjYtNC4wMTUtMy4yNjZ6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo="><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">박**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.21~2023.03.25 |
-																		코나 1세대 EV</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">차량 인수와 반납 모두 빠르게 진행되었고, 차도 상태
-																좋았어요. 다음에 또 이용하겠습니다.</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.04</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="110874">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjExLjk5OSIgY3k9IjExLjk5OSIgcj0iMTAuNDk5IiBmaWxsPSIjNURBRUY5Ii8+CiAgICA8cGF0aCBkPSJNMTIuMTUyIDYuNzVDOS44OTIgNi43NSA4LjEgNy44MyA4LjEgOS42MzVjMCAxLjg3OSAxLjE3OSAyLjc3NSAzLjM1MiAzLjE4IDEuNzguMzMyIDIuNDU2LjY1MSAyLjQ1NiAxLjQ1IDAgLjY1LS42NzUgMS4xMDUtMS41ODQgMS4xMDUtMS4yNzcgMC0yLjExMi0uNjM5LTIuMjM1LTEuNTk3SDcuNzkzYy4wOTggMi4xMzcgMS45MDMgMy40NzUgNC4zNzEgMy40NzUgMi4yMzUgMCA0LjA0LTEuMTY2IDQuMDQtMy4wODIgMC0xLjQ5OC0uNzg2LTIuNjQtMy4wOTQtMy4xMTktMS45NTMtLjQwNS0yLjcyNi0uNjYzLTIuNzI2LTEuNDEyIDAtLjYwMi41NzctMS4wMTkgMS42Mi0xLjAxOSAxLjA2OSAwIDEuNzIuNTI4IDEuODU1IDEuNGgyLjMwOGMtLjExLTEuOTAzLTEuNzgtMy4yNjYtNC4wMTUtMy4yNjZ6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo="><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">김**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.04.01~2023.04.04 |
-																		토레스</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">거리가깝고 셔틀 자주운행하고 차상태 좋아요
-																인수/반납빨리해줘요</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.04</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="110605">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNCAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwLjUiIGZpbGw9IiMyQTQ5Q0MiLz4KICAgIDxwYXRoIGQ9Im0xNi42OTcgMTYuOTc1LTIuMzA4LTMuNTc3YzEuMTcyLS41NSAxLjgyLTEuNiAxLjgyLTIuOTY3IDAtMi4wNjMtMS40NzgtMy40MDYtNC4wMDUtMy40MDZIOC4xOTl2OS45NWgyLjIyMnYtMy4xMzhoMS43N2wxLjkzIDMuMTM4aDIuNTc2ek0xMC40MiA4Ljk5MWgxLjY4NWMxLjE3MiAwIDEuODguNSAxLjg4IDEuNDRzLS43MDggMS40NC0xLjg4IDEuNDRoLTEuNjg1di0yLjg4eiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K"><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">김**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.23~2023.03.24 |
-																		K5 3세대</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">항상 편하게 잘 이용하는곳이에여 ㅎㅎ</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.03</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="110416">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjExLjk5OSIgY3k9IjExLjk5OSIgcj0iMTAuNDk5IiBmaWxsPSIjNURBRUY5Ii8+CiAgICA8cGF0aCBkPSJNMTIuMTUyIDYuNzVDOS44OTIgNi43NSA4LjEgNy44MyA4LjEgOS42MzVjMCAxLjg3OSAxLjE3OSAyLjc3NSAzLjM1MiAzLjE4IDEuNzguMzMyIDIuNDU2LjY1MSAyLjQ1NiAxLjQ1IDAgLjY1LS42NzUgMS4xMDUtMS41ODQgMS4xMDUtMS4yNzcgMC0yLjExMi0uNjM5LTIuMjM1LTEuNTk3SDcuNzkzYy4wOTggMi4xMzcgMS45MDMgMy40NzUgNC4zNzEgMy40NzUgMi4yMzUgMCA0LjA0LTEuMTY2IDQuMDQtMy4wODIgMC0xLjQ5OC0uNzg2LTIuNjQtMy4wOTQtMy4xMTktMS45NTMtLjQwNS0yLjcyNi0uNjYzLTIuNzI2LTEuNDEyIDAtLjYwMi41NzctMS4wMTkgMS42Mi0xLjAxOSAxLjA2OSAwIDEuNzIuNTI4IDEuODU1IDEuNGgyLjMwOGMtLjExLTEuOTAzLTEuNzgtMy4yNjYtNC4wMTUtMy4yNjZ6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo="><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">박**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.21~2023.03.25 |
-																		코나 1세대 EV</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">차량상태도 좋고 저렴한 가격에 너무 좋았습니다!!^^</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.02</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="110403">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNCAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwLjUiIGZpbGw9IiMwRDZGRkMiLz4KICAgIDxwYXRoIGQ9Ik04LjI3NyAxNi45NzVoNC42ODljMi4yMzQgMCAzLjU1Mi0xLjE3MiAzLjU1Mi0zLjAxNSAwLS45NjUtLjY3MS0xLjg5My0xLjYyMy0yLjE5OC42ODMtLjI1NiAxLjE2LTEuMDYyIDEuMTYtMS43NyAwLTEuODItMS4yNDYtMi45NjctMy40NTYtMi45NjdIOC4yNzd2OS45NXptMi4yMjItNS45MjFWOC45MTdoMi4wMDNjLjg0MiAwIDEuMzMuMzc5IDEuMzMgMS4wNzVzLS40ODggMS4wNjItMS4zMyAxLjA2MmgtMi4wMDN6bTAgNC4wMjl2LTIuMjQ3aDIuMzY5Yy44NzkgMCAxLjQyOC4zOTEgMS40MjggMS4xMjQgMCAuNzMyLS41NDkgMS4xMjMtMS40MjggMS4xMjNoLTIuMzY5eiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K"><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">김**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.14~2023.03.15 |
-																		코나 1세대 EV</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">너무 너무 편안하고 깨끗하고 좋았어요 만족합니다^^</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.02</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="110354">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1 dc-none"
-																			style="width: 16px;"><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">정**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.30~2023.04.01 |
-																		XM3</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">완전 좋았어요 친절하고 차 상태도 좋았어요</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.01</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 review-list-container"
-														id="review_item" rs="110293">
-														<div class="bg-white p-3 mb-3 border">
-															<div class="dc-flex justify-content-between mb-1">
-																<div
-																	class="js-btn-review-driver-info click-effect-press">
-																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1"
-																			style="width: 16px;"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjExLjk5OSIgY3k9IjExLjk5OSIgcj0iMTAuNDk5IiBmaWxsPSIjNURBRUY5Ii8+CiAgICA8cGF0aCBkPSJNMTIuMTUyIDYuNzVDOS44OTIgNi43NSA4LjEgNy44MyA4LjEgOS42MzVjMCAxLjg3OSAxLjE3OSAyLjc3NSAzLjM1MiAzLjE4IDEuNzguMzMyIDIuNDU2LjY1MSAyLjQ1NiAxLjQ1IDAgLjY1LS42NzUgMS4xMDUtMS41ODQgMS4xMDUtMS4yNzcgMC0yLjExMi0uNjM5LTIuMjM1LTEuNTk3SDcuNzkzYy4wOTggMi4xMzcgMS45MDMgMy40NzUgNC4zNzEgMy40NzUgMi4yMzUgMCA0LjA0LTEuMTY2IDQuMDQtMy4wODIgMC0xLjQ5OC0uNzg2LTIuNjQtMy4wOTQtMy4xMTktMS45NTMtLjQwNS0yLjcyNi0uNjYzLTIuNzI2LTEuNDEyIDAtLjYwMi41NzctMS4wMTkgMS42Mi0xLjAxOSAxLjA2OSAwIDEuNzIuNTI4IDEuODU1IDEuNGgyLjMwOGMtLjExLTEuOTAzLTEuNzgtMy4yNjYtNC4wMTUtMy4yNjZ6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo="><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">박**님</span>
-																	</div>
-																</div>
-																<div class="flex-shrink-0">
-																	<div class="text-right"
-																		id="js_container_review_report_btn">
-																		<div
-																			class="js-btn-review-report text-10 color-grey-5 click-effect-press">신고</div>
-																	</div>
-																	<div class="text-right dc-none"
-																		id="js_container_review_my_btns"
-																		style="display: none;">
-																		<button
-																			class="js-btn-review-modify btn btn-sm btn-outline-grey color-grey-5 text-10 click-effect-press">수정</button>
-																		<button
-																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
-																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">5.0</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
-																</div>
-																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 5.0 | 친절도
-																		5.0 | 이용안내 5.0</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2023.03.24~2023.03.27 |
-																		아반떼 CN7</p>
-																</div>
-															</div>
-															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">
-																친절하고 좋아요.<br>위치도 공항에서 가까워서요.
-															</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">2023.04.01</span>
-																<div
-																	class="review-btn-good dc-flex align-items-center click-effect-press gray">
-																	<img class="btn-good-icon mr-1"
-																		src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjE4NjcgMTUuNjY2N0gzQzEuODk1NDMgMTUuNjY2NyAxIDE0Ljc3MTIgMSAxMy42NjY3VjlDMSA3Ljg5NTQzIDEuODk1NDMgNyAzIDdINC4yMzM0Mkw2LjcyNDEzIDEuMzk1OTFDNi44MzExMyAxLjE1NTE2IDcuMDY5ODcgMSA3LjMzMzMzIDFDOC44MDYwOSAxIDEwIDIuMTkzOTEgMTAgMy42NjY2N1Y1LjY2NjY3TDEzLjA5OTEgNS42NjY3MUMxMy42ODU5IDUuNjYwMDYgMTQuMjQ1OSA1LjkxMTQzIDE0LjYzMSA2LjM1NDIyQzE1LjAxNiA2Ljc5NzAyIDE1LjE4NzIgNy4zODY1NiAxNS4wOTkgNy45Njc3MUwxNC4xNzkxIDEzLjk2NjZDMTQuMDI5NiAxNC45NTI3IDEzLjE3NjQgMTUuNjc3OSAxMi4xODY3IDE1LjY2NjdaTTUuMzMzMzMgMTQuMzMzNEwxMi4xOTQyIDE0LjMzMzRDMTIuNTI2NiAxNC4zMzcxIDEyLjgxMSAxNC4wOTU0IDEyLjg2MSAxMy43NjU2TDEzLjc4MDkgNy43NjY2MkMxMy44MTAyIDcuNTczMjQgMTMuNzUzMiA3LjM3NjczIDEzLjYyNDggNy4yMjkxM0MxMy40OTY1IDcuMDgxNTMgMTMuMzA5OCA2Ljk5Nzc0IDEzLjEwNjcgN0g5LjMzMzMzQzguOTY1MTQgNyA4LjY2NjY3IDYuNzAxNTIgOC42NjY2NyA2LjMzMzMzVjMuNjY2NjdDOC42NjY2NyAzLjA3MTYyIDguMjc2ODcgMi41Njc2MiA3LjczODcgMi4zOTYwN0w1LjMzMzMzIDcuODA4MTRWMTQuMzMzNFpNNCA4LjMzMzMzSDIuOTY2NjdDMi41OTg0OCA4LjMzMzMzIDIuMyA4LjYzMTgxIDIuMyA5VjEzLjY2NjdDMi4zIDE0LjAzNDkgMi41OTg0OCAxNC4zMzMzIDIuOTY2NjcgMTQuMzMzM0g0VjguMzMzMzNaIiBmaWxsPSIjOTk5OTk5Ii8+Cjwvc3ZnPgo="><span
-																		class="text-12 wordbreak-keepall line-height-1"
-																		id="review_txt_good">도움돼요 0</span>
-																</div>
-															</div>
-															<div class="p-3 bg-light dc-none"
-																id="review_company_reply_box" style="display: none;">
-																<span class="color-blue text-12"
-																	id="review_txt_company_reply_name">업체명</span>
-																<p
-																	class="color-grey-3 mb-1 text-14 mt-2 wordbreak-breakword"
-																	id="review_txt_company_reply_msg">언제나 친절한 고고렌트카
-																	입니다. 알찬 이용후기 남겨주셔서 감사합니다. 언제나 편한 여행이 되도록 노력하는 고고렌트카가
-																	되겠습니다.</p>
-																<span class="text-10 color-grey-5"
-																	id="review_txt_company_reply_date">2018.09.20</span>
-															</div>
-														</div>
-													</div>
-													
 												</div>
 											</div>
-										</section>
+										</div>
+										<div class="js-vcd-pay-info dc-none"
+											id="js_vcd_subscribe_pay_info" style="display: none;"></div>
+									</div>
+									<div class="row js-vcd-soldout-elmt dc-none"
+										style="display: none;">
+										<div class="col">
+											<div class="pb-3 text-16-b">해당 차량은 마감되었어요 T^T</div>
+											<button
+												class="btn btn-primary btn-block btn-lg mb-2 btn-border-10 text-14 font-weight-bold"
+												disabled="true">마감된 차량</button>
+										</div>
 									</div>
 								</div>
-								
-							</div>
+							</section>
 						</div>
-						<div class="dc-none text-primary text-12 text-right"
-							id="template_next_price">
-							<span class="js-next-price-txt-period"></span><span
-								class="js-next-price-txt-price"></span>
-						</div>
-						<div class="table-row dc-none" id="template_table_row">
-							<div class="dc-flex">
-								<div class="w-60 bg-very-light-purple p-2">
-									<div class="pl-2 dc-flex align-items-center">
-										<div
-											class="js-table-row-key text-14 font-weight-bold color-light-purple"></div>
-										<div
-											class="js-table-row-key-badge badge badge-primary ml-1 px-1 text-10">6개월
-											선택중</div>
-									</div>
-								</div>
-								<div
-									class="w-40 p-2 dc-flex align-items-center justify-content-end">
-									<div class="js-table-row-discount text-12 color-blue mr-1"></div>
-									<div class="js-table-row-value text-14"></div>
-								</div>
-							</div>
-						</div>
-						<div class="floating-btn-page-bottom dc-lg-none"></div>
 					</div>
-				</div>
-				
-				<!--오른쪽 결제 정보 확인 카드 -->
-				<div class="col-lg-5 dc-none dc-lg-block">
-					<div
-						class="cm-rounded bg-shadow bg-white sticky mx-n15px mx-lg-0 sticky-pc-menu-top sticky-element-inner-scroll">
-						<section class="mt-3 p-3">
+					<div class="d-lg-none">
+						<div class="fixed-bottom bg-white pt-2 safearea-bottom">
 							<div class="container">
-								<div class="row section-title">
-									<div class="col">
-										<div
-											class="mb-3 dc-flex align-items-center justify-content-between text-16">
-											<span class="color-grey-2 font-weight-bold">결제 정보</span>
+								<div class="dc-none" id="js_container_read_payment_tooltip">
+									<div
+										class="vreserv-container-tooltip dc-flex justify-content-between align-items-center px-3 py-2">
+										<div class="vreserv-container-tooltip-body">할인쿠폰 적용 중!
+											놓치지 마세요</div>
+										<div class="d-flex align-items-center">
+											<img class="m-0 vreserv-container-img-cancel-icon pl-2"
+												src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik04IDYuNTg2bDQuMjkzLTQuMjkzYy4zOS0uMzkgMS4wMjQtLjM5IDEuNDE0IDAgLjM5LjM5LjM5IDEuMDI0IDAgMS40MTRMOS40MTQgOGw0LjI5MyA0LjI5M2MuMzkuMzkuMzkgMS4wMjQgMCAxLjQxNC0uMzkuMzktMS4wMjQuMzktMS40MTQgMEw4IDkuNDE0bC00LjI5MyA0LjI5M2MtLjM5LjM5LTEuMDI0LjM5LTEuNDE0IDAtLjM5LS4zOS0uMzktMS4wMjQgMC0xLjQxNEw2LjU4NiA4IDIuMjkzIDMuNzA3Yy0uMzktLjM5LS4zOS0xLjAyNCAwLTEuNDE0LjM5LS4zOSAxLjAyNC0uMzkgMS40MTQgMEw4IDYuNTg2eiIvPgo8L3N2Zz4K">
+										</div>
+										<div class="vreserv-container-tooltip-polygon">
+											<div class="vreserv-container-tooltip-polygon-inner"></div>
 										</div>
 									</div>
 								</div>
 								<div class="js-vcd-not-soldout-elmt">
-									<div class="js-vcd-pay-info" id="js_vcd_short_month_pay_info"
-										style="">
-										<div class="row">
-											<div class="col">
-												<ul class="list-group list-group-flush">
-													<li class="list-group-item bg-lg-none px-0">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-															<span class="js-vcd-txt-rent-price-label">대여요금</span>
-															<div class="text-right">
-																<span class="js-vcd-txt-rent-price">${car.car_price }원</span>
-															</div>
-														</div>
-													</li>
-													<li
-														class="js-vcd-price-poa-hide js-vcd-login list-group-item bg-lg-none px-0 tmobi-dc-none">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-5 wordbreak-keepall">
-															보험요금
-															<div
-																class="text-right js-vcd-btn-login dc-flex click-effect-press">
-																<span class="color-blue-dark-light mr-2">
-																	${param.ins}
-																	
-																</span>
-															</div>
-														</div>
-													</li>
-													<li
-														class="js-vcd-price-poa-hide js-vcd-txt-point-discount list-group-item bg-lg-none px-0 dc-none"
-														style="display: none;">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-															포인트 사용
-															<div class="text-right">
-																<span class="js-vcd-txt-use-point">0P</span>
-															</div>
-														</div>
-													</li>
-													<li
-														class="js-vcd-price-poa-hide js-vcd-txt-coupon-discount list-group-item bg-lg-none px-0 dc-none"
-														style="display: none;">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-															쿠폰사용
-															<div class="text-right">
-																<span class="js-vcd-txt-use-coupon">0원</span>
-															</div>
-														</div>
-													</li>
-													<li
-														class="js-vcd-price-poa-hide list-group-item bg-lg-none px-0 border-none">
-														<div
-															class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall font-weight-bold">
-															<span class="text-primary">예상 결제액</span>
-															<div class="text-right text-primary">
-																<span class="js-vcd-txt-expected-price">
-																	<script type="text/javascript">
-																		document.write(${car.car_price } + ${param.ins} + "원");
-																	</script>
-																</span>
-															</div>
-														</div>
-													</li>
-												</ul>
-												<button
-													class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press">
-													<div
-														class="text-18 font-weight-bold text-white line-height-1">
-														
-														<span onclick="pay()"
-															class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
-															<script type="text/javascript">
-																document.write(${car.car_price } + ${param.ins} + "원 바로 예약하기");
-															</script>
-														</span><span
-															class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
-															style="display: none;"></span>
-													</div>
-													<div class="js-vcd-txt-price-desc text-12 text-white">
-														</div>
-												</button>
-												<div class="dc-none" id="js_vcd_read_payment_tooltip">
-													<div
-														class="vreserv-container-tooltip-pc d-inline-flex justify-content-between align-items-center px-3 py-2">
-														<div class="vreserv-container-tooltip-body">할인쿠폰 적용
-															중! 놓치지 마세요</div>
-														<div class="d-flex align-items-center">
-															<img
-																class="m-0 vreserv-container-img-cancel-icon-pc pl-2"
-																src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik04IDYuNTg2bDQuMjkzLTQuMjkzYy4zOS0uMzkgMS4wMjQtLjM5IDEuNDE0IDAgLjM5LjM5LjM5IDEuMDI0IDAgMS40MTRMOS40MTQgOGw0LjI5MyA0LjI5M2MuMzkuMzkuMzkgMS4wMjQgMCAxLjQxNC0uMzkuMzktMS4wMjQuMzktMS40MTQgMEw4IDkuNDE0bC00LjI5MyA0LjI5M2MtLjM5LjM5LTEuMDI0LjM5LTEuNDE0IDAtLjM5LS4zOS0uMzktMS4wMjQgMC0xLjQxNEw2LjU4NiA4IDIuMjkzIDMuNzA3Yy0uMzktLjM5LS4zOS0xLjAyNCAwLTEuNDE0LjM5LS4zOSAxLjAyNC0uMzkgMS40MTQgMEw4IDYuNTg2eiIvPgo8L3N2Zz4K">
-														</div>
-														<div class="vreserv-container-tooltip-polygon-pc">
-															<div class="vreserv-container-tooltip-polygon-inner"></div>
-														</div>
-													</div>
-												</div>
-											</div>
+									<button
+										class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-pay btn-border-10 mb-2 click-effect-press">
+										<div class="text-18 font-weight-bold">
+											<span
+												class="js-vcd-txt-expected-price js-vcd-price-button js-vcd-welcome-coupon-applied-expected-price">7,300원
+												바로 예약하기</span><span
+												class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
+												style="display: none;"></span>
 										</div>
-									</div>
-									<div class="js-vcd-pay-info dc-none"
-										id="js_vcd_subscribe_pay_info" style="display: none;"></div>
+										<div class="js-vcd-txt-price-desc text-12">가입 후 첫 구매 5천원
+											할인, 완전자차 포함</div>
+									</button>
 								</div>
-								<div class="row js-vcd-soldout-elmt dc-none"
-									style="display: none;">
-									<div class="col">
-										<div class="pb-3 text-16-b">해당 차량은 마감되었어요 T^T</div>
-										<button
-											class="btn btn-primary btn-block btn-lg mb-2 btn-border-10 text-14 font-weight-bold"
-											disabled="true">마감된 차량</button>
-									</div>
+								<div class="js-vcd-soldout-elmt dc-none" style="display: none;">
+									<button
+										class="btn btn-primary btn-block btn-lg btn-border-10 text-14 font-weight-bold"
+										disabled="true">마감된 차량</button>
 								</div>
-							</div>
-						</section>
-					</div>
-				</div>
-				<div class="d-lg-none">
-					<div class="fixed-bottom bg-white pt-2 safearea-bottom">
-						<div class="container">
-							<div class="dc-none" id="js_container_read_payment_tooltip">
-								<div
-									class="vreserv-container-tooltip dc-flex justify-content-between align-items-center px-3 py-2">
-									<div class="vreserv-container-tooltip-body">할인쿠폰 적용 중!
-										놓치지 마세요</div>
-									<div class="d-flex align-items-center">
-										<img class="m-0 vreserv-container-img-cancel-icon pl-2"
-											src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik04IDYuNTg2bDQuMjkzLTQuMjkzYy4zOS0uMzkgMS4wMjQtLjM5IDEuNDE0IDAgLjM5LjM5LjM5IDEuMDI0IDAgMS40MTRMOS40MTQgOGw0LjI5MyA0LjI5M2MuMzkuMzkuMzkgMS4wMjQgMCAxLjQxNC0uMzkuMzktMS4wMjQuMzktMS40MTQgMEw4IDkuNDE0bC00LjI5MyA0LjI5M2MtLjM5LjM5LTEuMDI0LjM5LTEuNDE0IDAtLjM5LS4zOS0uMzktMS4wMjQgMC0xLjQxNEw2LjU4NiA4IDIuMjkzIDMuNzA3Yy0uMzktLjM5LS4zOS0xLjAyNCAwLTEuNDE0LjM5LS4zOSAxLjAyNC0uMzkgMS40MTQgMEw4IDYuNTg2eiIvPgo8L3N2Zz4K">
-									</div>
-									<div class="vreserv-container-tooltip-polygon">
-										<div class="vreserv-container-tooltip-polygon-inner"></div>
-									</div>
-								</div>
-							</div>
-							<div class="js-vcd-not-soldout-elmt">
-								<button
-									class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-pay btn-border-10 mb-2 click-effect-press">
-									<div class="text-18 font-weight-bold">
-										<span
-											class="js-vcd-txt-expected-price js-vcd-price-button js-vcd-welcome-coupon-applied-expected-price">7,300원
-											바로 예약하기</span><span
-											class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
-											style="display: none;"></span>
-									</div>
-									<div class="js-vcd-txt-price-desc text-12">가입 후 첫 구매 5천원
-										할인, 완전자차 포함</div>
-								</button>
-							</div>
-							<div class="js-vcd-soldout-elmt dc-none" style="display: none;">
-								<button
-									class="btn btn-primary btn-block btn-lg btn-border-10 text-14 font-weight-bold"
-									disabled="true">마감된 차량</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<jsp:include page="../inc/footer.jsp"></jsp:include>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
@@ -76,7 +75,8 @@
 										</div>
 										<div class="dc-flex justify-content-between pb-5" id="">
 											<div class="js-mypage-btn-point dc-flex flex-stretch pr-1"
-												style="flex-basis: 50%" onclick="location.href='mypage?tab=point'">
+												style="flex-basis: 50%"
+												onclick="location.href='mypage?tab=point'">
 												<div
 													class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press">
 													<div class="js-mypage-txt-point text-16-b">${member.member_point}
@@ -86,7 +86,8 @@
 											</div>
 											<div
 												class="js-mypage-btn-coupon dc-flex flex-stretch pl-1 position-relative"
-												style="flex-basis: 50%" onclick="location.href='mypage?tab=coupon'">
+												style="flex-basis: 50%"
+												onclick="location.href='mypage?tab=coupon'">
 												<div
 													class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press">
 													<div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>
@@ -109,9 +110,11 @@
 										<h3 class="color-grey-3 text-14 list-border-bottom">메뉴</h3>
 										<div class="list-group list-group-flush">
 											<a
-												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0" onclick="location.href='modifyInfo'" style="cursor: pointer;">내
-												정보 관리</a> <a
-												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0" onclick="location.href='#'" style="cursor: pointer;"
+												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
+												onclick="location.href='modifyInfo'"
+												style="cursor: pointer;">내 정보 관리</a> <a
+												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
+												onclick="location.href='#'" style="cursor: pointer;"
 												data-type="faq">자주묻는 질문</a>
 										</div>
 									</div>
@@ -146,40 +149,56 @@
 								<div class="container">
 									<h3 class="mt-0 pt-3">리뷰 내역</h3>
 									<br>
-									<table class="search_list_tbl for_web">
-										<colgroup>
-											<col style="width: 11.666%;">
-											<col style="width: 11.666%;">
-											<col style="width: 65%;">
-											<col style="width: 11.666%;">
-										</colgroup>
-										<thead>
-											<tr>
-												<th scope="col">No</th>
-												<th scope="col">등록일</th>
-												<th scope="col" style="text-align: center;">제목</th>
-												<th scope="col">답변내역</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${myReview}" var="myReview">
-												<tr>
-													<td>${myReview.review_idx }</td>
-													<td>${myReview.review_updateDate }</td>
-													<td>
-														<div class="link_wrap ">
-															<a href="/mypage?tab=review&idx=${myReview.review_idx}" class="detailLink" data-id="65">
-																${myReview.review_title } </a>
-														</div>
-													</td>
-													<td>${myReview.review_title }</td>
-													<td class="clip "><input class="btn-primary"
-														type="button" value="내역보기">
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+									
+									<c:choose>
+										<c:when test="${empty myReview}">
+											<p class="space-1 text-center">조회된 기록이 없습니다.</p>
+										</c:when>
+										<c:otherwise>
+											<table class="search_list_tbl for_web">
+												<colgroup>
+														<col style="width: 5%;">
+														<col style="width: 15%;">
+														<col style="width: 20%;">
+														<col style="width: 60%;">
+												</colgroup>
+												<thead>
+													<tr>
+														<th scope="col" style="text-align: center;">예약번호</th>
+														<th scope="col" style="text-align: center;">등록일</th>
+														<th scope="col" style="text-align: center;">rating</th>
+														<th scope="col" style="text-align: center;">내용</th>
+													</tr>
+												</thead>	
+												<tbody>
+												<c:forEach items="${myReview}" var="myReview">
+													<tr>
+														<td>${myReview.res_id }</td>
+														<td>${myReview.review_updateDate }</td>
+														<td>
+															<c:if test="${myReview.review_star == '5' }">
+																★★★★★
+															</c:if>
+															<c:if test="${myReview.review_star == '4' }">
+																★★★★
+															</c:if>	
+															<c:if test="${myReview.review_star == '3' }">
+																★★★
+															</c:if>	
+															<c:if test="${myReview.review_star == '2' }">
+																★★
+															</c:if>		
+															<c:if test="${myReview.review_star == '1' }">
+																★
+															</c:if>	
+														</td>
+														<td>${myReview.review_title }</td>
+													</tr>
+												</c:forEach>
+												</tbody>
+											</table>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</section>
 						</div>
