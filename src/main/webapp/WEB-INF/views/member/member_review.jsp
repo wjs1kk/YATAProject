@@ -157,16 +157,18 @@
 										<c:otherwise>
 											<table class="search_list_tbl for_web">
 												<colgroup>
-														<col style="width: 5%;">
+														<col style="width: 10%;">
 														<col style="width: 15%;">
-														<col style="width: 20%;">
-														<col style="width: 60%;">
+														<col style="width: 15%;">
+														<col style="width: 15%;">
+														<col style="width: 45%;">
 												</colgroup>
 												<thead>
 													<tr>
 														<th scope="col" style="text-align: center;">예약번호</th>
 														<th scope="col" style="text-align: center;">등록일</th>
 														<th scope="col" style="text-align: center;">rating</th>
+														<th scope="col" style="text-align: center;">상품정보</th>
 														<th scope="col" style="text-align: center;">내용</th>
 													</tr>
 												</thead>	
@@ -176,23 +178,10 @@
 														<td>${myReview.res_id }</td>
 														<td>${myReview.review_updateDate }</td>
 														<td>
-															<c:if test="${myReview.review_star == '5' }">
-																★★★★★
-															</c:if>
-															<c:if test="${myReview.review_star == '4' }">
-																★★★★
-															</c:if>	
-															<c:if test="${myReview.review_star == '3' }">
-																★★★
-															</c:if>	
-															<c:if test="${myReview.review_star == '2' }">
-																★★
-															</c:if>		
-															<c:if test="${myReview.review_star == '1' }">
-																★
-															</c:if>	
+															${myReview.review_star} / 5
 														</td>
-														<td>${myReview.review_title }</td>
+														<td>${myReview.car_name}</td>
+														<td>${myReview.review_content}</td>
 													</tr>
 												</c:forEach>
 												</tbody>

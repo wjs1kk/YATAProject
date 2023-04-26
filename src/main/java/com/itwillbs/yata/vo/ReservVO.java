@@ -11,7 +11,6 @@ public class ReservVO {
 	private String res_place;
 	private String car_name;
 	
-	
 	public ReservVO() {
 	}
 	

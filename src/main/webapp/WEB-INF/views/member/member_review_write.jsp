@@ -207,16 +207,16 @@
 											<p>별점을 매겨주세요</p>
 											<div class="make_star">
 												<fieldset>
-														<input type="radio" name="review_star" value="5" id="rate1">
-														<label for="rate1">★</label> 
-														<input type="radio" name="review_star" value="4" id="rate2">
-														<label for="rate2">★</label> 
-														<input type="radio" name="review_star" value="3" id="rate3">
-														<label for="rate3">★</label> 
-														<input type="radio" name="review_star" value="2" id="rate4">
-														<label for="rate4">★</label> 
-														<input type="radio" name="review_star" value="1" id="rate5">
-														<label for="rate5">★</label>
+													<input type="radio" name="review_star" value="5.0" id="rate1">
+													<label for="rate1">★</label> 
+													<input type="radio" name="review_star" value="4.0" id="rate2">
+													<label for="rate2">★</label> 
+													<input type="radio" name="review_star" value="3.0" id="rate3">
+													<label for="rate3">★</label> 
+													<input type="radio" name="review_star" value="2.0" id="rate4">
+													<label for="rate4">★</label> 
+													<input type="radio" name="review_star" value="1.0" id="rate5">
+													<label for="rate5">★</label>
 												</fieldset>
 											</div>
 										</div>
@@ -227,7 +227,7 @@
 										</div>
 										<div style="text-align: right">
 											<button type="submit" class="btn btn-info">등록하기</button>
-											<button type="button" class="btn btn-secondary">목록으로</button>
+											<button type="button" class="btn btn-secondary" onclick="history.back()">목록으로</button>
 										</div>
 									</form>
 								</div>

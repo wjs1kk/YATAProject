@@ -1,5 +1,8 @@
 package com.itwillbs.yata.controller;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -87,6 +90,7 @@ public class MemberController {
 		if(tab.equals("history")) {	
 			List<ReservVO> resList = reservService.myReservation(member_email);
 			model.addAttribute("resList", resList);
+			
 			return "member/member_history";
 
 		// 나의리뷰	
@@ -196,36 +200,35 @@ public class MemberController {
 	}
 	
 	// 예약내역 -> 리뷰 작성
-		@GetMapping("reviewWrite")
-		public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
-			String member_email = (String) session.getAttribute("member_email");
-			member = memberService.selectUser(member_email);
-			model.addAttribute("member", member);
-			
-			Integer review = reviewService.getResId(res_id);
-			
-			if(review != null) {
-				model.addAttribute("msg", "이미 작성된 리뷰입니다!");
-				return "fail_back";
-			}
-			
-			return "member/member_review_write";
+	@GetMapping("reviewWrite")
+	public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
+		String member_email = (String) session.getAttribute("member_email");
+		member = memberService.selectUser(member_email);
+		model.addAttribute("member", member);
+		
+		Integer review = reviewService.getResId(res_id);
+		
+		if(review != null) {
+			model.addAttribute("msg", "이미 작성된 리뷰입니다!");
+			return "fail_back";
 		}
+		
+		return "member/member_review_write";
+	}
 	
 	// 리뷰 작성
 	@PostMapping("reviewWritePro")
 	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place, String review_star) {
 		String member_email = (String)session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
-
+		
 		review.setMember_email(member_email);
 		review.setRes_id(res_id);
 		review.setMember_name(member.getMember_name());
 		review.setReview_place(res_place);
 		review.setReview_star(review_star);
-		
+			
 		int insertCount = reviewService.insertReview(review);
-		System.out.println(insertCount);
 		if (insertCount > 0) {
 			return "redirect:/mypage?tab=history";
 		} else {
@@ -235,41 +238,50 @@ public class MemberController {
 	}
 	
 	// 예약내역 상세보기
-		@GetMapping("historyDetails")
-		public String historyDetails(HttpSession session, Model model, @RequestParam Integer res_id, CarVO car, ReservVO res) {
-			String member_email = (String)session.getAttribute("member_email");
-			MemberVO member = memberService.selectUser(member_email);
-			model.addAttribute("member", member);
+	@GetMapping("historyDetails")
+	public String historyDetails(HttpSession session, Model model, @RequestParam Integer res_id, CarVO car, ReservVO res) {
+		String member_email = (String)session.getAttribute("member_email");
+		MemberVO member = memberService.selectUser(member_email);
+		model.addAttribute("member", member);
 
-			ReservVO reserve = reservService.getReserveList(res_id);
-			car.setCar_id(res.getRes_id());
-			
-			car = carService.selectCar(car.getCar_id());
-			
-			model.addAttribute("reserve", reserve);
-			model.addAttribute("car", car);
-
-			return "member/member_history_details";
-		}
+		ReservVO reserve = reservService.getReserveList(res_id);
+		car.setCar_id(res.getRes_id());
 		
-		// 예약 내역 ->예약 취소
-		@GetMapping("deleteReserve")
-		public String deleteReserve(Model model, ReservVO reserve, @RequestParam Integer res_id) {
-			reserve = reservService.getReserveList(res_id);
-			
-			int deleteCount = reservService.deleteReserve(reserve.getRes_id());
-			System.out.println(deleteCount);
-			
-			if(deleteCount > 0) {
-				model.addAttribute("msg", "예약이 취소 되었습니다!");
-				model.addAttribute("target", "redirect:/mypage?tab=history");
-				return "success";
-			} else {
-				model.addAttribute("msg", "실패");
-				return "fail_back";
-			}
+		car = carService.selectCar(car.getCar_id());
+		
+		
+		String endDate = reserve.getRes_endDate();
+		System.out.println(endDate);
+		model.addAttribute("reserve", reserve);
+		model.addAttribute("car", car);
 
+		return "member/member_history_details";
+	}
+		
+	// 예약 내역 ->예약 취소
+	@GetMapping("deleteReserve")
+	public String deleteReserve(Model model, ReservVO reserve, @RequestParam Integer res_id) {
+		reserve = reservService.getReserveList(res_id);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd");
+		String endDate = reserve.getRes_endDate();
+		
+		
+	 
+		int deleteCount = reservService.deleteReserve(reserve.getRes_id());
+		
+		if(deleteCount > 0) {
+			model.addAttribute("msg", "예약이 취소 되었습니다!");
+			model.addAttribute("target", "mypage?tab=history");
+			return "success";
+		} else {
+			model.addAttribute("msg", "실패");
+			return "fail_back";
 		}
+
+	}
+		
+		
 
 
 }
