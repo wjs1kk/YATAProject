@@ -66,19 +66,21 @@
 		</if>
 	</select>
 <!--   	관리자  	 -->
+
+	<!--2023-04-26 김동욱 차량 업데이트 차량 수정 시 이미지 파일도 수정 가능-->
 	<update id="carUpdate">
 		UPDATE car
 		SET car_manufacturer = #{car_manufacturer}
+			<if test="car_model != null and !car_model.equals('')">
   			   , car_model = #{car_model}
+  			</if>
   			   , car_name = #{car_name}
   			   , car_type = #{car_type}
   			   , car_year = #{car_year}
   			   , car_price = #{car_price}  			
   			   , car_seater = #{car_seater}
   			   , car_fuel = #{car_fuel}
-  			   
   		WHERE car_id = #{car_id}
-			
 	</update>
 	
 	<delete id="deleteCar">

@@ -11,11 +11,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +25,6 @@ import com.itwillbs.yata.service.CouponService;
 import com.itwillbs.yata.service.CsService;
 import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.ReservService;
-import com.itwillbs.yata.service.ReviewService;
 import com.itwillbs.yata.vo.CarVO;
 import com.itwillbs.yata.vo.CouponVO;
 import com.itwillbs.yata.vo.MailFormVO;
@@ -166,6 +162,7 @@ public class AdminController {
 	//회원 정보 수정
 	@PostMapping("AdminMemberModifyPro.ad")
 	public String AdminMemberModifyPro(MemberVO member, Model model) {
+		System.out.println(member);
 		
 		int updateCount = memberService.AdminMemberModifyPro(member);
 		
@@ -332,30 +329,30 @@ public class AdminController {
 		
 	}
 	
-	//차량 정보 수정
+	// 차량 정보 수정 :  2023-04-26 김동욱 - 차량 정보 수정 차량 수정시 파일을 변경하지 않았을 때 수정되지 않았던 오류 수정
 	@PostMapping("AdminCarUpdatePro.ad")
-	public String carUpdate(CarVO new_car, Model model, int car_id, @RequestParam MultipartFile file, HttpSession session) {
-		new_car.setCar_id(car_id);
-		MultipartFile mFile = file;
-		new_car.setCar_model(mFile.getOriginalFilename().split("\\.")[0]);
-		System.out.println(new_car.getCar_model());
-		int updateCount = carService.carUpdate(new_car);
+	public String carUpdate(Model model, CarVO car, MultipartFile file, HttpSession session) {
+		System.out.println(file);
+		System.out.println(car);
 		
-		
-		String uploadDir = "/resources/images/car";
-		String saveDir = session.getServletContext().getRealPath(uploadDir);
-		System.out.println(saveDir);
-		
-		try {
-			// 이미지 파일 업로드
-			mFile.transferTo(new File(saveDir, mFile.getOriginalFilename()));
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(file != null) {
+			MultipartFile mFile = file;
+			car.setCar_model(mFile.getOriginalFilename().split("\\.")[0]);
+			String uploadDir = "/resources/images/car";
+			String saveDir = session.getServletContext().getRealPath(uploadDir);
+			System.out.println(saveDir);
+			try {
+				// 이미지 파일 업로드
+				mFile.transferTo(new File(saveDir, mFile.getOriginalFilename()));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		
+		System.out.println(car.getCar_model());
+		int updateCount = carService.carUpdate(car);
 		
 		if(updateCount > 0) {
 			model.addAttribute("msg", "차량 정보 수정 완료!");

@@ -49,20 +49,18 @@
 	
 	
 	
+	<!-- 관리자 회원 정보 수정 -->
 	<update id="AdminMemberModify">
 		UPDATE member
-			SET member_name = #{member_name}
-				<if test='member_passwd neq ""'>
-			    , member_passwd = #{member_passwd}
-				</if>
-			    , member_birth = #{member_birth}
-			    , member_phone = #{member_phone}
+			SET  member_phone = #{member_phone}
 			    , member_point = #{member_point}
 			    <if test='member_license neq ""'>
 			    , member_license = #{member_license}
 				</if>
+				, member_isadmin = #{member_isadmin}
 			WHERE member_email = #{member_email}
 	</update>
+	
 
 	<delete id="AdminMemberDelete">
 		DELETE FROM member

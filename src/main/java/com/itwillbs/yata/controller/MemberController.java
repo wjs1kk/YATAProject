@@ -41,6 +41,7 @@ public class MemberController {
 		return "member/member_login";
 	}
 
+	// 2023-04-26 김동욱 - 로그인시 admin인 지 확인 후 session세팅
 	@PostMapping("loginPro")
 	public String loginPro(String member_email, String member_passwd, HttpSession session, Model model) {
 		// db 데이터와 로그인 시 비밀번호 비교
@@ -50,7 +51,14 @@ public class MemberController {
 			model.addAttribute("msg", "로그인 실패!");
 			return "fail_back";
 		}
-		System.out.println();
+		
+		//관리자 로그인한 사람이 관리자 권한이 있는 지 확인
+		String isAdmin =  memberService.isAdmin(member_email);
+		// sesiion이 관리자권한 확인 후 세션 세팅
+		if(isAdmin.equals("1")) {
+			session.setAttribute("isAdmin", isAdmin);
+		}
+		
 		session.setAttribute("member_email", member_email);
 		System.out.println(session.getAttribute("member_email"));
 		return "redirect:/";

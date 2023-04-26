@@ -14,21 +14,6 @@ public class CarVO {
 	
 	public CarVO() {}
 
-	public CarVO(int car_id, String car_manufacturer, String car_model, String car_name, String car_type, int car_year,
-			int car_price, String car_available, int car_seater, String car_fuel) {
-		super();
-		this.car_id = car_id;
-		this.car_manufacturer = car_manufacturer;
-		this.car_model = car_model;
-		this.car_name = car_name;
-		this.car_type = car_type;
-		this.car_year = car_year;
-		this.car_price = car_price;
-		this.car_available = car_available;
-		this.car_seater = car_seater;
-		this.car_fuel = car_fuel;
-	}
-
 	public int getCar_id() {
 		return car_id;
 	}
@@ -108,10 +93,16 @@ public class CarVO {
 	public void setCar_fuel(String car_fuel) {
 		this.car_fuel = car_fuel;
 	}
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "CarVO [car_id=" + car_id + ", car_manufacturer=" + car_manufacturer + ", car_model=" + car_model
+				+ ", car_name=" + car_name + ", car_type=" + car_type + ", car_year=" + car_year + ", car_price="
+				+ car_price + ", car_available=" + car_available + ", car_seater=" + car_seater + ", car_fuel="
+				+ car_fuel + "]";
+	}
+
+	
 	
 	
 }

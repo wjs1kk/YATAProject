@@ -6,8 +6,8 @@
 <mapper namespace="com.itwillbs.yata.mapper.ReviewMapper">
 	<select id="selectReview"
 		resultType="com.itwillbs.yata.vo.ReviewVO">
-		SELECT member_name -- 작성자
-		, review_content -- 내용
+		SELECT
+		 review_content -- 내용
 		, review_star -- 별점
 		FROM review
 		ORDER BY review_idx DESC
@@ -25,7 +25,6 @@
 						#{review_idx} + 1
 					  , #{res_id}
 					  , #{member_email}
-					  ,	#{member_name}
 					  , #{review_title}
 					  , #{review_content}
 					  , CURRENT_TIMESTAMP()
@@ -53,7 +52,6 @@
 		SELECT    review_idx
 				, res_id
 				, member_email
-				, member_name
 				, review_title
 				, review_content
 				, review_updateDate

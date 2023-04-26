@@ -48,6 +48,34 @@
 		, now()
 		)
 	</insert>
+	
+	
+	<!-- 2023-04-26 김동욱 - 1:1 문의 답변시 기존 문의 진행상태 "답변완료"로 변경  -->
+	<update id="updateBoardProgress">
+		UPDATE mailform SET board_progress = "답변완료"
+		WHERE board_re_ref = #{board_re_ref}
+	</update>
+	
+	
+	<!-- 2023-04-26 김동욱 - 1:1 문의 답변 기능 -->
+	<insert id="insertMailformReply">
+	  	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
+	  		SELECT IFNULL(MAX(board_num), 0) FROM mailform
+	  	</selectKey>
+	  	INSERT INTO mailform
+	  	VALUES (#{board_num} + 1
+	  			, #{member_email}
+	  			, "답변"
+	  			, #{board_subject}
+	  			, #{board_content}
+	  			, #{board_re_ref} 
+	  			, #{board_re_lev} + 1 
+	  			, #{board_re_seq} + 1
+	  			, now()
+	  		   )
+	</insert>
+	
+	
 
 	<delete id="deleteView">
 		DELETE

@@ -10,23 +10,9 @@ public class MemberVO {
 	private String member_date;
 	private String member_point;
 	private String member_license;
-	public MemberVO() {}
-	
-	
-	public MemberVO(String member_email, String member_passwd, String member_name, String member_birth,
-			String member_gender, String member_phone, String member_date, String member_point, String member_license) {
-		this.member_email = member_email;
-		this.member_passwd = member_passwd;
-		this.member_name = member_name;
-		this.member_birth = member_birth;
-		this.member_gender = member_gender;
-		this.member_phone = member_phone;
-		this.member_date = member_date;
-		this.member_point = member_point;
-		this.member_license = member_license;
+	private String member_isadmin;  // 2023-04-26 김동욱 member_isadmin이 빠져서 추가
+	public MemberVO() {
 	}
-
-
 	public String getMember_email() {
 		return member_email;
 	}
@@ -81,6 +67,21 @@ public class MemberVO {
 	public void setMember_license(String member_license) {
 		this.member_license = member_license;
 	}
+	public String getMember_isadmin() { // 2023-04-26 김동욱 member_isadmin이 빠져서 추가
+		return member_isadmin;
+	}
+	public void setMember_isadmin(String member_isadmin) { // 2023-04-26 김동욱 member_isadmin이 빠져서 추가
+		this.member_isadmin = member_isadmin;
+	}
+	
+	@Override
+	public String toString() {
+		return "MemberVO [member_email=" + member_email + ", member_passwd=" + member_passwd + ", member_name="
+				+ member_name + ", member_birth=" + member_birth + ", member_gender=" + member_gender
+				+ ", member_phone=" + member_phone + ", member_date=" + member_date + ", member_point=" + member_point
+				+ ", member_license=" + member_license + ", member_isadmin=" + member_isadmin + "]";
+	}
+	
 	
 	
 	

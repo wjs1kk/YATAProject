@@ -48,6 +48,7 @@ public class CsService {
 		return mapper.deleteView(board_num);
 	}
 	
+	// 김동욱 -  1:1 문의 답변
 	public int MailFormReplyPro(MailFormVO mailform) {
 		mapper.updateBoardProgress(mailform);
 		return mapper.insertMailformReply(mailform);

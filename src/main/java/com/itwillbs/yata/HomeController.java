@@ -32,19 +32,10 @@ public class HomeController {
 	private CsService csService;
 	@Autowired
 	private MemberService memberService;
+	
+	//2023-04-26 김동욱 - 기존에 메인으로 올 때 마다 관리자 인 지 확인하는 메서드 삭제
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpSession session) {
-		
-		
-		//관리자 권한에 따라 상단탭 변경
-		String member_email = (String)session.getAttribute("member_email");
-		if(session.getAttribute("member_email") != null) {
-			String isAdmin =  memberService.isAdmin(member_email);
-			// sesiion이 관리자인 지 확인
-			if(isAdmin.equals("1")) {
-				model.addAttribute("member_isadmin", "1");
-			}
-		}
 		
 		List<ReviewVO> reviewList = service.getReview();
 	    model.addAttribute("review", reviewList);
