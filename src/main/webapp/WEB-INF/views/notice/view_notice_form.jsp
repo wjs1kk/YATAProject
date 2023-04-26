@@ -117,7 +117,7 @@
 									</div>
 
 									<div class="row type2">
-										<label for="" class="input-tit">문의내용<span
+										<label for="" class="input-tit">공지내용<span
 											class="txt-red">*</span></label>
 										<div id="board_content">${notice.board_content}</div>
 									</div>

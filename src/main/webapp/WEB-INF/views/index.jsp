@@ -497,15 +497,12 @@
 				<div class="index-search-history"></div>
 
 				<!-- 				추천 여행지 영역 -->
-				<section class="bg-white index-section-small-padding dc-lg-block"
-					id="section_main_recommend_location_pc" style="display: block;">
+				<section class="bg-white index-section-small-padding dc-lg-block" id="section_main_recommend_location_pc" style="display: block;">
 					<div class="container">
 						<div class="text-24 color-grey-3">카모아 추천 여행지</div>
 						<div class="text-14 color-grey-5">이번엔 여기로 떠나볼까요?</div>
 						<div class="position-relative">
-							<div
-								class="index-pc-swiper-root-recommend-location swiper-root overflow-hidden swiper-initialized swiper-horizontal swiper-pointer-events"
-								id="js_index_pc_swiper_root_recommend_location">
+							<div class="index-pc-swiper-root-recommend-location swiper-root overflow-hidden swiper-initialized swiper-horizontal swiper-pointer-events" id="js_index_pc_swiper_root_recommend_location">
 								<div class="swiper-wrapper" id="js_index_pc_swiper_container_recommend_location" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
 									<div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 11" style="width: 190px;">
 										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_0">
@@ -534,9 +531,8 @@
 											<div class="index-wrapper-box-recommend-location-pc">
 												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="여수" data-i="2" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=I_2&amp;ssat=2&amp;sls=20"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/2470640579/B.jpg?636000000&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">여수</div>
-														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">감성
-															충전 밤바다</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">남포동</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">다양한 영화와 먹거리</div>
 													</div></a>
 											</div>
 										</div>
@@ -546,9 +542,8 @@
 											<div class="index-wrapper-box-recommend-location-pc">
 												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="부산" data-i="3" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=M_3&amp;ssat=2&amp;sls=26"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191222180830266_oen&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">부산</div>
-														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">살아있는
-															한국 제2의 수도</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">태종대</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">해안절벽이 보이는 숲</div>
 													</div></a>
 											</div>
 										</div>
@@ -558,9 +553,9 @@
 											<div class="index-wrapper-box-recommend-location-pc">
 												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="서울" data-i="4" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=A&amp;ssat=2&amp;sls=18"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://image14.hanatour.com/uploads/2020/03/20191122-FAN06055_63343935.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">서울</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">영도</div>
 														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">유니크한
-															매력의 도시 여행</div>
+															매력의 도시</div>
 													</div></a>
 											</div>
 										</div>
@@ -570,9 +565,8 @@
 											<div class="index-wrapper-box-recommend-location-pc">
 												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="강릉" data-i="5" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=P_3&amp;ssat=2&amp;sls=6"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://png.pngtree.com/thumb_back/fw800/background/20230322/pngtree-haedong-yonggungsa-temple-on-sea-shore-busan-photo-image_2095026.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">강릉</div>
-														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">문득문득
-															그리운 바다 도시</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">기장</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">바다 앞 해동용궁사</div>
 													</div></a>
 											</div>
 										</div>
@@ -583,7 +577,6 @@
 						</div>
 					</div>
 				</section>
-			</div>
 
 			<!-- 				리뷰 영역 데이터 받아와서 foreach 해야함.-->
 			<div class="is-only-none-member">

@@ -16,28 +16,29 @@
 
 	<!-- 리뷰 작성 -->
 	<!-- 별점, 카운트 수정 예정 -->
-	<insert id="insertReview"
-		 parameterType="com.itwillbs.yata.vo.ReviewVO" keyProperty="review_idx">
+	<insert id="insertReview">
+		<selectKey keyProperty="review_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(review_idx), 1) FROM review
+		</selectKey>
 		INSERT INTO review 
 					value (
-						#{review_idx}
+						#{review_idx} + 1
+					  , #{res_id}
 					  , #{member_email}
 					  ,	#{member_name}
-					  , #{review_title}
 					  , #{review_content}
 					  , CURRENT_TIMESTAMP()
 					  , 0
 					  , #{review_place}
-					  , 0
 					)
-	</insert>			
+	</insert>					
 	
 	<!-- 나의 리뷰 select -->
 	<select id="selectMyReview" resultType="com.itwillbs.yata.vo.ReviewVO">
 	 	SELECT *
  	 	  FROM review
  		 WHERE member_email 
- 		 IN (SELECT member_email FROM member WHERE member_email = #{member_email}) ORDER BY review_idx DESC;
+ 		 IN (SELECT member_email FROM member WHERE member_email = #{member_email}) ORDER BY res_id DESC;
 	</select>
 	
 	<!-- 나의 리뷰 개수 -->
@@ -48,10 +49,31 @@
 	</select>
 	<!-- rent2 리뷰 표시 -->
 	<select id="listReview" resultType="com.itwillbs.yata.vo.ReviewVO" parameterType="string">
-		SELECT review_idx, member_email, member_name, review_title, review_content, review_updateDate, review_star, review_place, review_viewcnt
+		SELECT    review_idx
+				, res_id
+				, member_email
+				, member_name
+				, review_content
+				, review_updateDate
+				, review_star
+				, review_place
+			
   		  FROM review
  		  WHERE review_place = #{place}
   		 ORDER BY review_idx DESC
   		 LIMIT 10
 	</select>
+	<!-- 작성된 리뷰가 있는지 확인 -->
+	<select id="selectResId" resultType="Integer">
+		select *
+			from review
+			where res_id = #{res_id}
+	</select>
+
+	<!-- 예약 취소 -->
+	<delete id="deleteReserve">
+		DELETE 
+			FROM reservation
+				WHERE res_id = #{res_id}
+	</delete>
 </mapper>
