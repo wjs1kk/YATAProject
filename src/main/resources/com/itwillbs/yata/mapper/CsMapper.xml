@@ -56,7 +56,6 @@
 		WHERE board_re_ref = #{board_re_ref}
 	</update>
 	
-	
 	<!-- 2023-04-26 김동욱 - 1:1 문의 답변 기능 -->
 	<insert id="insertMailformReply">
 	  	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
@@ -75,8 +74,6 @@
 	  		   )
 	</insert>
 	
-	
-
 	<delete id="deleteView">
 		DELETE
 		FROM mailForm
