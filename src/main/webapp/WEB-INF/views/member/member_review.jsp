@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
@@ -112,7 +114,7 @@
 											<a
 												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
 												onclick="location.href='modifyInfo'"
-												style="cursor: pointer;">내 정보 관리</a> <a
+												style="cursor: pointer;">내 정보 관리</a> <a href='customer_service'
 												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
 												onclick="location.href='#'" style="cursor: pointer;"
 												data-type="faq">자주묻는 질문</a>
@@ -130,7 +132,7 @@
 											<div class="font-weight-bold color-grey-2">1:1 문의</div>
 										</div>
 										<div class="center-align-container">
-											<button
+											<button onclick="location.href='write.mf'"
 												class="js-btn-channel-talk btn btn-outline-dark btn-sm">문의하기</button>
 										</div>
 									</div>
