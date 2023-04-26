@@ -34,12 +34,20 @@
     <!-- 결제완료 페이지로 이동 -->
 <script type="text/javascript">
 function pay_success() {
-	 let res_totalPrice = (${param.car_price }/2)*${param.time} + ${param.ins};
-	 let f = document.createElement('form');
-	 f.setAttribute('method', 'post');
-	 f.setAttribute('action', 'payPro?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&res_totalPrice='+res_totalPrice);
-	 document.body.appendChild(f);
-	 f.submit();
+	let spanElement = document.querySelector(".res_totalPrice");
+	let res_totalPrice = spanElement.textContent;
+	let coup_idx = sessionStorage.getItem('coup_idx')
+	if(!coup_idx){
+		coup_idx = -1;
+	}
+	url = 'payPro?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&res_totalPrice='+res_totalPrice+'&coup_idx='+coup_idx;
+
+	let f = document.createElement('form');
+	f.setAttribute('method', 'post');	
+	f.setAttribute('action', url);
+	document.body.appendChild(f);
+	f.submit();
+	sessionStorage.removeItem('coup_idx');
 }
 </script>
 <script type="text/javascript">
@@ -81,14 +89,22 @@ $(function(){
 		  $(".modal_content").click(function(){
 		    $(".modal").fadeOut();
 		  });
-});   
+});
+// 쿠폰 적용
+function coupon(coup_percent,coup_idx){
+	let res_totalPrice = ((${param.car_price }/2)*${param.time} + ${param.ins})*(1-coup_percent);
+	$(".res_totalPrice").html(res_totalPrice);
+	sessionStorage.setItem("coup_idx", coup_idx );
+}
+</script>
+<!-- 적용안했을때 -->
+<script type="text/javascript">
+	$(function() {
+		let res_totalPrice = (${param.car_price }/2)*${param.time} + ${param.ins};
+		$(".res_totalPrice").html(res_totalPrice);
+	});
 </script>
 
-<script type="text/javascript">
-	function coupon_use(coup_percent) {
-		location.href="pay?car_id=${param.car_id}&res_place=${param.res_place}&rime=${param.rentalDatetime}&ins=${param.ins}&time=${param.time}&car_price=${param.car_price}&coup_percent="+coup_percent;
-	}
-</script>
 </head>
 <body>
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -274,7 +290,7 @@ $(function(){
                                         for="js_vreserv_input_driver_email">이메일</label>
                                     <div class="position-relative"><input
                                             class="js-input-deletable js-require-pay js-input-auto-complete-email border-radius-none form-control form-control-sm vreserv-save-last-booking mb-0"
-                                            id="js_vreserv_input_driver_email" placeholder=${member.member_email}" readonly="readonly"
+                                            id="js_vreserv_input_driver_email" placeholder="${member.member_email}" readonly="readonly"
                                             autocomplete="off"
                                             data-auto-dropdown="js_vreserv_dropdown_driver_email_auto">
                                         <div class="js-btn-delete-input btn-input-close-sm click-effect-press"
@@ -388,10 +404,8 @@ $(function(){
                                                     <li
                                                         class="js-spdl-poa-hide vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center text-primary px-0 wordbreak-keepall text-14 font-weight-bold bg-lg-none pb-0 border-none">
                                                         총 결제금액<div class="text-right">
-                                                        <span class="vreserv-txt-total-price">
-                                                        	<script type="text/javascript">
-                                                        		document.write((${car.car_price }/2)*${param.time} + ${param.ins} + "원");
-                                                        	</script>
+                                                        <span class="res_totalPrice" class="vreserv-txt-total-price">
+                                                        	원
 														</span>
 													</div>
                                                     </li>
@@ -524,8 +538,7 @@ $(function(){
                                                     <span class="js-vreserv-txt-rent-price">
                                                             <script type="text/javascript">
                                                         		document.write("+ " + (${car.car_price }/2)*${param.time} + "원");
-                                                        	</script>
-                                                            
+                                                        	</script>                                                       
                                                     </span></div>
                                                 </li>
                                                 <li class="js-verserv-container-insurance-price bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none js-oversea-api-hide"
@@ -561,7 +574,8 @@ $(function(){
 														<div class="js-vreserv-btn-login">
 															<div class="dc-flex click-effect-press">
 																<span class="color-blue-dark-light mr-2 font-weight-bold">
-																	<input type="text" name="point" id="point" placeholder="${member.member_point}">
+																	<input type="text" name="point" id="point" placeholder="${member.member_point}">																
+																<input type="button" value="사용" id="usePoint" class="btn-primary">
 																</span>
 															</div>
 														</div>
@@ -570,23 +584,18 @@ $(function(){
                                                 
                                                 <li
                                                     class="bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall text-14">
-                                                    총 결제금액<div class="text-right text-20"><span
-                                                            class="vreserv-txt-total-price">
-                                                            <script type="text/javascript">
-                                                        		document.write(((${car.car_price }/2)*${param.time} + ${param.ins})+ "원");
-                                                        	</script>
+                                                    총 결제금액<div class="text-right text-20">
+                                                    <span class="res_totalPrice" class="vreserv-txt-total-price">
+                                                            원
                                                         	</span></div>
                                                 </li>
-                                                <li
-                                                    class="bg-white list-group-item text-14 color-grey-3 text-center border-none">
+                                                <li class="bg-white list-group-item text-14 color-grey-3 text-center border-none">
                                                     위 내용을 모두 확인하였으며, 결제에 동의합니다</li>
                                                 <li class="bg-white list-group-item px-0 pb-0">
                                                 	<button id="btnPay" onclick="pay_success()" class="js-vreserv-btn-do-pay btn btn-primary btn-block btn-lg btn-border-6 line-height-12 click-effect-press disabled">
                                                         <div class="text-18 font-weight-bold text-white">
-                                                        <span class="js-vreserv-txt-total-pay-price js-vreserv-welcome-coupon-applied-total-pay-price">
-															<script type="text/javascript">
-                                                        		document.write((${param.car_price }/2)*${param.time} + ${param.ins} + "원");
-                                                        	</script>
+                                                        <span class="res_totalPrice" class="js-vreserv-txt-total-pay-price js-vreserv-welcome-coupon-applied-total-pay-price">
+															원
 															</span>
                                                             <sapn class="js-vreserv-txt-pay-btn">&nbsp;결제하기</sapn>
                                                         </div>
@@ -611,28 +620,28 @@ $(function(){
 				<h3 class="color-grey-5 text-16">쿠폰 목록</h3>
 				<div class="text-14 color-grey-4 py-3"> 보유쿠폰&nbsp;</div>
 				<c:choose >
-					<c:when test="${empty user_coupon }">
+					<c:when test="${empty userCoupon }">
 						쿠폰 없습니다
 					</c:when>
-					<c:when test="${!empty user_coupon }">
+					<c:when test="${!empty userCoupon }">
 					<div id="vcdp_container_coupon_list">
-						<c:forEach var="user_coupon" items="${user_coupon }">
-							<div class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item" onclick="coupon_use(${user_coupon.coup_percent })">
+						<c:forEach var="userCoupon" items="${userCoupon }">
+							<div class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item" onclick="coupon(${userCoupon.coup_percent}, ${userCoupon.coup_idx })">
 								<div class="dc-flex justify-content-between align-items-start">
 									<div class="pb-2">
 										<span class="badge badge-primary text-white font-weight-bold" id="cbc_grade"></span>
 										<div class="pr-2">
 											<div class="cbc-txt-coupon-title text-12 font-weight-bold color-grey-3 dc-inline">
-												${user_coupon.coup_name }</div>
+												${userCoupon.coup_name }</div>
 											<div class="js-cbc-txt-coupon-dday ml-1 text-12 font-weight-bold color-red dc-inline">
-												~${user_coupon.coup_start }</div>
+												~${userCoupon.coup_start }</div>
 										</div>
 									</div>
 								</div>
 								<div class="dc-flex align-items-baseline">
 									<div class="cbc-txt-coupon-price text-32 font-weight-bold color-grey-2">
 									<script type="text/javascript">
-										document.write(${user_coupon.coup_percent }*100)
+										document.write(${userCoupon.coup_percent }*100)
 									</script>
 									</div>
 									<div class="cbc-txt-coupon-unit text-16 font-weight-bold color-grey-2 ml-1">%</div>

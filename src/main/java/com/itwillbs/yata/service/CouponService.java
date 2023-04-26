@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.yata.mapper.CouponMapper;
 import com.itwillbs.yata.vo.CouponVO;
-import com.itwillbs.yata.vo.Coupon_usedVO;
+
 
 @Service
 public class CouponService {
@@ -19,20 +19,33 @@ public class CouponService {
 	}
 
 	public int adminCouponRegist(CouponVO coupon) {
-		// TODO Auto-generated method stub
 		return mapper.couponRegist(coupon);
 	}
 
 	public CouponVO selectCoupon(int coup_idx) {
-		// TODO Auto-generated method stub
 		return mapper.selectCoupon(coup_idx);
 	}
 
 	public int deleteCoupon(int coup_idx) {
-		// TODO Auto-generated method stub
 		return mapper.deleteCoupon(coup_idx);
 	}
-	public List<Coupon_usedVO> selectCouponUser(String member_email){
-		return mapper.selectCouponUser(member_email);
+
+	public String getCouponNum(String coup_code) {
+		return mapper.getNum(coup_code);
+	}
+
+	public int couponEnroll(int coup_idx, String member_email) {
+		return mapper.couponEnroll(coup_idx, member_email);
+	}
+
+	public Integer checkCode(int coup_idx, String member_email) {
+		return mapper.checkCode(coup_idx, member_email);
+	}
+	
+	public List<CouponVO> userCoupon(String member_email){
+		return mapper.userCoupon(member_email)!= null ? mapper.userCoupon(member_email) :null ;
+	}
+	public int couponUsed(String coup_idx, String member_email) {
+		return mapper.couponUsed(coup_idx,member_email);
 	}
 }

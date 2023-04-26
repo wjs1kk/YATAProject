@@ -119,4 +119,10 @@
 			SET MEMBER_POINT = #{member_point} + (#{res_totalprice}*0.1)
 				WHERE member_email = #{member_email};
 	</update>
+	<!-- 예약 취소 -->
+	<delete id="deleteReserve">
+		DELETE 
+			FROM reservation
+				WHERE res_id = #{res_id}
+	</delete>
 </mapper>

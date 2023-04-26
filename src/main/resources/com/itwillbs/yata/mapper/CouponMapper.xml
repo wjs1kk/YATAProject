@@ -5,44 +5,84 @@
 
 <mapper namespace="com.itwillbs.yata.mapper.CouponMapper">
 
-	<select id="couponList" resultType="com.itwillbs.yata.vo.CouponVO">
+	<select id="couponList"
+		resultType="com.itwillbs.yata.vo.CouponVO">
 		select * from coupon
-	</select>	  	
+	</select>
 
-  	<insert id="couponRegist">
+	<insert id="couponRegist">
 
-  		<selectKey keyProperty="coup_idx" resultType="int" order="BEFORE">
+		<selectKey keyProperty="coup_idx" resultType="int"
+			order="BEFORE">
 			SELECT IFNULL(MAX(coup_idx), 0) FROM coupon
 		</selectKey>
 
-  		INSERT INTO coupon
-  		VALUES(#{coup_idx} + 1
-  			   , #{member_email}
-  			   , #{coup_name}
-  			   , #{coup_code}
-  			   , #{coup_start}
-  			   , #{coup_end}
-  			   , #{coup_useable}
-  			  )
-  	</insert>
+		INSERT INTO coupon
+		VALUES(#{coup_idx} + 1
+		, #{coup_name}
+		, (SELECT SUBSTR(MD5(RAND()), 1, 8))
+		, #{coup_start}
+		, #{coup_end}
+		, #{coup_percent}
+		)
+	</insert>
 
-  	<select id="selectCoupon" resultType="com.itwillbs.yata.vo.CouponVO">
-  		SELECT *
-  		FROM coupon
-  		WHERE coup_idx = #{coup_idx}
-  	</select>
+	<select id="getNum" resultType="string">
+		SELECT coup_code
+		FROM coupon
+		ORDER BY coup_idx
+		LIMIT 1
+	</select>
+
+	<select id="selectCoupon"
+		resultType="com.itwillbs.yata.vo.CouponVO">
+		SELECT *
+		FROM coupon
+		WHERE coup_idx = #{coup_idx}
+
+	</select>
 
 	<delete id="deleteCoupon">
 		DELETE
 		FROM coupon
 		WHERE coup_idx = #{coup_idx}
 	</delete>
+
+<!-- 	해당 쿠폰이 있는지 확인 -->
+	<select id="checkCode" resultType="Integer">
+		SELECT coup_idx
+		FROM coupon_used
+		WHERE coup_idx = #{coup_idx}
+			 AND member_email = #{member_email}
+	</select>
 	
-	<select id="selectCouponUser" resultType="com.itwillbs.yata.vo.Coupon_usedVO">
-  		SELECT *
+<!-- 	해당 쿠폰 발급 -->
+	<insert id="couponEnroll">
+
+		INSERT INTO coupon_used(coup_idx, member_email, coup_useable)
+		VALUES( (SELECT coup_idx
+				 FROM coupon
+				 WHERE coup_idx = #{coup_idx}),
+				(SELECT MEMBER_EMAIL
+				FROM member
+				WHERE MEMBER_EMAIL = #{member_email}),
+				'Y'
+		)
+	</insert>
+	
+<!-- 	유저가 가진 쿠폰 조회 -->
+	<select id="userCoupon" resultType="com.itwillbs.yata.vo.CouponVO">
+		SELECT *
   		FROM coupon
   		WHERE coup_idx in (select coup_idx
   							from coupon_used
-  							where coup_useable = 'Y' and member_email=#{member_email});
-  	</select>
+  							where coup_useable = 'Y' and member_email=#{member_email})
+	</select>
+	
+<!-- 	쿠폰 사용시 사용불가상태 N으로 변경 -->
+	<update id="couponUsed">
+		update coupon_used
+			set coup_useable = 'N'
+			where coup_idx = #{coup_idx} and member_email = #{member_email}
+	</update>
 </mapper>

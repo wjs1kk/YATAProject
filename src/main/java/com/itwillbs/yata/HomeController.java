@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.yata.service.CouponService;
 import com.itwillbs.yata.service.CsService;
 import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.NoticeService;
 import com.itwillbs.yata.service.ReviewService;
+import com.itwillbs.yata.vo.CouponVO;
 import com.itwillbs.yata.vo.MailFormVO;
 import com.itwillbs.yata.vo.MemberVO;
 import com.itwillbs.yata.vo.NoticeVO;
@@ -32,10 +34,11 @@ public class HomeController {
 	private CsService csService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private CouponService couponService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpSession session) {
-		
-		
+
 		//관리자 권한에 따라 상단탭 변경
 		String member_email = (String)session.getAttribute("member_email");
 		if(session.getAttribute("member_email") != null) {
@@ -52,7 +55,9 @@ public class HomeController {
 	}
 	
 	@GetMapping("event")
-	public String event() {
+	public String event(Model model) {
+		List<CouponVO> couponList = couponService.couponList();
+		model.addAttribute("couponList", couponList);
 		return "notice/event";
 	}
 	

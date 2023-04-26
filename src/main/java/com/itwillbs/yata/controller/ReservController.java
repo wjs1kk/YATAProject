@@ -19,7 +19,6 @@ import com.itwillbs.yata.service.ReservService;
 import com.itwillbs.yata.service.ReviewService;
 import com.itwillbs.yata.vo.CarVO;
 import com.itwillbs.yata.vo.CouponVO;
-import com.itwillbs.yata.vo.Coupon_usedVO;
 import com.itwillbs.yata.vo.MemberVO;
 import com.itwillbs.yata.vo.ReservVO;
 import com.itwillbs.yata.vo.ReviewVO;
@@ -75,14 +74,13 @@ public class ReservController {
 		MemberVO member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
 		
-		List<Coupon_usedVO> selectCouponUser = couponService.selectCouponUser(member_email);
-		model.addAttribute("user_coupon",selectCouponUser);
-	
+		List<CouponVO> userCoupon = couponService.userCoupon(member_email);
+		model.addAttribute("userCoupon", userCoupon);
 		return "pay/pay";
 	}
 	
 	@PostMapping("payPro")
-	public String payPro(HttpSession session, ReservVO reservVO, String rentalDatetime, Model model, MemberVO member) {
+	public String payPro(HttpSession session, ReservVO reservVO, String rentalDatetime, Model model, MemberVO member, int coup_idx) {
 		String member_email = (String)session.getAttribute("member_email");
 		String res_startDate = rentalDatetime.split("~")[0];
 		String res_endDate = rentalDatetime.split("~")[1];
@@ -90,19 +88,20 @@ public class ReservController {
 		reservVO.setMember_email(member_email);
 		reservVO.setRes_endDate(res_endDate);
 		reservVO.setRes_startDate(res_startDate);
-
 		if(reservService.insertReserv(reservVO) == 0) {
 			model.addAttribute("msg","예약실패");
 			return "redirect:/pay";
 		}
 		String member_point = member.getMember_point();
 	    String res_totalprice = reservVO.getRes_totalPrice();
-		reservService.updatePoint(member_email, member_point, res_totalprice);
-	    System.out.println(reservVO.getRes_totalPrice());
-	    
+		reservService.updatePoint(member_email, member_point, res_totalprice);	    
 		model.addAttribute("reservation", reservVO);
+		//쿠폰 적용후 coup_useable "N"처리
+		System.out.println(coup_idx);
+		if(!Integer.toString(coup_idx).equals("")) {
+			couponService.couponUsed(Integer.toString(coup_idx), member_email);
+		}
 		return "redirect:/pay_success?car_id="+reservVO.getCar_id();
-
 	}
 	
 	@GetMapping("pay_success")

@@ -196,25 +196,25 @@ public class MemberController {
 	}
 	
 	// 예약내역 -> 리뷰 작성
-		@GetMapping("reviewWrite")
-		public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
-			String member_email = (String) session.getAttribute("member_email");
-			member = memberService.selectUser(member_email);
-			model.addAttribute("member", member);
-			
-			Integer review = reviewService.getResId(res_id);
-			
-			if(review != null) {
-				model.addAttribute("msg", "이미 작성된 리뷰입니다!");
-				return "fail_back";
-			}
-			
-			return "member/member_review_write";
+	@GetMapping("reviewWrite")
+	public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
+		String member_email = (String) session.getAttribute("member_email");
+		member = memberService.selectUser(member_email);
+		model.addAttribute("member", member);
+		
+		Integer review = reviewService.getResId(res_id);
+		
+		if(review != null) {
+			model.addAttribute("msg", "이미 작성된 리뷰입니다!");
+			return "fail_back";
 		}
+		
+		return "member/member_review_write";
+	}
 	
 	// 리뷰 작성
 	@PostMapping("reviewWritePro")
-	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place, String review_star) {
+	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place) {
 		String member_email = (String)session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
 
@@ -222,10 +222,8 @@ public class MemberController {
 		review.setRes_id(res_id);
 		review.setMember_name(member.getMember_name());
 		review.setReview_place(res_place);
-		review.setReview_star(review_star);
 		
 		int insertCount = reviewService.insertReview(review);
-		System.out.println(insertCount);
 		if (insertCount > 0) {
 			return "redirect:/mypage?tab=history";
 		} else {

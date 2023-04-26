@@ -1467,7 +1467,11 @@
 																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
 																<span class="js-vcd-txt-rent-price-label">대여요금</span>
 																<div class="text-right">
-																	<span class="js-vcd-txt-rent-price">${car.car_price }원</span>
+																	<span class="js-vcd-txt-rent-price">
+																	<script type="text/javascript">
+																		document.write((${car.car_price }/2)*${param.time}+"원");
+																	</script>
+																	
 																</div>
 															</div>
 														</li>
@@ -1513,7 +1517,7 @@
 																<div class="text-right text-primary">
 																	<span class="js-vcd-txt-expected-price"> <script
 																			type="text/javascript">
-																		document.write(${car.car_price } + ${param.ins} + "원");
+																		document.write((${car.car_price }/2)*${param.time} + ${param.ins} + "원");
 																	</script>
 																	</span>
 																</div>
@@ -1528,7 +1532,7 @@
 															<span onclick="pay(${car.car_price})"
 																class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
 																<script type="text/javascript">
-																document.write(${car.car_price } + ${param.ins} + "원 바로 예약하기");
+																document.write((${car.car_price }/2)*${param.time} + ${param.ins} + "원 바로 예약하기");
 															</script>
 															</span><span
 																class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"

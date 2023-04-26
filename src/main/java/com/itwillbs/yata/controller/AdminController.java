@@ -41,8 +41,7 @@ public class AdminController {
 	
 	@Autowired
 	private CarService carService;
-	@Autowired 
-	private CouponService couponService;
+
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -446,94 +445,7 @@ public class AdminController {
 		}
 
 	}
-	
 
-	//신규 쿠폰 등록
-	@GetMapping("AdminCouponRegist.ad")
-	public String AdminCouponRegist(Model model, HttpSession session) {
-		String member_email = (String)session.getAttribute("member_email");
-		
-		// session이 null인지 먼저 판별
-		if( session.getAttribute("member_email") == null) {
-			model.addAttribute("msg", "접근 권한이 없습니다!");
-			return "fail_back";
-		}
-		
-		// sesiion이 null이 아니면 관리자 권한값을 가져옴
-		String isAdmin =  memberService.isAdmin(member_email);
-		
-		// sesiion이 관리자인 지 확인
-		if(!isAdmin.equals("1")) {
-			model.addAttribute("msg", "접근 권한이 없습니다!");
-			return "fail_back";
-		}else {
-			// sesiion이 관리자인 지 확인 후 관리자 쿠폰 등록 페이지 접근
-			return "admin/admin_coupon_regist";
-		}
-		
-	}
-	
-	//신규 쿠폰 등록
-	@PostMapping("AdminCouponRegistPro.ad")
-	public String AdminCouponRegistPro(CouponVO coupon, MemberVO member , Model model, HttpSession session) {	
-		
-		String registEmail = memberService.searchMemberEmail(member);
-		if(registEmail != null)	{		
-			couponService.adminCouponRegist(coupon);
-			return "redirect:/AdminCouponList.ad";
-		} else {
-			model.addAttribute("msg", "해당 회원이 없습니다!");
-			return "fail_back";
-		}
-
-	}
-	
-	//쿠폰 삭제
-	@GetMapping("AdminCouponDelete.ad")
-	public String couponDelete(Model model, @RequestParam(defaultValue = "1") int coup_idx, HttpSession session) {
-		
-		String member_email = (String)session.getAttribute("member_email");
-		
-		// session이 null인지 먼저 판별
-		if( session.getAttribute("member_email") == null) {
-			model.addAttribute("msg", "접근 권한이 없습니다!");
-			return "fail_back";
-		}
-		
-		// sesiion이 null이 아니면 관리자 권한값을 가져옴
-		String isAdmin =  memberService.isAdmin(member_email);
-		
-		// sesiion이 관리자인 지 확인
-		if(!isAdmin.equals("1")) {
-			model.addAttribute("msg", "접근 권한이 없습니다!");
-			return "fail_back";
-		}else {
-			// sesiion이 관리자인 지 확인 후 관리자 차량 수정 페이지 접근
-			CouponVO coupon = couponService.selectCoupon(coup_idx);
-			model.addAttribute("coupon", coupon);
-			return "admin/admin_coupon_delete";
-		}
-		
-		
-	}
-	
-	//쿠폰 삭제
-	@PostMapping("AdminCouponDeletePro.ad")
-	public String couponDeletePro(Model model, int coup_idx, HttpSession session) {
-		
-		// sesiion이 관리자인 지 확인 후 관리자 쿠폰 삭제 페이지 접근
-		int deleteCount = couponService.deleteCoupon(coup_idx);
-		if(deleteCount > 0) {			
-			
-			model.addAttribute("msg", "삭제가 완료되었습니다!");
-			model.addAttribute("target", "AdminCouponList.ad");
-			return "success";
-		} else {
-			model.addAttribute("msg", "삭제 실패!");
-			return "fail_back";
-		}
-	}
-	
 	
 	// 출고된 차량 조회
 	@GetMapping("AdminCarShippedList.ad")
