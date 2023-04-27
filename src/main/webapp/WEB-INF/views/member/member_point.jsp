@@ -154,10 +154,10 @@
 									<!-- 																			<span>결제내역에서 select, 조건 point > 0일때</span> -->
 
 									<table class="table">
-										<tr>
-											<th>#</th>
+										<tr>									
 											<th>포인트 내용</th>
 											<th>사용 포인트</th>
+											<th>적립 포인트</th>
 											<th>남은 포인트</th>
 										</tr>
 										<c:choose>
@@ -169,9 +169,10 @@
 											<c:otherwise>
 												<c:forEach var="myPoint" items="${myPoint }">
 													<tr>
-														<td>${myPoint.point_idx }</td>
+											
 														<td>${myPoint.point_content }</td>
 														<td>${myPoint.point_used }</td>
+														<td>${myPoint.point_save }</td>
 														<td>${myPoint.member_point }</td>
 													</tr>
 												</c:forEach>

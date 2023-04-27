@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,33 @@
 	opacity: 1;
 }
 </style>
-
+<style type="text/css">
+/* 메인 시작*/
+.index-container-main-banner {
+	max-width: 1920px !important;
+}
+/* 메인 끝 */
+/* 	팝업창 초기에 불투명도 0 설정*/
+.contents-modal {
+	opacity: 0;
+}
+/* 	 지역선택창 누르면 불투명도 0 ->1로 변경돼서 팝업창이 보임*/
+.contents-modal:target {
+	top: 50px;
+	opacity: 1;
+}
+</style>
+<style type="text/css">
+/* 리뷰 별점 색상 */
+.star {
+	color: #FF7E00;
+	font-size: x-large;
+}
+.star_off {
+	color: #ced4da;
+	font-size: x-large;
+}
+</style>
 </head>
 <body>
 	<main id="content" role="main">
@@ -236,11 +263,14 @@
 																			'click',
 																			function() {
 																				$(function() {
-																					let res_place = $(
-																							"#res_place")
-																							.val();
+																					const regex = /[^0-9]/g;
+																					let time = $('#time').text();
+																					time = time.replace(regex, "");
 																					
-																					location.href = "?res_place="+res_place+"&rentalDatetime="+$('#demo').val();
+																					
+																					let res_place = $("#res_place").val();
+																					
+																					location.href = "?res_place="+res_place+"&rentalDatetime="+$('#demo').val()+"&time="+time;
 																				})
 																			});
 														})(marker, infowindow);
@@ -458,7 +488,7 @@
 														});
 														</script>
 														<!-- 	시간표시 -->
-														<p id="time" style="border:0 solid black; background-color:transparent;">시간</p>
+														<p id="time" style="border:0 solid black; background-color:transparent;">${param.time } 시간</p>
 										</div>
 									</div>
 								</div>
@@ -479,15 +509,12 @@
 				<div class="index-search-history"></div>
 
 				<!-- 				추천 여행지 영역 -->
-				<section class="bg-white index-section-small-padding dc-lg-block"
-					id="section_main_recommend_location_pc" style="display: block;">
+				<section class="bg-white index-section-small-padding dc-lg-block" id="section_main_recommend_location_pc" style="display: block;">
 					<div class="container">
 						<div class="text-24 color-grey-3">카모아 추천 여행지</div>
 						<div class="text-14 color-grey-5">이번엔 여기로 떠나볼까요?</div>
 						<div class="position-relative">
-							<div
-								class="index-pc-swiper-root-recommend-location swiper-root overflow-hidden swiper-initialized swiper-horizontal swiper-pointer-events"
-								id="js_index_pc_swiper_root_recommend_location">
+							<div class="index-pc-swiper-root-recommend-location swiper-root overflow-hidden swiper-initialized swiper-horizontal swiper-pointer-events" id="js_index_pc_swiper_root_recommend_location">
 								<div class="swiper-wrapper" id="js_index_pc_swiper_container_recommend_location" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
 									<div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 11" style="width: 190px;">
 										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_0">
@@ -516,9 +543,8 @@
 											<div class="index-wrapper-box-recommend-location-pc">
 												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="여수" data-i="2" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=I_2&amp;ssat=2&amp;sls=20"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/2470640579/B.jpg?636000000&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">여수</div>
-														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">감성
-															충전 밤바다</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">남포동</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">다양한 영화와 먹거리</div>
 													</div></a>
 											</div>
 										</div>
@@ -528,9 +554,8 @@
 											<div class="index-wrapper-box-recommend-location-pc">
 												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="부산" data-i="3" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=M_3&amp;ssat=2&amp;sls=26"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191222180830266_oen&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">부산</div>
-														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">살아있는
-															한국 제2의 수도</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">태종대</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">해안절벽이 보이는 숲</div>
 													</div></a>
 											</div>
 										</div>
@@ -540,9 +565,9 @@
 											<div class="index-wrapper-box-recommend-location-pc">
 												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="서울" data-i="4" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=A&amp;ssat=2&amp;sls=18"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://image14.hanatour.com/uploads/2020/03/20191122-FAN06055_63343935.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">서울</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">영도</div>
 														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">유니크한
-															매력의 도시 여행</div>
+															매력의 도시</div>
 													</div></a>
 											</div>
 										</div>
@@ -552,14 +577,12 @@
 											<div class="index-wrapper-box-recommend-location-pc">
 												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="강릉" data-i="5" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=P_3&amp;ssat=2&amp;sls=6"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://png.pngtree.com/thumb_back/fw800/background/20230322/pngtree-haedong-yonggungsa-temple-on-sea-shore-busan-photo-image_2095026.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">강릉</div>
-														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">문득문득
-															그리운 바다 도시</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">기장</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">바다 앞 해동용궁사</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -584,95 +607,44 @@
 								<div
 									class="swiper swiper-initialized swiper-horizontal swiper-pointer-events"
 									id="js_index_review_swiper_root">
-									<div class="swiper-wrapper" id="js_index_review_swiper"
-										aria-live="polite"
+									<div class="swiper-wrapper" id="js_index_review_swiper" aria-live="polite"
 										style="transform: translate3d(0px, 0px, 0px);">
-										<div class="index-box-review swiper-slide swiper-slide-active"
-											role="group" aria-label="1 / 12" style="margin-right: 20px;">
-											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">${review[0].review_star }</div>
-												<div
-													class="index-box-review-container-rate d-flex justify-content-center">
-													<img class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg==">
-												</div>
-												<div class="mt-3">
-													<div class="text-16 text-left">
-															<!-- 리뷰 내용 -->
-															${review[0].review_content }
+										<c:forEach begin="0" end="3" items="${review}" var="review">
+											<div class="index-box-review swiper-slide swiper-slide-active"
+												role="group" aria-label="1 / 12" style="margin-right: 20px;">
+												<div class="text-center">
+													<div class="text-40 font-weight-bold text-primary">${review.review_star }</div>
+													<div class="index-box-review-container-rate d-flex justify-content-center">
+														<c:if test="${review.review_star == '1.0'}">
+															<span class="star">★</span><span class="star_off">★★★★</span>
+														</c:if>
+														<c:if test="${review.review_star == '2.0'}">
+															<span class="star">★★</span><span class="star_off">★★★</span>
+														</c:if>
+														<c:if test="${review.review_star == '3.0'}">
+															<span class="star">★★★</span><span class="star_off">★★</span>
+														</c:if>
+														<c:if test="${review.review_star == '4.0'}">
+															<span class="star">★★★★</span><span class="star_off">★</span>
+														</c:if>
+														<c:if test="${review.review_star == '5.0'}">
+															<span class="star">★★★★★</span>
+														</c:if>
+													</div>
+													<div class="mt-3">
+														<div class="text-16 text-left">
+																<!-- 리뷰 내용 -->
+																${review.review_content }
+														</div>
+													</div>
+													<div class="index-box-review-bottom-box text-left">
+														<div class="index-txt-review-bottom-box-top text-14">제주에서
+															1일 렌트하신</div>
+														<div class="text-16-b text-white">${review.member_name }님</div>
 													</div>
 												</div>
-												<div class="index-box-review-bottom-box text-left">
-													<div class="index-txt-review-bottom-box-top text-14">제주에서
-														1일 렌트하신</div>
-													<div class="text-16-b text-white">${review[0].member_name }님</div>
-												</div>
 											</div>
-										</div>
-										<div class="index-box-review swiper-slide swiper-slide-next"
-											role="group" aria-label="2 / 12" style="margin-right: 20px;">
-											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">${review[1].review_star }</div>
-												<div
-													class="index-box-review-container-rate d-flex justify-content-center">
-													<img class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg==">
-												</div>
-												<div class="mt-3">
-													<div class="text-16 text-left">
-														${review[1].review_content }
-													</div>
-												</div>
-												<div class="index-box-review-bottom-box text-left">
-													<div class="index-txt-review-bottom-box-top text-14">부산에서
-														1일 렌트하신</div>
-													<div class="text-16-b text-white">${review[1].member_name }님</div>
-												</div>
-											</div>
-										</div>
-										<div class="index-box-review swiper-slide" role="group"
-											aria-label="3 / 12" style="margin-right: 20px;">
-											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">${review[2].review_star }</div>
-												<div
-													class="index-box-review-container-rate d-flex justify-content-center">
-													<img class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg==">
-												</div>
-												<div class="mt-3">
-													<div class="text-16 text-left">
-														${review[2].review_content }
-													</div>
-												</div>
-												<div class="index-box-review-bottom-box text-left">
-													<div class="text-16-b text-white">${review[2].member_name }님</div>
-												</div>
-											</div>
-										</div>
+										</c:forEach>
 									</div>
 								</div>
 							</div>

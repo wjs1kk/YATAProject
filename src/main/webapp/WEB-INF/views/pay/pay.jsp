@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 쿠폰 선택 창 css(수정 중이라 잠시 여기 두겠읍니다.) -->
+
 <style>
 .modal{ 
   position:absolute; 
@@ -36,11 +36,16 @@
 function pay_success() {
 	let spanElement = document.querySelector(".res_totalPrice");
 	let res_totalPrice = spanElement.textContent;
-	let coup_idx = sessionStorage.getItem('coup_idx')
+	let coup_idx = sessionStorage.getItem('coup_idx');
+	let use_point = sessionStorage.getItem('use_point');
 	if(!coup_idx){
 		coup_idx = -1;
 	}
-	url = 'payPro?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&res_totalPrice='+res_totalPrice+'&coup_idx='+coup_idx;
+	if(!use_point){
+		use_point = 0;
+	}
+	
+	url = 'payPro?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&time=${param.time}&car_price=${param.car_price}&ins=${param.ins}&res_totalPrice='+res_totalPrice+'&coup_idx='+coup_idx+"&use_point="+use_point;
 
 	let f = document.createElement('form');
 	f.setAttribute('method', 'post');	
@@ -48,7 +53,16 @@ function pay_success() {
 	document.body.appendChild(f);
 	f.submit();
 	sessionStorage.removeItem('coup_idx');
+	sessionStorage.removeItem('use_point');
+	
 }
+</script>
+<script type="text/javascript">
+window.onbeforeunload = function(e) {
+    sessionStorage.removeItem('coup_idx');
+	sessionStorage.removeItem('use_point');
+};
+
 </script>
 <script type="text/javascript">
 // 이용약관 전체 선택 시에만 결제하기 버튼 활성화
@@ -91,11 +105,13 @@ $(function(){
 		  });
 });
 // 쿠폰 적용
-function coupon(coup_percent,coup_idx){
-	let res_totalPrice = ((${param.car_price }/2)*${param.time} + ${param.ins})*(1-coup_percent);
+function coupon(coup_percent,coup_idx,coup_name){
+	let res_totalPrice = Math.ceil(((${param.car_price }/2)*${param.time})*(1-coup_percent)+ ${param.ins});
 	$(".res_totalPrice").html(res_totalPrice);
 	sessionStorage.setItem("coup_idx", coup_idx );
+	$(".selectCoupon").html(coup_name+" "+coup_percent*100+"% 할인")
 }
+
 </script>
 <!-- 적용안했을때 -->
 <script type="text/javascript">
@@ -104,7 +120,48 @@ function coupon(coup_percent,coup_idx){
 		$(".res_totalPrice").html(res_totalPrice);
 	});
 </script>
+<!-- 포인트사용 -->
+<script type="text/javascript">
+$(function() {
+	  let use_point = 0;
+	  $("#usePoint").on("click", function(){
+		let spanElement = document.querySelector(".res_totalPrice");
+		let res_totalPrice = spanElement.textContent;
+	    let member_point = parseInt("${member.member_point}");
+	    use_point = parseInt($("#point").val());
+	    
+	    if (use_point > 0 && use_point <= member_point) {
+	      res_totalPrice = res_totalPrice - use_point;
+	      $(".res_totalPrice").html(res_totalPrice);
+	      
+	    } else if (use_point > member_point) {
+	      alert("포인트가 부족합니다.");
+	    }
+	   
+		sessionStorage.setItem("use_point", use_point);
+	  });
 
+	  $(".point_btn").on("click", function(){
+	    let state = $(this).data("state");
+	    
+	    if(state == 'N'){
+	      $("#point").val();
+	      $(".point_btn_Y").css("display", "inline-block");
+	      $(".point_btn_N").css("display", "none");
+	      document.getElementById('point').readOnly = true; 
+	    } else if(state == 'Y'){
+	      $(".point_btn_Y").css("display", "none");
+	      $(".point_btn_N").css("display", "inline-block")
+	      let spanElement = document.querySelector(".res_totalPrice");
+		  let res_totalPrice = spanElement.textContent;	
+	      res_totalPrice = parseInt(res_totalPrice) + parseInt($("#point").val());      
+	      $(".res_totalPrice").html(res_totalPrice);	      
+	      $("#point").val(0);
+	      document.getElementById('point').readOnly = false;
+	    }    
+	  });
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -390,7 +447,7 @@ function coupon(coup_percent,coup_idx){
                                                             <div class="js-vreserv-btn-login">
                                                                 <div class="dc-flex click-effect-press">
                                                                 	<span class="color-blue-dark-light mr-2 font-weight-bold">
-                                                                        <span class="js-none-member-coupon-price">쿠폰 선택하기 </span>
+                                                                        <span class="selectCoupon">쿠폰 선택하기ss</span>   
                                                                     </span>
                                                                   	<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
                                                                 </div>
@@ -559,7 +616,7 @@ function coupon(coup_percent,coup_idx){
 														<div class="js-vreserv-btn-login" >
 															<div class="dc-flex click-effect-press" id="coupon">
 																<span class="color-blue-dark-light mr-2 font-weight-bold">
-																	<span class="js-none-member-coupon-price">쿠폰 선택하기 </span>
+																	<span class="selectCoupon">쿠폰 선택하기 </span>
 																</span>
 															<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
 															</div>
@@ -574,10 +631,12 @@ function coupon(coup_percent,coup_idx){
 														<div class="js-vreserv-btn-login">
 															<div class="dc-flex click-effect-press">
 																<span class="color-blue-dark-light mr-2 font-weight-bold">
-																	<input type="text" name="point" id="point" placeholder="${member.member_point}">																
-																<input type="button" value="사용" id="usePoint" class="btn-primary">
+																	<input type="text" name="point" id="point" placeholder="0" value="0">																
+																	<input type="button" value="사용" id="usePoint" class="btn-primary point_btn point_btn_N" data-state="N">
+																	<input type="button" value="취소" id="canceloint" class=" point_btn point_btn_Y" data-state="Y" style="display: none;">
 																</span>
 															</div>
+															<div>사용 가능한 포인트 : ${member.member_point }</div>
 														</div>
                                                     </div>
                                                 </li>
@@ -626,7 +685,7 @@ function coupon(coup_percent,coup_idx){
 					<c:when test="${!empty userCoupon }">
 					<div id="vcdp_container_coupon_list">
 						<c:forEach var="userCoupon" items="${userCoupon }">
-							<div class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item" onclick="coupon(${userCoupon.coup_percent}, ${userCoupon.coup_idx })">
+							<div class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item" onclick="coupon(${userCoupon.coup_percent}, ${userCoupon.coup_idx }, '${userCoupon.coup_name }');" >
 								<div class="dc-flex justify-content-between align-items-start">
 									<div class="pb-2">
 										<span class="badge badge-primary text-white font-weight-bold" id="cbc_grade"></span>

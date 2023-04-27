@@ -1,42 +1,6 @@
 @charset "UTF-8";
 
 
-/* 경은 추가 */
-/* 메인배너 */
-.js-btn-navbar-brand{
-	font-size: 30px !important;
-    font-weight: bold;
-    font-style: italic;
-    color: #007bff !important;
-}
-
-.index-container-main-banner {
-	position: relative;
-
-}
-.index-container-main-banner .banner-title {
-	position: absolute;
-	top: 100px;
-	left: 20%;
-	transform: translateX(50%);
-}
-.index-container-main-banner .banner-title p {
-	margin-bottom: 0;
-}
-.index-container-main-banner .banner-title h1 {
-	color: #4a4a4a;
-    font-size: 46px;
-}
-.index-search-history {
-	background-color: #fff;
-}
-.index-container-search {
-	top: 580px !important;
-}
-.container index-container-main-banner {
-	padding: 0;
-}
-/* 경은 추가 끝 */
 
 @font-face {
 	font-weight: 200;
@@ -126,6 +90,73 @@
 /* 	-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, */
 /* 		"Liberation Mono", "Courier New", monospace */
 /* } */
+
+/* 경은 추가 */
+/* 예약 완료전 페이지 */
+.cal  {
+	list-style: none; 
+	line-height: 20px; 
+	display: flex; 
+	justify-content: space-around; 
+	padding: 30px 0 20px 0; 
+	text-align: center; 
+	align-items: center;
+	}
+.cal li:nth-child(1),
+.cal li:nth-child(3),
+.cal li:nth-child(5) {
+	padding: 10px 20px; 
+	background: #0D6FFC; 
+	color: #fff; 
+	border-radius: 5px;
+	}
+.cal li span {
+	font-size: 12px; color: eee !important;
+	}
+
+/* 메인배너 */
+.js-btn-navbar-brand{
+	font-size: 30px !important;
+    font-weight: bold;
+    font-style: italic;
+    color: #007bff !important;
+}
+
+.index-container-main-banner {
+	position: relative;
+	
+}
+.index-container-main-banner .banner-title {
+	position: absolute;
+	top: 100px;
+	left: 20%;
+	transform: translateX(50%);
+}
+.index-container-main-banner .banner-title p {
+	margin-bottom: 0;
+}
+.index-container-main-banner .banner-title h1 {
+	color: #4a4a4a;
+    font-size: 46px;
+}
+.index-search-history {
+	background-color: #fff;
+}
+.index-container-search {
+	top: 580px !important;
+}
+.container.index-container-main-banner {
+    padding: 0;
+}
+/* 푸터 */
+footer .bg-white {
+    background-color: #3b4047 !important;
+}
+a.js-btn-navbar-brand.dc-flex.align-items-center.navbar-brand.h-100.click-effect-press {
+    display: inherit;
+    height: inherit !important;
+}
+/* 경은 추가 끝 */
 
 *, *::before, *::after {
 	box-sizing: border-box
@@ -24861,7 +24892,7 @@ a.js-a-href, a:hover.js-a-href, a:focus.js-a-href, a:active.js-a-href {
 }
 
 #global_footer {
-	padding-bottom: 1.5rem
+/* 	padding-bottom: 1.5rem */
 }
 
 @media ( max-width : 991.98px) {

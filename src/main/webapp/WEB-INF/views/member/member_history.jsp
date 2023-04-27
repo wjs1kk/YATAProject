@@ -7,8 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<style type="text/css">
+.search_list_tbl tr td {
+    font-size: larger;
+}
+</style>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
@@ -101,7 +106,7 @@
 											<a
 												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
 												onclick="location.href='modifyInfo'"
-												style="cursor: pointer;">내 정보 관리</a> <a href='customer_service'
+												style="cursor: pointer;">내 정보 관리</a> <a
 												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
 												data-type="faq"> 자주묻는 질문 </a>
 										</div>
@@ -118,7 +123,7 @@
 											<div class="font-weight-bold color-grey-2">1:1 문의</div>
 										</div>
 										<div class="center-align-container">
-											<button onclick="location.href='write.mf'"
+											<button
 												class="js-btn-channel-talk btn btn-outline-dark btn-sm">문의하기</button>
 										</div>
 									</div>
@@ -179,9 +184,10 @@
 															</td>
 															<td>${resList.res_totalPrice }원</td>
 															<td class="clip ">
-															<input class="btn-danger"
+
+															<input class="btn-danger" id="deleteBtn"
 																type="button" value="예약취소"
-																onclick="location.href='deleteReserve?res_id=${resList.res_id}'">
+																onclick="if(confirm('예약을 취소하시겠습니까?')){location.href='deleteReserve?res_id=${resList.res_id}'} else {alert('취소되었습니다.')}">
 															</td>
 															<td class="clip ">
 																<input class="btn-primary"

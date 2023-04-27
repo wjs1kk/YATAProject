@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/main.css">
+
+
 <script type="text/javascript">
 	function rent1() {
 		const regex = /[^0-9]/g;

@@ -6,6 +6,32 @@
 	<select id="myPoint" resultType="com.itwillbs.yata.vo.PointVO">
 		SELECT *
 		  FROM point
-		 WHERE member_email = #{member_email}
+		 WHERE member_email = #{member_email} 
+		 order by point_idx desc
+		  
 	</select>
+<!-- 	예약했을때 포인트 사용 내역 테이블 적용 -->
+	<insert id="savePoint">
+		insert point (member_email, point_content, point_used, point_save, member_point) 
+		value (#{member_email}, #{point_content}, #{point_used}, #{point_save}*0.1, #{member_point})
+	</insert>
+	<!-- 	포인트 적립 -->
+	<update id="updatePoint" >
+		<selectKey keyProperty="member_point" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(member_point), 0) FROM member WHERE member_email = #{member_email};
+		</selectKey>
+		UPDATE member 
+			SET member_point = #{member_point} + (#{res_totalprice}*0.1)
+				WHERE member_email = #{member_email};
+	</update>
+	
+	<!-- 	포인트 사용 -->
+	<update id="usePoint" >
+		<selectKey keyProperty="member_point" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(member_point), 0) FROM member WHERE member_email = #{member_email};
+		</selectKey>
+		UPDATE member 
+			SET member_point = #{member_point} - ${use_point}
+				WHERE member_email = #{member_email};
+	</update>
 </mapper>

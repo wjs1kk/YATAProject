@@ -188,9 +188,14 @@
 						</thead>
 						<tbody id="notice_list">
 							<c:choose>
-								<c:when test="${empty myMailForm}">
+								<c:when test="${empty sessionScope.member_email}">
 									<tr>
-										<td colspan="3" class="noMailForm">로그인 후 확인가능합니다.</td>
+										<td colspan="3" class="noMailForm">로그인 후 조회 가능합니다.</td>
+									</tr>
+								</c:when>
+								<c:when test="${empty myMailForm }" >
+									<tr>
+										<td colspan="3" class="noMailForm">작성된 1:1문의가 없습니다.</td>
 									</tr>
 								</c:when>
 								<c:otherwise>

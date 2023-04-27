@@ -14,12 +14,12 @@
 		insert into member (
 			member_email, member_passwd, 
 			member_name, member_birth, 
-			member_gender, member_phone, member_date
+			member_gender, member_phone, member_date, member_point, member_isadmin
 			) 
 			value(
 			#{member_email}, #{member_passwd},
 			#{member_name}, #{member_birth},
-			#{member_gender}, #{member_phone}, now())
+			#{member_gender}, #{member_phone}, now(),2000,0)
 	</insert>
 	<select id="selectPasswd" resultType="string">
 		SELECT member_passwd

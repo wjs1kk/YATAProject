@@ -12,6 +12,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!--  JQuery 최신버전 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <style type="text/css">
 #myform fieldset{
     display: inline-block;
@@ -63,7 +64,9 @@
 			$('.make_star i:nth-child(-n+' + targetNum + ')').css({
 				color : '#F05522'
 			});
+
 		});
+
 	});
 </script>
 </head>
@@ -141,7 +144,7 @@
 												onclick="location.href='mypage?tab=coupon'">
 												<div
 													class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press">
-													<div class="js-mypage-txt-coupon-cnt text-16-b">${userCoupon_count } 장</div>
+													<div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>
 													쿠폰
 												</div>
 											</div>
@@ -157,7 +160,7 @@
 											<a
 												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
 												onclick="location.href='#'" style="cursor: pointer;">
-												내정보 관리 </a> <a href='customer_service'
+												내정보 관리 </a> <a
 												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
 												data-type="faq"> 자주묻는 질문 </a>
 										</div>
@@ -174,7 +177,7 @@
 											<div class="font-weight-bold color-grey-2">1:1 문의</div>
 										</div>
 										<div class="center-align-container">
-											<button onclick="location.href='write.mf'"
+											<button
 												class="js-btn-channel-talk btn btn-outline-dark btn-sm">문의하기</button>
 										</div>
 									</div>
@@ -207,16 +210,18 @@
 											<p>별점을 매겨주세요</p>
 											<div class="make_star">
 												<fieldset>
-													<input type="radio" name="review_star" value="5" id="rate1">
+
+													<input type="radio" name="review_star" value="5.0" id="rate1">
 													<label for="rate1">★</label> 
-													<input type="radio" name="review_star" value="4" id="rate2">
+													<input type="radio" name="review_star" value="4.0" id="rate2">
 													<label for="rate2">★</label> 
-													<input type="radio" name="review_star" value="3" id="rate3">
+													<input type="radio" name="review_star" value="3.0" id="rate3">
 													<label for="rate3">★</label> 
-													<input type="radio" name="review_star" value="2" id="rate4">
+													<input type="radio" name="review_star" value="2.0" id="rate4">
 													<label for="rate4">★</label> 
-													<input type="radio" name="review_star" value="1" id="rate5">
+													<input type="radio" name="review_star" value="1.0" id="rate5">
 													<label for="rate5">★</label>
+
 												</fieldset>
 											</div>
 										</div>
@@ -227,7 +232,9 @@
 										</div>
 										<div style="text-align: right">
 											<button type="submit" class="btn btn-info">등록하기</button>
-											<button type="button" class="btn btn-secondary">목록으로</button>
+
+											<button type="button" class="btn btn-secondary" onclick="history.back()">목록으로</button>
+
 										</div>
 									</form>
 								</div>
