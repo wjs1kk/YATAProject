@@ -1,5 +1,6 @@
 package com.itwillbs.yata.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.yata.service.CarService;
 import com.itwillbs.yata.service.MemberService;
@@ -278,6 +280,26 @@ public class MemberController {
 			}
 
 		}
+		
+		// 2023-04-27 김동욱 - AJAX 회원가입 이메일 중복체크
+		@PostMapping("MemberEmailCheck")
+//		@ResponseBody
+		public void memberEmailCheck(@RequestParam(defaultValue = "") String member_email, HttpServletResponse response) {
+			System.out.println(member_email);
+			try {
+				// 사용중인 member_email이 없으면 view페이지로 true 있으면 false를 보냄!
+				String email = memberService.memberEmailCheck(member_email);
+				System.out.println(email);
+				if(email == null) {
+					response.getWriter().print("true");
+				}else {
+					response.getWriter().print("false");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 
 
 }

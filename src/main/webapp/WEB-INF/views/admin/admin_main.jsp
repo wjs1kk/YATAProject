@@ -42,6 +42,7 @@
 								<a class="py-2 text-decoration-none px-0 event-left-menu-doing click-effect-press active" href="AdminReservationList.ad">예약 목록 조회</a>
 								<a class="py-2 text-decoration-none px-0 event-left-menu-doing click-effect-press active" href="AdminMailForm.ad">1:1 문의 내역 목록 조회</a>
 								<a class="py-2 text-decoration-none px-0 event-left-menu-doing click-effect-press active" href="UnansweredMailForm.ad">미답변 1:1 문의 내역 목록</a>
+								<a class="py-2 text-decoration-none px-0 event-left-menu-doing click-effect-press active" href="AdminLicenseForm.ad">면허증 등록 신청 목록</a>
 							</div>
 						</div>
 					</div>

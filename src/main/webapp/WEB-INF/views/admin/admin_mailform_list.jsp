@@ -52,18 +52,21 @@
 							<td>${mailFormList.board_num}</td>
 							<td class="tb-subj"><a style="color: black;"
 								href="AdminMailFormReply.ad?board_num=${mailFormList.board_num}">
-								<c:choose>
-									<c:when test="${mailFormList.board_progress eq '답변완료'}">
+									
+									<!-- 2023-04-27 김동욱 관리자의 답변의 글은 들여쓰기가 되게 수정 -->
+									<c:if
+										test="${mailFormList.board_re_lev > 0 }">
+										<c:forEach var="i" begin="1"
+											end="${mailFormList.board_re_lev }">&nbsp;&nbsp;</c:forEach>
+										<img
+											src="https://static.thenounproject.com/png/88514-200.png"
+											width="10px" height="10px" style="margin: 0 5px 0 20px;">
+										<a href="AdminMailFormReply.ad?board_num=${mailFormList.board_num}">
+									</c:if> <c:if test="${mailFormList.board_re_lev < 1 }">
 										<span class="it-notice">${mailFormList.board_progress}</span>
-									</c:when>
-									<c:when test="${mailFormList.board_progress eq '진행중'}">
-										<span class="it-notice">${mailFormList.board_progress}</span>
-									</c:when>
-									<c:when test="${mailFormList.board_progress eq '답변'}">
-										<span class="it-notice" style="background: #3399FF;">${mailFormList.board_progress}</span>
-									</c:when>
-								</c:choose>
-									${mailFormList.board_subject}
+										<a href="AdminMailFormReply.ad?board_num=${mailFormList.board_num}">
+									</c:if> ${mailFormList.board_subject} </a>
+									
 							</a>
 							</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${mailFormList.board_date}" /></td>

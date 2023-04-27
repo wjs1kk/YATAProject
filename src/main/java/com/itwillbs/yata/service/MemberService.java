@@ -57,6 +57,21 @@ public class MemberService {
 	public int getMemberListCount(String searchType, String searchKeyword) {
 		return mapper.selectMemberListCount(searchType, searchKeyword);
 	}
+	
+	// 2023-04-27 김동욱 - 이메일 중복 체크
+	public String memberEmailCheck(String member_email) {
+		return mapper.selectEmailCheck(member_email);
+	}
+	
+	// 2023-04-27 김동욱 - 라이센스 등록 신청 목록
+	public List getLicenseList() {
+		return mapper.selectLicenseList();
+	}
+
+	// 2023-04-27 김동욱 - 관리자페이지에서 면허증 승인 후 맴버 테이블 member_licence 1로 업데이트
+	public int licenseAprovePro(String lic_member_email) {
+		return mapper.updateMemberLicense(lic_member_email);
+	}
 }
 
 

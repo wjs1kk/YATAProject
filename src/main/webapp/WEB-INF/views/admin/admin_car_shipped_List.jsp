@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <jsp:include page="../inc/top_admin.jsp"></jsp:include>
@@ -19,6 +20,15 @@
 	<div class="container py-5">
 		<div class="mypage-section" id="mypage_section_setting">
 			<table class="tb-list">
+				<form action="AdminCarShippedList.ad">
+						<select name="searchType">
+						<option value="member_email" <c:if test="${param.searchType eq 'member_email' }">selected</c:if> >사용중인 고객 이메일</option>
+						<option value="car_name" <c:if test="${param.searchType eq 'car_name' }">selected</c:if> >차명칭</option>
+						<option value="car_manufacturer" <c:if test="${param.searchType eq 'car_manufacturer' }">selected</c:if> >제조사</option>
+					</select>
+					<input type="text" name="searchKeyword" value="${param.searchKeyword }" />
+					<input class="nextBtn" type="submit" value="검색"/>
+				</form>
 				<colgroup>
 					<col style="width: 10%">
 					<col>
@@ -29,13 +39,14 @@
 						<th scope="col">번호</th>
 						<th scope="col">제조사</th>
 						<th scope="col">모델</th>
-						<th scope="col">이름</th>
+						<th scope="col">차명칭</th>
 						<th scope="col">종류</th>
 						<th scope="col">연식</th>
 						<th scope="col">가격</th>
 						<th scope="col">출고 가능 상태</th>
 						<th scope="col">인승</th>
 						<th scope="col">연료</th>
+						<th scope="col">사용중인 고객 이메일</th>
 						<th scope="col"></th>
 					</tr>
 				</thead>
@@ -52,9 +63,10 @@
 							<td>${carList.car_available }</td>
 							<td>${carList.car_seater }</td>
 							<td>${carList.car_fuel }</td>
+							<td>${carList.member_email }</td>
 							<td>
 								<%-- 수정 버튼 클릭 시 회원 정보 조회 페이지로 이동(파라미터 : id) --%>
-								<input type="button" value="반납확인" onclick="">													
+								<input class="nextBtn" type="button" value="반납확인" onclick="">													
 							</td>
 						</tr>
 					</c:forEach>
@@ -62,12 +74,20 @@
 			</table>
 			<section id="pageList">
 				<c:choose>
-					<c:when test="${pageNum > 1 }">
-						<input class="prevBtn" type="button" value="이전"
-							onclick="location.href='BoardList.bo?pageNum=${pageNum - 1}'">
+					<c:when test="${param.pageNum eq null }">
+						<c:set var="pageNum" value="1" ></c:set>
 					</c:when>
 					<c:otherwise>
-						<input class="prevBtn" type="button" value="이전">
+						<c:set var="pageNum" value="${param.pageNum }" ></c:set>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${pageNum > 1 }">
+						<input class="nextBtn" type="button" value="이전"
+							onclick="location.href='AdminCarShippedList.ad?pageNum=${pageNum - 1}'">
+					</c:when>
+					<c:otherwise>
+						<input class="nextBtn" type="button" value="이전">
 					</c:otherwise>
 				</c:choose>
 
@@ -79,7 +99,7 @@
 							<b>${num }</b>
 						</c:when>
 						<c:otherwise>
-							<a class="pagingNum" href="BoardList.bo?pageNum=${num }">${num }</a>
+							<a class="pagingNum" href="AdminCarShippedList.ad?pageNum=${num }">${num }</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -87,7 +107,7 @@
 				<c:choose>
 					<c:when test="${pageNum < pageInfo.maxPage }">
 						<input class="nextBtn" type="button" value="다음"
-							onclick="location.href='BoardList.bo?pageNum=${pageNum + 1}'">
+							onclick="location.href='AdminCarShippedList.ad?pageNum=${pageNum + 1}'">
 					</c:when>
 					<c:otherwise>
 						<input class="nextBtn" type="button" value="다음">
