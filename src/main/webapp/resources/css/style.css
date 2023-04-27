@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+/* 리뷰 별점 색상 */
+.star {
+	color: #FF7E00;
+}
+.star_off {
+	color: #ced4da;
+}
+
 /* 경은 추가 시작 */
 /* 고객센터 - 1:1문의 */
 .tb-list,

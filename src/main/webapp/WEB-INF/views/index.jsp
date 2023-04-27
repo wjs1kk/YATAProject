@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,17 @@
 	opacity: 1;
 }
 </style>
-
+<style type="text/css">
+/* 리뷰 별점 색상 */
+.star {
+	color: #FF7E00;
+	font-size: x-large;
+}
+.star_off {
+	color: #ced4da;
+	font-size: x-large;
+}
+</style>
 </head>
 <body>
 	<main id="content" role="main">
@@ -586,95 +597,44 @@
 								<div
 									class="swiper swiper-initialized swiper-horizontal swiper-pointer-events"
 									id="js_index_review_swiper_root">
-									<div class="swiper-wrapper" id="js_index_review_swiper"
-										aria-live="polite"
+									<div class="swiper-wrapper" id="js_index_review_swiper" aria-live="polite"
 										style="transform: translate3d(0px, 0px, 0px);">
-										<div class="index-box-review swiper-slide swiper-slide-active"
-											role="group" aria-label="1 / 12" style="margin-right: 20px;">
-											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">${review[0].review_star }</div>
-												<div
-													class="index-box-review-container-rate d-flex justify-content-center">
-													<img class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg==">
-												</div>
-												<div class="mt-3">
-													<div class="text-16 text-left">
-															<!-- 리뷰 내용 -->
-															${review[0].review_content }
+										<c:forEach begin="0" end="3" items="${review}" var="review">
+											<div class="index-box-review swiper-slide swiper-slide-active"
+												role="group" aria-label="1 / 12" style="margin-right: 20px;">
+												<div class="text-center">
+													<div class="text-40 font-weight-bold text-primary">${review.review_star }</div>
+													<div class="index-box-review-container-rate d-flex justify-content-center">
+														<c:if test="${review.review_star == '1.0'}">
+															<span class="star">★</span><span class="star_off">★★★★</span>
+														</c:if>
+														<c:if test="${review.review_star == '2.0'}">
+															<span class="star">★★</span><span class="star_off">★★★</span>
+														</c:if>
+														<c:if test="${review.review_star == '3.0'}">
+															<span class="star">★★★</span><span class="star_off">★★</span>
+														</c:if>
+														<c:if test="${review.review_star == '4.0'}">
+															<span class="star">★★★★</span><span class="star_off">★</span>
+														</c:if>
+														<c:if test="${review.review_star == '5.0'}">
+															<span class="star">★★★★★</span>
+														</c:if>
+													</div>
+													<div class="mt-3">
+														<div class="text-16 text-left">
+																<!-- 리뷰 내용 -->
+																${review.review_content }
+														</div>
+													</div>
+													<div class="index-box-review-bottom-box text-left">
+														<div class="index-txt-review-bottom-box-top text-14">제주에서
+															1일 렌트하신</div>
+														<div class="text-16-b text-white">${review.member_name }님</div>
 													</div>
 												</div>
-												<div class="index-box-review-bottom-box text-left">
-													<div class="index-txt-review-bottom-box-top text-14">제주에서
-														1일 렌트하신</div>
-													<div class="text-16-b text-white">${review[0].member_name }님</div>
-												</div>
 											</div>
-										</div>
-										<div class="index-box-review swiper-slide swiper-slide-next"
-											role="group" aria-label="2 / 12" style="margin-right: 20px;">
-											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">${review[1].review_star }</div>
-												<div
-													class="index-box-review-container-rate d-flex justify-content-center">
-													<img class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg==">
-												</div>
-												<div class="mt-3">
-													<div class="text-16 text-left">
-														${review[1].review_content }
-													</div>
-												</div>
-												<div class="index-box-review-bottom-box text-left">
-													<div class="index-txt-review-bottom-box-top text-14">부산에서
-														1일 렌트하신</div>
-													<div class="text-16-b text-white">${review[1].member_name }님</div>
-												</div>
-											</div>
-										</div>
-										<div class="index-box-review swiper-slide" role="group"
-											aria-label="3 / 12" style="margin-right: 20px;">
-											<div class="text-center">
-												<div class="text-40 font-weight-bold text-primary">${review[2].review_star }</div>
-												<div
-													class="index-box-review-container-rate d-flex justify-content-center">
-													<img class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg=="><img
-														class="index-box-review-img-rate-star"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik0zLjg4NyAxMS40NjVhLjU0Mi41NDIgMCAwIDEtLjc4Ni0uNTdMMy42IDcuOTgzbC0yLjExNC0yLjA2YS41NDIuNTQyIDAgMCAxIC4zLS45MjVsMi45MjItLjQyNCAxLjMwNi0yLjY0OGEuNTQyLjU0MiAwIDAgMSAuOTcyIDBsMS4zMDYgMi42NDggMi45MjIuNDI0Yy40NDUuMDY1LjYyMi42MS4zLjkyNEw5LjQgNy45ODRsLjUgMi45MWEuNTQyLjU0MiAwIDAgMS0uNzg3LjU3MUw2LjUgMTAuMDkxbC0yLjYxMyAxLjM3NHoiLz4KPC9zdmc+Cg==">
-												</div>
-												<div class="mt-3">
-													<div class="text-16 text-left">
-														${review[2].review_content }
-													</div>
-												</div>
-												<div class="index-box-review-bottom-box text-left">
-													<div class="text-16-b text-white">${review[2].member_name }님</div>
-												</div>
-											</div>
-										</div>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
@@ -683,10 +643,7 @@
 				</section>
 			</div>
 		</div>
-
 	</main>
-
-
 	<!-- 	footer -->
 	<jsp:include page="/WEB-INF/views/inc/footer.jsp" />
 </body>

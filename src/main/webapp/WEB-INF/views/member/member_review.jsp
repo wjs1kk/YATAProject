@@ -7,6 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
+<style type="text/css">
+/* 리뷰 별점 색상 */
+.star {
+	color: #FF7E00;
+}
+.star_off {
+	color: #ced4da;
+}
+.search_list_tbl tr td {
+    font-size: larger;
+}
+</style>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
@@ -157,18 +169,18 @@
 										<c:otherwise>
 											<table class="search_list_tbl for_web">
 												<colgroup>
-														<col style="width: 10%;">
+														<col style="width: 8%;">
 														<col style="width: 15%;">
-														<col style="width: 15%;">
-														<col style="width: 15%;">
-														<col style="width: 45%;">
+														<col style="width: 8%;">
+														<col style="width: 8%;">
+														<col style="width: 32%;">
 												</colgroup>
 												<thead>
 													<tr>
 														<th scope="col" style="text-align: center;">예약번호</th>
 														<th scope="col" style="text-align: center;">등록일</th>
-														<th scope="col" style="text-align: center;">rating</th>
-														<th scope="col" style="text-align: center;">상품정보</th>
+														<th scope="col" style="text-align: center;">별점</th>
+														<th scope="col" style="text-align: center;">대여지점</th>
 														<th scope="col" style="text-align: center;">내용</th>
 													</tr>
 												</thead>	
@@ -176,11 +188,25 @@
 												<c:forEach items="${myReview}" var="myReview">
 													<tr>
 														<td>${myReview.res_id }</td>
-														<td>${myReview.review_updateDate }</td>
+														<td style="text-align: center;">${myReview.review_updateDate }</td>
 														<td>
-															${myReview.review_star} / 5
+															<c:if test="${myReview.review_star == '1.0'}">
+																<span class="star">★</span><span class="star_off">★★★★</span>
+															</c:if>
+															<c:if test="${myReview.review_star == '2.0'}">
+																<span class="star">★★</span><span class="star_off">★★★</span>
+															</c:if>
+															<c:if test="${myReview.review_star == '3.0'}">
+																<span class="star">★★★</span><span class="star_off">★★</span>
+															</c:if>
+															<c:if test="${myReview.review_star == '4.0'}">
+																<span class="star">★★★★</span><span class="star_off">★</span>
+															</c:if>
+															<c:if test="${myReview.review_star == '5.0'}">
+																<span class="star">★★★★★</span>
+															</c:if>
 														</td>
-														<td>${myReview.car_name}</td>
+														<td>${myReview.review_place}</td>
 														<td>${myReview.review_content}</td>
 													</tr>
 												</c:forEach>

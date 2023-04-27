@@ -72,6 +72,6 @@
 			from review
 			where res_id = #{res_id}
 	</select>
-
+	
 	
 </mapper>

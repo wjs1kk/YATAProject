@@ -97,7 +97,7 @@ public class MemberController {
 		} else if(tab.equals("review")) {
 			List<ReviewVO> myReviewList = reviewService.myReview(member_email);
 			model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
-
+			
 			return "member/member_review";
 
 		// 포인트
@@ -112,6 +112,9 @@ public class MemberController {
 		}
 		return "member/member_mypage";
 	}
+	
+
+	
 	// 내정보관리
 	@GetMapping("modifyInfo")
 	public String modifyInfo(MemberVO member, HttpSession session, Model model) {
@@ -189,10 +192,8 @@ public class MemberController {
 		String member_email = (String)session.getAttribute("member_email");
 		int deleteCount = memberService.deleteUser(member_email);
 		if (deleteCount > 0) {
-			model.addAttribute("msg", "회원 탈퇴 완료!");
-			model.addAttribute("target", "redirect:/");
 			session.invalidate();
-			return "success";
+			return "redirect:/";
 		} else {
 			model.addAttribute("msg", "회원 탈퇴 실패!");
 			return "fail_back";
@@ -249,9 +250,6 @@ public class MemberController {
 		
 		car = carService.selectCar(car.getCar_id());
 		
-		
-		String endDate = reserve.getRes_endDate();
-		System.out.println(endDate);
 		model.addAttribute("reserve", reserve);
 		model.addAttribute("car", car);
 
@@ -263,11 +261,6 @@ public class MemberController {
 	public String deleteReserve(Model model, ReservVO reserve, @RequestParam Integer res_id) {
 		reserve = reservService.getReserveList(res_id);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd");
-		String endDate = reserve.getRes_endDate();
-		
-		
-	 
 		int deleteCount = reservService.deleteReserve(reserve.getRes_id());
 		
 		if(deleteCount > 0) {

@@ -7,7 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style type="text/css">
+.search_list_tbl tr td {
+    font-size: larger;
+}
+</style>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
@@ -178,9 +183,9 @@
 															</td>
 															<td>${resList.res_totalPrice }원</td>
 															<td class="clip ">
-															<input class="btn-danger"
+															<input class="btn-danger" id="deleteBtn"
 																type="button" value="예약취소"
-																onclick="location.href='deleteReserve?res_id=${resList.res_id}'">
+																onclick="if(confirm('예약을 취소하시겠습니까?')){location.href='deleteReserve?res_id=${resList.res_id}'} else {alert('취소되었습니다.')}">
 															</td>
 															<td class="clip ">
 																<input class="btn-primary"
