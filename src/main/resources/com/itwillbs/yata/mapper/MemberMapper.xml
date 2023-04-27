@@ -111,5 +111,17 @@
 		FROM member
 		WHERE member_email = #{member_email}
 	</select>
+	<!-- 2023-04-27 김동욱 - 면허증 등록 신청 목록 -->
+	<select id="selectLicenseList" resultType="map">
+		SELECT l.member_email as member_email, license_num, license_pass
+		FROM license l JOIN member m
+		ON l.member_email = m.member_email
+	    WHERE MEMBER_LICENSE IS NULL;
+	</select>
 	
+	<!--  2023-04-27 김동욱 - 관리자페이지에서 면허증 승인 후 맴버 테이블 member_licence 1로 업데이트 -->
+	<update id="updateMemberLicense">
+		UPDATE member SET member_license = '1'
+		WHERE member_email = #{lic_member_email}
+	</update>
   </mapper>

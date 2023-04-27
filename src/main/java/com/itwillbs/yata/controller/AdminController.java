@@ -450,9 +450,13 @@ public class AdminController {
 
 	
 	// 출고된 차량 조회
-	@GetMapping("AdminCarShippedList.ad")
-	public String AdminShippedRentList(HttpSession session, Model model) {
-		
+		// 2023-04-27 김동욱 출고된 차량 목록 페이징 처리
+		@GetMapping("AdminCarShippedList.ad")
+		public String AdminShippedRentList(HttpSession session, Model model
+									  	   , @RequestParam(defaultValue = "1") int pageNum
+										   , @RequestParam(defaultValue = "") String searchType
+										   , @RequestParam(defaultValue = "") String searchKeyword) {
+			
 		String member_email = (String)session.getAttribute("member_email");
 		
 		// session이 null인지 먼저 판별
@@ -470,13 +474,92 @@ public class AdminController {
 			return "fail_back";
 		}else {
 			// sesiion이 관리자인 지 확인 후 관리자 출고된 차량 리스트 페이지 접근
-			List<CarVO> carList = carService.getCarShippedList();
+			
+			int listLimit = 10;
+			int startRow = (pageNum - 1) * listLimit;
+			
+			List carList = carService.getCarShippedList(startRow, listLimit, searchType, searchKeyword);
+			System.out.println(carList);
+			
+			int listCount = carService.getCarShippedListCount(searchType, searchKeyword);
+			
+			System.out.println("총 게시물 수 : " + listCount);
+			
+			int pageListLimit = 5;
+			
+			int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
+			
+			int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+			
+			int endPage = startPage + pageListLimit - 1;
+			
+			if(endPage > maxPage) {
+				endPage = maxPage;
+			}
+			
+			PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+			System.out.println(pageInfo);
+			
 			model.addAttribute("carList" , carList);
+			model.addAttribute("pageInfo", pageInfo);
+			
+			
+			
 			return "admin/admin_car_shipped_List";
 		}
 		
 	}
-	
+	// 2023-04-27 김동욱 - 관리자페이지 면허증 등록 신청 목록 조회
+	@GetMapping("AdminLicenseForm.ad")
+	public String AdminLicenseForm(HttpSession session, Model model) {
+		
+		String member_email = (String)session.getAttribute("member_email");
+		
+		// session이 null인지 먼저 판별
+		if( session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
+		// sesiion이 null이 아니면 관리자 권한값을 가져옴
+		String isAdmin =  memberService.isAdmin(member_email);
+		
+		// sesiion이 관리자인 지 확인
+		if(!isAdmin.equals("1")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}else {
+			
+			List licenseList = memberService.getLicenseList();
+			model.addAttribute("licenseList", licenseList);
+			
+			return "admin/admin_license_list";
+		}
+	}
+	// 2023-04-27 김동욱 - 관리자페이지에서 면허증 승인 후 맴버 테이블 member_licence 1로 업데이트
+	@GetMapping("AdminLicenseAprove.ad")
+	public String AdminLicenseAprove(HttpSession session, Model model, String lic_member_email) {
+		
+		String member_email = (String)session.getAttribute("member_email");
+		
+		// session이 null인지 먼저 판별
+		if( session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
+		// sesiion이 null이 아니면 관리자 권한값을 가져옴
+		String isAdmin =  memberService.isAdmin(member_email);
+		
+		// sesiion이 관리자인 지 확인
+		if(!isAdmin.equals("1")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}else {
+			int updateCount = memberService.licenseAprovePro(lic_member_email);
+			return "redirect:/AdminLicenseForm.ad";
+		}
+	}
 	//예약 목록 리스트 조회
 	@GetMapping("AdminReservationList.ad")
 	public String AdminReservationList(HttpSession session, Model model,

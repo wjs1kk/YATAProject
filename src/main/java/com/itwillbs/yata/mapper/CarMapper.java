@@ -22,4 +22,7 @@ public interface CarMapper {
 	public int selectCarListCount(@Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
 	public int deleteCarModel(@Param("car_id") int car_id);
 	public List<CarVO> selectCarList(@Param("startRow") int startRow, @Param("listLimit") int listLimit, @Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
+	public List selectCarShippedList(@Param("startRow") int startRow, @Param("listLimit") int listLimit, @Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
+	// 출고된 차량 목록 페이징 처리를 위한 카운트 - 2023-04-27 김동욱
+	public int selectCarShippedListCount(@Param("searchType")String searchType, @Param("searchKeyword")String searchKeyword);
 }

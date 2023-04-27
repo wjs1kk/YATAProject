@@ -165,10 +165,21 @@
 								
 								<!-- 지도 팝업창 상단 지도 이동 탭 -->
 								<div class="dc-none js-msa-tabs" style="display: block;">
-									<button onclick="전포()">전포</button>
-									<button onclick="부전()">부전</button> 
-								    <button onclick="사상()">사상</button> 
-								    <button onclick="개금()">개금</button> 
+									<button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="부전()">부전</button>
+									<button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="양정()">양정</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="사상()">사상</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="개금()">개금</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="초량()">초량</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="대연()">대연</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="광안()">광안</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="덕천()">덕천</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="동래()">동래</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="만덕()">만덕</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="센텀()">센텀</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="사하()">사하</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="반여()">반여</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="장전()">장전</button> 
+								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="장산()">장산</button> 
 								</div>
 								
 								
@@ -180,6 +191,7 @@
 											<div class="dc-flex">
 											
 												<!-- 지도 영역 -->
+												<!-- 2023-04-26 김동욱 마크업 추가 -->
 												<div id="map"
 													style="width: 780px; height: 630px;"></div>
 												<script type="text/javascript"
@@ -191,35 +203,103 @@
 														center : new kakao.maps.LatLng(
 																35.15849019679627,
 																129.06202404131136),
-														level : 3
+														level : 7
 													};
 													var map = new kakao.maps.Map(
 															container, options);
 													var positions = [
-															{
-																content : '<input type="text" id="res_place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
-																latlng : new kakao.maps.LatLng(
-																		35.15849019679627,
-																		129.06202404131136)
-															},
-															{
-																content : '<input type="text" id="res_place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
-																latlng : new kakao.maps.LatLng(
-																		35.15975905300518,
-																		129.06186404315977)
-															},
-															{
-																content : '<input type="text" id="res_place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
-																latlng : new kakao.maps.LatLng(
-																		35.158690073109824,
-																		129.06113477638084)
-															},
-															{
-																content : '<input type="text" id="res_place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
-																latlng : new kakao.maps.LatLng(
-																		35.15730753621485,
-																		129.06294334538524)
-															} ];
+														{
+															content : '<input type="text" id="res_place" size="13" value="부전지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.15849019679627,
+																	129.06202404131136)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="양정지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.171802173296115,
+																	129.07062980631056)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="사상지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.16397324604171,
+																	128.98397041262533)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="개금지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.15350639526366,
+																	129.02236435863063)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="초량지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.118523949110354,
+																	129.0420473044028)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="대연지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.134730608938014,
+																	129.08991884387186)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="광안지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.1590424787196,
+																	129.11362265230918)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="덕천지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.210357389233025,
+																	129.00728691916393)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="동래지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.19744274515372,
+																	129.08909287871484)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="만덕지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.212365981105116,
+																	129.03808166881382)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="센텀지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.169889225058526,
+																	129.13434891966517)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="사하지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.100484776657254,
+																	128.97944505949522)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="반여지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.1948640243858,
+																	129.13079224144306)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="장전지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.237234035210896,
+																	129.0890312285848)
+														},
+														{
+															content : '<input type="text" id="res_place" size="13" value="장산지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+															latlng : new kakao.maps.LatLng(
+																	35.16855143919391,
+																	129.1753411620854)
+														}
+														
+														];
 													for (var i = 0; i < positions.length; i++) {
 														// 마커를 생성합니다
 														var marker = new kakao.maps.Marker(
@@ -258,18 +338,13 @@
 																				infowindow
 																						.close();
 																			});
-															kakao.maps.event.addListener(
-																			marker,
-																			'click',
+															kakao.maps.event.addListener(marker, 'click',
 																			function() {
 																				$(function() {
 																					const regex = /[^0-9]/g;
 																					let time = $('#time').text();
 																					time = time.replace(regex, "");
-																					
-																					
 																					let res_place = $("#res_place").val();
-																					
 																					location.href = "?res_place="+res_place+"&rentalDatetime="+$('#demo').val()+"&time="+time;
 																				})
 																			});
@@ -278,7 +353,7 @@
 													
 													
 													//지도 위도 경도 이동 버튼 클릭 이벤트
-													function 전포() {
+													function 부전() {
 													    // 이동할 위도 경도 위치를 생성합니다 
 													    var moveLatLon = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136);
 													    
@@ -286,17 +361,60 @@
 													    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
 													    map.panTo(moveLatLon);            
 													}        
-													function 부전() {
-													    var moveLatLon = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977);
+													function 양정() {
+													    var moveLatLon = new kakao.maps.LatLng(35.171802173296115, 129.07062980631056);
 													    map.panTo(moveLatLon);            
 													}        
-													
 													function 사상() {
-													    var moveLatLon = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084);
+													    var moveLatLon = new kakao.maps.LatLng(35.16397324604171, 128.98397041262533);
 													    map.panTo(moveLatLon);            
 													}        
 													function 개금() {
-													    var moveLatLon = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524);
+													    var moveLatLon = new kakao.maps.LatLng(35.15350639526366, 129.02236435863063);
+													    map.panTo(moveLatLon);            
+													} 
+													function 초량() {
+													    var moveLatLon = new kakao.maps.LatLng(35.118523949110354, 129.0420473044028);
+													    map.panTo(moveLatLon);            
+													} 
+													function 대연() {
+													    var moveLatLon = new kakao.maps.LatLng(35.134730608938014, 129.08991884387186);
+													    map.panTo(moveLatLon);            
+													} 
+													function 광안() {
+													    var moveLatLon = new kakao.maps.LatLng(35.1590424787196, 129.11362265230918);
+													    map.panTo(moveLatLon);            
+													} 
+													function 덕천() {
+													    var moveLatLon = new kakao.maps.LatLng(35.210357389233025, 129.00728691916393);
+													    map.panTo(moveLatLon);            
+													} 
+													function 동래() {
+													    var moveLatLon = new kakao.maps.LatLng(35.19744274515372, 129.08909287871484);
+													    map.panTo(moveLatLon);            
+													} 
+													function 만덕() {
+													    var moveLatLon = new kakao.maps.LatLng(35.212365981105116, 129.03808166881382);
+													    map.panTo(moveLatLon);            
+													} 
+													function 센텀() {
+													    var moveLatLon = new kakao.maps.LatLng(35.169889225058526, 129.13434891966517);
+													    map.panTo(moveLatLon);            
+													} 
+													function 사하() {
+													    var moveLatLon = new kakao.maps.LatLng(35.100484776657254, 128.97944505949522);
+													    map.panTo(moveLatLon);            
+													} 
+													function 반여() {
+													    var moveLatLon = new kakao.maps.LatLng(35.1948640243858, 129.13079224144306);
+													    map.panTo(moveLatLon);            
+													} 
+													function 장전() {
+													    var moveLatLon = new kakao.maps.LatLng(35.237234035210896, 129.0890312285848);
+													    map.panTo(moveLatLon);            
+													} 
+													function 장산() {
+													    var moveLatLon = new kakao.maps.LatLng(35.16855143919391, 129.1753411620854);
 													    map.panTo(moveLatLon);            
 													} 
 													
@@ -331,27 +449,6 @@
 											<!-- 지도 영역 끝 -->
 
 										</div>
-
-
-										<div class="container-as-bottom-bar is-pc-modal"
-											id="js_csabb_container_bottom_info">
-											<div class="box-round-address-info px-3 pt-3"
-												id="js_csabb_card_bottom_info">
-												<div class="pb-3 click-effect-press"
-													id="js_csabb_btn_address_search" style="display: block;">
-													<div
-														class="container-input-common-search in-bottom-bar box-round-gray">
-														<span class="icon mr-2 line-height-1"><img
-															src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNBQUI0QzYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTYuMjE4IDExLjg0MUMzLjMzNiAxMS44NDEgMSA5LjQxNCAxIDYuNDIxIDEgMy40MjcgMy4zMzYgMSA2LjIxOCAxczUuMjE4IDIuNDI3IDUuMjE4IDUuNDJjMCAuOTc0LS4yNDcgMS44ODctLjY3OSAyLjY3Ni4wNjMuMDQuMTIyLjA5LjE3Ny4xNDZsMy43NzggMy45MjVjLjM4My4zOTguMzgzIDEuMDQzIDAgMS40NDFsLS4wODkuMDkyYy0uMzgzLjM5OC0xLjAwNC4zOTgtMS4zODcgMGwtMy43NzgtMy45MjVjLS4wMi0uMDItLjAzNy0uMDQtLjA1NC0uMDYtLjg4Mi43MDYtMS45ODcgMS4xMjYtMy4xODYgMS4xMjZ6bTAtMi4xNjhjMS43MyAwIDMuMTMxLTEuNDU2IDMuMTMxLTMuMjUyIDAtMS43OTctMS40MDItMy4yNTMtMy4xMy0zLjI1My0xLjczIDAtMy4xMzIgMS40NTYtMy4xMzIgMy4yNTMgMCAxLjc5NiAxLjQwMiAzLjI1MiAzLjEzMSAzLjI1MnoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4K"></span><span
-															class="span-txt text-16 color-grey-4"
-															id="js_csabb_txt_placeholder">국내 지역명, 역, 건물 이름으로
-															검색</span>
-													</div>
-
-												</div>
-											</div>
-										</div>
-
 									</div>
 								</div>
 								<div class="modal-footer" style="display: none;">

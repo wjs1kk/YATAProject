@@ -28,4 +28,9 @@ public interface MemberMapper {
 	public List<MemberVO> memberList(@Param("startRow")int startRow, @Param("listLimit")int listLimit, @Param("searchType")String searchType, @Param("searchKeyword")String searchKeyword);
 	public String isAdmin(String member_email);
 	public int selectMemberListCount(@Param("searchType")String searchType, @Param("searchKeyword")String searchKeyword);
+	
+	//2023-04-27 김동욱 면허증 등록 신청 목록
+	public List selectLicenseList();
+	// 2023-04-27 김동욱 - 관리자페이지에서 면허증 승인 후 맴버 테이블 member_licence 1로 업데이트
+	public int updateMemberLicense(String lic_member_email);
 }

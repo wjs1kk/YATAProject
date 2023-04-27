@@ -62,7 +62,7 @@
 			        	 }
 			        	</script>	        
 			        <br>
-			        <a href=""><img src="${pageContext.request.contextPath }/resources/images/naver_login2.png"></a>
+			      
 			    </div>
 			  
             </div>

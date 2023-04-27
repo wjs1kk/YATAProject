@@ -54,5 +54,14 @@ public class CarService {
 	public List<CarVO> getCarList(int startRow, int listLimit, String searchType, String searchKeyword) {	
 		return mapper.selectCarList(startRow, listLimit, searchType, searchKeyword);
 	}
+	
+	//출고된 차량 리스트 - 2023-04-27 김동욱 페이징 처리
+	public List getCarShippedList(int startRow, int listLimit, String searchType, String searchKeyword) {
+		return mapper.selectCarShippedList(startRow, listLimit, searchType, searchKeyword);
+	}
+	// 출고된 차량 리스트 페이징 처리를 위한 카운트 - 2023-04-27 김동욱
+	public int getCarShippedListCount(String searchType, String searchKeyword) {
+		return mapper.selectCarShippedListCount(searchType, searchKeyword);
+	}
 
 }

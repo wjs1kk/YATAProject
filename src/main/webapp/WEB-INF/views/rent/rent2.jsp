@@ -1055,14 +1055,14 @@
 
 
 													<!-- 지도 -->
-													<div id="map" style="width: 100%; height: 350px;"></div>
-													<script type="text/javascript"
-														src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac7eaf0b889d2a25e8a1f59096c406a"></script>
-													<script>
+													<div id="map" style="width:100%;height:350px;"></div>
+												<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac7eaf0b889d2a25e8a1f59096c406a"></script>
+												<script>
 												
 												window.onload = function() {
 													
-													if(${param.res_place eq '전포지점'}){
+													<!-- 2023-04-26 김동욱 마크업 추가 -->
+													if(${param.res_place eq '부전지점'}){
 														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 													    mapOption = { 
 													        center: new kakao.maps.LatLng(35.15849019679627, 129.06202404131136), // 지도의 중심좌표
@@ -1071,45 +1071,179 @@
 													
 														// 마커가 표시될 위치입니다 
 														var markerPosition  = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); 
-														var iwContent = '<input type="text" id="res_place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA전포지점,35.15849019679627,129.062024041311367" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15849019679627,129.06202404131136" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="부전지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA부전지점,35.15849019679627,129.062024041311367" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA부전지점,35.15849019679627,129.06202404131136" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 													    iwPosition = new kakao.maps.LatLng(35.15849019679627, 129.06202404131136); //인포윈도우 표시 위치입니다
-													}
-													if(${param.res_place eq '부전지점'}){
-														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-													    mapOption = { 
-													        center: new kakao.maps.LatLng(35.15975905300518, 129.06186404315977), // 지도의 중심좌표
-													        level: 3 // 지도의 확대 레벨
-													    };
-													
-														// 마커가 표시될 위치입니다 
-														var markerPosition  = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); 
-														var iwContent = '<input type="text" id="res_place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA부전지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA전포지점,35.15975905300518,129.06186404315977" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-													    iwPosition = new kakao.maps.LatLng(35.15975905300518, 129.06186404315977); //인포윈도우 표시 위치입니다
-													}
-													if(${param.res_place eq '사상지점'}){
-														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-													    mapOption = { 
-													        center: new kakao.maps.LatLng(35.158690073109824, 129.06113477638084), // 지도의 중심좌표
-													        level: 3 // 지도의 확대 레벨
-													    };
-													
-														// 마커가 표시될 위치입니다 
-														var markerPosition  = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); 
-														var iwContent = '<input type="text" id="res_place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA사상지점,35.158690073109824,129.06113477638084" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-													    iwPosition = new kakao.maps.LatLng(35.158690073109824, 129.06113477638084); //인포윈도우 표시 위치입니다
 													}
 													if(${param.res_place eq '개금지점'}){
 														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 													    mapOption = { 
-													        center: new kakao.maps.LatLng(35.15730753621485, 129.06294334538524), // 지도의 중심좌표
+													        center: new kakao.maps.LatLng(35.15350639526366, 129.02236435863063), // 지도의 중심좌표
 													        level: 3 // 지도의 확대 레벨
 													    };
 													
 														// 마커가 표시될 위치입니다 
-														var markerPosition  = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); 
-														var iwContent = '<input type="text" id="res_place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;"> <br><a href="https://map.kakao.com/link/map/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/YATA개금지점,35.15730753621485,129.06294334538524" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-													    iwPosition = new kakao.maps.LatLng(35.15730753621485, 129.06294334538524); //인포윈도우 표시 위치입니다
+														var markerPosition  = new kakao.maps.LatLng(35.15350639526366, 129.02236435863063); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="개금지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA개금지점,35.15350639526366,129.02236435863063" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA개금지점,35.15350639526366,129.02236435863063" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.15350639526366, 129.02236435863063); //인포윈도우 표시 위치입니다
 													}
+													if(${param.res_place eq '양정지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.171802173296115, 129.07062980631056), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.171802173296115, 129.07062980631056); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="양정지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA양정지점,35.171802173296115,129.07062980631056" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA양정지점,35.171802173296115,129.07062980631056" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.171802173296115, 129.07062980631056); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '사상지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.16397324604171, 128.98397041262533), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.16397324604171, 128.98397041262533); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="사상지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA사상지점,35.16397324604171,128.98397041262533" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA사상지점,35.16397324604171,128.98397041262533" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.16397324604171, 128.98397041262533); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '초량지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.118523949110354, 129.0420473044028), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.118523949110354, 129.0420473044028); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="초량지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA초량지점,35.118523949110354,129.0420473044028" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA초량지점,35.118523949110354,129.0420473044028" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.118523949110354, 129.0420473044028); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '대연지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.134730608938014, 129.08991884387186), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.134730608938014, 129.08991884387186); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="대연지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA대연지점,35.134730608938014,129.08991884387186" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA대연지점,35.134730608938014,129.08991884387186" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.134730608938014, 129.08991884387186); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '광안지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.1590424787196, 129.11362265230918), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.1590424787196, 129.11362265230918); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="광안지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA광안지점,35.1590424787196,129.11362265230918" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA광안지점,35.1590424787196,129.11362265230918" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.1590424787196, 129.11362265230918); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '덕천지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.210357389233025, 129.00728691916393), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.210357389233025, 129.00728691916393); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="덕천지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA덕천지점,35.210357389233025,129.00728691916393" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA덕천지점,35.210357389233025,129.00728691916393" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.210357389233025, 129.00728691916393); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '동래지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.19744274515372, 129.08909287871484), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.19744274515372, 129.08909287871484); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="동래지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA동래지점,35.19744274515372,129.08909287871484" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA동래지점,35.19744274515372,129.08909287871484" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.19744274515372, 129.08909287871484); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '만덕지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.212365981105116, 129.03808166881382), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.212365981105116, 129.03808166881382); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="만덕지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA만덕지점,35.212365981105116,129.03808166881382" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA만덕지점,35.212365981105116,129.03808166881382" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.212365981105116, 129.03808166881382); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '센텀지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.169889225058526, 129.13434891966517), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.169889225058526, 129.13434891966517); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="센텀지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA센텀지점,35.169889225058526,129.13434891966517" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA센텀지점,35.169889225058526,129.13434891966517" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.169889225058526, 129.13434891966517); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '사하지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.100484776657254, 128.97944505949522), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.100484776657254, 128.97944505949522); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="사하지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA사하지점,35.100484776657254,128.97944505949522" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA사하지점,35.100484776657254,128.97944505949522" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.100484776657254, 128.97944505949522); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '반여지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.1948640243858, 129.13079224144306), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.1948640243858, 129.13079224144306); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="반여지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA반여지점,35.1948640243858,129.13079224144306" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA반여지점,35.1948640243858,129.13079224144306" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.1948640243858, 129.13079224144306); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '장전지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+													        center: new kakao.maps.LatLng(35.237234035210896, 129.0890312285848), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.237234035210896, 129.0890312285848); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="장전지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA장전지점,35.237234035210896,129.0890312285848" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA장전지점,35.237234035210896,129.0890312285848" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.237234035210896, 129.0890312285848); //인포윈도우 표시 위치입니다
+													}
+													if(${param.res_place eq '장산지점'}){
+														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+													    mapOption = { 
+// 													        center: new kakao.maps.LatLng(35.237234035210896, 129.0890312285848), // 지도의 중심좌표
+													        center: new kakao.maps.LatLng(35.16855143919391, 129.1753411620854), // 지도의 중심좌표
+													        level: 3 // 지도의 확대 레벨
+													    };
+													
+														// 마커가 표시될 위치입니다 
+														var markerPosition  = new kakao.maps.LatLng(35.16855143919391, 129.1753411620854); 
+														var iwContent = '<input type="text" readonly="readonly" size=13 id="res_place" value="장산지점" style="padding:5px; text-align: center; border: none;  background: #0d6ffc; color: white; font-weight: bold;"> <br><div align="center"><a href="https://map.kakao.com/link/map/YATA장산지점,35.16855143919391,129.1753411620854" style=" color:black; target="_blank">큰지도보기&nbsp&nbsp</a><a href="https://map.kakao.com/link/to/YATA장산지점,35.16855143919391,129.1753411620854" style="color:black; target="_blank">|&nbsp&nbsp길찾기</a></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+													    iwPosition = new kakao.maps.LatLng(35.16855143919391, 129.1753411620854); //인포윈도우 표시 위치입니다
+													}
+													
 													
 													var map = new kakao.maps.Map(mapContainer, mapOption);
 													// 마커를 생성합니다
@@ -1131,7 +1265,7 @@
 													
 												}
 												</script>
-
+													
 												</div>
 												<!-- 지도 영역 끝 -->
 
