@@ -10,11 +10,12 @@ public class MemberVO {
 	private String member_date;
 	private String member_point;
 	private String member_license;
+	private String member_isadmin;
 	public MemberVO() {}
 	
 	
 	public MemberVO(String member_email, String member_passwd, String member_name, String member_birth,
-			String member_gender, String member_phone, String member_date, String member_point, String member_license) {
+			String member_gender, String member_phone, String member_date, String member_point, String member_license, String member_isadmin) {
 		this.member_email = member_email;
 		this.member_passwd = member_passwd;
 		this.member_name = member_name;
@@ -24,6 +25,7 @@ public class MemberVO {
 		this.member_date = member_date;
 		this.member_point = member_point;
 		this.member_license = member_license;
+		this.member_isadmin = member_isadmin;
 	}
 
 
@@ -81,7 +83,10 @@ public class MemberVO {
 	public void setMember_license(String member_license) {
 		this.member_license = member_license;
 	}
-	
-	
-	
+	public String getMember_isadmin() {
+		return member_isadmin;
+	}
+	public void setMember_isadmin(String member_isadmin) {
+		this.member_isadmin = member_isadmin;
+	}
 }

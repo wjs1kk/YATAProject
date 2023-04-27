@@ -4,23 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.itwillbs.yata.mapper.CarMapper">
-
-	<select id="selectCars" resultType="com.itwillbs.yata.vo.CarVO">
-		select * from car
-	</select>
 	
+<!-- 	예약하기 페이지 출고가능한 차만 출력 -->
+	<select id="selectCars" resultType="com.itwillbs.yata.vo.CarVO">
+		select * from car where car_available = 1
+	</select>
+<!-- 	예약확인 페이지 차량 상세정보 -->
 	<select id="selectCar" resultType="com.itwillbs.yata.vo.CarVO">
 		select * 
 			from car 
-			where car_id = #{car_id}
+			where car_id = #{car_id} 
 	</select>
-<!-- 	car_model -> car_name 수정 -->
+<!-- 	차량 검색 출고가능한 차만 출력 -->
 	<select id="searchByName" parameterType="String" resultType="com.itwillbs.yata.vo.CarVO">
   	 	SELECT * 
   	 		FROM car 
-  	 		WHERE car_name LIKE CONCAT('%',#{car_name},'%');
+  	 		WHERE car_name LIKE CONCAT('%',#{car_name},'%') and car_available = 1 
+  	</select>
+  	<!--   	car_type 카테고리 -->
+  	<select id="car_type" parameterType="String" resultType="com.itwillbs.yata.vo.CarVO">
+  	 	SELECT *
+  	 		FROM car 
+  	 			WHERE car_available = 1 and car_type  LIKE 
+	  	 		<choose>
+	  	 			<when test="car_type.equals('전체')"> '%' </when>
+	  	 			<when test="car_type.equals('전기')"> '전기' </when>
+	  	 			<when test="car_type.equals('경형')"> '경형' </when>
+	  	 			<when test="car_type.equals('중형')"> '중형' </when>
+	  	 			<when test="car_type.equals('대형')"> '대형' </when>
+	  	 			<when test="car_type.equals('SUV')"> 'SUV' </when>
+  	 			</choose> 	                                                                                                                                                                                                                                                                           
   	</select>
   	
+<!--   	=========================================관리자================================== -->
   	<select id="selectCarList" resultType="com.itwillbs.yata.vo.CarVO">
 		select *
 		from car
@@ -28,7 +44,7 @@
 			WHERE
 			<choose>
 				<when test="searchType.equals('car_manufacturer')">
-					car_manufacturer LIKE CONCAT('%', #{searchKeyword}, '%')
+					car_manufacturer LIKE CONCAT('%', #{searchKeyword}, '%') 
 				</when>
 				<when test="searchType.equals('car_name')">
 					car_name LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -65,20 +81,19 @@
 			</choose>
 		</if>
 	</select>
-<!--   	관리자  	 -->
 	<update id="carUpdate">
 		UPDATE car
 		SET car_manufacturer = #{car_manufacturer}
+			<if test="car_model != null and !car_model.equals('')">
   			   , car_model = #{car_model}
+  			</if>
   			   , car_name = #{car_name}
   			   , car_type = #{car_type}
   			   , car_year = #{car_year}
   			   , car_price = #{car_price}  			
   			   , car_seater = #{car_seater}
   			   , car_fuel = #{car_fuel}
-  			   
   		WHERE car_id = #{car_id}
-			
 	</update>
 	
 	<delete id="deleteCar">
@@ -105,20 +120,7 @@
   			   , #{car_fuel}
   			  )
   	</insert>
-  	<!--   	car_type 카테고리 -->
-  	<select id="car_type" parameterType="String" resultType="com.itwillbs.yata.vo.CarVO">
-  	 	SELECT *
-  	 		FROM car 
-  	 			WHERE car_type LIKE 
-	  	 		<choose>
-	  	 			<when test="car_type.equals('전체')"> '%' </when>
-	  	 			<when test="car_type.equals('전기')"> '전기' </when>
-	  	 			<when test="car_type.equals('경형')"> '경형' </when>
-	  	 			<when test="car_type.equals('중형')"> '중형' </when>
-	  	 			<when test="car_type.equals('대형')"> '대형' </when>
-	  	 			<when test="car_type.equals('SUV')"> 'SUV' </when>
-  	 			</choose> 	                                                                                                                                                                                                                                                                           
-  	</select>
+  	
   	<select id="selectCarShippedList" resultType="com.itwillbs.yata.vo.CarVO">
   		SELECT *
   		FROM car

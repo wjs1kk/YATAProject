@@ -2,12 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="">
-
 <head>
-    <link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="resources/css/main.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 </head>
-
-<body style="">
+<body>
     <jsp:include page="../inc/top.jsp"></jsp:include>
     <div class="pc-mobile-header-container" id="page-reservation">
         <div class="pc-header space-2 text-center dc-none dc-lg-block">

@@ -50,9 +50,13 @@ public class MemberController {
 			model.addAttribute("msg", "로그인 실패!");
 			return "fail_back";
 		}
-		System.out.println();
+		//관리자 로그인한 사람이 관리자 권한이 있는 지 확인
+		String isAdmin =  memberService.isAdmin(member_email);
+		// sesiion이 관리자권한 확인 후 세션 세팅
+		if(isAdmin.equals("1")) {
+			session.setAttribute("isAdmin", isAdmin);
+		}
 		session.setAttribute("member_email", member_email);
-		System.out.println(session.getAttribute("member_email"));
 		return "redirect:/";
 	}
 

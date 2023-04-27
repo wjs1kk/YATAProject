@@ -96,8 +96,9 @@ public class ReservController {
 	    String res_totalprice = reservVO.getRes_totalPrice();
 		reservService.updatePoint(member_email, member_point, res_totalprice);	    
 		model.addAttribute("reservation", reservVO);
+		
+		reservService.update_car_available(reservVO.getCar_id());
 		//쿠폰 적용후 coup_useable "N"처리
-		System.out.println(coup_idx);
 		if(!Integer.toString(coup_idx).equals("")) {
 			couponService.couponUsed(Integer.toString(coup_idx), member_email);
 		}

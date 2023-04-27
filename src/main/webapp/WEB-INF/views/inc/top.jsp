@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/main.css">
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 	function rent1() {
 		const regex = /[^0-9]/g;
@@ -97,7 +95,9 @@
 							class="js-pc-header-btn-login btn color-blue my-2 my-sm-0 tmobi-dc-none"
 							type="button" style ="font-size:16px;">로그아웃
 						</button>
-						<c:if test="${member_isadmin eq '1' }">
+						
+						<!-- 2023-04-26 김동욱 if문 sessionScope.isAdmin으로 변경 -->
+						<c:if test="${sessionScope.isAdmin eq '1' }">
 							<a href="admin"
 								class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 "
 								id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
@@ -114,7 +114,5 @@
 			</div>
 		</div>
 	</nav>
-	
-
 </body>
 </html>

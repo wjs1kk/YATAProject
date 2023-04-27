@@ -16,6 +16,9 @@ public class ReservService {
 	public int insertReserv(ReservVO reservVO) {
 		return mapper.insertReserv(reservVO);
 	}
+	public int update_car_available(int car_id) {
+		return mapper.update_car_available(car_id);
+	}
 	public List<ReservVO> myReservation(String member_email) {
 		return mapper.myReservationList(member_email);
 	}
@@ -40,4 +43,5 @@ public class ReservService {
 	public int updatePoint(String member_email, String member_point, String res_totalprice) {
 	    return mapper.updatePoint(member_email, member_point , res_totalprice);
 	}
+	
 }
