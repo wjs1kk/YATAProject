@@ -22,6 +22,7 @@ window.onload = function() {
  
     document.getElementById('modal_btn').addEventListener('click', onClick);
     document.querySelector('.modal_close').addEventListener('click', offClick);
+    document.querySelector('.modal_submit').addEventListener('click', offClick);
 };
 
 function mLicense() {
@@ -32,11 +33,9 @@ function mLicense() {
 	
 	let license = city.value + "-" + licenseNum.value + "-" + licenseNum2.value + "-" + licenseNum3.value;
 	let licensePass = document.querySelector("#license_pass").value;
+	
+	alert("라이센스 등록 완료");
 }
-
-
-
-
 </script>
 
 <link rel="stylesheet" href="resources/css/style.css">
@@ -188,11 +187,11 @@ function mLicense() {
 														id="license_pass" placeholder="암호일련번호" maxlength="6"/>
 													</div>
 													<div class="modal-footer justify-content-center" id="apply" data-backdrop="static" data-keyboard="false">
-														<button class="w-50 btn btn-lg btn-primary"	style="width: 300px; margin-bottom: 15px" type="submit" onclick="mLicense()">등록</button>
+														<button class="modal_submit w-50 btn btn-lg btn-primary"  style="width: 300px; margin-bottom: 15px" onclick="mLicense(); return false;">등록</button>
 														<button class="modal_close w-50 btn btn-lg btn-secondary" style="width: 300px; margin-bottom: 15px" type="button">닫기</button>
 													</div>
 												</div>
-											<!-- -------------------------------- 면허증 등록 관련 끝 -------------------------------------- -->
+											<!-- -------------------------------- 면허증 등록 관련 끝 ----------------------------------------->
 											<label for="gender" class="visually-hidden">Gender</label>
 											<div class="d-flex justify-content-center">
 												<input type="text" class="w-50 form-control"
@@ -209,7 +208,7 @@ function mLicense() {
 											<button class="w-50 btn btn-lg btn-primary"
 												style="width: 300px; margin-bottom: 15px" type="submit">수정</button>
 											<button class="w-50 btn btn-lg btn-secondary"
-												style="width: 300px; margin-bottom: 15px" type="reset">취소</button>
+												style="width: 300px; margin-bottom: 15px" type="button" onclick="location.href='mypage'">취소</button>
 											<button class="w-50 btn btn-lg btn-danger"
 												style="width: 300px; margin-bottom: 15px" type="button"
 												onclick="location.href='deleteMember'">회원탈퇴</button>

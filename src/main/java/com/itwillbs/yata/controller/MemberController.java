@@ -1,9 +1,9 @@
 package com.itwillbs.yata.controller;
 
+import java.net.http.*;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,16 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.itwillbs.yata.service.CarService;
-import com.itwillbs.yata.service.MemberService;
-import com.itwillbs.yata.service.PointService;
-import com.itwillbs.yata.service.ReservService;
-import com.itwillbs.yata.service.ReviewService;
-import com.itwillbs.yata.vo.CarVO;
-import com.itwillbs.yata.vo.MemberVO;
-import com.itwillbs.yata.vo.PointVO;
-import com.itwillbs.yata.vo.ReservVO;
-import com.itwillbs.yata.vo.ReviewVO;
+import com.itwillbs.yata.service.*;
+import com.itwillbs.yata.vo.*;
 
 @Controller
 public class MemberController {
@@ -36,6 +28,8 @@ public class MemberController {
 	private CarService carService;
 	@Autowired
 	private PointService pointService;
+	@Autowired
+	private LicenseService licenseService;
 	@GetMapping("login")
 	public String login() {
 		return "member/member_login";
@@ -134,7 +128,7 @@ public class MemberController {
 
 	// 회원정보수정
 	@PostMapping("modifyPro")
-	public String modifyPro(Model model, HttpSession session, MemberVO memberVO, String member_passwd2) {
+	public String modifyPro(Model model, HttpServletRequest req, HttpSession session, MemberVO memberVO, String member_passwd2, LicenseVO license) {
 		String member_email = (String)session.getAttribute("member_email");
 		memberVO.setMember_email(member_email);
 		
@@ -146,6 +140,13 @@ public class MemberController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String securePasswd = passwordEncoder.encode(memberVO.getMember_passwd());
 		memberVO.setMember_passwd(securePasswd);
+		
+		String license_num = req.getParameter("city") + "-" + req.getParameter("license_num") + "-" + req.getParameter("license_num2") + "-" + req.getParameter("license_num3");
+		
+		license.setMember_email(member_email);
+		license.setLicense_num(license_num);
+		
+		int insertCount = licenseService.insertLicense(license);
 		
 		int updateCount = memberService.modifyUser(memberVO);
 

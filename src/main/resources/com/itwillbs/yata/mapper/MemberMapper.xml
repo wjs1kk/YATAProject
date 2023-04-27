@@ -12,7 +12,7 @@
 	</select>
 	<insert id="insertUser">
 		insert into member (
-			member_email, member_passwd, 
+			member_email, member_passwd,
 			member_name, member_birth, 
 			member_gender, member_phone, member_date
 			) 
@@ -46,9 +46,6 @@
 		  FROM member
 		 WHERE member_email = #{member_email}
 	</select>
-	
-	
-	
 	<update id="AdminMemberModify">
 		UPDATE member
 			SET member_name = #{member_name}
