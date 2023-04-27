@@ -56,6 +56,11 @@ thead {
 }
 
 /* 1:1문의 뷰페이지 */
+#board_date {
+	white-space: nowrap;
+    width: 113px;
+    overflow: hidden;
+}
 #btnArea {
 	text-align: center;
 }
@@ -33190,7 +33195,7 @@ a:active.js-a-href {
 }
 
 #global_footer {
-    padding-bottom: 1.5rem
+/*     padding-bottom: 1.5rem */
 }
 
 @media(max-width: 991.98px) {

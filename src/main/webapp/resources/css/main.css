@@ -24892,7 +24892,7 @@ a.js-a-href, a:hover.js-a-href, a:focus.js-a-href, a:active.js-a-href {
 }
 
 #global_footer {
-	padding-bottom: 1.5rem
+/* 	padding-bottom: 1.5rem */
 }
 
 @media ( max-width : 991.98px) {
