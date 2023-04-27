@@ -84,7 +84,7 @@
 												onclick="location.href='mypage?tab=coupon'">
 												<div
 													class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press">
-													<div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>
+													<div class="js-mypage-txt-coupon-cnt text-16-b">${userCoupon_count } 장</div>
 													쿠폰
 												</div>
 											</div>

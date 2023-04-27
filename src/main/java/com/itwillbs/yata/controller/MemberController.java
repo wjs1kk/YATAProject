@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.yata.service.CarService;
+import com.itwillbs.yata.service.CouponService;
 import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.PointService;
 import com.itwillbs.yata.service.ReservService;
 import com.itwillbs.yata.service.ReviewService;
 import com.itwillbs.yata.vo.CarVO;
+import com.itwillbs.yata.vo.CouponVO;
 import com.itwillbs.yata.vo.MemberVO;
 import com.itwillbs.yata.vo.PointVO;
 import com.itwillbs.yata.vo.ReservVO;
@@ -36,6 +38,8 @@ public class MemberController {
 	private CarService carService;
 	@Autowired
 	private PointService pointService;
+	@Autowired 
+	private CouponService couponService;
 	@GetMapping("login")
 	public String login() {
 		return "member/member_login";
@@ -88,6 +92,10 @@ public class MemberController {
 		MemberVO member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
 		
+		List<CouponVO> userCoupon = couponService.userCoupon(member_email);
+		int userCoupon_count = userCoupon.size();
+		model.addAttribute("userCoupon_count",userCoupon_count);
+		
 		if(tab.equals("history")) {	
 			List<ReservVO> resList = reservService.myReservation(member_email);
 			model.addAttribute("resList", resList);
@@ -108,6 +116,7 @@ public class MemberController {
 			return "member/member_point";
 		} else if(tab.equals("coupon")) {
 		// 쿠폰
+			model.addAttribute("userCoupon",userCoupon);
 			return "member/member_coupon";
 		}
 		return "member/member_mypage";
