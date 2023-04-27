@@ -11,11 +11,36 @@ public class ReservVO {
 	private String res_place;
 	private String car_name;
 	
+<<<<<<< HEAD
 	public ReservVO() {
 	}
 	
 	public ReservVO(int res_id, String member_email, int car_id, String res_startDate, String res_endDate,
 			String res_date, String res_totalPrice, String res_place, String car_name) {
+=======
+	
+	public ReservVO() {
+	}
+	
+	@Override
+	public String toString() {
+		return "ReservVO [res_id=" + res_id + ", member_email=" + member_email + ", car_id=" + car_id
+				+ ", res_startDate=" + res_startDate + ", res_endDate=" + res_endDate + ", res_date=" + res_date
+				+ ", res_totalPrice=" + res_totalPrice + ", res_place=" + res_place + ", car_name=" + car_name + "]";
+	}
+
+	public String getCar_name() {
+		return car_name;
+	}
+
+	public void setCar_name(String car_name) {
+		this.car_name = car_name;
+	}
+
+	public ReservVO(int res_id, String member_email, int car_id, String res_startDate, String res_endDate,
+			String res_date, String res_totalPrice, String res_place, String car_name) {
+		super();
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 		this.res_id = res_id;
 		this.member_email = member_email;
 		this.car_id = car_id;

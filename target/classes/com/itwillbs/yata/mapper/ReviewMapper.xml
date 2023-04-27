@@ -21,6 +21,7 @@
 		</selectKey>
 		INSERT INTO review 
 					value (
+<<<<<<< HEAD
 						#{review_idx} + 1
 					  , #{res_id}
 					  , #{member_email}
@@ -29,6 +30,17 @@
 					  , CURRENT_TIMESTAMP()
 					  , #{review_star}
 					  , #{review_place}
+=======
+					   #{review_idx} + 1
+					  ,#{res_id}
+					  ,#{member_email}
+					  ,#{member_name}
+					  ,#{review_title}
+					  ,#{review_content}
+					  ,CURRENT_TIMESTAMP()
+					  ,#{review_star}
+					  ,#{review_place}
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 					)
 	</insert>					
 	
@@ -37,11 +49,15 @@
 	 	SELECT *
  	 	  FROM review
  		 WHERE member_email 
+<<<<<<< HEAD
  		 IN (SELECT member_email 
 	 		 FROM member 
 	 		 WHERE member_email = #{member_email}
 	 		 ) 
  		 ORDER BY res_id DESC;
+=======
+ 		 IN (SELECT member_email FROM member WHERE member_email = #{member_email}) ORDER BY res_id DESC;
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 	</select>
 	
 	<!-- 나의 리뷰 개수 -->
@@ -56,6 +72,10 @@
 				, res_id
 				, member_email
 				, member_name
+<<<<<<< HEAD
+=======
+				, review_title
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 				, review_content
 				, review_updateDate
 				, review_star
@@ -66,6 +86,10 @@
   		 ORDER BY review_idx DESC
   		 LIMIT 10
 	</select>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 	<!-- 작성된 리뷰가 있는지 확인 -->
 	<select id="selectResId" resultType="Integer">
 		select *
@@ -73,5 +97,15 @@
 			where res_id = #{res_id}
 	</select>
 	
+<<<<<<< HEAD
 	
+=======
+	<!-- 예약 취소 -->
+	<delete id="deleteReserve">
+		DELETE 
+			FROM reservation
+				WHERE res_id = #{res_id}
+	</delete>
+
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 </mapper>

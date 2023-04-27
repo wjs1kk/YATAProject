@@ -183,6 +183,7 @@
 															</td>
 															<td>${resList.res_totalPrice }원</td>
 															<td class="clip ">
+<<<<<<< HEAD
 															<input class="btn-danger" id="deleteBtn"
 																type="button" value="예약취소"
 																onclick="if(confirm('예약을 취소하시겠습니까?')){location.href='deleteReserve?res_id=${resList.res_id}'} else {alert('취소되었습니다.')}">
@@ -191,6 +192,18 @@
 																<input class="btn-primary"
 																type="button" value="리뷰작성"
 																onclick="location.href='reviewWrite?res_id=${resList.res_id}&res_place=${resList.res_place }'">
+=======
+															<a href="deleteReserve?res_id=${resList.res_id}">취소링크</a>
+<!-- 															<input class="btn-danger" -->
+<!-- 																type="button" value="예약취소" -->
+<%-- 																onclick="location.href='deleteReserve?res_id=${reserve.res_id}'"> --%>
+															</td>
+															<td class="clip ">
+															
+																<input class="btn-primary"
+																type="button" value="리뷰작성"
+																onclick="location.href='reviewWrite?res_id=${resList.res_id}&review_place=${resList.res_place }'">
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 															</td>
 														</tr>
 													</c:forEach>

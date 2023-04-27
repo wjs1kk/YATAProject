@@ -39,6 +39,7 @@
 			 	ORDER BY res_id DESC;
 	</select>
 	
+<<<<<<< HEAD
 	<select id="selectgReservationList" resultType="com.itwillbs.yata.vo.ReservVO">
 		SELECT *
 		FROM reservation
@@ -96,6 +97,14 @@
 			, (SELECT COUNT(car_id) FROM car WHERE car_available = '0') as totalShippedCar;
 	</select>
 		<!-- 예약 상세내역 -->
+=======
+	<!-- 예약 상세내역 -->
+<!-- 	<select id="selectReserveList" resultType="com.itwillbs.yata.vo.ReservVO"> -->
+<!-- 		SELECT * -->
+<!-- 			FROM reservation -->
+<!-- 				WHERE res_id = #{res_id} -->
+<!-- 	</select> -->
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 	<select id="selectReserveList" resultType="com.itwillbs.yata.vo.ReservVO">
 		SELECT r.res_id -- 예약 id
 			  ,r.member_email -- 사용자 id
@@ -109,6 +118,7 @@
               ON r.car_id = c.car_id
 			 	WHERE res_id = #{res_id}
 	</select>
+<<<<<<< HEAD
 	
 	<!-- 	포인트 적립 -->
 	<update id="updatePoint" >
@@ -126,4 +136,7 @@
 			FROM reservation
 				WHERE res_id = #{res_id}
 	</delete>
+=======
+
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 </mapper>

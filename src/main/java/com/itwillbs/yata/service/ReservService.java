@@ -19,6 +19,7 @@ public class ReservService {
 	public List<ReservVO> myReservation(String member_email) {
 		return mapper.myReservationList(member_email);
 	}
+<<<<<<< HEAD
 	public List<ReservVO> getReservationList(int startRow, int listLimit, String searchType, String searchKeyword) {
 		return mapper.selectgReservationList(startRow, listLimit, searchType, searchKeyword);
 	}
@@ -40,4 +41,12 @@ public class ReservService {
 	public int updatePoint(String member_email, String member_point, String res_totalprice) {
 	    return mapper.updatePoint(member_email, member_point , res_totalprice);
 	}
+=======
+	public ReservVO getReserveList(int res_id) {
+		return mapper.selectReserveList(res_id);
+	}
+	public Integer deleteReserve(Integer res_id) {
+		return mapper.deleteReserve(res_id);
+	}
+>>>>>>> 61ba629b93b9000f0b9f6ef50559c8f0ce11df9b
 }

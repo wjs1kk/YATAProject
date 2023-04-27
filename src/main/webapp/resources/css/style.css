@@ -1,4 +1,65 @@
 @charset "UTF-8";
+/* 은산 0422 추가*/
+/* 마이페이지 - 예약내역 - 상세내역 */
+.n-section-wrap.wrap-detail {
+    overflow: hidden;
+    position: relative;
+}
+.n-section-wrap {
+    margin: 0 -10px;
+}
+.n-section-wrap .n-section-block {
+    float: left;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.n-section-wrap.wrap-detail .n-section-block {
+    float: none;
+}
+.n-table-title {
+    font-size: 18px;
+    font-family: "Musinsa", sans-serif !important;
+    margin-top: 80px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000000;
+}
+.n-table {
+    width: 100%;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+colgroup {
+    display: table-column-group;
+}
+.n-section-wrap.wrap-detail .n-section-block.block-discount {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.n-section-wrap.wrap-detail .n-section-block {
+    float: none;
+}
+.n-section-wrap .n-section-block {
+    width: 50%;
+    float: left;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.n-section-wrap {
+    margin: 0 -10px;
+}
+.n-table {
+    width: 100%;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+/* //마이페이지 - 예약내역 - 상세내역 */
 
 /* 리뷰 별점 색상 */
 .star {
