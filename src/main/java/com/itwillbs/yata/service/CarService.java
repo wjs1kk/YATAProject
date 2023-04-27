@@ -25,21 +25,34 @@ public class CarService {
 		System.out.println("searchByName");
 		return mapper.searchByName(car_name);
 	}
-	public List<CarVO> carList(CarVO car) {
-		// TODO Auto-generated method stub
-		
-		return mapper.carList(car);
-	}
-	
+
 	public int adminCarRegist(CarVO car) {
 		return mapper.adminCarRegist(car);
 	}
 	public int carUpdate(CarVO car) {
 		return mapper.carUpdate(car);
 	}
-	public CarVO carInfo(String car_id) {
-		// TODO Auto-generated method stub
-		return mapper.carInfo(car_id);
+	public int deleteCar(int car_id) {
+		return mapper.deleteCar(car_id);
+	}
+	public List<CarVO> car_type(String car_type) {
+
+		return mapper.car_type(car_type);
+	}
+	
+	public List<CarVO> getCarShippedList() {
+		return mapper.selectCarShippedList();
+	}
+	public int getCarListCount(String searchType, String searchKeyword) {
+		return mapper.selectCarListCount(searchType, searchKeyword);
+	}
+
+	public int removeCarModel(int car_id) {
+		return mapper.deleteCarModel(car_id);
+	}
+	
+	public List<CarVO> getCarList(int startRow, int listLimit, String searchType, String searchKeyword) {	
+		return mapper.selectCarList(startRow, listLimit, searchType, searchKeyword);
 	}
 
 }

@@ -1,6 +1,42 @@
 @charset "UTF-8";
 
 
+/* 경은 추가 */
+/* 메인배너 */
+.js-btn-navbar-brand{
+	font-size: 30px !important;
+    font-weight: bold;
+    font-style: italic;
+    color: #007bff !important;
+}
+
+.index-container-main-banner {
+	position: relative;
+
+}
+.index-container-main-banner .banner-title {
+	position: absolute;
+	top: 100px;
+	left: 20%;
+	transform: translateX(50%);
+}
+.index-container-main-banner .banner-title p {
+	margin-bottom: 0;
+}
+.index-container-main-banner .banner-title h1 {
+	color: #4a4a4a;
+    font-size: 46px;
+}
+.index-search-history {
+	background-color: #fff;
+}
+.index-container-search {
+	top: 580px !important;
+}
+.container index-container-main-banner {
+	padding: 0;
+}
+/* 경은 추가 끝 */
 
 @font-face {
 	font-weight: 200;

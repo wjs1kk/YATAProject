@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.yata.service.CouponService;
-import com.itwillbs.yata.vo.CouponUsedVO;
 import com.itwillbs.yata.vo.CouponVO;
-
 
 @Controller
 public class CouponController {
@@ -83,7 +81,6 @@ public class CouponController {
 				if(checkIdx == null) {
 						//발급					
 						int EnrollCount = couponService.couponEnroll(coup_idx, member_email);
-
 						
 						if(EnrollCount > 0) {
 							model.addAttribute("msg", "등록 완료!");							

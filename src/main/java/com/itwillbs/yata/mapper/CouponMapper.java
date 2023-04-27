@@ -1,13 +1,11 @@
 package com.itwillbs.yata.mapper;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.itwillbs.yata.vo.CouponUsedVO;
 import com.itwillbs.yata.vo.CouponVO;
-import com.itwillbs.yata.vo.MemberVO;
+
 
 public interface CouponMapper {
 
@@ -24,6 +22,9 @@ public interface CouponMapper {
 	Integer checkCode(@Param("coup_idx") int coup_idx,@Param("member_email") String member_email);
 
 	int couponEnroll(@Param("coup_idx") int coup_idx,@Param("member_email") String member_email);
+	
+	List<CouponVO> userCoupon(String member_email);
+	int couponUsed(@Param("coup_idx") String coup_idx, @Param("member_email") String member_email);
 
-
+	int couponExpired();
 }

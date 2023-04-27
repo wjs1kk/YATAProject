@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.yata.mapper.ReservMapper">
+	<insert id="insertReserv">
+		<selectKey keyProperty="res_id" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(res_id), 0) FROM reservation
+		</selectKey>
+		insert into reservation (
+			res_id, member_email, 
+			car_id, res_startDate, 
+			res_endDate, res_date, res_totalPrice, res_place
+			) 
+			value(
+			#{res_id}+1, #{member_email},
+			#{car_id}, #{res_startDate},
+			#{res_endDate}, now(), #{res_totalPrice}, #{res_place})
+	</insert>
+	<!-- 나의 예약내역 -->
+	<select id="myReservationList" resultType="com.itwillbs.yata.vo.ReservVO">
+		SELECT r.res_id -- 예약 id
+			  ,r.member_email -- 사용자 id
+			  ,c.car_name
+			  ,r.res_startDate -- 시작일
+			  ,r.res_endDate -- 종료일
+			  ,r.res_date -- 예약한 일자
+			  ,r.res_totalPrice -- 총 대여 금액
+			  ,r.res_place 
+			FROM reservation r join car c
+              ON r.car_id = c.car_id
+			 	WHERE member_email
+			 		IN (
+			 			SELECT member_email
+			 			FROM member
+			 			WHERE member_email = #{member_email}
+			 			)
+			 	ORDER BY res_id DESC;
+	</select>
+	
+	<select id="selectgReservationList" resultType="com.itwillbs.yata.vo.ReservVO">
+		SELECT *
+		FROM reservation
+		<if test="!searchType.equals('')">
+			WHERE
+			<choose>
+				<when test="searchType.equals('member_email')">
+					member_email LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_id')">
+					car_id LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('res_place')">
+					res_place LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('res_date')">
+					res_date LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+		ORDER BY res_id DESC
+  		LIMIT #{startRow}, #{listLimit}
+	</select>
+	<select id="selectgReservationListCount" resultType="int">
+		SELECT COUNT(res_id)
+		FROM reservation
+		<if test="!searchType.equals('')">
+			WHERE
+			<choose>
+				<when test="searchType.equals('member_email')">
+					member_email LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_id')">
+					car_id LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('res_place')">
+					res_place LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('res_date')">
+					res_date LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
+	<select id="selectStats" resultType="map">
+		SELECT
+			(SELECT SUM(res_totalPrice) FROM reservation) as totalSales
+			, (SELECT COUNT(res_id) FROM reservation) as totalReservation
+			, (SELECT SUM(res_totalPrice) FROM reservation WHERE res_date = date(now())) as todaySales
+			, (SELECT COUNT(res_id) FROM reservation WHERE res_date = date(now())) as todayReservation
+			, (SELECT COUNT(board_progress) FROM mailform WHERE board_progress = "진행중") as totalUnansweredMailform
+			, (SELECT COUNT(member_email) FROM member) as totalMember
+			, (SELECT COUNT(member_email) FROM member where member_date = date(now())) as totayJoin
+			, (SELECT COUNT(car_id) FROM car WHERE car_available = '1') as totalAvailableCar
+			, (SELECT COUNT(car_id) FROM car WHERE car_available = '0') as totalShippedCar;
+	</select>
+		<!-- 예약 상세내역 -->
+	<select id="selectReserveList" resultType="com.itwillbs.yata.vo.ReservVO">
+		SELECT r.res_id -- 예약 id
+			  ,r.member_email -- 사용자 id
+			  ,c.car_name
+			  ,r.res_startDate -- 시작일
+			  ,r.res_endDate -- 종료일
+			  ,r.res_date -- 예약한 일자
+			  ,r.res_totalPrice -- 총 대여 금액
+			  ,r.res_place 
+			FROM reservation r join car c
+              ON r.car_id = c.car_id
+			 	WHERE res_id = #{res_id}
+	</select>
+	
+	<!-- 	포인트 적립 -->
+	<update id="updatePoint" >
+		<selectKey keyProperty="member_point" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(member_point), 0) FROM member WHERE member_email = #{member_email};
+		</selectKey>
+		UPDATE member 
+			SET MEMBER_POINT = #{member_point} + (#{res_totalprice}*0.1)
+				WHERE member_email = #{member_email};
+	</update>
+	<!-- 예약 취소 -->
+	<delete id="deleteReserve">
+		DELETE 
+			FROM reservation
+				WHERE res_id = #{res_id}
+	</delete>
+</mapper>

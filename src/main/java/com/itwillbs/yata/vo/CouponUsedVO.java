@@ -6,7 +6,7 @@ public class CouponUsedVO {
 	private String coup_useable;
 	
 	
-	
+	public CouponUsedVO() {}
 	public CouponUsedVO(Integer coup_idx, String member_email, String coup_useable) {
 		this.coup_idx = coup_idx;
 		this.member_email = member_email;
@@ -30,10 +30,4 @@ public class CouponUsedVO {
 	public void setCoup_useable(String coup_useable) {
 		this.coup_useable = coup_useable;
 	}
-
-	
-	
-	
-
-	
 }

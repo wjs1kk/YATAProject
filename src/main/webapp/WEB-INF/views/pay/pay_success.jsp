@@ -8,40 +8,20 @@
 </head>
 
 <body style="">
-
     <jsp:include page="../inc/top.jsp"></jsp:include>
-
     <div class="pc-mobile-header-container" id="page-reservation">
-    
-    
-    
-    
         <div class="pc-header space-2 text-center dc-none dc-lg-block">
             <div class="container">
                 <h2 class="text-grey-3 underline-bg dc-inline-block">결제완료</h2>
             </div>
         </div>
-        
-        
-        
-        
-        
         <div class="container p-0">
             <div class="row my-lg-5 reservation-row" style="display: block; margin: 70px">
                 <div class=" cm-lg-rounded"  >
                     <div class="mx-n15px mx-lg-0">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     	<!-- 예약이 완료되었습니다 -->
                         <section class="carmore-section px-3 pb-0 mt-lg-3 ke_align-center text-center">
                             <header>
-
                                 <p class="">YA-TA와 함께 언제든, 어디로든 떠나보세요!</p>
                                 <h2 id="bo_v_title">
                                   <div id="bo_v_tit" class="bo_v_tit" >
@@ -49,23 +29,9 @@
                                   예약이 완료되었습니다.
                                   </div>
                                 </h2>
-
                             </header>
                         </section>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         <section class="carmore-section px-3 pb-0 mt-lg-3">
-                        
-
-
-
                         <!-- 예약 정보 -->
                             <div class="row section-title mt-0 pt-2" data-toggle="collapse"
                                 data-target="#spdl_container_pay_info" aria-expanded="true">
@@ -76,18 +42,7 @@
                                         src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgdmlld0JveD0iMCAwIDI1IDI1Ij4KICAgIDxwYXRoIGZpbGw9IiM5Nzk3OTciIGQ9Ik0xMi42MTU1NTQsMTIuODAyMTc3OCBMMTcuNjcxNzA4OSw5LjE4NjY0NzU2IEMxOC4xMjA5NTM3LDguODY1NDAzOCAxOC43NDU1NTgxLDguOTY5MTY5MTUgMTkuMDY2ODAxOCw5LjQxODQxMzk1IEMxOS4zODgwNDU2LDkuODY3NjU4NzYgMTkuMjg0MjgwMiwxMC40OTIyNjMxIDE4LjgzNTAzNTQsMTAuODEzNTA2OSBMMTMuMTk1OTI3MywxNC44NDU4OTI1IEMxMi44NDc0MiwxNS4wOTUxMDE0IDEyLjM3ODg4MDMsMTUuMDk0NjEwMiAxMi4wMzA4OTYzLDE0Ljg0NDY3MSBMNi40MTY3MDc3MywxMC44MTIyODU0IEM1Ljk2ODEzNzU1LDEwLjQ5MDEwMDMgNS44NjU2ODIyMSw5Ljg2NTI3OTY4IDYuMTg3ODY3MzEsOS40MTY3MDk1IEM2LjUxMDA1MjQxLDguOTY4MTM5MzIgNy4xMzQ4NzMwMiw4Ljg2NTY4Mzk3IDcuNTgzNDQzMiw5LjE4Nzg2OTA3IEwxMi42MTU1NTQsMTIuODAyMTc3OCBaIi8+Cjwvc3ZnPgo=">
                                 </div>
                             </div>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+
                              <!-- 결제 차량 정보 -->
                             <div id="js_vreserv_container_car_period"><a
                                     class="js-cpi-container-car-type-badge badge badge-pill badge-bluegreylight color-light-purple"><img
@@ -124,14 +79,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+							
                             <!-- 결제 차량 옵션 정보 -->
                             <hr class="mt-2">
                             <div class="mt-3" data-toggle="collapse" data-target="#js_vreserv_car_detail_desc"
@@ -158,22 +106,7 @@
                             </div>
                             
                         </section>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+
 						<!-- 결제 정보 -->
                         <section class="carmore-section">
                             <div class="container">
@@ -308,28 +241,10 @@
                                 </div>
                             </div>
                         </section>
-                        
-                        
-                        
-
                     </div>
-                </div>
-                
-                
-                
-                
-                
-                
+                </div>      
             </div>
         </div>
-    
-    
-    
-    <jsp:include page="../inc/footer.jsp"></jsp:include>
-    
-    
-    
-    
+    <jsp:include page="../inc/footer.jsp"></jsp:include> 
 </body>
-
 </html>

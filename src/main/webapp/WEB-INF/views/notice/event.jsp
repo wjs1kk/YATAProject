@@ -61,11 +61,11 @@
 
 
 					<!-- 레이아웃 바텀의 센터 -->
-					<c:forEach var="couponList" items="${couponList }" varStatus="vs">
+					<c:forEach var="couponList" items="${couponList }">
 						<div class="col-12 col-lg-8">
 							<div class="link-container"
 								id="${couponList.coup_idx}event_list_container">
-								<h2>
+								<h2 class="font-weight-bold">
 									<script type="text/javascript">
 									document.write(${couponList.coup_percent} * 100 +"% 할인쿠폰");									
 									</script>
@@ -86,6 +86,7 @@
 												<span
 													class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">${couponList.coup_start }~${couponList.coup_end }</span>
 												<span
+
 													class="js-event-list-item-badge badge badge-pill badge-soft-primary font-weight-normal dc-none">멤버십
 													전용</span>
 											</div>
@@ -144,10 +145,12 @@
 
 								</div>
 					</c:forEach>
+
 				</div>
 
 			</div>
 			<!-- 레이아웃 바텀의 센터 div -->
+
 
 		</div>
 

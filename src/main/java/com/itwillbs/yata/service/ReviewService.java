@@ -21,15 +21,15 @@ public class ReviewService {
 		return mapper.insertReview(review);
 	}
 	
-//	public List<ReviewVO> myReview(String member_email) {
-//		return mapper.selectMyReview(member_email);
-//	}
-	
 	public List<ReviewVO> myReview(String member_email) {
 		return mapper.selectMyReview(member_email);
 	}
 
-	public Integer selectMyReviewCount(String member_email) {
-		return mapper.selectMyReviewCount(member_email);
+
+	public List<ReviewVO> listReview(String place) {
+		return mapper.listReview(place);
+	}
+	public Integer getResId(Integer res_id) {
+		return mapper.selectResId(res_id);
 	}
 }

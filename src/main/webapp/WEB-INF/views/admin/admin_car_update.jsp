@@ -24,32 +24,32 @@
 
 	<div align="center">
 		<h1>차량 정보 수정</h1>
-		<form action="AdminCarUpdatePro.ad" method="post">
+		<form action="AdminCarUpdatePro.ad?car_id=${param.car_id }" method="post">
 			<table border="1">
 				<tr>
 					<th>제조사</th>
 					<td>
-						<select name="car_manufacturer">
-			             	<option value="">선택하기</option>
-			             	<option value="경형">현대</option>
-			             	<option value="중형">기아</option>
-			             	<option value="대형">쉐보레</option>
-			             	<option value="SUV">쌍용</option>
-			             	<option value="SUV">르노코리아</option>
+						<select id="car_manufacturer" name="car_manufacturer">
+			             	<option value="">${car.car_manufacturer }</option>
+			             	<option value="현대">현대</option>
+			             	<option value="기아">기아</option>
+			             	<option value="쉐보레">쉐보레</option>
+			             	<option value="쌍용">쌍용</option>
+			             	<option value="르노코리아">르노코리아</option>
 			            </select>  
 					</td>
 				</tr>
 				<tr>
-					<th>모델</th><td><input type="text" name="car_model" value="${car.car_model }"> </td>
+					<th>모델</th><td><input type="text" id="car_model" name="car_model" value="${car.car_model }"> </td>
 				</tr>
 				<tr>
-					<th>이름</th><td><input type="text" name="car_name"> </td>
+					<th>이름</th><td><input type="text" id="car_name" name="car_name" value="${car.car_name }"> </td>
 				</tr>
 				<tr>
 					<th>종류</th>
 					<td>
-						<select name="car_type">
-			             	<option value="">선택하기</option>
+						<select id="car_type" name="car_type">
+			             	<option value="">${car.car_type }</option>
 			             	<option value="경형">경형</option>
 			             	<option value="중형">중형</option>
 			             	<option value="대형">대형</option>
@@ -58,16 +58,16 @@
 					</td>
 				</tr>
 				<tr>
-					<th>연식</th><td><input type="text" name="car_year"> </td>
+					<th>연식</th><td><input type="text" id="car_year" name="car_year" value="${car.car_year }"> </td>
 				</tr>
 				<tr>
-					<th>가격</th><td><input type="text" name="car_price"> </td>
+					<th>가격</th><td><input type="text" id="car_price" name="car_price" value="${car.car_price }"> </td>
 				</tr>
 				<tr>
 					<th>인승</th>
 					<td>
-						<select name="car_seater">
-			             	<option value="">선택하기</option>
+						<select id="car_seater" name="car_seater">
+			             	<option value="">${car.car_seater }</option>
 			             	<option value="1">1인승</option>
 			             	<option value="2">2인승</option>
 			             	<option value="3">3인승</option>
@@ -80,8 +80,8 @@
 				<tr>
 					<th>연료</th>
 					<td>
-						<select name="car_fuel">
-			             	<option value="">선택하기</option>
+						<select id="car_fuel" name="car_fuel">
+			             	<option value="">${car.car_fuel }</option>
 			             	<option value="가솔린">가솔린</option>
 			             	<option value="경유">경유</option>
 			             	<option value="LPG">LPG</option>

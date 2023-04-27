@@ -7,13 +7,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/main.css">
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+	function rent1() {
+		const regex = /[^0-9]/g;
+		let time = $('#time').text();
+		time = time.replace(regex, "");
+		location.href = "rent1?res_place=${param.res_place }&rentalDatetime="+$('#demo').val()+"&time="+time;
+	}
+</script>
 </head>
 <body>
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-white dc-none dc-lg-block border-bottom sticky-top header-pc" id="container_pc_navbar" style="display: flex;">
 		<div class="container h-100">
 			<a	href="./"
-				class="js-btn-navbar-brand dc-flex align-items-center navbar-brand h-100 click-effect-press"
-				style="font-size: initial;">YA-TA<img
+				class="js-btn-navbar-brand dc-flex align-items-center navbar-brand h-100 click-effect-press">YA-TA<img
 				class="js-img-header-logo mh-100 opacity-0 animated-fadein"
 				src=""></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -25,16 +35,16 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item js-container-pc-header-menu active">
-						<a href="rent1?place=${param.place }" class="nav-link js-pc-header-menu click-effect-press" data-mt="1">
+						<a onclick="rent1()" class="nav-link js-pc-header-menu click-effect-press" data-mt="1">
 							<div class="dc-flex justify-content-center align-items-center">
-								<img class="mr-1" src="${pageContext.request.contextPath }/resources/images/car.png">예약하기
+								예약하기
 							</div>
 						</a>
 					</li>
 					<li class="nav-item js-container-pc-header-menu">
 						<a href="event" class="nav-link js-pc-header-menu click-effect-press" data-mt="5">
 						<div class="dc-flex justify-content-center align-items-center">
-							<img class="mr-1" src="${pageContext.request.contextPath }/resources/images/event.png">이벤트
+							이벤트
 						</div>
 						</a>
 					</li>
@@ -44,9 +54,9 @@
 			</div>
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item js-container-pc-header-menu naver-dc-none">
-						<a href="notice_view" class="nav-link js-pc-header-menu click-effect-press" data-mt="6">
+						<a href="notice" class="nav-link js-pc-header-menu click-effect-press" data-mt="6">
 							<div class="dc-flex justify-content-center align-items-center">
-								<img class="mr-1" src="${pageContext.request.contextPath }/resources/images/notification.png">공지사항
+								공지사항
 							</div>
 						</a>
 					</li>
@@ -54,7 +64,7 @@
 						<a class="nav-link js-pc-header-menu click-effect-press" href="customer_service" data-mt="3">고객센터</a>
 					</li>
 				</ul>
-				<!-- 					로그인 하기전이랑 하고난후 바꿔야함 -->
+				
 				<c:choose>
 					<c:when test="${empty sessionScope.member_email }">
 						<a href = "join" class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 " id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
@@ -87,14 +97,18 @@
 							class="js-pc-header-btn-login btn color-blue my-2 my-sm-0 tmobi-dc-none"
 							type="button" style ="font-size:16px;">로그아웃
 						</button>
-						<c:if test="${sessionScope.member_email eq 'admin@naver.com' }">
-						<a href = "admin" class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 " id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
-							style="display: flex;">
-							<div class="dc-flex align-items-center color-primary-blue">
-								<img class="mr-1" style="width: 1.25rem;" src="">
-								<span class="js-txt-rent-type-cs-tel" style="font-size:16px;">관리자 페이지</span> 							
-							</div>
-						</a>
+
+						<c:if test="${member_isadmin eq '1' }">
+							<a href="admin"
+								class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 "
+								id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
+								style="display: flex;">
+								<div class="dc-flex align-items-center color-primary-blue">
+									<img class="mr-1" style="width: 1.25rem;" src=""> <span
+										class="js-txt-rent-type-cs-tel" style="font-size: 16px;">관리자
+										페이지</span>
+								</div>
+							</a>
 						</c:if>
 					</c:otherwise>
 				</c:choose>
@@ -102,6 +116,6 @@
 		</div>
 	</nav>
 	
-	
+
 </body>
 </html>

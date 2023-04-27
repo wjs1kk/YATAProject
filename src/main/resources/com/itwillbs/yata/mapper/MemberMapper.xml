@@ -9,7 +9,6 @@
 			from member
 			where 
 				member_email = #{member_email} 
-				and member_passwd = #{member_passwd}
 	</select>
 	<insert id="insertUser">
 		insert into member (
@@ -22,28 +21,96 @@
 			#{member_name}, #{member_birth},
 			#{member_gender}, #{member_phone}, now())
 	</insert>
-	
+
 	<select id="selectPasswd" resultType="string">
 		SELECT member_passwd
 		  FROM member
 		 WHERE member_email = #{member_email}
 	</select>
-	
+	<!-- 회원수정 -->
 	<update id="modifyUser">
-		UPDATE member
-			SET member_birth = #{member_birth}
-			   ,member_phone = #{member_phone}
+		UPDATE member			
+			SET member_passwd = #{member_passwd},
+				member_phone = #{member_phone}
 			WHERE member_email = #{member_email}
 	</update>
 	
-	<select id="memberList" resultType="com.itwillbs.yata.vo.MemberVO">
-		SELECT *
-		  FROM member
-	</select>
-<!-- 	쿠폰 등록시 사용자 존재 확인 -->
+	<!-- 회원탈퇴 -->
+	<delete id="deleteUser">
+		DELETE
+			FROM member
+				WHERE member_email = #{member_email}
+	</delete>
+	<!-- 	쿠폰 등록시 사용자 존재 확인 -->
 	<select id="searchMemberEmail" resultType="String">
 		SELECT *
 		  FROM member
 		 WHERE member_email = #{member_email}
 	</select>
+	
+	
+	
+	<update id="AdminMemberModify">
+		UPDATE member
+			SET member_name = #{member_name}
+				<if test='member_passwd neq ""'>
+			    , member_passwd = #{member_passwd}
+				</if>
+			    , member_birth = #{member_birth}
+			    , member_phone = #{member_phone}
+			    , member_point = #{member_point}
+			    <if test='member_license neq ""'>
+			    , member_license = #{member_license}
+				</if>
+			WHERE member_email = #{member_email}
+	</update>
+
+	<delete id="AdminMemberDelete">
+		DELETE FROM member
+		WHERE member_email = #{member_email}
+	</delete>
+	<select id="memberList" resultType="com.itwillbs.yata.vo.MemberVO">
+		SELECT *
+		  FROM member
+		<if test="!searchType.equals('')">
+			WHERE
+			<choose>
+				<when test="searchType.equals('MEMBER_EMAIL')">
+					MEMBER_EMAIL LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('MEMBER_PHONE')">
+					MEMBER_PHONE LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('MEMBER_DATE')">
+					MEMBER_DATE LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+		 ORDER BY member_date DESC
+		 LIMIT #{startRow}, #{listLimit}
+	</select>
+	<select id="selectMemberListCount" resultType="int">
+		SELECT COUNT(member_email)
+		FROM member
+		<if test="!searchType.equals('')">
+			WHERE
+			<choose>
+				<when test="searchType.equals('MEMBER_EMAIL')">
+					MEMBER_EMAIL LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('MEMBER_PHONE')">
+					MEMBER_PHONE LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('MEMBER_DATE')">
+					MEMBER_DATE LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
+	<select id="isAdmin" resultType="String">
+		SELECT member_isadmin
+		FROM member
+		WHERE member_email = #{member_email}
+	</select>
+	
   </mapper>

@@ -1,16 +1,13 @@
 package com.itwillbs.yata.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.yata.mapper.CouponMapper;
-import com.itwillbs.yata.vo.CarVO;
-import com.itwillbs.yata.vo.CouponUsedVO;
 import com.itwillbs.yata.vo.CouponVO;
-import com.itwillbs.yata.vo.MemberVO;
+
 
 @Service
 public class CouponService {
@@ -43,5 +40,16 @@ public class CouponService {
 
 	public Integer checkCode(int coup_idx, String member_email) {
 		return mapper.checkCode(coup_idx, member_email);
+	}
+	
+	public List<CouponVO> userCoupon(String member_email){
+		return mapper.userCoupon(member_email)!= null ? mapper.userCoupon(member_email) :null ;
+	}
+	public int couponUsed(String coup_idx, String member_email) {
+		return mapper.couponUsed(coup_idx,member_email);
+	}
+
+	public int couponExpired() {
+		return mapper.couponExpired();
 	}
 }

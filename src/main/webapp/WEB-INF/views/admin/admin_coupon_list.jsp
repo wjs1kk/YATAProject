@@ -41,6 +41,7 @@
 					<td>${couponList.coup_start }</td>
 					<td>${couponList.coup_end }</td>
 					<td>${couponList.coup_percent }</td>
+
 					<td>
 						<%-- 수정 버튼 클릭 시 회원 정보 조회 페이지로 이동(파라미터 : id) --%>
 						<input type="button" value="삭제" onclick="location.href='AdminCouponDelete.ad?coup_idx=${couponList.coup_idx }'">													

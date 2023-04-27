@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -48,9 +47,8 @@
 					<td>${memberList.member_point }</td>
 					<td>${memberList.member_license }</td>
 					<td>
-						<%-- 수정 버튼 클릭 시 회원 정보 조회 페이지로 이동(파라미터 : id) --%>
-						<input type="button" value="수정" onclick="">
-						<input type="button" value="삭제">
+						<input type="button" value="수정" onclick="location.href='AdminMemberInfo.ad?member_email=${memberList.member_email}&member_name=${memberList.member_name}&member_birth=${memberList.member_birth}&member_gender=${memberList.member_gender }&member_phone=${memberList.member_phone }&member_point=${memberList.member_point }&member_license=${memberList.member_license }'">
+						<input type="button" value="삭제" onclick="location.href='AdminMemberDeletePro.ad?member_email=${memberList.member_email}'">
 					</td>
 				</tr>			
 				</c:forEach>

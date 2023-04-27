@@ -16,29 +16,24 @@ import com.itwillbs.yata.vo.NoticeVO;
 @Controller
 public class NoticeController {
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
-	
+
 	@Autowired
 	private NoticeService noticeService;
-	
-	@GetMapping("write.no")
-	public String writeForm() {
-		return "notice/write_form";
-	}
-	
-	@PostMapping("writePro.no")
-	public String writePro(NoticeVO notice) {
-		int insertCount = noticeService.registNotice(notice);
-		return "redirect:/notice";
-	}
-	
-	@GetMapping("notice")
-	public String notice(Model model) {
-		List<NoticeVO> noticeList = noticeService.getNoticeList();
-		
+
+	// 공지사항 검색
+	@GetMapping("search.no")
+	public String noticeSearch(String board_subject, Model model) {
+		List<NoticeVO> noticeList = noticeService.searchByNotice(board_subject);
 		model.addAttribute("noticeList", noticeList);
-		
-		return "notice";
+		return "notice/notice";
 	}
-	
- 	
+
+	// 공지사항 조회
+	@GetMapping("view.no")
+	public String viewNotice(NoticeVO notice, Model model, String board_num) {
+		notice = noticeService.getNotice(board_num);
+		model.addAttribute("notice", notice);
+		return "notice/view_notice_form";
+	}
+
 }

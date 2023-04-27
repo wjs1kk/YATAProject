@@ -1,7 +1,6 @@
 package com.itwillbs.yata.vo;
-// review_idx, review_writer, review_title, review_content, review_regdate, review_updateDate, review_viewcnt
 
-import java.sql.*;
+import java.sql.Date;
 
 public class CouponVO {
 	private Integer coup_idx;
@@ -10,7 +9,6 @@ public class CouponVO {
 	private Date coup_start;
 	private Date coup_end;
 	private String coup_percent;
-	
 	
 	public CouponVO(Integer coup_idx, String coup_name, String coup_code, Date coup_start, Date coup_end,
 			String coup_percent) {
@@ -58,7 +56,5 @@ public class CouponVO {
 	public void setCoup_percent(String coup_percent) {
 		this.coup_percent = coup_percent;
 	}
-		
-	
-	
+
 }

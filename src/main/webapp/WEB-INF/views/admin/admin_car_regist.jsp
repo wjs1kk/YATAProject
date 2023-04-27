@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/inc.css" rel="stylesheet" type="text/css">
-<link href="resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <jsp:include page="../inc/top_admin.jsp"></jsp:include>
@@ -24,29 +23,29 @@
 
 	<div align="center">
 		<h1>신규 차량 등록</h1>
-		<form action="AdminCarRegistPro.ad" method="post">
-			<table border="1">
+		<form action="AdminCarRegistPro.ad" method="post"  enctype="multipart/form-data" >
+			<table border="1" style="border-color: #DDDDDD">
 				<tr>
-					<th>제조사</th>
+					<th style="text-align: center; background:#3399FF; color: white;">제조사</th>
 					<td>
 						<select name="car_manufacturer">
 			             	<option value="">선택하기</option>
-			             	<option value="경형">현대</option>
-			             	<option value="중형">기아</option>
-			             	<option value="대형">쉐보레</option>
-			             	<option value="SUV">쌍용</option>
-			             	<option value="SUV">르노코리아</option>
+			             	<option value="현대">현대</option>
+			             	<option value="기아">기아</option>
+			             	<option value="쉐보레">쉐보레</option>
+			             	<option value="쌍용">쌍용</option>
+			             	<option value="르노코리아">르노코리아</option>
 			            </select>  
 					</td>
 				</tr>
 				<tr>
-					<th>모델</th><td><input type="text" name="car_model"> </td>
+					<th style="text-align: center; background:#3399FF; color: white;">모델 이미지</th><td><input type="file" name="car_model_file">  </td>
 				</tr>
 				<tr>
-					<th>이름</th><td><input type="text" name="car_name"> </td>
+					<th style="text-align: center; background:#3399FF; color: white;">이름</th><td><input type="text" name="car_name"> </td>
 				</tr>
 				<tr>
-					<th>종류</th>
+					<th style="text-align: center; background:#3399FF; color: white;">종류</th>
 					<td>
 						<select name="car_type">
 			             	<option value="">선택하기</option>
@@ -58,13 +57,13 @@
 					</td>
 				</tr>
 				<tr>
-					<th>연식</th><td><input type="text" name="car_year"> </td>
+					<th style="text-align: center; background:#3399FF; color: white;">연식</th><td><input type="text" name="car_year"> </td>
 				</tr>
 				<tr>
-					<th>가격</th><td><input type="text" name="car_price"> </td>
+					<th style="text-align: center; background:#3399FF; color: white;">가격</th><td><input type="text" name="car_price"> </td>
 				</tr>
 				<tr>
-					<th>인승</th>
+					<th style="text-align: center; background:#3399FF; color: white;">인승</th>
 					<td>
 						<select name="car_seater">
 			             	<option value="">선택하기</option>
@@ -78,7 +77,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>연료</th>
+					<th style="text-align: center; background:#3399FF; color: white; ">연료</th>
 					<td>
 						<select name="car_fuel">
 			             	<option value="">선택하기</option>
@@ -90,10 +89,10 @@
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">
+					<th style="text-align: center;" colspan="2">
 						<div align="center">
-							<input type="submit" value="등록">
-							<input type="button" value="취소" onclick="history.back()">
+							<input class="nextBtn" type="submit" value="등록">
+							<input class="nextBtn" type="button" value="취소" onclick="history.back()">
 						</div>
 					</th>
 				</tr>

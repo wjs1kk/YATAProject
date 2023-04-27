@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/main.css">
+<link rel="stylesheet" href="resources/css/main.css">
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript"
@@ -21,37 +21,29 @@
 	function zoneSelect() {
 		location.href = "#zoneSelect";
 	}
-
 	/* 닫기 누르면 앞페이지로 가면서 다시 팝업창이 보이지 않음 */
 	function zoneSelect_close() {
 		history.back();
 	}
-
 	/* 카카오맵 API에서 마커에 클릭이벤트 등록후 index페이지에 request로 지점정보와 같이 포워딩할 예정 */
 </script>
 
 <style type="text/css">
-
+/* 메인 시작*/
+.index-container-main-banner {
+	max-width: 1920px !important;
+}
+/* 메인 끝 */
 /* 	팝업창 초기에 불투명도 0 설정*/
 .contents-modal {
 	opacity: 0;
 }
-
 /* 	 지역선택창 누르면 불투명도 0 ->1로 변경돼서 팝업창이 보임*/
 .contents-modal:target {
 	top: 50px;
 	opacity: 1;
 }
 </style>
-
-<!-- 차량검색 클릭 이벤트(클릭시rent 페이지에 대여장소와 날짜가 request객체로 이동) -->
-<script type="text/javascript">
-	$(function() {
-		$("#search").on("click", function() {
-			location.href = "rent1?place=${param.place}&rentalDatetime="+$('#demo').val();
-		})
-	})
-</script>
 
 </head>
 <body>
@@ -146,10 +138,10 @@
 								
 								<!-- 지도 팝업창 상단 지도 이동 탭 -->
 								<div class="dc-none js-msa-tabs" style="display: block;">
-									<button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="전포()">전포</button>
-									<button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="부전()">부전</button> 
-								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="사상()">사상</button> 
-								    <button style="border-radius: 5px; border: none; background: #0d6ffc; font-weight: bolder; color: #fff; width: 50px; height: 30px; text-align: center" onclick="개금()">개금</button> 
+									<button onclick="전포()">전포</button>
+									<button onclick="부전()">부전</button> 
+								    <button onclick="사상()">사상</button> 
+								    <button onclick="개금()">개금</button> 
 								</div>
 								
 								
@@ -174,36 +166,33 @@
 																129.06202404131136),
 														level : 3
 													};
-
 													var map = new kakao.maps.Map(
 															container, options);
-
 													var positions = [
 															{
-																content : '<input type="text" id="place" size="13" value="전포지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="전포지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15849019679627,
 																		129.06202404131136)
 															},
 															{
-																content : '<input type="text" id="place" size="13" value="부전지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="부전지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15975905300518,
 																		129.06186404315977)
 															},
 															{
-																content : '<input type="text" id="place" size="13" value="사상지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="사상지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.158690073109824,
 																		129.06113477638084)
 															},
 															{
-																content : '<input type="text" id="place" size="13" value="개금지점" style="padding:5px; text-align: center; border: none; background: #0d6ffc; color: white; font-weight: bold;">',
+																content : '<input type="text" id="res_place" value="개금지점" style="padding:5px; background: #0d6ffc; color: white; border-radius: 10px; font-weight: bold;">',
 																latlng : new kakao.maps.LatLng(
 																		35.15730753621485,
 																		129.06294334538524)
 															} ];
-
 													for (var i = 0; i < positions.length; i++) {
 														// 마커를 생성합니다
 														var marker = new kakao.maps.Marker(
@@ -242,18 +231,16 @@
 																				infowindow
 																						.close();
 																			});
-
 															kakao.maps.event.addListener(
 																			marker,
 																			'click',
 																			function() {
 																				$(function() {
-																					let place = $(
-																							"#place")
+																					let res_place = $(
+																							"#res_place")
 																							.val();
 																					
-																					location.href = "?place="
-																							+ place;
+																					location.href = "?res_place="+res_place+"&rentalDatetime="+$('#demo').val();
 																				})
 																			});
 														})(marker, infowindow);
@@ -283,7 +270,6 @@
 													    map.panTo(moveLatLon);            
 													} 
 													
-
 													// 지도에 클릭 이벤트를 등록합니다
 													// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 													kakao.maps.event
@@ -292,10 +278,8 @@
 																	'click',
 																	function(
 																			mouseEvent) {
-
 																		// 클릭한 위도, 경도 정보를 가져옵니다 
 																		var latlng = mouseEvent.latLng;
-
 																		var message = '클릭한 위치의 위도는 '
 																				+ latlng
 																						.getLat()
@@ -304,11 +288,9 @@
 																				+ latlng
 																						.getLng()
 																				+ ' 입니다';
-
 																		var resultDiv = document
 																				.getElementById('result');
 																		resultDiv.innerHTML = message;
-
 																	});
 												</script>
 
@@ -353,7 +335,6 @@
 					</div>
 				</div>
 
-				<!-- 			메인 이미지 영역 -->
 				<section
 					class="index-container-first-section bg-color-primary-blue-light loading-shimmer"
 					id="js_section_main_banner" style="display: block;">
@@ -375,10 +356,14 @@
 										data-i="14" href=""
 										style="background-color: rgb(198, 219, 237);">
 										<div class="container index-container-main-banner">
+											<div class="banner-title">
+												<p>YA-TA와 함께하는 신나는 여행</p>
+												<h1>YA-TA와 함께</h1>
+											</div>
 											<img
 												class="js-index-img-banner index-img-main-banner swiper-lazy swiper-lazy-loaded"
 												draggable="false"
-												src="${pageContext.request.contextPath }/resources/images/yata.png">
+												src="https://www.billycar.co.kr/pc_assets/img/contents/main_visual01.png" height="450px">
 											<!-- 												 메인 이미지 넣는곳 -->
 										</div>
 									</a>
@@ -420,7 +405,7 @@
 											<div
 												class="wordbreak-keepall text-14 font-weight-bold color-grey-3 ellipsis"
 												id="js_index_txt_location">
-												<input type="text" value="${param.place }"
+												<input type="text" value="${param.res_place }"
 													placeholder="대여 위치 선택" readonly="readonly"
 													style="border: none; font-weight: bolder;">
 											</div>
@@ -446,7 +431,7 @@
 														$(function () {
 														    $('#demo').daterangepicker({
 														        "locale": {
-														            "format": "MM.DD HH:00",
+														            "format": "MM.DD HH:mm",
 														            "separator": " ~ ",
 														            "applyLabel": "확인",
 														            "cancelLabel": "취소",
@@ -469,7 +454,7 @@
 														    }, function (start, end) {
 														    	var startDate = start.format('MM-DD HH');
 														    	var endDate = end.format('MM-DD HH');
-														    	var time = (end - start) / (1000*60*60);
+														    	var time = Math.ceil((end - start) / (1000*60*60));
 														    	$('#time').text(time + " 시간");
 														    });
 														});
@@ -484,11 +469,12 @@
 						</div>
 						<!-- 						차량 검색버튼  -->
 						<!-- 						창용 차량 검색버튼에 rent화면에 장소데이터 전송  -->
-						<a class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press" >
+						<div class="js-index-btn-search ml-2 dc-lg-block dc-none text-decoration-none click-effect-press" onclick="rent1()">
 							<div class="index-btn-search border-radius-normal dc-flex flex-column justify-content-center align-items-center" id="search" >
 								<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNSAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0yMyAyMi41IDcgNyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTE1LjUgMjMuNWM1LjI0NyAwIDkuNS00LjAzIDkuNS05cy00LjI1My05LTkuNS05Yy01LjI0NiAwLTkuNSA0LjAzLTkuNSA5czQuMjU0IDkgOS41IDl6IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIvPgo8L3N2Zz4K">
 								<div class="text-16 font-weight-bold mt-2" >차량 검색</div>
-							</div></a>
+							</div>
+						</div>
 					</div>
 				</section>
 
@@ -504,131 +490,72 @@
 							<div
 								class="index-pc-swiper-root-recommend-location swiper-root overflow-hidden swiper-initialized swiper-horizontal swiper-pointer-events"
 								id="js_index_pc_swiper_root_recommend_location">
-								<div class="swiper-wrapper"
-									id="js_index_pc_swiper_container_recommend_location"
-									aria-live="polite"
-									style="transform: translate3d(0px, 0px, 0px);">
-									<div class="swiper-slide swiper-slide-active" role="group"
-										aria-label="1 / 11" style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_0">
+								<div class="swiper-wrapper" id="js_index_pc_swiper_container_recommend_location" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+									<div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_0">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="제주도" data-i="0"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=Q_1&amp;ssat=2&amp;sls=5"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_6_1581563026894_602.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="제주도" data-i="0" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=Q_1&amp;ssat=2&amp;sls=5"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://post-phinf.pstatic.net/MjAxNzA4MDFfMiAg/MDAxNTAxNTU1MDYwNzcz.KQ4kkG9xSZ67lO8OzYWlX6L8fduoXhJ53vhtNh7piLwg.0PXWV4GqdSGy0BqUYoOPmHW4HJUU4cJwmbHq7FYVug8g.JPEG/_DSC7331%ED%8C%94%EB%A0%88%EB%93%9C%EC%8B%9C%EC%A6%88%EC%95%BC%EA%B2%BD.jpg?type=w1200&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">제주도</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">보랏빛이
-															유혹한 석양 명소</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">해운대</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">부산 대표 관광지</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide swiper-slide-next" role="group"
-										aria-label="2 / 11" style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_1">
+									<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_1">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="울릉도" data-i="1"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=O_24&amp;ssat=2&amp;sls=8"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_4_1581563284855_304.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="울릉도" data-i="1" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=O_24&amp;ssat=2&amp;sls=8"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">울릉도</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">나의
-															인생 버킷리스트</div>
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">광안리</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">야경이 아름다운 광안대교</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide" role="group" aria-label="3 / 11"
-										style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_2">
+									<div class="swiper-slide" role="group" aria-label="3 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_2">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="여수" data-i="2"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=I_2&amp;ssat=2&amp;sls=20"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_7_1581563056368_795.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="여수" data-i="2" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=I_2&amp;ssat=2&amp;sls=20"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/2470640579/B.jpg?636000000&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">여수</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">감성
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">여수</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">감성
 															충전 밤바다</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide" role="group" aria-label="4 / 11"
-										style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_3">
+									<div class="swiper-slide" role="group" aria-label="4 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_3">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="부산" data-i="3"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=M_3&amp;ssat=2&amp;sls=26"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_2_1581563104989_615.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="부산" data-i="3" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=M_3&amp;ssat=2&amp;sls=26"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191222180830266_oen&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">부산</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">살아있는
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">부산</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">살아있는
 															한국 제2의 수도</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide" role="group" aria-label="5 / 11"
-										style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_4">
+									<div class="swiper-slide" role="group" aria-label="5 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_4">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="서울" data-i="4"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=A&amp;ssat=2&amp;sls=18"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_8_1581563079560_507.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="서울" data-i="4" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=A&amp;ssat=2&amp;sls=18"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://image14.hanatour.com/uploads/2020/03/20191122-FAN06055_63343935.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">서울</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">유니크한
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">서울</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">유니크한
 															매력의 도시 여행</div>
 													</div></a>
 											</div>
 										</div>
 									</div>
-									<div class="swiper-slide" role="group" aria-label="6 / 11"
-										style="width: 190px;">
-										<div class="js-index-recommend-location"
-											id="js_pc_index_recommend_location_5">
+									<div class="swiper-slide" role="group" aria-label="6 / 11" style="width: 190px;">
+										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_5">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a
-													class="dc-block index-box-recommend-location click-effect-press text-decoration-none"
-													data-title="강릉" data-i="5"
-													href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=P_3&amp;ssat=2&amp;sls=6"><div
-														class="index-box-recommend-location-up js-main-img-recommend-location"
-														style="background-image: url(&quot;https://s3.ap-northeast-2.amazonaws.com/carmoreweb/index/rloc/rloc_10_1581568823489_213.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="강릉" data-i="5" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=P_3&amp;ssat=2&amp;sls=6"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://png.pngtree.com/thumb_back/fw800/background/20230322/pngtree-haedong-yonggungsa-temple-on-sea-shore-busan-photo-image_2095026.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
-														<div
-															class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">강릉</div>
-														<div
-															class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">문득문득
+														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">강릉</div>
+														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">문득문득
 															그리운 바다 도시</div>
 													</div></a>
 											</div>
@@ -743,10 +670,7 @@
 														${review[2].review_content }
 													</div>
 												</div>
-												
 												<div class="index-box-review-bottom-box text-left">
-													<div class="index-txt-review-bottom-box-top text-14">부산에서
-															1일 렌트하신</div>
 													<div class="text-16-b text-white">${review[2].member_name }님</div>
 												</div>
 											</div>

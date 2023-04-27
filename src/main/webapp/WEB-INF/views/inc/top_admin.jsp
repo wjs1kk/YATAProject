@@ -83,18 +83,17 @@
 						<div class="mx-2">
 							<div class="nav-divider"></div>
 						</div>
-						<c:if test="${sessionScope.member_email eq 'admin@naver.com' }">
-							<a href="admin"
-								class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 "
-								id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
-								style="display: flex;">
-								<div class="dc-flex align-items-center color-primary-blue">
-									<img class="mr-1" style="width: 1.25rem;" src=""> <span
-										class="js-txt-rent-type-cs-tel" style="font-size: 16px;">관리자
-										페이지</span>
-								</div>
-							</a>
-						</c:if>
+
+						<a href="admin"
+							class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 "
+							id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
+							style="display: flex;">
+							<div class="dc-flex align-items-center color-primary-blue">
+								<img class="mr-1" style="width: 1.25rem;" src=""> <span
+									class="js-txt-rent-type-cs-tel" style="font-size: 16px;">관리자
+									페이지</span>
+							</div>
+						</a>
 					</c:otherwise>
 				</c:choose>
 			</div>

@@ -3,7 +3,6 @@ package com.itwillbs.yata.service;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +10,12 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.yata.mapper.MemberMapper;
 import com.itwillbs.yata.vo.MemberVO;
 
+
 @Service
 public class MemberService {
 	
 	@Autowired
 	private MemberMapper mapper;
-	
-	public MemberVO checkUser(String member_email, String member_passwd) {
-		
-		return mapper.selectUser(member_email, member_passwd) != null ? mapper.selectUser(member_email, member_passwd) :null ;
-	}
 	
 	public int insertUser(MemberVO member) {
 		return mapper.insertUser(member);
@@ -28,18 +23,44 @@ public class MemberService {
 
 	public String getPasswd(String member_email) {
 		return mapper.selectPasswd(member_email);
-	}
-	
-	public int modifyUser(String member_birth, String member_phone, String member_email) {
-		return mapper.modifyUser(member_birth, member_phone,member_email);
-	}
-
-	public List<MemberVO> memberList(MemberVO member) {
-		return mapper.memberList(member);
+	}	
+	public int modifyUser(MemberVO memberVO) {
+		return mapper.modifyUser(memberVO);
 	}
 
+	public MemberVO selectUser(String member_email) {
+		return mapper.selectUser(member_email);
+	}
+
+	public int deleteUser(String member_email) {
+		return mapper.deleteUser(member_email);
+	}
 	public String searchMemberEmail(MemberVO member) {
 		return mapper.searchMemberEmail(member);
 	}
 	
+	public int AdminMemberModifyPro(MemberVO member) {
+		return mapper.AdminMemberModify(member);
+	}
+
+	public int AdminMemberDeletePro(String member_email) {
+		return  mapper.AdminMemberDelete(member_email);
+	}
+	public List<MemberVO> memberList(int startRow, int listLimit, String searchType, String searchKeyword) {
+		return mapper.memberList(startRow, listLimit, searchType, searchKeyword);
+	}
+
+	public String isAdmin(String member_email) {
+		return mapper.isAdmin(member_email);
+	}
+
+	public int getMemberListCount(String searchType, String searchKeyword) {
+		return mapper.selectMemberListCount(searchType, searchKeyword);
+	}
+
+	public int loginLookup(MemberVO member) {
+		// TODO Auto-generated method stub
+		return mapper.loginLookup(member);
+	}
 }
+

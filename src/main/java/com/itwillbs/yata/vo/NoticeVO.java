@@ -1,5 +1,6 @@
 package com.itwillbs.yata.vo;
 
+
 public class NoticeVO {
 	private int board_num;
 	private String board_subject;

@@ -21,14 +21,71 @@
   	 		WHERE car_name LIKE CONCAT('%',#{car_name},'%');
   	</select>
   	
-  	<select id="carList" resultType="com.itwillbs.yata.vo.CarVO">
-  	
-  		SELECT *
-  		FROM car
-  	
-  	</select>
-  	
-  	
+  	<select id="selectCarList" resultType="com.itwillbs.yata.vo.CarVO">
+		select *
+		from car
+		<if test="!searchType.equals('')">
+			WHERE
+			<choose>
+				<when test="searchType.equals('car_manufacturer')">
+					car_manufacturer LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_name')">
+					car_name LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_fuel')">
+					car_fuel LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_available')">
+					car_available LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+		ORDER BY car_id DESC
+		LIMIT #{startRow}, #{listLimit}
+	</select>
+  	<select id="selectCarListCount" resultType="int">
+		SELECT COUNT(car_id)
+		FROM car
+		<if test="!searchType.equals('')">
+			WHERE
+			<choose>
+				<when test="searchType.equals('car_manufacturer')">
+					car_manufacturer LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_name')">
+					car_name LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_fuel')">
+					car_fuel LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_available')">
+					car_available LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
+<!--   	관리자  	 -->
+	<update id="carUpdate">
+		UPDATE car
+		SET car_manufacturer = #{car_manufacturer}
+  			   , car_model = #{car_model}
+  			   , car_name = #{car_name}
+  			   , car_type = #{car_type}
+  			   , car_year = #{car_year}
+  			   , car_price = #{car_price}  			
+  			   , car_seater = #{car_seater}
+  			   , car_fuel = #{car_fuel}
+  			   
+  		WHERE car_id = #{car_id}
+			
+	</update>
+	
+	<delete id="deleteCar">
+		DELETE
+		FROM car
+		WHERE car_id = #{car_id}
+	</delete>
   	<insert id="adminCarRegist">
   	
   		<selectKey keyProperty="car_id" resultType="int" order="BEFORE">
@@ -48,28 +105,29 @@
   			   , #{car_fuel}
   			  )
   	</insert>
-  	
-  	<select id="carInfo" resultType="com.itwillbs.yata.vo.CarVO">
+  	<!--   	car_type 카테고리 -->
+  	<select id="car_type" parameterType="String" resultType="com.itwillbs.yata.vo.CarVO">
+  	 	SELECT *
+  	 		FROM car 
+  	 			WHERE car_type LIKE 
+	  	 		<choose>
+	  	 			<when test="car_type.equals('전체')"> '%' </when>
+	  	 			<when test="car_type.equals('전기')"> '전기' </when>
+	  	 			<when test="car_type.equals('경형')"> '경형' </when>
+	  	 			<when test="car_type.equals('중형')"> '중형' </when>
+	  	 			<when test="car_type.equals('대형')"> '대형' </when>
+	  	 			<when test="car_type.equals('SUV')"> 'SUV' </when>
+  	 			</choose> 	                                                                                                                                                                                                                                                                           
+  	</select>
+  	<select id="selectCarShippedList" resultType="com.itwillbs.yata.vo.CarVO">
   		SELECT *
   		FROM car
-  		WHERE car_id = #{car_id}
-  	
+  		WHERE car_available = '0'
   	</select>
   	
-  	<update id="carUpdate">
-		UPDATE car
-			SET car_manufacturer = #{car_manufacturer}
-  			   , car_model = #{car_model}
-  			   , car_name = #{car_name}
-  			   , car_type = #{car_type}
-  			   , car_year = #{car_year}
-  			   , car_price = #{car_price}
-  			   , car_available = #{car_available}
-  			   , car_seater = #{car_seater}
-  			   , car_fuel = #{car_fuel}
-  			   
-  			WHERE car_id = #{car_id}
-			
-	</update>
-	
+  	<update id="deleteCarModel">
+  		UPDATE car SET car_model = ""
+  		WHERE car_id = #{car_id}
+  	</update>
+
 </mapper>
