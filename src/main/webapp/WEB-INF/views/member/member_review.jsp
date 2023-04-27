@@ -7,18 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-<style type="text/css">
-/* 리뷰 별점 색상 */
-.star {
-	color: #FF7E00;
-}
-.star_off {
-	color: #ced4da;
-}
-.search_list_tbl tr td {
-    font-size: larger;
-}
-</style>
+
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
