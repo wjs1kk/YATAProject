@@ -23,7 +23,14 @@
 			        <h1 class="h3 mb-3 fw-normal text-dark">회원가입</h1>
 			        <label for="inputEmail" class="visually-hidden">Email</label>
 			        <div class="d-flex justify-content-center">
+			        	<c:choose>
+			        		<c:when test="${param.member_email != null}">
+			        		<input type="email" id="member_email" name="member_email" class="justify-content-center w-50 form-control" placeholder="이메일" value="${param.member_email }" readonly="readonly" required autofocus>			        		
+			        		</c:when>
+			        		<c:otherwise>
 			        	<input type="email" id="member_email" name="member_email" class="justify-content-center w-50 form-control" placeholder="이메일" required autofocus>
+			        		</c:otherwise>
+			        	</c:choose>
 			        	<button class="btn btn-lg btn-primary" type="submit">중복확인</button>
 			        </div>
 			        <label for="inputPassword" class="visually-hidden ">Password</label>

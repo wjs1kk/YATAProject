@@ -4,6 +4,8 @@
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/main.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core"%>
+
 <head>
 <script type="text/javascript">
 	window.onpopstate = function(event) {
@@ -49,9 +51,14 @@
 			        <br>
 			        <br>
 			        <input type="hidden" name="kakaoemail" id="kakaoemail"/>
-			        <a href="https://kauth.kakao.com/oauth/authorize?client_id=ead29902d723c95d189caf903db985d7&response_type=code&redirect_uri=http://localhost:8080/yata/kakao">
+			        <c:if test="${userId eq null }">
+			        <a href="https://kauth.kakao.com/oauth/authorize?client_id=ead29902d723c95d189caf903db985d7&response_type=code&redirect_uri=http://localhost:8080/yata/kakao&prompt=login">
 			        <img src="${pageContext.request.contextPath }/resources/images/kakao_login.png">
-			        </a>		        
+			        </a>	
+			        </c:if>
+			        <c:if test="${userId ne null }">
+			        	<input type="button" value="로그아웃" onclick="location.href='kakaoLogout'">
+			        </c:if>
 			    </div>
 			  
             </div>

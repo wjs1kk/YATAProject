@@ -58,9 +58,9 @@ public class MemberService {
 		return mapper.selectMemberListCount(searchType, searchKeyword);
 	}
 
-	public int loginLookup(MemberVO member) {
-		// TODO Auto-generated method stub
-		return mapper.loginLookup(member);
+	public String loginLookup(Object member_email) {
+
+		return mapper.loginLookup(member_email);
 	}
 }
 

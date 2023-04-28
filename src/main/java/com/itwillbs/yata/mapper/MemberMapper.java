@@ -26,5 +26,5 @@ public interface MemberMapper {
 	public List<MemberVO> memberList(@Param("startRow")int startRow, @Param("listLimit")int listLimit, @Param("searchType")String searchType, @Param("searchKeyword")String searchKeyword);
 	public String isAdmin(String member_email);
 	public int selectMemberListCount(@Param("searchType")String searchType, @Param("searchKeyword")String searchKeyword);
-	public int loginLookup(MemberVO member);
+	public String loginLookup(Object member_email);
 }

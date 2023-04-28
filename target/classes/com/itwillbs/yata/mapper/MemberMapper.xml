@@ -112,5 +112,10 @@
 		FROM member
 		WHERE member_email = #{member_email}
 	</select>
-	
+<!-- 	카카오 로그인 시 db에 이메일 확인 -->
+	<select id="loginLookup" resultType="String">
+		SELECT member_email
+		FROM member
+		WHERE member_email = #{member_email}
+	</select>
   </mapper>

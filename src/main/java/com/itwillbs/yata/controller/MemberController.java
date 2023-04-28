@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.yata.service.CarService;
 import com.itwillbs.yata.service.CouponService;
+import com.itwillbs.yata.service.KakaoService;
 import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.PointService;
 import com.itwillbs.yata.service.ReservService;
@@ -39,7 +40,7 @@ public class MemberController {
 	@Autowired
 	private PointService pointService;
 	@Autowired
-	private CouponService couponService;
+	private KakaoService kakaoService;
 	
 	@GetMapping("login")
 	public String login() {
@@ -65,7 +66,7 @@ public class MemberController {
 
 	@GetMapping("logout")
 	public String logout(HttpSession session, HttpServletResponse response) {
-		session.invalidate();
+		session.invalidate();		
 		return "redirect:/";
 	}
 
