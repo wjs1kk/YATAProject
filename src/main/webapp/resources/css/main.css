@@ -150,16 +150,19 @@
     padding: 0;
 }
 /* 회원가입 */
-.d-flex.justify-content-center {
+.d-flex.justify-content-center.join {
     margin-bottom: 20px;
 }
-input#member_email {
+input#member_email.join {
     margin-right: 10px;
     width: 268px !important;
 }
-button.btn.btn-lg.btn-primary {
+button.btn.btn-lg.btn-primary.join {
     height: 38px;
     line-height: 17px;
+}
+.text.w-100.text-center.mb-md-5.pb-md-5 {
+    margin-top: 55px;
 }
 /* 푸터 */
 
