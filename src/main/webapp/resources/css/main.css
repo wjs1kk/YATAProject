@@ -92,6 +92,7 @@
 /* } */
 
 /* 경은 추가 */
+
 /* 예약 완료전 페이지 */
 .cal  {
 	list-style: none; 
@@ -149,6 +150,7 @@
     padding: 0;
 }
 /* 푸터 */
+
 footer .bg-white {
     background-color: #3b4047 !important;
 }
@@ -156,8 +158,10 @@ a.js-btn-navbar-brand.dc-flex.align-items-center.navbar-brand.h-100.click-effect
     display: inherit;
     height: inherit !important;
 }
+footer a.nav-link.click-effect-press {
+    color: #bbb !important;
+}
 /* 경은 추가 끝 */
-
 *, *::before, *::after {
 	box-sizing: border-box
 }
@@ -171,7 +175,7 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav,
 	section {
-	display: block
+	display: block;
 }
 
 body {
@@ -15184,7 +15188,7 @@ a.text-bluegreylight:hover, a.text-bluegreylight:focus {
 }
 
 .text-muted {
-	color: #6c757d !important
+	color: #bbb !important
 }
 
 .text-black-50 {

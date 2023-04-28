@@ -499,7 +499,7 @@
 				<!-- 				추천 여행지 영역 -->
 				<section class="bg-white index-section-small-padding dc-lg-block" id="section_main_recommend_location_pc" style="display: block;">
 					<div class="container">
-						<div class="text-24 color-grey-3">카모아 추천 여행지</div>
+						<div class="text-24 color-grey-3">YATA 추천 여행지</div>
 						<div class="text-14 color-grey-5">이번엔 여기로 떠나볼까요?</div>
 						<div class="position-relative">
 							<div class="index-pc-swiper-root-recommend-location swiper-root overflow-hidden swiper-initialized swiper-horizontal swiper-pointer-events" id="js_index_pc_swiper_root_recommend_location">
@@ -507,7 +507,7 @@
 									<div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 11" style="width: 190px;">
 										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_0">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="제주도" data-i="0" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=Q_1&amp;ssat=2&amp;sls=5"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://post-phinf.pstatic.net/MjAxNzA4MDFfMiAg/MDAxNTAxNTU1MDYwNzcz.KQ4kkG9xSZ67lO8OzYWlX6L8fduoXhJ53vhtNh7piLwg.0PXWV4GqdSGy0BqUYoOPmHW4HJUU4cJwmbHq7FYVug8g.JPEG/_DSC7331%ED%8C%94%EB%A0%88%EB%93%9C%EC%8B%9C%EC%A6%88%EC%95%BC%EA%B2%BD.jpg?type=w1200&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="해운대" data-i="0" href="https://map.naver.com/v5/search/%ED%95%B4%EC%9A%B4%EB%8C%80%20%EB%86%80%EA%B1%B0%EB%A6%AC?c=15,0,0,0,dh"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://post-phinf.pstatic.net/MjAxNzA4MDFfMiAg/MDAxNTAxNTU1MDYwNzcz.KQ4kkG9xSZ67lO8OzYWlX6L8fduoXhJ53vhtNh7piLwg.0PXWV4GqdSGy0BqUYoOPmHW4HJUU4cJwmbHq7FYVug8g.JPEG/_DSC7331%ED%8C%94%EB%A0%88%EB%93%9C%EC%8B%9C%EC%A6%88%EC%95%BC%EA%B2%BD.jpg?type=w1200&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
 														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">해운대</div>
 														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">부산 대표 관광지</div>
@@ -518,7 +518,7 @@
 									<div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 11" style="width: 190px;">
 										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_1">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="울릉도" data-i="1" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=O_24&amp;ssat=2&amp;sls=8"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="광안리" data-i="1" href="https://map.naver.com/v5/search/%EA%B4%91%EC%95%88%EB%A6%AC%20%EB%86%80%EA%B1%B0%EB%A6%AC?c=13,0,0,0,dh"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
 														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">광안리</div>
 														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">야경이 아름다운 광안대교</div>
@@ -529,7 +529,7 @@
 									<div class="swiper-slide" role="group" aria-label="3 / 11" style="width: 190px;">
 										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_2">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="여수" data-i="2" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=I_2&amp;ssat=2&amp;sls=20"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/2470640579/B.jpg?636000000&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="남포동" data-i="2" href="https://map.naver.com/v5/search/%EB%82%A8%ED%8F%AC%EB%8F%99%20%EB%86%80%EA%B1%B0%EB%A6%AC?c=13,0,0,0,dh"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/2470640579/B.jpg?636000000&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
 														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">남포동</div>
 														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">다양한 영화와 먹거리</div>
@@ -540,7 +540,7 @@
 									<div class="swiper-slide" role="group" aria-label="4 / 11" style="width: 190px;">
 										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_3">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="부산" data-i="3" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=M_3&amp;ssat=2&amp;sls=26"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191222180830266_oen&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="태종대" data-i="3" href="https://map.naver.com/v5/search/%ED%83%9C%EC%A2%85%EB%8C%80%20%EB%86%80%EA%B1%B0%EB%A6%AC?c=15,0,0,0,dh"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://www.visitbusan.net/uploadImgs/files/cntnts/20191222180830266_oen&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
 														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">태종대</div>
 														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">해안절벽이 보이는 숲</div>
@@ -551,7 +551,7 @@
 									<div class="swiper-slide" role="group" aria-label="5 / 11" style="width: 190px;">
 										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_4">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="서울" data-i="4" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=A&amp;ssat=2&amp;sls=18"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://image14.hanatour.com/uploads/2020/03/20191122-FAN06055_63343935.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="영도" data-i="4" href="https://map.naver.com/v5/search/%EC%98%81%EB%8F%84%20%EB%86%80%EA%B1%B0%EB%A6%AC?c=12,0,0,0,dh"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://image14.hanatour.com/uploads/2020/03/20191122-FAN06055_63343935.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
 														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">영도</div>
 														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">유니크한
@@ -563,7 +563,7 @@
 									<div class="swiper-slide" role="group" aria-label="6 / 11" style="width: 190px;">
 										<div class="js-index-recommend-location" id="js_pc_index_recommend_location_5">
 											<div class="index-wrapper-box-recommend-location-pc">
-												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="강릉" data-i="5" href="container-main-view.html?mt=1&amp;rt=1&amp;ssac=P_3&amp;ssat=2&amp;sls=6"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://png.pngtree.com/thumb_back/fw800/background/20230322/pngtree-haedong-yonggungsa-temple-on-sea-shore-busan-photo-image_2095026.jpg&quot;);"></div>
+												<a class="dc-block index-box-recommend-location click-effect-press text-decoration-none" data-title="기장" data-i="5" href="https://map.naver.com/v5/search/%EA%B8%B0%EC%9E%A5%20%EB%86%80%EA%B1%B0%EB%A6%AC?c=12,0,0,0,dh"><div class="index-box-recommend-location-up js-main-img-recommend-location" style="background-image: url(&quot;https://png.pngtree.com/thumb_back/fw800/background/20230322/pngtree-haedong-yonggungsa-temple-on-sea-shore-busan-photo-image_2095026.jpg&quot;);"></div>
 													<div class="index-box-recommend-location-down text-center">
 														<div class="js-index-recommend-loc-title text-20 font-weight-bold color-grey-3 mt-2">기장</div>
 														<div class="js-index-recommend-loc-desc text-12 color-grey-5 wordbreak-keepall">바다 앞 해동용궁사</div>
@@ -585,9 +585,9 @@
 					id="js_section_main_reviews">
 					<div class="container">
 						<div class="text-center">
-							<div class="text-32 font-weight-bold color-grey-2">카모아 고객
+							<div class="text-32 font-weight-bold color-grey-2">YATA 고객
 								리뷰</div>
-							<div class="text-16 color-grey-4">카모아는 이미 전국의 고객들로부터 사랑받고
+							<div class="text-16 color-grey-4">YATA는 이미 전국의 고객들로부터 사랑받고
 								있습니다.</div>
 						</div>
 						<div class="row mt-5">
