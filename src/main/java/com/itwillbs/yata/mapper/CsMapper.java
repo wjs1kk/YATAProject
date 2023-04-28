@@ -32,4 +32,6 @@ public interface CsMapper {
 	List<MailFormVO> selectAdminMailFormList(@Param("startRow") int startRow, @Param("listLimit") int listLimit, @Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
 	List<MailFormVO> selectAdminUnansweredMailFormList(@Param("startRow") int startRow, @Param("listLimit") int listLimit, @Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
 	int selectUnansweredMailFormListCount(@Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
+	// 2023-04-28 김동욱 - 1:1 문의 답변 삭제
+	int deleteMailFormDelete(String board_num);
 }

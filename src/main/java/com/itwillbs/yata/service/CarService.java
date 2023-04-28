@@ -62,5 +62,9 @@ public class CarService {
 	public int getCarShippedListCount(String searchType, String searchKeyword) {
 		return mapper.selectCarShippedListCount(searchType, searchKeyword);
 	}
+	// 2023-04-28 김동욱 - 출고된 차량 반납 확인
+	public int AdminCarReturnCheck(String car_id) {
+		return mapper.updateCarReturnCheck(car_id);
+	}
 
 }

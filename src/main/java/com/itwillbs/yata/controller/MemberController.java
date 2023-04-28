@@ -60,6 +60,9 @@ public class MemberController {
 		if(isAdmin.equals("1")) {
 			session.setAttribute("isAdmin", isAdmin);
 		}
+		System.out.println(isAdmin);
+		System.out.println(member_email);
+		System.out.println(passwd);
 		
 		session.setAttribute("member_email", member_email);
 		System.out.println(session.getAttribute("member_email"));

@@ -9,6 +9,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+
+	<!-- 2023-04-28 김동욱 리스트 삭제시 confirm창으로 되묻기 -->
+	function AdminMemberDelete(member_email) {
+		if(confirm("정말로 삭제하시겠습니까?")){
+			location.href='AdminMemberDeletePro.ad?member_email='+member_email;
+		}
+	}
+
+</script>
 </head>
 <body>
 <jsp:include page="../inc/top_admin.jsp"></jsp:include>
@@ -36,9 +46,7 @@
 						</form>
 						<th scope="col">이메일</th>
 						<th scope="col">이름</th>
-						<th scope="col">생년월일</th>
 						<th scope="col">성별</th>
-						<th scope="col">번호</th>
 						<th scope="col">가입일</th>
 						<th scope="col">포인트</th>
 						<th scope="col">면허증</th>
@@ -51,16 +59,15 @@
 						<tr>
 							<td>${memberList.member_email}</td>
 							<td>${memberList.member_name}</td>
-							<td>${memberList.member_birth}</td>
 							<td>${memberList.member_gender}</td>
-							<td>${memberList.member_phone}</td>
 							<td>${memberList.member_date}</td>
 							<td>${memberList.member_point}</td>
 							<td>${memberList.member_license}</td>
 							<td>${memberList.member_isadmin}</td>
 							<th>
 								<input type="button"  class="nextBtn" value="수정" onclick="location.href='AdminMemberInfo.ad?member_email=${memberList.member_email}&member_name=${memberList.member_name}&member_birth=${memberList.member_birth}&member_gender=${memberList.member_gender }&member_phone=${memberList.member_phone }&member_point=${memberList.member_point }&member_license=${memberList.member_license }&member_isadmin=${memberList.member_isadmin }'">
-								<input type="button" class="nextBtn" value="삭제" onclick="location.href='AdminMemberDeletePro.ad?member_email=${memberList.member_email}'">
+								<!-- 2023-04-28 김동욱 리스트 삭제시 confirm창으로 되묻기 -->
+								<input type="button" class="nextBtn" value="삭제" onclick="AdminMemberDelete('${memberList.member_email}')">
 							</th>
 						</tr>
 					</c:forEach>

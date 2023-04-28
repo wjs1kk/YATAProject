@@ -45,56 +45,25 @@
 				<ul class="navbar-nav mr-auto">
 
 				</ul>
-				<!-- 					로그인 하기전이랑 하고난후 바꿔야함 -->
-				<c:choose>
-					<c:when test="${empty sessionScope.member_email }">
-						<a href="join"
-							class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 "
-							id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
-							style="display: flex;">
-							<div class="dc-flex align-items-center color-primary-blue">
-								<img class="mr-1" style="width: 1.25rem;" src=""> <span
-									class="js-txt-rent-type-cs-tel" style="font-size: 16px;">회원가입</span>
-							</div>
-						</a>
-						<div class="mx-2">
-							<div class="nav-divider"></div>
-						</div>
-						<button onclick="window.location.href='login'"
-							class="js-pc-header-btn-login btn color-blue my-2 my-sm-0 tmobi-dc-none"
-							type="button" style="font-size: 16px;">로그인</button>
-					</c:when>
-					<c:otherwise>
-						<a href="mypage"
-							class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 "
-							id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
-							style="display: flex;">
-							<div class="dc-flex align-items-center color-primary-blue">
-								<img class="mr-1" style="width: 1.25rem;" src=""> <span
-									class="js-txt-rent-type-cs-tel" style="font-size: 16px;">마이페이지</span>
-							</div>
-						</a>
-						<div class="mx-2">
-							<div class="nav-divider"></div>
-						</div>
-						<button onclick="window.location.href='logout'"
-							class="js-pc-header-btn-login btn color-blue my-2 my-sm-0 tmobi-dc-none"
-							type="button" style="font-size: 16px;">로그아웃</button>
-						<div class="mx-2">
-							<div class="nav-divider"></div>
-						</div>
-						<a href="admin"
-							class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 "
-							id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
-							style="display: flex;">
-							<div class="dc-flex align-items-center color-primary-blue">
-								<img class="mr-1" style="width: 1.25rem;" src=""> <span
-									class="js-txt-rent-type-cs-tel" style="font-size: 16px;">관리자
-									페이지</span>
-							</div>
-						</a>
-					</c:otherwise>
-				</c:choose>
+			
+				<!-- 2023-04-28 김동욱 관리자 top 마이페이지 삭제 및  로그인 ,회원가입 삭제 -->
+				<a href="admin"
+					class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 "
+					id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
+					style="display: flex;">
+					<div class="dc-flex align-items-center color-primary-blue">
+						<img class="mr-1" style="width: 1.25rem;" src=""> <span
+							class="js-txt-rent-type-cs-tel" style="font-size: 16px;">관리자
+							페이지</span>
+					</div>
+				</a>
+				<div class="mx-2">
+					<div class="nav-divider"></div>
+				</div>
+				<button onclick="window.location.href='logout'"
+					class="js-pc-header-btn-login btn color-blue my-2 my-sm-0 tmobi-dc-none"
+					type="button" style="font-size: 16px;">로그아웃</button>
+					
 			</div>
 		</div>
 	</nav>

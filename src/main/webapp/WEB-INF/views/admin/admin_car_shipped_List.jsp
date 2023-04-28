@@ -10,6 +10,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	// 2023-04-28 김동욱 반납처리시 confirm으로 되묻기
+	function AdminCarReturnCheck(car_id) {
+		if(confirm("본 차량을 반납처리 하시겠습니까?")){
+			location.href = 'AdminCarReturnCheck.ad?car_id='+car_id
+		}
+	}
+
+
+</script>
 </head>
 <body>
 <jsp:include page="../inc/top_admin.jsp"></jsp:include>
@@ -22,7 +32,8 @@
 			<table class="tb-list">
 				<form action="AdminCarShippedList.ad">
 						<select name="searchType">
-						<option value="member_email" <c:if test="${param.searchType eq 'member_email' }">selected</c:if> >사용중인 고객 이메일</option>
+					<!-- 2023-04-28 김동욱 member_email에서 car_id로 변경 -->
+						<option value="car_id" <c:if test="${param.searchType eq 'car_id' }">selected</c:if> >자동차 ID</option>
 						<option value="car_name" <c:if test="${param.searchType eq 'car_name' }">selected</c:if> >차명칭</option>
 						<option value="car_manufacturer" <c:if test="${param.searchType eq 'car_manufacturer' }">selected</c:if> >제조사</option>
 					</select>
@@ -36,6 +47,7 @@
 				</colgroup>
 				<thead>
 					<tr>
+					<!-- 2023-04-28 김동욱 사용중인 고객 이메일 삭제  -->
 						<th scope="col">번호</th>
 						<th scope="col">제조사</th>
 						<th scope="col">모델</th>
@@ -46,7 +58,6 @@
 						<th scope="col">출고 가능 상태</th>
 						<th scope="col">인승</th>
 						<th scope="col">연료</th>
-						<th scope="col">사용중인 고객 이메일</th>
 						<th scope="col"></th>
 					</tr>
 				</thead>
@@ -63,10 +74,9 @@
 							<td>${carList.car_available }</td>
 							<td>${carList.car_seater }</td>
 							<td>${carList.car_fuel }</td>
-							<td>${carList.member_email }</td>
 							<td>
-								<%-- 수정 버튼 클릭 시 회원 정보 조회 페이지로 이동(파라미터 : id) --%>
-								<input class="nextBtn" type="button" value="반납확인" onclick="">													
+								<!--   2023-04-28 김동욱 반납처리 기능 및 반납처리시 confirm으로 되묻기-->
+								<input class="nextBtn" type="button" value="반납확인" onclick="AdminCarReturnCheck('${carList.car_id}')">													
 							</td>
 						</tr>
 					</c:forEach>

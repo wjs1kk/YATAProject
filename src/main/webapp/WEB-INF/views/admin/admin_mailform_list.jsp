@@ -10,6 +10,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	<!-- 2023-04-28 김동욱 답변 삭제 기능 추가 및 삭제시 confirm으로 되묻기 -->
+	function AdminMailFormDelete(board_num) {
+		if(confirm("정말로 삭제하시겠습니까?")){
+			location.href='AdminMailFormDelete.ad?board_num='+board_num
+		}
+	}
+</script>
 </head>
 <body>
 <jsp:include page="../inc/top_admin.jsp"></jsp:include>
@@ -72,8 +80,10 @@
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${mailFormList.board_date}" /></td>
 							<td>${mailFormList.member_email}</td>
 							<th>
+
 								<input type="button" class="nextBtn" value="답변" onclick="location.href='AdminMailFormReply.ad?board_num=${mailFormList.board_num}'">
-								<input type="button" class="nextBtn" value="삭제" onclick="">		
+								<!-- 2023-04-28 김동욱 답변 삭제 기능 추가 및 삭제시 confirm으로 되묻기 -->
+								<input type="button" class="nextBtn" value="삭제" onclick="AdminMailFormDelete('${mailFormList.board_num}')">		
 							</th>
 						</tr>
 					</c:forEach>

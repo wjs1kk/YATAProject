@@ -15,7 +15,7 @@
 <jsp:include page="../inc/top_admin.jsp"></jsp:include>
 <div align="center">
 	<br>
-	<h1>예약 목록 조회</h1>
+	<h1>면허증 등록 신청 목록</h1>
 	<div class="container py-5">
 		<div class="mypage-section" id="mypage_section_setting">
 			<table class="tb-list">

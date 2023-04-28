@@ -13,6 +13,7 @@
 		
 		// 이메일 규칙
 		// 2023-04-27 김동욱 - 이메일 중복 체크
+		// 2023-04-28 김동욱 - 전화번호, 생년월일 삭제
 		$("#emailCheck").on("click", function() {
 			if(emailReg.exec($("#member_email").val())){
 				$.ajax({
@@ -79,26 +80,6 @@
 			}
 		})
 		
-		//휴대 전화 규칙
-		let phoneReg = /^(010|011)[-\s][\d]{3,4}[-\s][\d]{4}$/;
-		$("#member_phone").on("change", function() {
-			if(!phoneReg.exec($("#member_phone").val())){
-				$("#phoneResult").html("휴대전화 번호 형식을 확인해주세요! ( - 포함)<br>ex)010-0000-0000").css("color", "red");
-			}else{
-				$("#phoneResult").html("사용 가능한 휴대전화 번호 형식 입니다!").css("color", "blue");
-			}
-		})
-		
-		//출생년도 규칙
-		let birthReg = /^[\d]{4}[-\s][\d]{2}[-\s][\d]{2}$/;
-		$("#member_birth").on("change", function() {
-			if(!birthReg.exec($("#member_birth").val())){
-				$("#birthResult").html("생년월일을 정확히 입력해주세요! <br>ex)1980-01-01").css("color", "red");
-			}else {
-				$("#birthResult").html("");
-			}
-		})
-		
 	});
 
 	// 2023-04-27 김동욱 - 회원가입 정규표현식이 submit이 실행될 때 규칙이 맞는 지 한번 더 확인함
@@ -124,18 +105,6 @@
 		let nameReg = /^[가-힣]{2,5}$/;
 		if(!nameReg.exec($("#member_name").val())){
 			alert("이름을 확인해주세요!")
-			return false;
-		}
-		
-		let birthReg = /^[\d]{4}[-\s][\d]{2}[-\s][\d]{2}$/;
-		if(!birthReg.exec($("#member_birth").val())){
-			alert("출생년도를 정확하게 입력하였는 지 확인해주세요!")
-			return false;
-		}
-		
-		let phoneReg = /^(010|011)[-\s][\d]{3,4}[-\s][\d]{4}$/;
-		if(!phoneReg.exec($("#member_phone").val())){
-			alert("휴대전화 번호 형식을 확인해주세요!")
 			return false;
 		}
 		
@@ -169,42 +138,32 @@
           <div class="col-lg-8 ftco-animate">
           	<div class="text w-100 text-center mb-md-5 pb-md-5">
           		<!-- 2023-04-27 김동욱 onsubmit 적용 및 정규표현식 규칙확인 표시용 result div 추가 -->
+          		<!-- 2023-04-28 김동욱 각 항목당 라벨 삭제 생년월일 전화번호 삭제 -->
 			    <form action="joinPro" method="post" onsubmit="return checkForm();">
 			    <div>
 			    <br>
 			        <h1 class="h3 mb-3 fw-normal text-dark">회원가입</h1>
-			        <label for="inputEmail" class="visually-hidden">Email</label>
 			        <div class="d-flex justify-content-center">
 			        	<input type="email" id="member_email" name="member_email" class="justify-content-center w-50 form-control" placeholder="이메일" required autofocus>
 			        	<input class="btn btn-lg btn-primary" type="button" id="emailCheck" value="중복체크">
 			        </div>
 		        	<div id="emailResult"></div>
 		        	<br>
-			        <label for="inputPassword" class="visually-hidden ">Password</label>
 			        <div class="d-flex justify-content-center">
 			        	<input type="password" id="member_passwd1" name="member_passwd" class="w-50 form-control" placeholder="비밀번호" required autofocus>
 			        </div>
 			        <div id="passwd1Result"></div>
 		        	<br>
-			        <label for="inputPassword2" class="visually-hidden">Confirm Password</label>
 			        <div class="d-flex justify-content-center">
 			        	<input type="password" id="member_passwd2" class="w-50 form-control" placeholder="비밀번호 확인" required autofocus>
 			        </div>
 			        <div id="passwd2Result"></div>
 		        	<br>
-			        <label for="name" class="visually-hidden">Name</label>
 			        <div class="d-flex justify-content-center">
 			        	<input type="text" id="member_name" name="member_name" class="w-50 form-control" placeholder="이름" required autofocus>
 			        </div>
 			        <div id="nameResult"></div>
 		        	<br>
-			        <label for="date" class="visually-hidden">YYYY/MM/DD</label>
-			        <div class="d-flex justify-content-center">
-			        	<input class="w-50 form-control" id="member_birth" name="member_birth" type="date" name='userBirthday' required autofocus/>
-			        </div>
-			        <div id="birthResult"></div>
-		        	<br>
-			        <label for="gender" class="visually-hidden">Gender</label>
 			        <div class="d-flex justify-content-center">
 			        	<select class="form-control w-50" id="member_gender" name="member_gender" required autofocus>
 						  <option value="성별">성별</option>
@@ -214,18 +173,12 @@
 			        </div>
 			        <div id="emailResult"></div>
 		        	<br>
-			        <label for="phone" class="visually-hidden">Phone</label>
-			        <div class="d-flex justify-content-center">
-			        	<input type="text" id="member_phone" name="member_phone" class="w-50 form-control" placeholder="01X-0000-0000" required autofocus>
-			        </div>
-			        <div id="phoneResult"></div>
 			        <br>
 			        <!-- 비밀번호 확인용 hidden - 비밀번호 확인을 체크하면 value값이 1이됨 -->
 			        <input type="hidden" value="" id="emailCheckValue">
 			        <button class="w-50 btn btn-lg btn-primary" style="width: 350px;" type="submit" >가입</button>
 			        <br>
 			        <br>
-	        
 			    </div>
 			    </form>
             </div>
