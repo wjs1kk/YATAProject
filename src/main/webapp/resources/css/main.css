@@ -149,6 +149,18 @@
 .container.index-container-main-banner {
     padding: 0;
 }
+/* 회원가입 */
+.d-flex.justify-content-center {
+    margin-bottom: 20px;
+}
+input#member_email {
+    margin-right: 10px;
+    width: 268px !important;
+}
+button.btn.btn-lg.btn-primary {
+    height: 38px;
+    line-height: 17px;
+}
 /* 푸터 */
 
 footer .bg-white {
