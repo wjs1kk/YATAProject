@@ -8,9 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import com.itwillbs.yata.vo.CarVO;
 import com.itwillbs.yata.vo.MemberVO;
 
-
-
-
 public interface MemberMapper {
 	
 	public MemberVO selectUser(String member_email);
