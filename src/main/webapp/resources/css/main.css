@@ -92,6 +92,22 @@
 /* } */
 
 /* 경은 추가 */
+
+/* 회원가입 */
+.d-flex.justify-content-center.join {
+    margin-bottom: 20px;
+}
+input#member_email.join {
+    margin-right: 10px;
+    width: 268px !important;
+}
+button.btn.btn-lg.btn-primary.join {
+    height: 38px;
+    line-height: 17px;
+}
+.text.w-100.text-center.mb-md-5.pb-md-5 {
+    margin-top: 55px;
+}
 /* 예약 완료전 페이지 */
 .cal  {
 	list-style: none; 
@@ -156,10 +172,13 @@ a.js-btn-navbar-brand.dc-flex.align-items-center.navbar-brand.h-100.click-effect
     display: inherit;
     height: inherit !important;
 }
+footer a.nav-link.click-effect-press {
+    color: #bbb !important;
+}
 /* 경은 추가 끝 */
 
 *, *::before, *::after {
-	box-sizing: border-box
+	box-sizing: border-box;
 }
 
 html {
@@ -171,7 +190,7 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav,
 	section {
-	display: block
+	display: block;
 }
 
 body {
@@ -15184,13 +15203,13 @@ a.text-bluegreylight:hover, a.text-bluegreylight:focus {
 }
 
 .text-muted {
-	color: #6c757d !important
+	color: #bbb !important
 }
 
 .text-black-50 {
 	color: rgba(30, 30, 30, .5) !important
 }
-
+ 
 .text-white-50 {
 	color: rgba(255, 255, 255, .5) !important
 }

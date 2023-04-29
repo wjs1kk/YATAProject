@@ -83,21 +83,7 @@
 						</button>
 					</c:when>
 					<c:otherwise>
-						<a href = "mypage" class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 " id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
-							style="display: flex;">
-							<div class="dc-flex align-items-center color-primary-blue">
-								<img class="mr-1" style="width: 1.25rem;" src="">
-								<span class="js-txt-rent-type-cs-tel" style="font-size:16px;">마이페이지</span> 							
-							</div>
-						</a>
-						<div class="mx-2">
-							<div class="nav-divider"></div>
-						</div>
-						<button onclick="window.location.href='logout'"
-							class="js-pc-header-btn-login btn color-blue my-2 my-sm-0 tmobi-dc-none"
-							type="button" style ="font-size:16px;">로그아웃
-						</button>
-						
+					
 						<!-- 2023-04-26 김동욱 if문 sessionScope.isAdmin으로 변경 -->
 						<c:if test="${sessionScope.isAdmin eq '1' }">
 							<a href="admin"
@@ -111,6 +97,25 @@
 								</div>
 							</a>
 						</c:if>
+						
+						<!-- 2023-04-28 김동욱 로그인한 회원이 관리자인 경우 마이페이지 삭제 -->
+						<c:if test="${sessionScope.isAdmin != '1' }">
+							<a href = "mypage" class="js-btn-custom-cs-tel my-2 pl-2 pr-3 my-sm-0 " id="js_btn_customer_cs_for_normal" href="javascript:void(0)"
+								style="display: flex;">
+								<div class="dc-flex align-items-center color-primary-blue">
+									<img class="mr-1" style="width: 1.25rem;" src="">
+									<span class="js-txt-rent-type-cs-tel" style="font-size:16px;">마이페이지</span> 							
+								</div>
+							</a>
+						</c:if>
+						<div class="mx-2">
+							<div class="nav-divider"></div>
+						</div>
+						<button onclick="window.location.href='logout'"
+							class="js-pc-header-btn-login btn color-blue my-2 my-sm-0 tmobi-dc-none"
+							type="button" style ="font-size:16px;">로그아웃
+						</button>
+						
 					</c:otherwise>
 				</c:choose>
 			</div>

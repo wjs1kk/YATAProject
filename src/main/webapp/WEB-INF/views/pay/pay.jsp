@@ -293,7 +293,7 @@ $(function() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <label class="js-only-domestic-ui mx-1 dc-flex align-items-end">-</label>
+                                        <label class="js-only-domestic-ui mx-1 dc-flex align-items-end"></label>
                                     </div>
                                     <div class="invalid-feedback">생년월일이 형식에 맞지 않습니다</div>
                                 </div>
@@ -402,32 +402,27 @@ $(function() {
                                                         <li
                                                             class="list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none pay-type-container">
                                                             결제수단<div class="text-right">
-                                                                <div class="dc-flex"><img
-                                                                        class="soil-item-pay-detail-pay-type-icon pay-type-icon">
-                                                                    <div
-                                                                        class="soil-item-pay-detail-pay-type-name text-14 color-grey-3 ml-2">
+                                                                <div class="dc-flex">
+                                                                	<img class="soil-item-pay-detail-pay-type-icon pay-type-icon">
+                                                                    <div class="soil-item-pay-detail-pay-type-name text-14 color-grey-3 ml-2">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <li
-                                                            class="js-soil-container-pay-detail-pay-type-cancel-noti list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none thin-padding-top">
-                                                            <div
-                                                                class="soil-item-pay-detail-pay-type-cancel-noti text-12 color-grey-5">
+                                                        <li class="js-soil-container-pay-detail-pay-type-cancel-noti list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none thin-padding-top">
+                                                            <div class="soil-item-pay-detail-pay-type-cancel-noti text-12 color-grey-5">
                                                             </div>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li
-                                                        class="vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
+                                                    <li class="vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
                                                         <span class="js-vreserv-txt-rent-price-label">대여요금
-                                       								
                                                         </span>
                                                         <div class="text-right">
                                                         <span class="js-vreserv-txt-rent-price">
                                                         	<script type="text/javascript">
-                                                        		document.write("+ " + (${car.car_price }/2)*${param.time} +"원");
+                                                        		document.write("+ " + ((${car.car_price }/2)*${param.time}).toLocaleString("ko-KR") +"원");
                                                         	</script>                                          	
 														</span>
 														</div>
@@ -435,8 +430,13 @@ $(function() {
                                                     <li class="js-spdl-poa-hide js-verserv-container-insurance-price vreserv-container-price-txt list-group-item px-0 bg-lg-none js-oversea-api-hide">
                                                         <div
                                                             class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-                                                            보험요금<div class="text-right"><span
-                                                                    class="vreserv-txt-insurance-price">+ ${param.ins } 원</span>
+                                                            보험요금
+                                                            <div class="text-right">
+                                                            <span class="vreserv-txt-insurance-price">
+	                                                    		<script type="text/javascript">
+																	document.write("+" + (${param.ins }).toLocaleString("ko-KR") + " 원");
+																</script>	
+                                                            </span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -447,23 +447,19 @@ $(function() {
                                                             <div class="js-vreserv-btn-login">
                                                                 <div class="dc-flex click-effect-press">
                                                                 	<span class="color-blue-dark-light mr-2 font-weight-bold">
-                                                                        <span class="selectCoupon">쿠폰 선택하기ss</span>   
+                                                                        <span class="selectCoupon">쿠폰 선택하기</span>   
                                                                     </span>
                                                                   	<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li class="js-vreserv-container-deposit-price vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none"
-                                                        style="display: none;">보증금 (현장결제)<div class="text-right"><span
-                                                                class="vreserv-txt-deposit-price">&nbsp;</span></div>
-                                                    </li>
                                                     <li
                                                         class="js-spdl-poa-hide vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center text-primary px-0 wordbreak-keepall text-14 font-weight-bold bg-lg-none pb-0 border-none">
                                                         총 결제금액<div class="text-right">
                                                         <span class="res_totalPrice" class="vreserv-txt-total-price">
-                                                        	원
 														</span>
+                                                        	원
 													</div>
                                                     </li>
                                                     <li
@@ -578,7 +574,7 @@ $(function() {
                             <div class="container"> 
                                 <div class="row section-title">
                                     <div class="col">
-                                        <div class="mb-3 dc-flex align-items-center justify-content-between text-16">
+                                        <div class="mb-3 dc-flex align-items-center justify-content-between text-20">
                                             <span class="color-grey-2 font-weight-bold">결제 정보</span>
                                         </div>
                                     </div>
@@ -588,34 +584,30 @@ $(function() {
                                     <div class="row">
                                         <div class="col">    
                                             <ul class="list-group list-group-flush">
-                                                <li
-                                                    class="bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
-                                                    <span class="js-vreserv-txt-rent-price-label">대여요금</span>
+                                                <li class="bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
+                                                    <span class="js-vreserv-txt-rent-price-label text-16">대여요금</span>
                                                     <div class="text-right">
-                                                    <span class="js-vreserv-txt-rent-price">
-                                                            <script type="text/javascript">
-                                                        		document.write("+ " + (${car.car_price }/2)*${param.time} + "원");
-                                                        	</script>                                                       
+                                                    <span class="js-vreserv-txt-rent-price text-18">
+                                                        <script type="text/javascript">
+															document.write("+ " + ((${car.car_price }/2)*${param.time}).toLocaleString("ko-KR") + " 원");
+														</script>                                                       
                                                     </span></div>
                                                 </li>
-                                                <li class="js-verserv-container-insurance-price bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none js-oversea-api-hide"
-                                                    >보험요금<div class="text-right"><span
-                                                            class="vreserv-txt-insurance-price">+${param.ins }</span></div>
+                                                <li class="js-verserv-container-insurance-price bg-white list-group-item dc-flex justify-content-between 
+                                                	align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none js-oversea-api-hide text-16" >보험요금
+                                                	<div class="text-right">
+                                                		<span class="vreserv-txt-insurance-price text-18">
+                                                		<script type="text/javascript">
+															document.write("+" + (${param.ins }).toLocaleString("ko-KR") + " 원");
+														</script>	
+                                                		</span></div>
                                                 </li>
-                                                <li class="js-verserv-container-delivery-price bg-white list-group-item align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none js-oversea-api-hide"
-                                                    style="display: none;">
-                                                    <div class="dc-flex justify-content-between">차량배달<div
-                                                            class="text-right"><span
-                                                                class="vreserv-txt-delivery-price">&nbsp;</span></div>
-                                                    </div>
-                                                </li>
-                                                <li class="js-vreserv-container-discount-price bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
+                                                <li class="js-vreserv-container-discount-price bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none text-16">
                                                     할인 적용
                                                 	<div class="text-right">
-                                                		<span class="vreserv-txt-discount-price" style="display: none;">0원</span>
 														<div class="js-vreserv-btn-login" >
 															<div class="dc-flex click-effect-press" id="coupon">
-																<span class="color-blue-dark-light mr-2 font-weight-bold">
+																<span class="color-blue-dark-light mr-2 font-weight-bold text-16">
 																	<span class="selectCoupon">쿠폰 선택하기 </span>
 																</span>
 															<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
@@ -624,39 +616,41 @@ $(function() {
                                                     </div>
                                                 </li>
                                                 
-                                                 <li class="js-vreserv-container-discount-price bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
+                                                 <li class="js-vreserv-container-discount-price bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none text-16">
                                                    	포인트 사용
                                                 	<div class="text-right">
-                                                		<span class="vreserv-txt-discount-price" style="display: none;">0원</span>
 														<div class="js-vreserv-btn-login">
 															<div class="dc-flex click-effect-press">
 																<span class="color-blue-dark-light mr-2 font-weight-bold">
-																	<input type="text" name="point" id="point" placeholder="0" value="0">																
-																	<input type="button" value="사용" id="usePoint" class="btn-primary point_btn point_btn_N" data-state="N">
-																	<input type="button" value="취소" id="canceloint" class=" point_btn point_btn_Y" data-state="Y" style="display: none;">
+																	<input type="text" class="text-right" name="point" id="point" placeholder="0" value="0" style="width: 60%">																
+																	<input type="button" value="사용" id="usePoint" class="btn-primary point_btn point_btn_N"  data-state="N">
+																	<input type="button" value="취소" id="canceloint" class="btn-danger point_btn point_btn_Y" data-state="Y" style="display: none;">
 																</span>
 															</div>
-															<div>사용 가능한 포인트 : ${member.member_point }</div>
+															<div>사용 가능한 포인트 :
+																<script type="text/javascript">
+																	document.write((${member.member_point }).toLocaleString("ko-KR"));
+																</script>
+															</div>
 														</div>
                                                     </div>
                                                 </li>
                                                 
-                                                <li
-                                                    class="bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall text-14">
+                                                <li class="text-primary bg-white list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall text-24">
                                                     총 결제금액<div class="text-right text-20">
-                                                    <span class="res_totalPrice" class="vreserv-txt-total-price">
-                                                            원
-                                                        	</span></div>
+                                                    <span class="res_totalPrice vreserv-txt-total-price">
+                                                    </span>
+                                                    원
+                                                    </div>
                                                 </li>
                                                 <li class="bg-white list-group-item text-14 color-grey-3 text-center border-none">
                                                     위 내용을 모두 확인하였으며, 결제에 동의합니다</li>
                                                 <li class="bg-white list-group-item px-0 pb-0">
                                                 	<button id="btnPay" onclick="pay_success()" class="js-vreserv-btn-do-pay btn btn-primary btn-block btn-lg btn-border-6 line-height-12 click-effect-press disabled">
                                                         <div class="text-18 font-weight-bold text-white">
-                                                        <span class="res_totalPrice" class="js-vreserv-txt-total-pay-price js-vreserv-welcome-coupon-applied-total-pay-price">
-															원
+                                                        <span  class="js-vreserv-txt-total-pay-price js-vreserv-welcome-coupon-applied-total-pay-price">
 															</span>
-                                                            <sapn class="js-vreserv-txt-pay-btn">&nbsp;결제하기</sapn>
+                                                            <span class="js-vreserv-txt-pay-btn">&nbsp;결제하기</span>
                                                         </div>
                                                         
                                                     </button></li>

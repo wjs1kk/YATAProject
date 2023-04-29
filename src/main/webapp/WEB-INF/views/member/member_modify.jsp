@@ -80,7 +80,7 @@
 											<button class="w-50 btn btn-lg btn-secondary"
 												style="width: 300px; margin-bottom: 15px" type="reset">취소</button>
 											<button class="w-50 btn btn-lg btn-danger"
-												style="width: 300px; margin-bottom: 15px" type="button" onclick="location.href='deleteMember'">회원탈퇴</button>
+												style="width: 300px; margin-bottom: 15px" type="button" onclick="if(confirm('회원 탈퇴 하시겠습니까?')){location.href='deleteMember'} else {alert('취소 되었습니다.')}">회원탈퇴</button>
 										</div>
 									</form>
 								</div>

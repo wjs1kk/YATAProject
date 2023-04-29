@@ -60,6 +60,12 @@
 														class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1">${param.res_place }</div>
 												</div>
 											</div>
+									     	 <div class="js-cpi-container-branch-info pt-1">
+			                                    <div class="dc-flex align-items-center">
+			                                    	<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM4NTkyQUIiIGQ9Ik03LjY0OCAyLjE0NmMuMTk2LS4xOTUuNTEyLS4xOTUuNzA3IDBsNS43OTMgNS43OTNjLjMxNS4zMTUuMDkyLjg1NC0uMzUzLjg1NEgyLjIwOWMtLjQ0NSAwLS42NjktLjUzOS0uMzU0LS44NTRsNS43OTMtNS43OTN6TTEzLjAwMiA4Ljc5M2gtMTB2NS41YzAgLjI3Ni4yMjQuNS41LjVoOWMuMjc2IDAgLjUtLjIyNC41LS41di01LjV6Ii8+CiAgICA8cmVjdCB3aWR0aD0iMiIgaGVpZ2h0PSI0IiB4PSI3LjAwMiIgeT0iMTEuNzkzIiBmaWxsPSIjRkFGQUZBIiByeD0iMSIvPgo8L3N2Zz4K">
+			                                        <div class="js-cpi-txt-branch-info text-12 color-grey-4 ml-1">${param.res_place }</div>
+			                                    </div>
+			                                </div>
 											<!-- 											대여시간 날짜 앞에서 데이터 받아와서 넣어야함. -->
 											<hr class="mb-2">
 											<div class="js-cpi-container-rent-period">
@@ -107,61 +113,6 @@
 																src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTMiIGhlaWdodD0iNDIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cGF0aCBkPSJNMTAuNTUyIDMyLjYzNmM4LjkyMiAwIDE2LjE1Ny03LjIzNiAxNi4xNTctMTYuMTU4QzI2LjcxIDkuNTAzIDIyLjI5MiAzLjU2MSAxNi4xIDEuM2MxLjA4LS4xOTUgMi4xOS0uMyAzLjMyNC0uM0MyOS43NjkgMSAzOC4xNiA5LjM4OCAzOC4xNiAxOS43MzdjMCAxMC4zNDktOC4zODcgMTguNzM2LTE4LjczNiAxOC43MzZhMTguNjk2IDE4LjY5NiAwIDAgMS0xNC40NzUtNi44MzggMTYgMTYgMCAwIDAgNS42MDMgMXpNMy4yODYgOCAyLjY4IDkuNTY4IDEgOS42NjJsMS4zMDQgMS4wNTgtLjQzIDEuNjI1IDEuNDEyLS45MTMgMS40MS45MTMtLjQzLTEuNjI1IDEuMzAzLTEuMDU4LTEuNjgtLjA5NEwzLjI4NyA4ek00Mi45ODIgMzMgNDEuOSAzNS44MDNsLTIuOTk4LjE2MyAyLjMzIDEuODkyLS43NyAyLjkwNSAyLjUyMS0xLjYzMyAyLjUyMiAxLjYzMy0uNzctMi45MDUgMi4zMjYtMS44OTItMi45OTgtLjE2M0w0Mi45ODIgMzN6TTQ5LjI0NyAxNmwtLjU5IDEuNTQyTDQ3IDE3LjYzbDEuMjg3IDEuMDQ5LS40MjMgMS41OTUgMS4zODMtLjkgMS4zOTIuOS0uNDIyLTEuNTk1IDEuMjc3LTEuMDQ5LTEuNjQ4LS4wODhMNDkuMjQ3IDE2eiIgZmlsbD0iI0ZGRjU5QSIvPgo8L3N2Zz4K">
 														</div>
 													</div>
-													<span class="text-14 color-grey-6">야간인수 시간:&nbsp;</span><span
-														class="js-npg-night-pickup-start-time text-14 color-grey-6">00:00</span><span
-														class="text-14 color-grey-6">&nbsp;~&nbsp;</span><span
-														class="js-npg-night-pickup-end-time text-14 color-grey-6">00:00</span><span
-														class="text-14 color-grey-6">, 추가비용&nbsp;</span><span
-														class="js-npg-night-fee text-14 color-grey-6"></span>
-													<div data-toggle="collapse" data-target="#js_npg_desc"
-														aria-expanded="false">
-														<div
-															class="dc-flex justify-content-end align-items-center"
-															id="js_npg_arrow_up">
-															<img class="click-effect-press"
-																src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgdmlld0JveD0iMCAwIDI1IDI1Ij4KICAgIDxwYXRoIGZpbGw9IiM5Nzk3OTciIGQ9Ik0xMi42MTU1NTQsMTIuODAyMTc3OCBMMTcuNjcxNzA4OSw5LjE4NjY0NzU2IEMxOC4xMjA5NTM3LDguODY1NDAzOCAxOC43NDU1NTgxLDguOTY5MTY5MTUgMTkuMDY2ODAxOCw5LjQxODQxMzk1IEMxOS4zODgwNDU2LDkuODY3NjU4NzYgMTkuMjg0MjgwMiwxMC40OTIyNjMxIDE4LjgzNTAzNTQsMTAuODEzNTA2OSBMMTMuMTk1OTI3MywxNC44NDU4OTI1IEMxMi44NDc0MiwxNS4wOTUxMDE0IDEyLjM3ODg4MDMsMTUuMDk0NjEwMiAxMi4wMzA4OTYzLDE0Ljg0NDY3MSBMNi40MTY3MDc3MywxMC44MTIyODU0IEM1Ljk2ODEzNzU1LDEwLjQ5MDEwMDMgNS44NjU2ODIyMSw5Ljg2NTI3OTY4IDYuMTg3ODY3MzEsOS40MTY3MDk1IEM2LjUxMDA1MjQxLDguOTY4MTM5MzIgNy4xMzQ4NzMwMiw4Ljg2NTY4Mzk3IDcuNTgzNDQzMiw5LjE4Nzg2OTA3IEwxMi42MTU1NTQsMTIuODAyMTc3OCBaIi8+Cjwvc3ZnPgo="><span
-																class="text-14 text-white click-effect-press">자세히보기</span>
-														</div>
-													</div>
-													<div class="contents collapse" id="js_npg_desc">
-														<hr class="bg-color-grey-7 opacity-10">
-														<p class="text-14 text-white">카모아 예약완료 후, 반드시 대여업체에
-															야간인수가 필요함을 사전에 알려주세요.</p>
-														<div class="mt-3">
-															<p class="mb-0 text-14 text-white font-weight-bold">·
-																야간인수 시간</p>
-															<span
-																class="js-npg-night-pickup-start-time-hour12 text-14 color-grey-6"></span><span
-																class="text-14 color-grey-6">&nbsp;~&nbsp;</span><span
-																class="js-npg-night-pickup-end-time-hour12 text-14 color-grey-6"></span>
-														</div>
-														<div class="js-npg-night-charge-box mt-3">
-															<p class="mb-0 text-14 text-white font-weight-bold">·
-																야간인수 비용</p>
-															<span
-																class="text-14 color-grey-6 js-npg-night-pickup-start-time-hour12"></span><span
-																class="text-14 color-grey-6">&nbsp;이후 </span><span
-																class="js-npg-night-pickup-extra-charge text-14 color-grey-6"></span><br>
-															<span class="text-14 color-grey-6">야간인수 비용이 발생할
-																경우, 대여업체에 별도 납부해주세요.</span>
-														</div>
-														<div class="js-npg-night-shuttle-box mt-3">
-															<p class="mb-0 text-white text-14 font-weight-bold">·
-																셔틀버스 운행시간</p>
-															<span
-																class="js-npg-shuttle-start-time text-14 color-grey-6"></span><span
-																class="text-14 color-grey-6">&nbsp;~&nbsp; </span><span
-																class="js-npg-shuttle-end-time text-14 color-grey-6"></span>
-														</div>
-														<p class="js-npg-notice mt-3 text-14 color-grey-6"></p>
-														<div
-															class="dc-flex justify-content-end align-items-center"
-															id="js_npg_arrow_down">
-															<img class="rotate-180 click-effect-press"
-																src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgdmlld0JveD0iMCAwIDI1IDI1Ij4KICAgIDxwYXRoIGZpbGw9IiM5Nzk3OTciIGQ9Ik0xMi42MTU1NTQsMTIuODAyMTc3OCBMMTcuNjcxNzA4OSw5LjE4NjY0NzU2IEMxOC4xMjA5NTM3LDguODY1NDAzOCAxOC43NDU1NTgxLDguOTY5MTY5MTUgMTkuMDY2ODAxOCw5LjQxODQxMzk1IEMxOS4zODgwNDU2LDkuODY3NjU4NzYgMTkuMjg0MjgwMiwxMC40OTIyNjMxIDE4LjgzNTAzNTQsMTAuODEzNTA2OSBMMTMuMTk1OTI3MywxNC44NDU4OTI1IEMxMi44NDc0MiwxNS4wOTUxMDE0IDEyLjM3ODg4MDMsMTUuMDk0NjEwMiAxMi4wMzA4OTYzLDE0Ljg0NDY3MSBMNi40MTY3MDc3MywxMC44MTIyODU0IEM1Ljk2ODEzNzU1LDEwLjQ5MDEwMDMgNS44NjU2ODIyMSw5Ljg2NTI3OTY4IDYuMTg3ODY3MzEsOS40MTY3MDk1IEM2LjUxMDA1MjQxLDguOTY4MTM5MzIgNy4xMzQ4NzMwMiw4Ljg2NTY4Mzk3IDcuNTgzNDQzMiw5LjE4Nzg2OTA3IEwxMi42MTU1NTQsMTIuODAyMTc3OCBaIi8+Cjwvc3ZnPgo="><span
-																class="text-14 text-white click-effect-press">접기</span>
-														</div>
-													</div>
 												</div>
 											</div>
 										</div>
@@ -186,70 +137,9 @@
 												</div>
 											</div>
 											<div
-												class="js-vcd-price-info dc-flex align-items-center justify-content-between"
-												id="js_vcd_price_info_subscribe" style="display: none;">
-												<span
-													class="js-vcd-badge-subscribe-period badge badge-primary text-10"></span>
-												<div class="dc-flex align-items-end flex-column">
-													<div class="dc-flex align-items-center">
-														<span
-															class="js-vcd-txt-discount-rate box-discount-rate text-12 mr-1 color-blue"
-															style="display: none;"></span><span
-															class="js-vcd-txt-origin-price text-12 color-grey-3 font-weight-bold"
-															style="display: none;"></span>
-													</div>
-													<div class="dc-flex align-items-center">
-														<span
-															class="text-12 color-grey-4 font-weight-bold mr-1 line-height-1">보험</span><span
-															class="text-12 color-grey-4 mr-1 line-height-1">포함</span><span
-															class="js-vcd-txt-expected-price text-20 font-weight-bold color-red-brown mb-0">12,300원</span>
-													</div>
-												</div>
-											</div>
-											<div
 												class="js-oversea-default-insurance-plan text-12 color-grey-4 text-right dc-none">
 											</div>
 											<div class="mt-1" id="js_vcd_next_prices"></div>
-											<div class="dc-none js-show-devide-elmt mt-3 container"
-												data-sde-s="0" data-sde-m="1" data-sde-sub="1"
-												data-sde-g="0" style="display: none;">
-												<div class="dc-none dc-md-block">
-													<div class="row">
-														<div class="col-5 mx-0 px-0">
-															<div
-																class="js-btn-custom-cs-tel js-btn-vcd-month-cs-tel color-grey-2 click-effect-press">
-																<div class="text-12">월렌트 전문 상담</div>
-																<div
-																	class="text-18 font-weight-bold js-txt-custom-cs-tel">
-																	1544-5344</div>
-															</div>
-														</div>
-														<div class="col-7 mx-0 px-0">
-															<a
-																class="js-btn-channel-talk btn btn-light-blue btn-block py-2 text-16"
-																href="javascript:void(0)"><img class="mr-2 icon-25"
-																src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxwYXRoIGZpbGw9IiMwRDZGRkMiIGQ9Ik01LjEzNiAxOS40NzRsMi45MTYtLjg2Yy4yNTMtLjA3Ni41MjUtLjA0Ny43NTcuMDc4IDEuMjk2LjY5OCAyLjc4NCAxLjA3MyA0LjMzOCAxLjA3MyA0LjYzNyAwIDguMzU1LTMuMzMxIDguMzU1LTcuMzgzIDAtNC4wNS0zLjcxOC03LjM4Mi04LjM1NS03LjM4Mi00LjYzNyAwLTguMzU1IDMuMzMxLTguMzU1IDcuMzgzIDAgMS4zMzIuNCAyLjYxMiAxLjE1IDMuNzM4LjE3OS4yNjcuMjE4LjYwMy4xMDYuOTAzbC0uOTEyIDIuNDV6bS0xLjM1IDIuNDg1Yy0uNzkxLjIzMy0xLjUwOS0uNTM1LTEuMjIxLTEuMzA4bDEuNDM3LTMuODYzYy0uNzg5LTEuMzQxLTEuMjEtMi44NDYtMS4yMS00LjQwNUMyLjc5MiA3LjE3NSA3LjQ1MiAzIDEzLjE0NyAzYzUuNjk2IDAgMTAuMzU1IDQuMTc1IDEwLjM1NSA5LjM4MyAwIDUuMjA3LTQuNjYgOS4zODItMTAuMzU1IDkuMzgyLTEuNzM4IDAtMy40MTctLjM5LTQuOTEyLTEuMTJsLTQuNDUgMS4zMTR6Ii8+Cjwvc3ZnPgo=">채팅상담</a>
-														</div>
-													</div>
-												</div>
-												<div class="dc-md-none">
-													<div class="row">
-														<div class="col-5 px-1">
-															<a
-																class="js-btn-channel-talk btn btn-outline-grey-6 btn-block py-2 text-16 color-grey-4"
-																href="javascript:void(0)"><img class="mr-2 icon-25"
-																src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGQ9Ik01LjEzNiAxOS40NzRsMi45MTYtLjg2Yy4yNTMtLjA3Ni41MjUtLjA0Ny43NTcuMDc4IDEuMjk2LjY5OCAyLjc4NCAxLjA3MyA0LjMzOCAxLjA3MyA0LjYzNyAwIDguMzU1LTMuMzMxIDguMzU1LTcuMzgzIDAtNC4wNS0zLjcxOC03LjM4Mi04LjM1NS03LjM4Mi00LjYzNyAwLTguMzU1IDMuMzMxLTguMzU1IDcuMzgzIDAgMS4zMzIuNCAyLjYxMiAxLjE1IDMuNzM4LjE3OS4yNjcuMjE4LjYwMy4xMDYuOTAzbC0uOTEyIDIuNDV6bS0xLjM1IDIuNDg1Yy0uNzkxLjIzMy0xLjUwOS0uNTM1LTEuMjIxLTEuMzA4bDEuNDM3LTMuODYzYy0uNzg5LTEuMzQxLTEuMjEtMi44NDYtMS4yMS00LjQwNUMyLjc5MiA3LjE3NSA3LjQ1MiAzIDEzLjE0NyAzYzUuNjk2IDAgMTAuMzU1IDQuMTc1IDEwLjM1NSA5LjM4MyAwIDUuMjA3LTQuNjYgOS4zODItMTAuMzU1IDkuMzgyLTEuNzM4IDAtMy40MTctLjM5LTQuOTEyLTEuMTJsLTQuNDUgMS4zMTR6Ii8+Cjwvc3ZnPgo=">채팅상담</a>
-														</div>
-														<div class="col-7 px-1">
-															<a
-																class="btn btn-light-blue btn-block py-2 js-btn-custom-cs-tel js-btn-vcd-month-cs-tel click-effect-press text-16"
-																href="javascript:void(0)"><img class="mr-2 icon-25"
-																src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNiAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjMuMDY3IDIzLjI0NWMuNTk3LS41NDcuOTM2LTEuMzIuOTMyLTIuMTI5di0yLjg1OGEyLjg3NSAyLjg3NSAwIDAgMC0yLjQ3NS0yLjkwMyAxMS4zOTcgMTEuMzk3IDAgMCAxLTIuNDk1LS42MiAyLjg4IDIuODggMCAwIDAtMy4wMzQuNjQ4bC0uNjkyLjY5YTE0LjM4IDE0LjM4IDAgMCAxLTQuNC00LjM5MmwuNjg5LS42ODdhMi44NzEgMi44NzEgMCAwIDAgLjY1MS0zLjAzNWMtLjI5OS0uNzk5LS41MDYtMS42MzEtLjYxOS0yLjQ4QTIuODc5IDIuODc5IDAgMCAwIDguNzQ1IDNINS44NzZjLS44MDggMC0xLjU3OS4zNC0yLjEyNC45MzZhMi44NyAyLjg3IDAgMCAwLS43NCAyLjE5NiAxOS45MDMgMTkuOTAzIDAgMCAwIDMuMDk1IDguNzM4IDE5LjY0IDE5LjY0IDAgMCAwIDYuMDQ3IDYuMDM0IDE5Ljk1OCAxOS45NTggMCAwIDAgOC42OSAzLjA4NCAyLjg5IDIuODkgMCAwIDAgMi4yMjMtLjc0M3ptLS45ODYtNS4wMjZ2Mi45MDVhLjk1Ny45NTcgMCAwIDEtMS4wNjMuOTU2IDE4LjAwNiAxOC4wMDYgMCAwIDEtNy44Mi0yLjc4MyAxNy43NDQgMTcuNzQ0IDAgMCAxLTUuNDcxLTUuNDU0QTE4LjAwOCAxOC4wMDggMCAwIDEgNC45MiA1LjkzYS45Ni45NiAwIDAgMSAuOTU4LTEuMDE0aDIuODY3Yy41MDEtLjAwNS45MTEuMzQ4Ljk4LjgzMi4xMjguOTczLjM3MSAxLjk0Ni43MiAyLjg4MWEuOTYuOTYgMCAwIDEtLjIxOCAxLjAxOGwtLjY4LjY4YTEuOTEzIDEuOTEzIDAgMCAwLS4yNjEgMi4zODQgMTYuMjk2IDE2LjI5NiAwIDAgMCA0Ljk4NiA0Ljk3NyAxLjkyMSAxLjkyMSAwIDAgMCAyLjM4OC0uMjZsLjY5Mi0uNjkxYS45NTYuOTU2IDAgMCAxIDEuMDAyLS4yMDljLjk0NC4zNTIgMS45MTkuNTk0IDIuOTE5LjcyNmEuOTU0Ljk1NCAwIDAgMSAuODA4Ljk2NXoiIGZpbGw9IiMwRDZGRkMiLz4KPC9zdmc+Cg==">월렌트
-																전문 상담</a>
-														</div>
-													</div>
-												</div>
-											</div>
 											<div class="mt-3">
 												<div class="btn-vcd-mip-info px-3 py-2 click-effect-press"
 													id="js_vcd_btn_card_mip_info" style="display: none;">
@@ -268,24 +158,6 @@
 
 											</div>
 										</div>
-										<div
-											class="dc-flex justify-content-between align-items-center click-effect-press js-vcd-not-soldout-elmt mt-3"
-											id="vcd_btn_go_review_compnay">
-											<div class="js-company-branch-name text-16-b color-grey-3">${param.res_place }</div>
-											<div
-												class="js-vcd-evaluation-wrapper dc-flex align-items-center">
-												<img
-													src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDEwIj4KICAgIDxwYXRoIGZpbGw9IiNGRkU1NUIiIGQ9Ik0zLjEwOCA4LjcwMmMtLjI4OC4xNTgtLjYyNC0uMDk3LS41Ny0uNDMyTDIuOSA2LjA2NiAxLjM2OSA0LjUwNWMtLjIzMy0uMjM3LS4xMDQtLjY1LjIxNy0uN2wyLjExNi0uMzIxLjk0Ni0yLjAwNWMuMTQ0LS4zMDUuNTYtLjMwNS43MDQgMGwuOTQ2IDIuMDA1IDIuMTE2LjMyMWMuMzIxLjA1LjQ1LjQ2My4yMTcuN2wtMS41MyAxLjU2LjM2IDIuMjA1Yy4wNTUuMzM1LS4yOC41OS0uNTY5LjQzMkw1IDcuNjYybC0xLjg5MiAxLjA0eiIvPgo8L3N2Zz4K">
-												<div
-													class="js-vcd-company-evaluation text-16-b color-grey-2 ml-1">4.3
-												</div>
-												<div
-													class="text-16 color-grey-4 ml-1 is-show-new-branch dc-none"
-													style="display: none;">최근입점</div>
-												<img class="ml-2"
-													src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -302,11 +174,11 @@
 									</li>
 									<li class="nav-item text-center">
 										<div class="nav-link js-vcd-nav-link click-effect-press"
-											id="vcd_review_note">필독사항</div>
+											id="vcd_review_note"></div>
 									</li>
 									<li class="nav-item text-center">
 										<div class="nav-link js-vcd-nav-link click-effect-press"
-											id="vcd_review_tab">리뷰 (851)</div>
+											id="vcd_review_tab"></div>
 									</li>
 								</nav>
 							</div>
@@ -528,7 +400,7 @@
 									<section class="carmore-section dc-none"
 										id="js_vcd_section_car_review" style="display: none;">
 										<div class="container">
-											<h3>🚙 카모아가 먼저 타봤어요</h3>
+											<h3>🚙 YATA가 먼저 타봤어요</h3>
 											<div class="video-wrapper">
 												<iframe class="video-iframe w-100"
 													id="js_vcd_iframe_car_review" frameborder="0"></iframe>
@@ -551,7 +423,7 @@
 												<img
 													src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC41NTMyIDMuNjAwNTdDMTQuOTQzNyAzLjk5MTEgMTQuOTQzNyA0LjYyNDI2IDE0LjU1MzIgNS4wMTQ3OUw3LjQ3NjIzIDEyLjA5MTdDNy4wOTU4OSAxMi40NzIgNi40ODI4MyAxMi40ODM0IDYuMDg4NjcgMTIuMTE3NEwxLjc4MDk4IDguMTE3MzlDMS4zNzYyNyA3Ljc0MTU5IDEuMzUyODMgNy4xMDg4NiAxLjcyODY0IDYuNzA0MTVDMi4xMDQ0NCA2LjI5OTQ0IDIuNzM3MTcgNi4yNzYgMy4xNDE4OCA2LjY1MTgxTDYuNzQzNDIgOS45OTYwOUwxMy4xMzg5IDMuNjAwNTdDMTMuNTI5NSAzLjIxMDA1IDE0LjE2MjYgMy4yMTAwNSAxNC41NTMyIDMuNjAwNTdaIiBmaWxsPSIjMEQ2RkZDIi8+Cjwvc3ZnPgo=">
 												<div class="ml-1 text-14 color-grey-4">제주도의 경우, 렌트카 업체
-													영업시간 외 대여/반납이 필요한 경우 카모아 고객센터를 통한 상담 후 예약 진행해주세요.</div>
+													영업시간 외 대여/반납이 필요한 경우 YATA 고객센터를 통한 상담 후 예약 진행해주세요.</div>
 											</div>
 											<div class="dc-flex align-items-start mt-2">
 												<img
@@ -571,7 +443,7 @@
 									<section class="carmore-section"
 										id="js_section_vcd_korean_attention" style="display: block;">
 										<div class="container">
-											<h3>카모아 이용 안내</h3>
+											<h3>YATA 이용 안내</h3>
 											<div class="" id="js_vcp_container_korean"
 												style="display: block;">
 												<div class="js-vcp-container-korean-attention"
@@ -620,194 +492,8 @@
 												</div>
 												<div class="js-vcp-container-overseas-attention dc-none"
 													style="display: none;">
-													<div class="js-container-btn-category wordbreak-breakword"
-														data-top="0">
-														<button
-															class="js-vcp-btn-category btn btn-category px-2 py-1 mr-1 mb-2 text-16"
-															data-group="vcp_use_category_overseas"
-															data-target="vcp_use_contents_korean_overseas_1">차량
-															이용</button>
-														<button
-															class="js-vcp-btn-category btn btn-category px-2 py-1 mr-1 mb-2 text-16"
-															data-group="vcp_use_category_overseas"
-															data-target="vcp_use_contents_korean_overseas_2">대여/반납
-															안내</button>
-														<button
-															class="js-vcp-btn-category btn btn-category px-2 py-1 mr-1 mb-2 text-16"
-															data-group="vcp_use_category_overseas"
-															data-target="vcp_use_contents_korean_overseas_3">연료
-															규정</button>
-														<button
-															class="js-vcp-btn-category btn btn-category px-2 py-1 mr-1 mb-2 text-16"
-															data-group="vcp_use_category_overseas"
-															data-target="vcp_use_contents_korean_overseas_4">차량
-															정비 및 사고</button>
-														<button
-															class="js-vcp-btn-category js-vcp-only-carmore-inline-block btn btn-category px-2 py-1 mb-2 text-16"
-															data-group="vcp_use_category_overseas"
-															data-target="vcp_use_contents_korean_overseas_5"
-															style="display: inline-block;">취소규정</button>
-													</div>
 													<div class="js-vcp-use-contents-overseas container-blur"
 														data-open="0">
-														<div id="vcp_use_contents_korean_overseas_1">
-															<div class="mt-4 text-16 font-weight-bold color-grey-4">차량
-																이용</div>
-															<div class="text-14 color-grey-4 mt-2 font-weight-bold">차량
-																종류</div>
-															<div class="text-14 color-grey-4">해당 이미지는 참고용입니다.
-																대여 시 특정 구조, 모델 및 차량 색상은 보장되지 않습니다. 차종은 일반적으로 차량 기능, 크기 및
-																수용 공간을 기준으로 분류됩니다. 제휴사마다 차종이 다르게 분류될 수 있습니다.</div>
-															<div class="text-14 color-grey-4 mt-2 font-weight-bold">차량
-																업그레이드</div>
-															<div class="text-14 color-grey-4">
-																차량 대여 시, 추가 요금을 지불하고 차종을 업그레이드하도록 권유하는 경우, 제휴사 측에 명확한
-																사유를 요구해야 합니다. 차량 재고가 부족하거나 동일한 종류의 차량을 제공할 수 없는 경우, 추가
-																요금을 부과하지 않는 것이 일반적입니다.<br>업그레이드를 종용받는 경우, 해당 제휴사
-																측과의 대화 내용을 출력된 서류 사본, 녹취 자료 등의 증빙 자료로 확보하시거나, 즉시 카모아
-																고객센터로 연락 부탁드립니다.
-															</div>
-															<div class="text-14 color-grey-4 mt-2 font-weight-bold">추가요금
-															</div>
-															<div class="text-14 color-grey-4">
-																1. 추가 운전자<br>차량 픽업시 추가 운전자를 등록할 수 있으며, 추가요금이 부과됩니다.
-																추가 운전자마다 반드시 주 운전자와 동일한 서류를 제시해야 합니다. 미등록 운전자가 운전하는 경우,
-																보험은 무효 처리됩니다.<br> <br>2. 지정 장소 외 반납 요금<br>지정
-																장소 외 지역에 차량을 반납해야 하는 경우, 별도의 반납 요금(세금 별도)이 부과될 수 있습니다.<br>
-																<br>3. 동절기 서비스 요금<br>일부 지역 매장에서는 동절기 서비스 요금을
-																부과합니다.<br> <br>4. 추가 옵션 (Add-Ons)<br>추가
-																장비/용품 또는 서비스 비용은 현장에서 지불하셔야 합니다.<br> <br>5.
-																스노우 체인 &amp; 스노우 타이어<br>독일, 스위스, 핀란드 등에서는 동절기 기간 동안
-																스노우 체인 및 스노우 타이어 비용이 부과됩니다. 요금은 매장에서 책정됩니다.
-															</div>
-														</div>
-														<div id="vcp_use_contents_korean_overseas_2">
-															<div class="mt-4 text-16 font-weight-bold color-grey-4">
-																대여/반납 안내</div>
-															<div class="text-14 color-grey-4 mt-2 font-weight-bold">대여
-																안내</div>
-															<div class="text-14 color-grey-4">
-																- 서비스 관련 유의 사항<br>차량 대여 주문내역에는 이미 차량 대여에 필요한 기본 보험이
-																포함되어 있습니다. 그러나 제휴사 직원이 추가 보험 또는 서비스를 권장하거나, 해당 항목을 차량 대여
-																계약상의 기본 구매 항목으로 설정하는 경우도 있습니다. 실제로 필요한 항목인지 판단하셔서 구매 여부를
-																결정하세요. 필요하지 않은 경우, 명확하게 거절 의사를 밝혀주세요.<br> <br>-
-																금액<br>최종 결제 금액이 바우처에 명시된 금액과 동일한지 확인해주세요. 불확실한 부분이
-																있다면 즉시 문의하세요. 이견 및 해결되지 않는 문제 발생 시 카모아로 연락해주세요. 현장에서 부가
-																서비스를 변경하면 가격도 변경됩니다. 서명하기 전 해당 변경 사항과 금액을 꼭 확인해주세요.<br>
-																<br>- 교통 법규위반 티켓 발송 주소<br>렌터카 사용 중 발생한 교통 법규위반
-																티켓은 계약서 서명 시 제공하신 주소로 발송됩니다. 계약서 확정 후에는 주소 수정이 불가합니다.
-																잘못된 주소 제공 시 교통 법규위반 티켓이 발송되지 않습니다. 제때 범칙금을 납부하지 못하면 현지
-																신용 기록에 영향을 미치며, 상당한 액수의 체납금이 부과됩니다.<br> <br>-
-																긴급 출동 서비스<br>제휴사 직원에게 긴급 출동 서비스용 전화번호를 확인하세요.<br>
-																<br>- 대여 시간 변경<br>일찍 차량을 대여하는 경우, 추가 요금이 발생할 수
-																있습니다. 대여 시간 변경을 원하시면 해당 제휴사에 변경 가능 여부 및 추가 비용을 확인해주셔야
-																합니다.<br>대여 시간을 앞당기면 앞당긴 시간의 차이만큼 차량을 일찍 반납해야 합니다.
-																늦게 반납하는 경우, 제휴사에서 현지 시장 가격 기준으로 추가 요금을 부과합니다.<br>차량을
-																늦게 대여하게 될 경우, 대여 시간 전에 제휴사 또는 고객센터로 연락해주셔야 합니다. 그렇지 않으면
-																차량 이용이 불가할 수 있습니다. 이용약관에 따라 이용하지 않은 대여 시간에 대한 요금 환불은
-																불가하기 때문에 정시에 도착하시기 바랍니다.
-															</div>
-															<div class="text-14 color-grey-4 mt-2 font-weight-bold">차량
-																점검 방법</div>
-															<div class="text-14 color-grey-4">
-																1. 좌석, 유리, 타이어 등 차량 내외부에 긁힌 자국, 찌그러진 곳, 기타 손상된 부분은 없는지
-																확인하세요.<br>2. 차량의 문, 창문, 후드와 트렁크 커버가 정상적으로 열리고 닫히는지
-																모두 확인하세요.<br>3. 경고등, 전조등, 와이퍼, 경적 등 차량 내부의 스위치를 모두
-																확인하세요.<br>4. 차량 정지 표지와 비상용 장비 및 용품이 구비되어 있는지 확인하세요.
-																예비 타이어를 제공하지 않는 제휴사도 있습니다. 매장 직원에게 문의 및 확인해주세요.<br>5.
-																차량 점검 시 다음은 반드시 사진 또는 영상을 촬영하여 기록하셔야 합니다: 차량 내외부 손상된 부품
-																또는 부분, 연료계 및 주행기록계 문제가 있는 경우, 제휴사 직원이 차량 점검 목록에 손상된 부분을
-																기록할 수 있도록 하여 차량 반납 시 발생할 수 있는 분쟁을 미연에 방지하세요.<br>6.
-																촬영 당시 시간을 확인할 수 있도록 반드시 카메라의 시간 표시 기능을 켜 주세요. 안전한 주행에
-																방해가 되는 차량 손상 발견 즉시 제휴사 직원에게 차량 교환을 문의하세요.
-															</div>
-															<div class="text-14 color-grey-4 mt-2 font-weight-bold">반납
-																안내</div>
-															<div class="text-14 color-grey-4">
-																- 차량 반납 절차<br>1. 매장에 차량을 반납하고 점검을 진행합니다.<br>2.
-																계약서와 영수증을 받은 후 보관합니다.<br>3. 일반적으로 보증금은 픽업시 렌터카 업체에
-																지불합니다. 렌터카 이용 기간 동안 차량 손상/도난이 없는 경우 또는 차량 반납 후 미결제 금액이
-																없는 경우에는 전액 환불됩니다. 신용카드로 보증금을 지불 하셨을 경우, 최소 7일에서 최대 21일까지
-																소요될 수 있습니다.<br> <br>* 무인 반납의 경우, 차량 대여 시, 상세한
-																반납 방법을 한 번 더 확인 부탁드립니다.<br> <br>- 반납 시간 변경<br>반납
-																시간 전에 차량을 반납하더라도 차량을 이용하지 않은 일수 또는 시간에 대한 대여 요금은 환불되지
-																않습니다. 일부 업체는 조기 반납 시 추가 요금을 부과할 수 있습니다.<br>만약 지정된
-																시간보다 늦게 차량을 반납하는 경우, 미리 제휴사에 알려주셔야 합니다.<br>늦게 반납할
-																경우, 현지 시장 가격을 기준으로 추가 요금이 부과될 수 있으며, 반납 시, 제휴사에 직접 지불할 수
-																있습니다. 제휴사에게 미리 통보하지 않은 경우, 페널티 요금이 부과될 수 있습니다.
-															</div>
-															<div class="text-14 color-grey-4 mt-2 font-weight-bold">차량
-																반납 시 지켜야 할 사항</div>
-															<div class="text-14 color-grey-4">
-																1. 차량 청결 유지<br>차량 반납 시 차량 내외부 상태가 더러울 경우, 제휴사에서는
-																상당한 액수의 세차비 및 인건비를 청구할 수 있습니다. 이의 제기는 차량 반납 시 제휴사 직원에게
-																직접 해 주세요. 차량 반납이 완료된 후에는 이의 제기가 불가합니다.<br> <br>2.
-																사유가 불명확한 공제<br>차량 반납 시 차량 손상에 관한 상황을 제휴사 직원과 확인하고
-																점검한 후 확인 서명을 하세요. 차량 반납 후 제휴사로부터 비용 청구를 요청 받는 경우, 제휴사에
-																연락하여 확인하시거나, 또는 카모아에 연락하여 비용이 청구된 구체적인 사유에 대해 문의하실 수
-																있습니다. 지불하셔야 할 비용 결제를 거부하시거나, 유효하지 않은 신용카드로 인한 결제 실패 또는
-																유사한 상황 발생 시, 제휴사에서는 채무징수 대행업체를 통해 청구 금액을 징수할 수 있으며, 이에
-																따라 상당한 액수의 체납 과태료가 부과될 수 있습니다.<br> <br>3. 차량
-																대여 계약서 보관<br>차량 대여 계약서 및 관련 서류를 받은 후 보관하셔야 합니다. 요금에
-																관한 분쟁 발생 시, 카모아는 해당 자료를 활용하여 고객의 권익을 최대한 배려합니다.<br>
-																<br>4. 교통 법규위반 티켓<br>차량 이용 중 교통법규를 위반한 경우, 현지
-																교통부에서 고객의 해당 주소로 교통 법규위반 티켓을 발송합니다. 티켓 확인 후 범칙금을 납부하세요.
-																개인정보보호 정책상, 제휴사 및 카모아는 본 사안에 개입할 수 없습니다. 이의가 있는 경우, 교통
-																법규위반 통지받으신 후 현지 교통부에 이의 제기를 신청해주셔야 합니다. 법규위반 티켓 수신 소요
-																기간은 국가 및 지역마다 다를 수 있습니다. 보통 90일 이내에서 최대 18개월 정도가 소요됩니다.<br>
-																<br>5. 통행료<br>차량 이용 중 유료도로 통행료를 지불해야 하는 경우,
-																제휴사가 고객의 신용카드에서 통행료를 공제할 수 있으며, 신용카드 사용내역서상에 보통 '통행료/교통'
-																항목으로 기재됩니다. 제휴사마다 통행료 규정이 상이하여 차량 대여 시, 제휴사와 한 번 더 재확인
-																부탁드립니다.<br> <br>6. 운영 수수료<br>차량 이용 중 범칙금
-																또는 통행료가 발생하면 제휴사에서 관련 정보와 서류를 교통부에 제출하는 것을 지원해드릴 수 있습니다.
-																이 경우, 운영 수수료가 발생합니다. 제휴사에서는 보통 이에 관해 미리 통지하지 않으며, 발생 건
-																별로 고객의 신용카드에 수수료를 청구합니다. (참고 사항: 영국의 경우, 건당 최대 £84의 운영
-																수수료가 발생합니다.)
-															</div>
-														</div>
-														<div id="vcp_use_contents_korean_overseas_3">
-															<div class="mt-3 text-16 font-weight-bold color-grey-4">연료
-																규정</div>
-															<div class="text-14 color-grey-4 mt-2">
-																- 차량 반납 시, 대여 시점의 연료량과 동일하게 주유하여 반납해야 합니다.<br>- 반납
-																시 연료량이 모자랄 경우, 추가 주유 서비스 비용이 발생할 수 있습니다.<br>- 연료를
-																채우지 않고 반납(Free Tank)을 허용하는 제휴사가 있을 수 있습니다.해당 규정일 경우, 가득
-																채워진 상태로 차량을 픽업하고 남은 연료량에 상관없이 차량을 반납할 수 있습니다.<br>-
-																차량 대여 시 계기판을 사진으로 촬영해두시는 것을 권장해 드립니다.<br>- 차량 연료가
-																무엇인지 매장 측과 확인하여 주유해 주시길 바랍니다.연료를 잘못 선택하면 차량이 손상될 수 있으며,
-																제휴사에서 고액의 수리비를 청구할 수도 있습니다.일반적으로 연료 탱크캡에 디젤 또는 휘발유(가솔린)
-																등 연료 종류가 표시되어 있습니다.
-															</div>
-														</div>
-														<div id="vcp_use_contents_korean_overseas_4">
-															<div class="mt-3 text-16 font-weight-bold color-grey-4">차량
-																정비 및 사고</div>
-															<div class="text-14 color-grey-4 mt-2">
-																1. 고장, 사고 또는 차량에 문제가 발생한 경우 즉시 렌터카 업체에 연락해야 합니다.<br>2.
-																사고가 발생한 경우, 즉시 렌터카 업체에 연락하여 안내를 받으셔야 하며, 제3자가 연관된 사고라면
-																당사자의 연락처 정보, 차량등록번호, 운전자 성명, 운전면허증 등록번호 및 기타 관련 정보를 확인해야
-																합니다. 사고 현장을 촬영하고 경찰이 도착하거나 렌터카 업체의 지원이 있을 때까지 대기하셔야 합니다.
-																경찰에게 Police Report를 반드시 수령하여 렌트카 업체에 제출해야 보험처리가 가능합니다.<br>3.
-																임의로 수리할 수 없으며, 반드시 렌트카 업체의 규정에 따라야 합니다. 임의로 수리할 경우, 추가
-																비용이 발생할 수 있으며 서비스 이용이 제한됩니다.
-															</div>
-														</div>
-														<div class="js-vcp-only-carmore"
-															id="vcp_use_contents_korean_overseas_5"
-															style="display: block;">
-															<div class="mt-3 text-16 font-weight-bold color-grey-4">취소규정
-															</div>
-															<div class="text-14 color-grey-4 mt-2">
-																<div class="js-vcp-container-free-cancel-date-txt"
-																	style="display: none;">
-																	·&nbsp;<span
-																		class="js-vcp-txt-free-cancel-date text-primary font-weight-bold"></span>&nbsp;까지
-																	무료 취소가 가능합니다.
-																</div>
-																· 결제 후 무료취소 구간에 취소를 하였더라도 대여 시간이 지났을 경우 예약 금액에 대한 환불이
-																불가능합니다.<br>· 상세한 취소 규정은 “취소 규정 자세히 보기”에서 확인할 수 있습니다
-															</div>
-														</div>
 													</div>
 												</div>
 												<div class="js-vcp-container-korean-cancel-fee-info dc-none">
@@ -982,7 +668,7 @@
 																	수수료</h5>
 																<p class="color-grey-4">
 																	결항, 결박 시 발생하는 수수료를 안내드립니다.<br> 인수 당일 결항, 결박건에 한해
-																	결항(결박) 확인서를 카모아로 전달주시면 100% 환불 가능합니다.<br> 결항확인서는
+																	결항(결박) 확인서를 YATA로 전달주시면 100% 환불 가능합니다.<br> 결항확인서는
 																	결항 발생 당일 제출해주셔야 합니다.<br>
 																</p>
 															</div>
@@ -995,7 +681,7 @@
 															src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNiAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMy40ODkgMTMuNzgyIDQuOTYtMy41OTZhLjk3Mi45NzIgMCAwIDEgMS4zNjguMjMgMS4wMDQgMS4wMDQgMCAwIDEtLjIyNyAxLjM4OGwtNS41MzIgNC4wMWEuOTcuOTcgMCAwIDEtMS4xNDIgMGwtNS41MDctNC4wMTFjLS40NC0uMzItLjU0LS45NDItLjIyNS0xLjM4OWEuOTcyLjk3MiAwIDAgMSAxLjM3LS4yMjdsNC45MzUgMy41OTV6IiBmaWxsPSIjMEQ2RkZDIi8+Cjwvc3ZnPgo=">
 													</button>
 													<div class="text-14 color-grey-4 mt-6">본 약관 및 관련 제반
-														계약 조항에 위배되는 행동이나 위의 조항에 대한 위반행위를 한 경우, 회사(카모아)는 서비스를 제공하지
+														계약 조항에 위배되는 행동이나 위의 조항에 대한 위반행위를 한 경우, 회사(YATA)는 서비스를 제공하지
 														않을 권리를 가집니다.</div>
 												</div>
 
@@ -1022,9 +708,6 @@
 											</div>
 											<div class="text-decoration-none mb-3">
 												<div class="dc-flex align-items-center">
-													<div class="img-comp-logo mr-1 rounded korean"
-														id="sci_img_comp_logo"></div>
-													<!-- 													렌트카 이미지 넣기 리뷰 별점 넣기 후순위-->
 													<div>
 
 														<div
@@ -1032,14 +715,6 @@
 															${param.res_place }</div>
 														<div class="" id="sci_container_review_info_old_company"
 															style="display: block;">
-															<div class="dc-flex align-items-center">
-																<img
-																	src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDEwIj4KICAgIDxwYXRoIGZpbGw9IiNGRkU1NUIiIGQ9Ik0zLjEwOCA4LjcwMmMtLjI4OC4xNTgtLjYyNC0uMDk3LS41Ny0uNDMyTDIuOSA2LjA2NiAxLjM2OSA0LjUwNWMtLjIzMy0uMjM3LS4xMDQtLjY1LjIxNy0uN2wyLjExNi0uMzIxLjk0Ni0yLjAwNWMuMTQ0LS4zMDUuNTYtLjMwNS43MDQgMGwuOTQ2IDIuMDA1IDIuMTE2LjMyMWMuMzIxLjA1LjQ1LjQ2My4yMTcuN2wtMS41MyAxLjU2LjM2IDIuMjA1Yy4wNTUuMzM1LS4yOC41OS0uNTY5LjQzMkw1IDcuNjYybC0xLjg5MiAxLjA0eiIvPgo8L3N2Zz4K">
-																<div
-																	class="js-sci-txt-evaluation text-12 color-grey-2 ml-1">
-																	4.3</div>
-
-															</div>
 														</div>
 
 													</div>
@@ -1317,141 +992,10 @@
 												</div>
 											</div>
 										</section>
-										<section class="carmore-section is-hide-new-branch">
-											<div class="container">
-												<div class="mt-5">
-													<div
-														class="dc-flex justify-content-between align-items-center">
-														<div>
-															<span
-																class="color-grey-2 text-28 font-weight-bold wordbreak-keepall"
-																id="rpc_company_point">4.7</span><span
-																class="color-grey-6 text-18 wordbreak-keepall">/
-																5.0</span>
-														</div>
-
-													</div>
-													<p class="text-14 color-grey-4" id="rpc_txt_summary_info">최근
-														예약수 11593건 | 누적 예약수 26013건 | 입점일 2019-11-28</p>
-													<hr>
-													<div
-														class="dc-flex justify-content-between align-items-center mb-2">
-														<div>
-															<p class="color-grey-4 text-14 mb-0">차량 관리 상태</p>
-														</div>
-														<div class="dc-flex align-items-center">
-															<div class="progress" style="width: 128px; height: 4px">
-																<div class="progress-bar" id="rpc_review_progress_1"
-																	style="width: 94%;"></div>
-															</div>
-															<div class="ml-1 text-12 font-weight-bold text-primary"
-																id="rpc_review_1_point">4.7</div>
-														</div>
-													</div>
-													<div
-														class="dc-flex justify-content-between align-items-center mb-2">
-														<div>
-															<p class="color-grey-4 text-14 mb-0">업체 친절도</p>
-														</div>
-														<div class="dc-flex align-items-center">
-															<div class="progress" style="width: 128px; height: 4px">
-																<div class="progress-bar" id="rpc_review_progress_2"
-																	style="width: 92%;"></div>
-															</div>
-															<div class="ml-1 text-12 font-weight-bold text-primary"
-																id="rpc_review_2_point">4.6</div>
-														</div>
-													</div>
-													<div
-														class="dc-flex justify-content-between align-items-center mb-2">
-														<div>
-															<p class="color-grey-4 text-14 mb-0">업체의 이용절차 안내</p>
-														</div>
-														<div class="dc-flex align-items-center">
-															<div class="progress" style="width: 128px; height: 4px">
-																<div class="progress-bar" id="rpc_review_progress_3"
-																	style="width: 94%;"></div>
-															</div>
-															<div class="ml-1 text-12 font-weight-bold text-primary"
-																id="rpc_review_3_point">4.7</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</section>
-										<section class="carmore-section rpc-only-new-company"
-											style="display: none;">
-											<div class="container">
-												<img
-													class="dc-flex align-items-center img-fluid mx-auto mb-3 max-w-lg-50rem"
-													src="/home/images/image-new-company-review-mocar.png">
-												<p class="text-center text-14 color-grey-3">아직 충분한 평가가
-													없어 표시되지 않습니다.</p>
-											</div>
-										</section>
-										<section class="carmore-section dc-none"
-											id="js_rpc_section_carmore_word" style="display: none;">
-											<div class="container">
-												<div class="text-center mb-3">
-													<img
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjIiIGhlaWdodD0iNDMiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAxMjIgNDMiPgogICAgPHBhdGggZmlsbD0iIzBENkZGQyIgZD0iTTE5LjUwMiAzMS4yNGgtMlYyNWgtMy4zOHYxNy4wOGgzLjM4di03LjU2aDJ2LTMuMjh6bS0xNy41Ni0yLjhoNi40NnYyLjgyaC02LjQ2djMuMDZoNS45Yy0uOTggMi41OC0zLjEyIDMuNzgtNS45IDMuOHYzLjE2YzUuNzItLjAyIDkuODItMy45MiA5LjgyLTEwLjc2VjI1LjRoLTkuODJ2My4wNHpNMzEuMzYgMzguMzJ2LTIuNzZoNS45OFYyNS40aC0xNS40djEwLjE2aDUuOTh2Mi43NkgyMXYzLjE2aDE3LjI4di0zLjE2aC02Ljkyem0tNi4wNi05Ljc2aDguNjh2My44NkgyNS4zdi0zLjg2ek01OCAzMS4yNGgtMlYyNWgtMy4zOHYxNy4wOEg1NnYtNy41Nmgydi0zLjI4ek00NS41OCAyNS4yYy0zLjE4IDAtNS4zIDIuNTItNS4zIDguMTQgMCA1LjYyIDIuMTIgOC4xNCA1LjMgOC4xNCAzLjE4IDAgNS4yOC0yLjUyIDUuMjgtOC4xNCAwLTUuNjItMi4xLTguMTQtNS4yOC04LjE0em0wIDEzLjE4Yy0xLjEyIDAtMS45Ni0xLjItMS45Ni01LjA0IDAtMy44Mi44NC01LjA0IDEuOTYtNS4wNCAxLjEgMCAxLjk0IDEuMjIgMS45NCA1LjA0IDAgMy44NC0uODQgNS4wNC0xLjk0IDUuMDR6TTc2LjMwMyAyNi4xNmgtNC4xMlYyNC43aC0zLjQ0djEuNDZoLTQuMTJ2Mi42NGgxMS42OHYtMi42NHptNC41MiAyLjhWMjVoLTMuMzh2MTIuNzRoMy4zOHYtNS41aDJ2LTMuMjhoLTJ6bS0xMC4zNiA3LjM2YzIuODQgMCA1LjI0LTEuMiA1LjI0LTMuNTIgMC0yLjMyLTIuNC0zLjUyLTUuMjQtMy41Mi0yLjg0IDAtNS4yNCAxLjItNS4yNCAzLjUyIDAgMi4zMiAyLjQgMy41MiA1LjI0IDMuNTJ6bTAtNC42YzEuMjIgMCAyLjAyLjQ4IDIuMDIgMS4wOCAwIC42LS44IDEuMDgtMi4wMiAxLjA4cy0yLjAyLS40OC0yLjAyLTEuMDhjMC0uNi44LTEuMDggMi4wMi0xLjA4em0tMS4yOCA1LjFoLTMuNDR2NS4yNmgxNS4zMnYtMi45NGgtMTEuODh2LTIuMzJ6TTEwMi4wNjEgMzEuMjRoLTJWMjVoLTMuMzh2MTcuMDhoMy4zOHYtNy41Nmgydi0zLjI4em0tMTcuNDYgMTAuMDRoOS45NFYyNS40aC05Ljk0djE1Ljg4em0zLjM4LTEyLjc0aDMuMTh2OS42aC0zLjE4di05LjZ6TTExOS43NzkgMjVoLTMuMzh2MTcuMDhoMy4zOFYyNXptLTUuNjIuNGgtMTAuMTR2MTUuODhoNi45MmMxLjY0IDAgMy41Mi0uMyA0LjU2LS44MnYtMy4wNGMtMS4wNC40OC0yLjguNzgtNC40Mi43OGgtMy42NHYtOS43Mmg2LjcyVjI1LjR6TTY1Ljg2MiAzLjE2N0M2NC40NCAxLjcyMyA2Mi42ODIgMSA2MC41OTQgMWMtMi4xNTMgMC0zLjk2LjcxNi01LjQxMyAyLjE0OUM1My43MjcgNC41ODIgNTMgNi4zNTMgNTMgOC40NjZjMCAyLjAwOC42OTkgMy42ODggMi4wNTQgNS4wMzYgMS4zNTggMS4zNDggMy4xNjggMi4wODUgNS4yODUgMi4yMTJ2Mi4yOWMyLjQ3NC0uNjcgNC4yLTEuODYgNS41ODYtMy41NzhDNjcuMzE1IDEyLjcxMSA2OCAxMC43NDYgNjggOC41M2MuMDA0LTIuMTM1LS43MTYtMy45MjQtMi4xMzgtNS4zNjN6Ii8+Cjwvc3ZnPgo=">
-												</div>
-												<div class="mt-3" id="js_rpc_container_carmore_word"></div>
-												<div class="dc-none" id="js_rpc_template_carmore_word">
-													<div class="dc-flex align-items-start mb-2">
-														<img
-															src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik04IDE0QzExLjMxMzcgMTQgMTQgMTEuMzEzNyAxNCA4QzE0IDQuNjg2MjkgMTEuMzEzNyAyIDggMkM0LjY4NjI5IDIgMiA0LjY4NjI5IDIgOEMyIDExLjMxMzcgNC42ODYyOSAxNCA4IDE0Wk04IDE1QzExLjg2NiAxNSAxNSAxMS44NjYgMTUgOEMxNSA0LjEzNDAxIDExLjg2NiAxIDggMUM0LjEzNDAxIDEgMSA0LjEzNDAxIDEgOEMxIDExLjg2NiA0LjEzNDAxIDE1IDggMTVaIiBmaWxsPSIjNjY2NjY2Ii8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTEuMTcxNSA2LjMyOTE4QzExLjM2NzUgNi41MjM2NyAxMS4zNjg4IDYuODQwMjUgMTEuMTc0MyA3LjAzNjI5TDguMTk4MTIgMTAuMDM2M0M4LjAxNDM2IDEwLjIyMTUgNy43MTkwNyAxMC4yMzQzIDcuNTE5OTggMTAuMDY1N0w1LjQ5NjE3IDguMzUxMzhDNS4yODU0NiA4LjE3MjkgNS4yNTkzNCA3Ljg1NzM5IDUuNDM3ODIgNy42NDY2OUM1LjYxNjMxIDcuNDM1OTggNS45MzE4MSA3LjQwOTg1IDYuMTQyNTIgNy41ODgzM0w3LjgxMzY4IDkuMDAzOTFMMTAuNDY0NCA2LjMzMkMxMC42NTg5IDYuMTM1OTYgMTAuOTc1NSA2LjEzNDcgMTEuMTcxNSA2LjMyOTE4WiIgZmlsbD0iIzk0QzBGRSIvPgo8L3N2Zz4K"
-															style="margin-top: 3px;">
-														<div class="text-14 color-grey-4 ml-1"
-															id="js_rpc_txt_carmore_word"></div>
-													</div>
-												</div>
-											</div>
-										</section>
 										<section class="carmore-section rpc-only-old-company"
 											id="js_rpc_only_old_company">
 											<div class="container">
-												<h3>트러스트 리뷰</h3>
-												<div>
-													<label class="text-12 color-grey-5 mr-1">최근리뷰</label><span
-														class="badge badge-soft-primary mr-2"
-														id="rpc_recently_review_cnt">1,500+</span><label
-														class="text-12 color-grey-5 mr-1">최근 업체 댓글</label><span
-														class="badge badge-soft-primary mr-2"
-														id="rpc_recently_company_reply_cnt">0+</span><label
-														class="text-12 color-grey-5 mr-1">1년간 총 리뷰</label><span
-														class="badge badge-soft-primary mr-2"
-														id="rpc_year_review_cnt">1,521</span>
-												</div>
-												<div class="dc-flex mb-3 justify-content-end">
-													<div class="txt-right">
-														<div class="sort-filter-container">
-															<div class="table-sort dc-flex justify-content-end">
-																<div class="rpc-review-sort-btn click-effect-press"
-																	data-type="2">
-																	<div class="radio-sort active">
-																		<div class="icon-sort"></div>
-																		<div class="txt-sort">평점 높은 순</div>
-																	</div>
-																</div>
-																<div class="rpc-review-sort-btn click-effect-press"
-																	data-type="3">
-																	<div class="radio-sort left-margin">
-																		<div class="icon-sort"></div>
-																		<div class="txt-sort">평점 낮은 순</div>
-																	</div>
-																</div>
-																<div class="rpc-review-sort-btn click-effect-press"
-																	data-type="1">
-																	<div class="radio-sort left-margin">
-																		<div class="icon-sort"></div>
-																		<div class="txt-sort">최신순</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
+												<h3>고객 리뷰</h3>
 												<div class="col-lg-12 container" id="review_item">
 													<c:forEach var="listReview" items="${listReview }">
 														<div class="bg-white p-3 mb-3 border">
@@ -1459,13 +1003,13 @@
 																<div
 																	class="js-btn-review-driver-info click-effect-press">
 																	<div class="dc-flex align-items-center">
-																		<img
-																			class="img-user-profile object-fit center-crop mr-1 dc-none"><img
-																			class="js-review-item-user-grade-icon mr-1 dc-none"
-																			style="width: 16px;"><span
-																			class="color-grey-1 text-16 mr-2"
-																			id="review_txt_name">${listReview.member_name }</span>
+																		<img class="img-user-profile object-fit center-crop mr-1 dc-none">
+																		<img class="js-review-item-user-grade-icon mr-1 dc-none" style="width: 16px;">
+																		<span class="color-grey-1 text-16 mr-2" id="review_txt_name" 
+																		style="font-size: 1.4rem; font-weight: bold;">${car.car_name } </span>
 																	</div>
+																	<span class="text-10 color-grey-5" id="review_txt_write_date">
+																	${listReview.review_updateDate } | ${listReview.member_name } 님</span>
 																</div>
 																<div class="flex-shrink-0">
 																	<div class="text-right dc-none"
@@ -1481,31 +1025,24 @@
 																			class="js-btn-review-delete btn btn-sm btn-outline-grey color-grey-5 text-10 ml-2 click-effect-press">삭제</button>
 																	</div>
 																</div>
+																
+																<div class="text-40 font-weight-bold text-primary">
+																	<span class="text-40 font-weight-bold text-primary wordbreak-keepall" id="review_txt_evaluation">${listReview.review_star }</span>
+																	<span class="color-grey-5 text-10 wordbreak-keepall">/ 5.0</span>
+																
+																</div>
 															</div>
-															<div
-																class="dc-flex justify-content-between align-items-centers">
+															<div class="dc-flex justify-content-between align-items-centers">
 																<div>
-																	<span class="color-grey-2 text-24 wordbreak-keepall"
-																		id="review_txt_evaluation">${listReview.review_star }</span><span
-																		class="color-grey-5 text-10 wordbreak-keepall">/
-																		5.0</span>
 																</div>
 																<div class="text-right">
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_detail_evaluation">차량상태 3.4 | 친절도
-																		4.4 | 이용안내 3.4</p>
-																	<p class="color-grey-5 text-10 mb-0"
-																		id="review_txt_rent_info">2018.09.04 ~ 2018.09.07
-																		| 아반떼</p>
 																</div>
 															</div>
 															<hr>
-															<p class="color-grey-4 text-14 wordbreak-breakword"
-																id="review_txt_msg">${listReview.review_content }</p>
-															<div
-																class="dc-flex justify-content-between align-items-center mb-2">
-																<span class="text-10 color-grey-5"
-																	id="review_txt_write_date">${listReview.review_updateDate }</span>
+															<p class="color-grey-4 text-18 wordbreak-breakword" id="review_txt_msg">${listReview.review_content }</p>
+															<div class="dc-flex justify-content-between align-items-center mb-2">
+																<span class="text-10 color-grey-5" id="review_txt_write_date"></span>
+																
 																<div
 																	class="review-btn-good dc-flex align-items-center click-effect-press">
 																	<img class="btn-good-icon mr-1"
@@ -1514,6 +1051,7 @@
 																		id="review_txt_good">도움돼요 0</span>
 																</div>
 															</div>
+															
 															<!------------------------------------------- 리뷰 답글 ------------------------------------->
 <!-- 															<div class="p-3 bg-light dc-none" -->
 <!-- 																id="review_company_reply_box"> -->
@@ -1584,9 +1122,8 @@
 								<div class="container">
 									<div class="row section-title">
 										<div class="col">
-											<div
-												class="mb-3 dc-flex align-items-center justify-content-between text-16">
-												<span class="color-grey-2 font-weight-bold">결제 정보</span>
+											<div class="mb-3 dc-flex align-items-center justify-content-between text-20">
+												<span class="color-grey-2 font-weight-bold ">결제 정보</span>
 											</div>
 										</div>
 									</div>
@@ -1597,49 +1134,26 @@
 												<div class="col">
 													<ul class="list-group list-group-flush">
 														<li class="list-group-item bg-lg-none px-0">
-															<div
-																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-																<span class="js-vcd-txt-rent-price-label">대여요금</span>
+															<div class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall ">
+																<span class="js-vcd-txt-rent-price-label text-16">대여요금</span>
 																<div class="text-right">
-																	<span class="js-vcd-txt-rent-price">
+																	<span class="js-vcd-txt-rent-price text-18">
 																	<script type="text/javascript">
-																		document.write((${car.car_price }/2)*${param.time}+"원");
+																		document.write("+ " + ((${car.car_price }/2)*${param.time}).toLocaleString("ko-KR") + " 원");
 																	</script>
-																	
+																	</span>
 																</div>
 															</div>
 														</li>
-														<li
-															class="js-vcd-price-poa-hide js-vcd-login list-group-item bg-lg-none px-0 tmobi-dc-none">
-															<div
-																class="dc-flex justify-content-between align-items-center color-grey-5 wordbreak-keepall">
+														<li class="js-vcd-price-poa-hide js-vcd-login list-group-item bg-lg-none px-0 tmobi-dc-none">
+															<div class="dc-flex justify-content-between align-items-center color-grey-5 wordbreak-keepall text-16">
 																보험요금
-																<div
-																	class="text-right js-vcd-btn-login dc-flex click-effect-press">
-																	<span class="color-blue-dark-light mr-2">
-																		${param.ins} </span>
-																</div>
-															</div>
-														</li>
-														<li
-															class="js-vcd-price-poa-hide js-vcd-txt-point-discount list-group-item bg-lg-none px-0 dc-none"
-															style="display: none;">
-															<div
-																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-																포인트 사용
-																<div class="text-right">
-																	<span class="js-vcd-txt-use-point">0P</span>
-																</div>
-															</div>
-														</li>
-														<li
-															class="js-vcd-price-poa-hide js-vcd-txt-coupon-discount list-group-item bg-lg-none px-0 dc-none"
-															style="display: none;">
-															<div
-																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
-																쿠폰사용
-																<div class="text-right">
-																	<span class="js-vcd-txt-use-coupon">0원</span>
+																<div class="text-right js-vcd-btn-login dc-flex ">
+																	<span class="color-blue-dark-light text-18">
+																	<script type="text/javascript">
+																		document.write("+ " + (${param.ins}).toLocaleString("ko-KR") + " 원");
+																	</script>	
+																	</span>
 																</div>
 															</div>
 														</li>
@@ -1647,42 +1161,32 @@
 															class="js-vcd-price-poa-hide list-group-item bg-lg-none px-0 border-none">
 															<div
 																class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall font-weight-bold">
-																<span class="text-primary">예상 결제액</span>
+																<span class="text-primary text-24">예상 결제액</span>
 																<div class="text-right text-primary">
-																	<span class="js-vcd-txt-expected-price"> <script
-																			type="text/javascript">
-																		document.write((${car.car_price }/2)*${param.time} + ${param.ins} + "원");
+																	<span class="js-vcd-txt-expected-price text-24"> 
+																	<script type="text/javascript">
+																		document.write(((${car.car_price }/2)*${param.time} + ${param.ins}).toLocaleString("ko-KR") + " 원");
 																	</script>
 																	</span>
 																</div>
 															</div>
 														</li>
 													</ul>
-													<button
-														class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press">
-														<div
-															class="text-18 font-weight-bold text-white line-height-1">
-
-															<span onclick="pay(${car.car_price})"
-																class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
-																<script type="text/javascript">
-																document.write((${car.car_price }/2)*${param.time} + ${param.ins} + "원 바로 예약하기");
-															</script>
-															</span><span
-																class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
-																style="display: none;"></span>
+													<button class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-border-10 mt-3 click-effect-press">
+														<div class="text-18 font-weight-bold text-white line-height-1">
+															<span onclick="pay(${car.car_price})" class="js-vcd-welcome-coupon-applied-expected-price js-vcd-txt-expected-price js-vcd-price-button">
+																예약하기
+															</span>
+															<span class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none" style="display: none;"></span>
 														</div>
 														<div class="js-vcd-txt-price-desc text-12 text-white">
 														</div>
 													</button>
 													<div class="dc-none" id="js_vcd_read_payment_tooltip">
-														<div
-															class="vreserv-container-tooltip-pc d-inline-flex justify-content-between align-items-center px-3 py-2">
-															<div class="vreserv-container-tooltip-body">할인쿠폰 적용
-																중! 놓치지 마세요</div>
+														<div class="vreserv-container-tooltip-pc d-inline-flex justify-content-between align-items-center px-3 py-2">
+															<div class="vreserv-container-tooltip-body">할인쿠폰 적용 중! 놓치지 마세요</div>
 															<div class="d-flex align-items-center">
-																<img
-																	class="m-0 vreserv-container-img-cancel-icon-pc pl-2"
+																<img class="m-0 vreserv-container-img-cancel-icon-pc pl-2"
 																	src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik04IDYuNTg2bDQuMjkzLTQuMjkzYy4zOS0uMzkgMS4wMjQtLjM5IDEuNDE0IDAgLjM5LjM5LjM5IDEuMDI0IDAgMS40MTRMOS40MTQgOGw0LjI5MyA0LjI5M2MuMzkuMzkuMzkgMS4wMjQgMCAxLjQxNC0uMzkuMzktMS4wMjQuMzktMS40MTQgMEw4IDkuNDE0bC00LjI5MyA0LjI5M2MtLjM5LjM5LTEuMDI0LjM5LTEuNDE0IDAtLjM5LS4zOS0uMzktMS4wMjQgMC0xLjQxNEw2LjU4NiA4IDIuMjkzIDMuNzA3Yy0uMzktLjM5LS4zOS0xLjAyNCAwLTEuNDE0LjM5LS4zOSAxLjAyNC0uMzkgMS40MTQgMEw4IDYuNTg2eiIvPgo8L3N2Zz4K">
 															</div>
 															<div class="vreserv-container-tooltip-polygon-pc">
@@ -1693,16 +1197,13 @@
 												</div>
 											</div>
 										</div>
-										<div class="js-vcd-pay-info dc-none"
-											id="js_vcd_subscribe_pay_info" style="display: none;"></div>
+										<div class="js-vcd-pay-info dc-none" id="js_vcd_subscribe_pay_info" style="display: none;"></div>
 									</div>
 									<div class="row js-vcd-soldout-elmt dc-none"
 										style="display: none;">
 										<div class="col">
 											<div class="pb-3 text-16-b">해당 차량은 마감되었어요 T^T</div>
-											<button
-												class="btn btn-primary btn-block btn-lg mb-2 btn-border-10 text-14 font-weight-bold"
-												disabled="true">마감된 차량</button>
+											<button class="btn btn-primary btn-block btn-lg mb-2 btn-border-10 text-14 font-weight-bold" disabled="true">마감된 차량</button>
 										</div>
 									</div>
 								</div>
@@ -1713,40 +1214,17 @@
 						<div class="fixed-bottom bg-white pt-2 safearea-bottom">
 							<div class="container">
 								<div class="dc-none" id="js_container_read_payment_tooltip">
-									<div
-										class="vreserv-container-tooltip dc-flex justify-content-between align-items-center px-3 py-2">
-										<div class="vreserv-container-tooltip-body">할인쿠폰 적용 중!
-											놓치지 마세요</div>
-										<div class="d-flex align-items-center">
-											<img class="m-0 vreserv-container-img-cancel-icon pl-2"
-												src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik04IDYuNTg2bDQuMjkzLTQuMjkzYy4zOS0uMzkgMS4wMjQtLjM5IDEuNDE0IDAgLjM5LjM5LjM5IDEuMDI0IDAgMS40MTRMOS40MTQgOGw0LjI5MyA0LjI5M2MuMzkuMzkuMzkgMS4wMjQgMCAxLjQxNC0uMzkuMzktMS4wMjQuMzktMS40MTQgMEw4IDkuNDE0bC00LjI5MyA0LjI5M2MtLjM5LjM5LTEuMDI0LjM5LTEuNDE0IDAtLjM5LS4zOS0uMzktMS4wMjQgMC0xLjQxNEw2LjU4NiA4IDIuMjkzIDMuNzA3Yy0uMzktLjM5LS4zOS0xLjAyNCAwLTEuNDE0LjM5LS4zOSAxLjAyNC0uMzkgMS40MTQgMEw4IDYuNTg2eiIvPgo8L3N2Zz4K">
-										</div>
 										<div class="vreserv-container-tooltip-polygon">
 											<div class="vreserv-container-tooltip-polygon-inner"></div>
 										</div>
 									</div>
 								</div>
 								<div class="js-vcd-not-soldout-elmt">
-									<button
-										class="js-vcd-btn-go-reservation btn btn-primary btn-block btn-lg btn-pay btn-border-10 mb-2 click-effect-press">
-										<div class="text-18 font-weight-bold">
-											<span
-												class="js-vcd-txt-expected-price js-vcd-price-button js-vcd-welcome-coupon-applied-expected-price">7,300원
-												바로 예약하기</span><span
-												class="js-vcd-txt-expected-poa-price js-vcd-price-button dc-none"
-												style="display: none;"></span>
-										</div>
-										<div class="js-vcd-txt-price-desc text-12">가입 후 첫 구매 5천원
-											할인, 완전자차 포함</div>
-									</button>
 								</div>
 								<div class="js-vcd-soldout-elmt dc-none" style="display: none;">
-									<button
-										class="btn btn-primary btn-block btn-lg btn-border-10 text-14 font-weight-bold"
-										disabled="true">마감된 차량</button>
-								</div>
 							</div>
-						</div>
+							</div>
+						</div>	
 					</div>
 				</div>
 			</div>

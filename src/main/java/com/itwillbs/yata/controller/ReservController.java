@@ -97,7 +97,7 @@ public class ReservController {
 			model.addAttribute("msg","예약실패");
 			return "redirect:/pay";
 		}
-		String member_point = member.getMember_point();
+		String member_point =Integer.toString( member.getMember_point());
 	    String res_totalprice = reservVO.getRes_totalPrice();
 //	    member테이블 포인트 적립
 	    pointService.updatePoint(member_email, member_point, res_totalprice, use_point);
@@ -108,7 +108,7 @@ public class ReservController {
 	    point.setPoint_content("예약");
 	    point.setPoint_save(res_totalprice);
 	    point.setPoint_used(Integer.toString(use_point));
-	    String member_point2 = (String)memberService.selectUser(member_email).getMember_point();
+	    String member_point2 = Integer.toString(memberService.selectUser(member_email).getMember_point());
 		point.setMember_point(member_point2);
 	    pointService.savePoint(point);
 		

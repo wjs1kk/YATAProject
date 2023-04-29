@@ -91,17 +91,23 @@
 			</choose>
 		</if>
 	</select>
+	<!-- 2023-04-29 김동욱 기간별 예약건수 차트 카운트 추가 -->
 	<select id="selectStats" resultType="map">
 		SELECT
 			(SELECT SUM(res_totalPrice) FROM reservation) as totalSales
 			, (SELECT COUNT(res_id) FROM reservation) as totalReservation
 			, (SELECT SUM(res_totalPrice) FROM reservation WHERE res_date = date(now())) as todaySales
+			, (SELECT COUNT(res_id) FROM reservation WHERE res_date = date(subdate(now(), interval 5 day))) as fiveDaysAgoReservation
+			, (SELECT COUNT(res_id) FROM reservation WHERE res_date = date(subdate(now(), interval 4 day))) as fourDaysAgoReservation
+			, (SELECT COUNT(res_id) FROM reservation WHERE res_date = date(subdate(now(), interval 3 day))) as threeDaysAgoReservation
+			, (SELECT COUNT(res_id) FROM reservation WHERE res_date = date(subdate(now(), interval 2 day))) as twoDaysAgoReservation
+			, (SELECT COUNT(res_id) FROM reservation WHERE res_date = date(subdate(now(), interval 1 day))) as oneDaysAgoReservation
 			, (SELECT COUNT(res_id) FROM reservation WHERE res_date = date(now())) as todayReservation
 			, (SELECT COUNT(board_progress) FROM mailform WHERE board_progress = "진행중") as totalUnansweredMailform
 			, (SELECT COUNT(member_email) FROM member) as totalMember
 			, (SELECT COUNT(member_email) FROM member where member_date = date(now())) as totayJoin
 			, (SELECT COUNT(car_id) FROM car WHERE car_available = '1') as totalAvailableCar
-			, (SELECT COUNT(car_id) FROM car WHERE car_available = '0') as totalShippedCar;
+			, (SELECT COUNT(car_id) FROM car WHERE car_available = '0') as totalShippedCar
 	</select>
 		<!-- 예약 상세내역 -->
 	<select id="selectReserveList" resultType="com.itwillbs.yata.vo.ReservVO">

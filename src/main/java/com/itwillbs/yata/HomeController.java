@@ -33,8 +33,6 @@ public class HomeController {
 	@Autowired
 	private CsService csService;
 	@Autowired
-	private MemberService memberService;
-	@Autowired
 	private CouponService couponService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpSession session) {

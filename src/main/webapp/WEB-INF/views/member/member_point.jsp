@@ -115,7 +115,7 @@
 									<div
 										class="dc-flex justify-content-between align-items-center mt-3">
 										<div class="text-14">
-											<div class="font-weight-bold color-grey-2">1:1 문의</div>
+											<div class="font-weight-bold color-grey-2" >1:1 문의</div>
 										</div>
 										<div class="center-align-container">
 											<button onclick="location.href='write.mf'"

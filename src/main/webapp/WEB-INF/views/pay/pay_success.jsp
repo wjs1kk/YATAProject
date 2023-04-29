@@ -138,25 +138,29 @@
                                                     </ul>
                                                 </div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
+                                                    <li class="text-16 vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
                                                         <span class="js-vreserv-txt-rent-price-label">대여요금</span>
                                                         <div class="text-right">
                                                         	<span class="js-vreserv-txt-rent-price">
                                                         	  <script type="text/javascript">
-                                                        		document.write("+ " + (${param.car_price }/2)*${param.time} + "원");
+                                                        		document.write("+ " + ((${param.car_price }/2)*${param.time}).toLocaleString("ko-KR") + " 원");
                                                         	</script>     
                                                         	</span>
                                                         </div>
                                                     </li>
-                                                    <li class="js-spdl-poa-hide js-verserv-container-insurance-price vreserv-container-price-txt list-group-item px-0 bg-lg-none js-oversea-api-hide">
+                                                    <li class="text-16 js-spdl-poa-hide js-verserv-container-insurance-price vreserv-container-price-txt list-group-item px-0 bg-lg-none js-oversea-api-hide">
                                                         <div class="dc-flex justify-content-between align-items-center color-grey-3 wordbreak-keepall">
                                                         보험요금
                                                             <div class="text-right">
-                                                            	<span class="vreserv-txt-insurance-price">+${param.ins } 원</span>
+                                                            	<span class="vreserv-txt-insurance-price">
+	                                                            	<script type="text/javascript">
+																		document.write("+" + (${param.ins }).toLocaleString("ko-KR") + " 원");
+																	</script>
+                                                            	</span>
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li class="js-spdl-poa-hide js-vreserv-container-discount-price vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
+                                                    <li class="text-16 js-spdl-poa-hide js-vreserv-container-discount-price vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
                                                        	쿠폰할인
                                                         <div class="text-right">
                                                         	<span class="vreserv-txt-discount-price" >
@@ -165,24 +169,30 @@
                                                         				document.write('- 0 원')
                                                         			}
                                                         			else{
-                                                        				document.write('- '+((${param.car_price }/2)*${param.time})*${coup_percent} + '원')
+                                                        				document.write('- '+ (((${param.car_price }/2)*${param.time})*${coup_percent}).toLocaleString("ko-KR") + ' 원')
                                                         			}
 		                                                        	
                                                         		</script>
                                                         	</span>
                                                         </div>
                                                     </li>
-                                                    <li class="js-spdl-poa-hide js-vreserv-container-discount-price vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
+                                                    <li class="text-16 js-spdl-poa-hide js-vreserv-container-discount-price vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center color-grey-3 px-0 wordbreak-keepall bg-lg-none">
                                                         포인트 사용
                                                         <div class="text-right">
-                                                        	<span class="vreserv-txt-discount-price">- ${param.use_point } 원</span>
+                                                        	<span class="vreserv-txt-discount-price ">
+                                                        		<script type="text/javascript">
+																	document.write("-" + (${param.use_point }).toLocaleString("ko-KR") + " 원");
+																</script>
+                                                        	</span>
                                                         </div>
                                                     </li>
-                                                    <li class="js-spdl-poa-hide vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center text-primary px-0 wordbreak-keepall text-14 font-weight-bold bg-lg-none pb-0 border-none">
+                                                    <li class="js-spdl-poa-hide vreserv-container-price-txt list-group-item dc-flex justify-content-between align-items-center text-primary px-0 wordbreak-keepall text-18 font-weight-bold bg-lg-none pb-0 border-none">
                                                         총 결제금액
                                                         <div class="text-right">
                                                         	<span class="vreserv-txt-total-price">
-	                                                        		${param.res_totalPrice } 원
+      															<script type="text/javascript">
+																	document.write((${param.res_totalPrice }).toLocaleString("ko-KR") + " 원");
+																</script>
                                                         	</span>
                                                         </div>
                                                     </li>
@@ -195,12 +205,12 @@
                         </section>
                     </div>
                     
+                    
 <!--                     하단 버튼 -->
                     <div class="text-center">
 	                    <input class="btn btn-secondary btn-sm px-3 ml-1" type="button" value="홈으로" onclick="location.href='./'">
 	                    <input class="btn btn-primary btn-sm px-3 ml-1" type="button" value="나의 예약내역" onclick="location.href='mypage?tab=history'">
                     </div>
-                    
                 </div>      
             </div>
         </div>

@@ -121,22 +121,41 @@
   			  )
   	</insert>
   	
-  	<select id="selectCarShippedList" resultType="com.itwillbs.yata.vo.CarVO">
-  		SELECT *
-  		FROM car
-  		WHERE car_available = '0'
+  	<!-- 2023-04-27 김동욱 - 출고된 차량 리스트  페이징 처리 및 reservation과 JOIN해야 렌트중인 member_email까지 출력 -->
+  	<!-- 2023-04-28 김동욱 - 출고된 차량 리스트 : 예약 테이블과 JOIN하면 전에 빌렸던 차량도 같이 나와서 수정-->
+  	<select id="selectCarShippedList" resultType="map">
+  		SELECT car_id, car_manufacturer, car_model, car_name, car_type, car_year, car_price, car_available, car_seater, car_fuel
+			FROM car
+		    WHERE car_available = '0'
+  		<if test="!searchType.equals('')">
+  			AND
+			<choose>
+  	<!-- 2023-04-28 김동욱 - member_email에서 car_id로 변경-->
+				<when test="searchType.equals('car_id')">
+				 	 car_id LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('car_name')">
+					 car_name LIKE CONCAT('%', #{searchKeyword},'%')
+				</when>
+				<when test="searchType.equals('car_manufacturer')">
+					 car_manufacturer LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+		LIMIT #{startRow}, #{listLimit}
   	</select>
   	<!-- 2023-04-27 김동욱 - 출고된 차량 리스트 페이징 처리를 위한 카운트 -->
+  	<!-- 2023-04-28 김동욱 - 출고된 차량 리스트 : 예약 테이블과 JOIN하면 전에 빌렸던 차량도 같이 나와서 수정-->
   	<select id="selectCarShippedListCount" resultType="int">
   		select COUNT(*)
-		FROM car c JOIN reservation r
-		ON c.car_id = r.car_id
+		FROM car
 	    WHERE car_available = '0'
 	    <if test="!searchType.equals('')">
 	   		 AND
 			<choose>
-				<when test="searchType.equals('member_email')">
-				 	member_email LIKE CONCAT('%', #{searchKeyword}, '%')
+		  	<!-- 2023-04-28 김동욱 - member_email에서 car_id로 변경-->
+				<when test="searchType.equals('car_id')">
+				 	car_id LIKE CONCAT('%', #{searchKeyword}, '%')
 				</when>
 				<when test="searchType.equals('car_name')">
 					car_name LIKE CONCAT('%', #{searchKeyword},'%')
@@ -152,5 +171,8 @@
   		UPDATE car SET car_model = ""
   		WHERE car_id = #{car_id}
   	</update>
-
+	<update id="updateCarReturnCheck">
+  		UPDATE car SET car_available = "1"
+  		WHERE car_id = #{car_id}
+  	</update>
 </mapper>

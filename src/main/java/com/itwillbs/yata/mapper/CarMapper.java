@@ -25,4 +25,6 @@ public interface CarMapper {
 	public List selectCarShippedList(@Param("startRow") int startRow, @Param("listLimit") int listLimit, @Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
 	// 출고된 차량 목록 페이징 처리를 위한 카운트 - 2023-04-27 김동욱
 	public int selectCarShippedListCount(@Param("searchType")String searchType, @Param("searchKeyword")String searchKeyword);
+	// 2023-04-28 김동욱 - 출고된 차량 반납 확인
+	public int updateCarReturnCheck(String car_id);
 }

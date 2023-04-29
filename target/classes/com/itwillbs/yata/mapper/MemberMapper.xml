@@ -13,13 +13,13 @@
 	<insert id="insertUser">
 		insert into member (
 			member_email, member_passwd, 
-			member_name, member_birth, 
-			member_gender, member_phone, member_date, member_point, member_isadmin
+			member_name, member_date, 
+			member_gender, member_isadmin, member_point
 			) 
 			value(
 			#{member_email}, #{member_passwd},
-			#{member_name}, #{member_birth},
-			#{member_gender}, #{member_phone}, now(),2000,0)
+			#{member_name}, now(),
+			#{member_gender}, 0, 2000)
 	</insert>
 	<select id="selectPasswd" resultType="string">
 		SELECT member_passwd
@@ -55,8 +55,6 @@
 				<if test='member_passwd neq ""'>
 			    , member_passwd = #{member_passwd}
 				</if>
-			    , member_birth = #{member_birth}
-			    , member_phone = #{member_phone}
 			    , member_point = #{member_point}
 			    <if test='member_license neq ""'>
 			    , member_license = #{member_license}

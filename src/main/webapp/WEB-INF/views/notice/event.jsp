@@ -51,15 +51,10 @@
 							<div class="list-group list-group-flush">
 								<a
 									class="py-2 text-decoration-none px-0 event-left-menu-doing click-effect-press active">진행중인
-									이벤트</a> <a
-									class="py-2 text-decoration-none px-0 event-left-menu-close click-effect-press">종료된
-									이벤트</a>
+									이벤트</a> 
 							</div>
 						</div>
 					</div>
-
-
-
 					<!-- 레이아웃 바텀의 센터 -->
 
 					<div class="col-12 col-lg-8">

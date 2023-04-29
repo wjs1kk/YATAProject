@@ -192,5 +192,8 @@
 	  		   )
 	</insert>
 
-
+	<!-- 2023-04-28 김동욱 - 1:1 문의 내역 삭제 -->
+	<delete id="deleteMailFormDelete">
+		DELETE FROM mailform WHERE board_num = #{board_num}
+	</delete>
 </mapper>

@@ -109,7 +109,7 @@ public class MemberController {
 			return "member/member_review";
 
 		// 포인트
-		} else if(tab.equals("point")) {
+		} else if(tab.equals("point")) {  
 			List<PointVO> myPoint = pointService.myPoint(member_email);
 			model.addAttribute("myPoint", myPoint);
 			System.out.println(myPoint);

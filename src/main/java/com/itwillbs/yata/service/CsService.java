@@ -72,5 +72,9 @@ public class CsService {
 	public MailFormVO getMailFormDetail(int board_num) {
 		return mapper.SelectMailFormDetail(board_num);
 	}
+	// 2023-04-28 김동욱 1:1 문의 내역 삭제
+	public int AdminMailFormDelete(String board_num) {
+		return mapper.deleteMailFormDelete(board_num);
+	}
 
 }
