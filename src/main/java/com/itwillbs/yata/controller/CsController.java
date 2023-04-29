@@ -37,13 +37,22 @@ public class CsController {
 		model.addAttribute("mailForm2", mailForm2);
 		return "customer/view_mail_form";
 	}
+
 	// 1:1문의 작성
 	@GetMapping("write.mf")
-	public String writeForm() {
+	public String writeForm(HttpSession session, Model model) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		return "customer/write_mail_form";
 	}
 	@PostMapping("writePro.mf")
 	public String writePro(MailFormVO mailForm, Model model, HttpSession session) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		String member_email = (String) session.getAttribute("member_email");
 		mailForm.setMember_email(member_email);
 		int insertCount = csService.registMailForm(mailForm);
@@ -56,7 +65,11 @@ public class CsController {
 	}
 	// 1:1문의 삭제
 	@GetMapping("deleteView.mf")
-	public String deleteView(int board_num, Model model) {
+	public String deleteView(int board_num, Model model, HttpSession session) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		int deleteCount = csService.deleteView(board_num);
 		if (deleteCount > 0) {
 			model.addAttribute("msg", "삭제 완료!");

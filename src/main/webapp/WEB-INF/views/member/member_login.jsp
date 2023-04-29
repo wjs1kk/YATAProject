@@ -4,6 +4,8 @@
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/main.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core"%>
+
 <head>
 <script type="text/javascript">
 	window.onpopstate = function(event) {
@@ -48,21 +50,15 @@
 			        
 			        <br>
 			        <br>
-			        <a href=""onclick="kakao_login();"><img src="${pageContext.request.contextPath }/resources/images/kakao_login.png"></a>	
-			        	<script>
-			        	 function kakao_login() {
-			        		 var popupX = (window.screen.width / 2) - (200 / 2);
-			        		// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-			        		var popupY= (window.screen.height /2) - (300 / 2);
-			        		// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-			        	        window.open(
-			        	          "kakao.html",
-			        	          "Child",
-			        	          "width=400, height=300, left="+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
-			        	 }
-			        	</script>	        
-			        <br>
-			      
+			        <input type="hidden" name="kakaoemail" id="kakaoemail"/>
+			        <c:if test="${userId eq null }">
+			        <a href="https://kauth.kakao.com/oauth/authorize?client_id=ead29902d723c95d189caf903db985d7&response_type=code&redirect_uri=http://localhost:8080/yata/kakao&prompt=login">
+			        <img src="${pageContext.request.contextPath }/resources/images/kakao_login.png">
+			        </a>	
+			        </c:if>
+			        <c:if test="${userId ne null }">
+			        	<input type="button" value="로그아웃" onclick="location.href='kakaoLogout'">
+			        </c:if>
 			    </div>
 			  
             </div>

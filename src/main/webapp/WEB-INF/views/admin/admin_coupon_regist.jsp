@@ -25,16 +25,8 @@
 			<input type="hidden" name="coup_idx" value="0">
 			<table border="1">
 				<tr>
-					<th>사용자</th>
-					<td><input type="text" name="member_email"></td>
-				</tr>
-				<tr>
 					<th>쿠폰 이름</th>
 					<td><input type="text" name="coup_name"></td>
-				</tr>
-				<tr>
-					<th>쿠폰 번호</th>
-					<td><input type="text" name="coup_code"></td>
 				</tr>
 				<tr>
 					<th>쿠폰 등록일</th>
@@ -45,11 +37,11 @@
 					<td><input type="date" name="coup_end"></td>
 				</tr>
 				<tr>
-					<th>사용가능 여부</th>
-					<td><select name="coup_useable">
+					<th>쿠폰 할인율</th>
+					<td><select name="coup_percent">
 							<option value="">선택하기</option>
-							<option value="Y">사용 가능</option>
-							<option value="N">사용 불가능</option>
+							<option value="0.1">10%</option>
+							<option value="0.3">30%</option>
 							</select>
 							</td>
 				</tr>

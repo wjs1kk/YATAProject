@@ -14,12 +14,12 @@
 		insert into member (
 			member_email, member_passwd, 
 			member_name, member_date, 
-			member_gender, member_isadmin, member_point
+			member_gender, member_isadmin, member_point,member_license
 			) 
 			value(
 			#{member_email}, #{member_passwd},
 			#{member_name}, now(),
-			#{member_gender}, 0, 2000)
+			#{member_gender}, 0, 2000,1)
 	</insert>
 	<select id="selectPasswd" resultType="string">
 		SELECT member_passwd
@@ -29,8 +29,7 @@
 	<!-- 회원수정 -->
 	<update id="modifyUser">
 		UPDATE member			
-			SET member_passwd = #{member_passwd},
-				member_phone = #{member_phone}
+			SET member_passwd = #{member_passwd}
 			WHERE member_email = #{member_email}
 	</update>
 	
@@ -114,7 +113,7 @@
 		SELECT l.member_email as member_email, license_num, license_pass
 		FROM license l JOIN member m
 		ON l.member_email = m.member_email
-	    WHERE MEMBER_LICENSE IS NULL;
+	    WHERE MEMBER_LICENSE = '0';
 	</select>
 	
 	<!--  2023-04-27 김동욱 - 관리자페이지에서 면허증 승인 후 맴버 테이블 member_licence 1로 업데이트 -->
@@ -122,4 +121,26 @@
 		UPDATE member SET member_license = '1'
 		WHERE member_email = #{lic_member_email}
 	</update>
+	<select id="loginLookup" resultType="String">
+		SELECT member_email
+		FROM member
+		WHERE member_email = #{member_email}
+	</select>
+	<!-- 2023-04-27 김동욱 - 회원가입 이메일 중복 체크 -->
+	<select id="selectEmailCheck" resultType="String">
+		SELECT member_email
+		FROM member
+		WHERE member_email = #{member_email}
+	</select>
+<!-- 	면허인증 -->
+	<insert id="insertLicense">
+		INSERT INTO
+		license
+        (member_email, license_num, license_pass)
+			VALUES (
+				#{member_email},
+				#{license_num},
+				#{license_pass}
+			)
+	</insert>
   </mapper>

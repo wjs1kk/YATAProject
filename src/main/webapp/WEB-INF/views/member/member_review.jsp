@@ -179,21 +179,23 @@
 														<td>${myReview.res_id }</td>
 														<td style="text-align: center;">${myReview.review_updateDate }</td>
 														<td>
-															<c:if test="${myReview.review_star == '1.0'}">
-																<span class="star">★</span><span class="star_off">★★★★</span>
-															</c:if>
-															<c:if test="${myReview.review_star == '2.0'}">
-																<span class="star">★★</span><span class="star_off">★★★</span>
-															</c:if>
-															<c:if test="${myReview.review_star == '3.0'}">
-																<span class="star">★★★</span><span class="star_off">★★</span>
-															</c:if>
-															<c:if test="${myReview.review_star == '4.0'}">
-																<span class="star">★★★★</span><span class="star_off">★</span>
-															</c:if>
-															<c:if test="${myReview.review_star == '5.0'}">
-																<span class="star">★★★★★</span>
-															</c:if>
+															<c:choose>
+																<c:when test="${myReview.review_star == '1.0'}">
+																	<span class="star">★</span><span class="star_off">★★★★</span>
+																</c:when>
+																<c:when test="${myReview.review_star == '2.0'}">
+																	<span class="star">★★</span><span class="star_off">★★★</span>
+																</c:when>
+																<c:when test="${myReview.review_star == '3.0'}">
+																	<span class="star">★★★</span><span class="star_off">★★</span>
+																</c:when>
+																<c:when test="${myReview.review_star == '4.0'}">
+																	<span class="star">★★★★</span><span class="star_off">★</span>
+																</c:when>
+																<c:otherwise>
+																	<span class="star">★★★★★</span>
+																</c:otherwise>
+															</c:choose>
 														</td>
 														<td>${myReview.review_place}</td>
 														<td>${myReview.review_content}</td>

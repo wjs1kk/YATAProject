@@ -14,6 +14,19 @@
 		location.href="pay?car_id=${param.car_id}&res_place=${param.res_place}&rentalDatetime=${param.rentalDatetime}&ins=${param.ins}&time=${param.time}&car_price="+car_price;
 	}
 </script>
+<script type="text/javascript">
+function maskingName(name) {
+	  if (name.length <= 2) {
+	    return name.replace(name.substring(0, 1), "*");
+	  }
+
+	  return (
+	    name[0] +
+	    "*".repeat(name.substring(1, name.length - 1).length) +
+	    name[name.length - 1]
+	  );
+	}
+</script>
 </head>
 <body style="">
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -1009,7 +1022,11 @@
 																		style="font-size: 1.4rem; font-weight: bold;">${car.car_name } </span>
 																	</div>
 																	<span class="text-10 color-grey-5" id="review_txt_write_date">
-																	${listReview.review_updateDate } | ${listReview.member_name } 님</span>
+																	<script type="text/javascript">
+																		document.write("${listReview.review_updateDate } | "+maskingName("${listReview.member_name }")+" 님");
+																		
+																	</script>
+																	
 																</div>
 																<div class="flex-shrink-0">
 																	<div class="text-right dc-none"

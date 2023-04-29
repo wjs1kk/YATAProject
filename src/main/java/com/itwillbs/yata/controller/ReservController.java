@@ -73,6 +73,10 @@ public class ReservController {
 
 	@GetMapping("pay")
 	public String pay(Model model, int car_id, String rentalDatetime, HttpSession session) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			return "redirect:/login";
+		}
 		model.addAttribute("car", carService.selectCar(car_id));
 		String member_email = (String) session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
@@ -122,6 +126,12 @@ public class ReservController {
 			model.addAttribute("coup_percent",coup_percent);
 			System.out.println(coup_percent);
 		}
+//		면허 인증 여부
+		if(memberService.selectUser(member_email).getMember_license().equals("0")) {
+			model.addAttribute("msg","면허 인증 필수");
+			return "fail_back";
+		}
+		
 		return "pay/pay_success";
 	}
 

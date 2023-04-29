@@ -15,7 +15,6 @@
 			}else {
 				$('#member_gender').val('2')
 			}
-	})
 </script>
 </head>
 <body>

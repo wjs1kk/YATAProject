@@ -36,7 +36,7 @@
 						<form action="AdminMemberList.ad">
 							<select name="searchType">
 								<option value="MEMBER_EMAIL" <c:if test="${param.searchType eq 'MEMBER_EMAIL' }">selected</c:if> >이메일</option>
-								<option value="MEMBER_PHONE" <c:if test="${param.searchType eq 'MEMBER_PHONE' }">selected</c:if> >휴대폰 번호</option>
+								
 								<option value="MEMBER_DATE" <c:if test="${param.searchType eq 'MEMBER_DATE' }">selected</c:if> >가입일</option>
 							</select>
 							<input type="text" name="searchKeyword" value="${param.searchKeyword }" />

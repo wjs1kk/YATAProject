@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.yata.vo.CarVO;
+import com.itwillbs.yata.vo.LicenseVO;
 import com.itwillbs.yata.vo.MemberVO;
 
 
@@ -33,4 +34,8 @@ public interface MemberMapper {
 	public List selectLicenseList();
 	// 2023-04-27 김동욱 - 관리자페이지에서 면허증 승인 후 맴버 테이블 member_licence 1로 업데이트
 	public int updateMemberLicense(String lic_member_email);
+	public String loginLookup(Object member_email);
+	//2023-04-27 김동욱 이메일 중복체크
+	public String selectEmailCheck(String member_email);
+	int insertLicense(LicenseVO license);
 }

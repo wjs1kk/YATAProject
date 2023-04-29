@@ -1,7 +1,9 @@
 package com.itwillbs.yata.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -15,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.yata.service.CarService;
 import com.itwillbs.yata.service.CouponService;
+
 import com.itwillbs.yata.service.MemberService;
 import com.itwillbs.yata.service.PointService;
 import com.itwillbs.yata.service.ReservService;
 import com.itwillbs.yata.service.ReviewService;
 import com.itwillbs.yata.vo.CarVO;
 import com.itwillbs.yata.vo.CouponVO;
+import com.itwillbs.yata.vo.LicenseVO;
 import com.itwillbs.yata.vo.MemberVO;
 import com.itwillbs.yata.vo.PointVO;
 import com.itwillbs.yata.vo.ReservVO;
@@ -40,6 +44,7 @@ public class MemberController {
 	private PointService pointService;
 	@Autowired 
 	private CouponService couponService;
+
 	@GetMapping("login")
 	public String login() {
 		return "member/member_login";
@@ -88,6 +93,10 @@ public class MemberController {
 
 	@GetMapping("mypage")
 	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, Model model, HttpSession session) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			return "redirect:/login";
+		}
 		String member_email = (String) session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
@@ -97,25 +106,41 @@ public class MemberController {
 		model.addAttribute("userCoupon_count",userCoupon_count);
 		
 		if(tab.equals("history")) {	
+			if(session.getAttribute("member_email") == null) {
+				model.addAttribute("msg", "로그인 후 이용가능합니다.");
+				return "redirect:/login";
+			}
 			List<ReservVO> resList = reservService.myReservation(member_email);
 			model.addAttribute("resList", resList);
 			return "member/member_history";
 
 		// 나의리뷰	
 		} else if(tab.equals("review")) {
+			if(session.getAttribute("member_email") == null) {
+				model.addAttribute("msg", "로그인 후 이용가능합니다.");
+				return "redirect:/login";
+			}
 			List<ReviewVO> myReviewList = reviewService.myReview(member_email);
 			model.addAttribute("myReview", myReviewList); // 나의 리뷰 가져오기
 
 			return "member/member_review";
 
 		// 포인트
-		} else if(tab.equals("point")) {  
+		} else if(tab.equals("point")) {
+			if(session.getAttribute("member_email") == null) {
+				model.addAttribute("msg", "로그인 후 이용가능합니다.");
+				return "redirect:/login";
+			}
 			List<PointVO> myPoint = pointService.myPoint(member_email);
 			model.addAttribute("myPoint", myPoint);
 			System.out.println(myPoint);
 			return "member/member_point";
 		} else if(tab.equals("coupon")) {
 		// 쿠폰
+			if(session.getAttribute("member_email") == null) {
+				model.addAttribute("msg", "로그인 후 이용가능합니다.");
+				return "redirect:/login";
+			}
 			model.addAttribute("userCoupon",userCoupon);
 			return "member/member_coupon";
 		}
@@ -124,6 +149,10 @@ public class MemberController {
 	// 내정보관리
 	@GetMapping("modifyInfo")
 	public String modifyInfo(MemberVO member, HttpSession session, Model model) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			return "login";
+		}
 		String member_email = (String)session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
@@ -140,6 +169,10 @@ public class MemberController {
 	// 내정보관리 -> 회원정보수정
 	@GetMapping("modify")
 	public String modify(HttpSession session, Model model) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			return "login";
+		}
 		String member_email = (String) session.getAttribute("member_email");
 		model.addAttribute("member", memberService.selectUser(member_email));
 		return "member/member_modify";
@@ -147,7 +180,7 @@ public class MemberController {
 
 	// 회원정보수정
 	@PostMapping("modifyPro")
-	public String modifyPro(Model model, HttpSession session, MemberVO memberVO, String member_passwd2) {
+	public String modifyPro(Model model, HttpServletRequest req,HttpSession session, MemberVO memberVO, String member_passwd2, LicenseVO license) {
 		String member_email = (String)session.getAttribute("member_email");
 		memberVO.setMember_email(member_email);
 		
@@ -159,7 +192,13 @@ public class MemberController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String securePasswd = passwordEncoder.encode(memberVO.getMember_passwd());
 		memberVO.setMember_passwd(securePasswd);
+		String license_num = req.getParameter("city") + "-" + req.getParameter("license_num") + "-" + req.getParameter("license_num2") + "-" + req.getParameter("license_num3");
 		
+
+		license.setMember_email(member_email);
+		license.setLicense_num(license_num);
+		
+		memberService.insertLicense(license);
 		int updateCount = memberService.modifyUser(memberVO);
 
 		if (updateCount > 0) {
@@ -174,7 +213,11 @@ public class MemberController {
 	}
 	// 비밀번호 확인
 	@GetMapping("confirm")
-	public String confirm() {
+	public String confirm(HttpSession session, Model model) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			return "redirect:/login";
+		}
 		return "member/confirm";
 	}
 	// 비밀번호 확인
@@ -191,15 +234,35 @@ public class MemberController {
 		}
 
 	}
+	// 2023-04-27 김동욱 - AJAX 회원가입 이메일 중복체크
+	@PostMapping("MemberEmailCheck")
+	public void memberEmailCheck(@RequestParam(defaultValue = "") String member_email, HttpServletResponse response) {
+		System.out.println(member_email);
+		try {
+			// 사용중인 member_email이 없으면 view페이지로 true 있으면 false를 보냄!
+			String email = memberService.memberEmailCheck(member_email);
+			System.out.println(email);
+			if(email == null) {
+				response.getWriter().print("true");
+			}else {
+				response.getWriter().print("false");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// 회원탈퇴
 	@GetMapping("deleteMember")
 	public String deleteMember(HttpSession session, Model model) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			return "redirect:/login";
+		}
 		String member_email = (String)session.getAttribute("member_email");
 		int deleteCount = memberService.deleteUser(member_email);
 		if (deleteCount > 0) {
 			model.addAttribute("msg", "회원 탈퇴 완료!");
-			model.addAttribute("target", "redirect:/");
 			session.invalidate();
 			return "success";
 		} else {
@@ -211,6 +274,10 @@ public class MemberController {
 	// 예약내역 -> 리뷰 작성
 	@GetMapping("reviewWrite")
 	public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
+		if(session.getAttribute("member_email") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			return "redirect:/login";
+		}
 		String member_email = (String) session.getAttribute("member_email");
 		member = memberService.selectUser(member_email);
 		model.addAttribute("member", member);
@@ -228,6 +295,7 @@ public class MemberController {
 	// 리뷰 작성
 	@PostMapping("reviewWritePro")
 	public String reviewWritePro(HttpSession session, Model model,  ReviewVO review, int res_id, String res_place) {
+
 		String member_email = (String)session.getAttribute("member_email");
 		MemberVO member = memberService.selectUser(member_email);
 
@@ -248,6 +316,10 @@ public class MemberController {
 	// 예약내역 상세보기
 		@GetMapping("historyDetails")
 		public String historyDetails(HttpSession session, Model model, @RequestParam Integer res_id, CarVO car, ReservVO res) {
+			if(session.getAttribute("member_email") == null) {
+				model.addAttribute("msg", "로그인 후 이용가능합니다.");
+				return "redirect:/login";
+			}
 			String member_email = (String)session.getAttribute("member_email");
 			MemberVO member = memberService.selectUser(member_email);
 			model.addAttribute("member", member);
@@ -265,7 +337,11 @@ public class MemberController {
 		
 		// 예약 내역 ->예약 취소
 		@GetMapping("deleteReserve")
-		public String deleteReserve(Model model, ReservVO reserve, @RequestParam Integer res_id) {
+		public String deleteReserve(Model model, ReservVO reserve, @RequestParam Integer res_id, HttpSession session) {
+			if(session.getAttribute("member_email") == null) {
+				model.addAttribute("msg", "로그인 후 이용가능합니다.");
+				return "redirect:/login";
+			}
 			reserve = reservService.getReserveList(res_id);
 			
 			int deleteCount = reservService.deleteReserve(reserve.getRes_id());

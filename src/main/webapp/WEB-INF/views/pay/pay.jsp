@@ -279,53 +279,12 @@ $(function() {
                                 </div>
                                 <div class="form-group mb-2">
                                     <div class="dc-flex align-items-end">
-                                        <div class="mr-1 flex-1">
-                                        	<label class="text-12 color-grey-3" for="js_vreserv_input_driver_birth_f">생년월일</label>
-                                            <div class="position-relative">
-                                            	<input class="js-input-deletable js-require-pay border-radius-none form-control form-control-sm vreserv-save-last-booking mb-0"
-                                                    id="js_vreserv_input_driver_birth_f" placeholder="${member.member_birth}" readonly="readonly"
-                                                    type="number" maxlength="6" size="1" max="9" pattern="[0-9]*">
-                                                <div class="js-btn-delete-input btn-input-close-sm click-effect-press"
-                                                    data-input="js_vreserv_input_driver_birth_f">
-                                                    <div class="wrapper">
-                                                    	<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNDNEM0QzQiIGQ9Ik04IDE1YzMuODY2IDAgNy0zLjEzNCA3LTdzLTMuMTM0LTctNy03LTcgMy4xMzQtNyA3IDMuMTM0IDcgNyA3eiIvPgogICAgPHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNy4yOTMgOGwtMi4xMjEgMi4xMjIuNzA3LjcwN0w4IDguNzA3bDIuMTIyIDIuMTIyLjcwNy0uNzA3TDguNzA3IDggMTAuODMgNS44OGwtLjcwNy0uNzA3TDggNy4yOTMgNS44OCA1LjE3MmwtLjcwNy43MDdMNy4yOTMgOHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4K">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <label class="js-only-domestic-ui mx-1 dc-flex align-items-end"></label>
                                     </div>
                                     <div class="invalid-feedback">생년월일이 형식에 맞지 않습니다</div>
                                 </div>
-                                <div class="form-group mb-2">
-                                	<label class="text-12 color-grey-3" for="js_vreserv_input_driver_contact">휴대폰 번호</label>
-                                    <div class="dc-flex">
-                                        <div class="js-only-oversea-ui flex-1 mr-1 dc-none position-relative" style="display: none;">
-                                            <button
-                                                class="text-left text-nowrap js-require-pay custom-select custom-select-sm border-radius-none vreserv-save-last-booking"
-                                                id="js_vreserv_overseas_btn_driver_contact_cc" data-kor="대한민국"
-                                                data-t="82" data-c="KR">
-                                                <div class="overflow-hidden" id="js_vreserv_overseas_btn_driver_contact_name">대한민국(+82)</div>
-                                            </button>
-                                        </div>
-                                        <div class="flex-2 position-relative">
-                                        	<input class="js-input-deletable js-require-pay border-radius-none form-control form-control-sm mb-0"
-                                                id="js_vreserv_input_driver_contact" placeholder="${member.member_phone}" type="tel"
-                                                maxlength="20" size="1" max="9" pattern="[0-9]*" readonly="readonly">
-                                            <div class="js-btn-delete-input btn-input-close-sm click-effect-press"
-                                                data-input="js_vreserv_input_driver_contact">
-                                                <div class="wrapper">
-                                                	<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNDNEM0QzQiIGQ9Ik04IDE1YzMuODY2IDAgNy0zLjEzNCA3LTdzLTMuMTM0LTctNy03LTcgMy4xMzQtNyA3IDMuMTM0IDcgNyA3eiIvPgogICAgPHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNy4yOTMgOGwtMi4xMjEgMi4xMjIuNzA3LjcwN0w4IDguNzA3bDIuMTIyIDIuMTIyLjcwNy0uNzA3TDguNzA3IDggMTAuODMgNS44OGwtLjcwNy0uNzA3TDggNy4yOTMgNS44OCA1LjE3MmwtLjcwNy43MDdMNy4yOTMgOHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4K">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button
-                                            class="flex-1 js-only-domestic-ui border-radius-none form-control form-control-sm btn btn-sm btn-outline-secondary w-40 ml-1 mb-0"
-                                            id="js_vreserv_btn_req_certify_num" type="button" disabled="">인증 완료
-                                        </button>
-                                    </div>
-                                    
-                                </div>
+
                                 <div class="dc-none" id="js_vreserv_container_input_certify_num" style="display: none;">
                                     <div class="form-group">
                                         <div class="dc-flex">

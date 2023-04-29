@@ -41,8 +41,6 @@ public class AdminController {
 	
 	@Autowired
 	private CarService carService;
-	@Autowired 
-	private CouponService couponService;
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -83,7 +81,7 @@ public class AdminController {
 	public String AdminMember(Model model, HttpSession session
 							  , @RequestParam(defaultValue = "1") int pageNum
 							  , @RequestParam(defaultValue = "") String searchType
-							  , @RequestParam(defaultValue = "") String searchKeyword) {
+			  				  , @RequestParam(defaultValue = "") String searchKeyword) {
 		
 		String member_email = (String)session.getAttribute("member_email");
 		System.out.println(searchType);
@@ -783,62 +781,5 @@ public class AdminController {
 		}
 	}
 	
-	// 2023-04-28 김동욱 - 출고된 차량리스트에서 반납확인
-		@GetMapping("AdminCarReturnCheck.ad")
-		public String AdminCarReturnCheck(HttpSession session, Model model, String car_id) {
-			
-			String member_email = (String)session.getAttribute("member_email");
-			
-			// session이 null인지 먼저 판별
-			if( session.getAttribute("member_email") == null) {
-				model.addAttribute("msg", "접근 권한이 없습니다!");
-				return "fail_back";
-			}
-			
-			// sesiion이 null이 아니면 관리자 권한값을 가져옴
-			String isAdmin =  memberService.isAdmin(member_email);
-			
-			// sesiion이 관리자인 지 확인
-			if(!isAdmin.equals("1")) {
-				model.addAttribute("msg", "접근 권한이 없습니다!");
-				return "fail_back";
-			}else {
-				int updateCount = carService.AdminCarReturnCheck(car_id);
-				
-				if(updateCount > 0) {
-					return "redirect:/AdminCarShippedList.ad";
-				}else {
-					model.addAttribute("msg", "반납 확인 실패!");
-					return "fail_back";
-				}
-				
-			}
-		}
-		
-		// 2023-04-28 김동욱 - 답변 삭제 기능
-		@GetMapping("AdminMailFormDelete.ad")
-		public String AdminMailFormDelete(HttpSession session, Model model, String board_num) {
-			
-			String member_email = (String)session.getAttribute("member_email");
-			
-			// session이 null인지 먼저 판별
-			if( session.getAttribute("member_email") == null) {
-				model.addAttribute("msg", "접근 권한이 없습니다!");
-				return "fail_back";
-			}
-			
-			// sesiion이 null이 아니면 관리자 권한값을 가져옴
-			String isAdmin =  memberService.isAdmin(member_email);
-			
-			// sesiion이 관리자인 지 확인
-			if(!isAdmin.equals("1")) {
-				model.addAttribute("msg", "접근 권한이 없습니다!");
-				return "fail_back";
-			}else {
-				
-				int deleteCount = csService.AdminMailFormDelete(board_num);
-				
-				return "redirect:/AdminMailForm.ad";
-			}
-		}
+	
 }
