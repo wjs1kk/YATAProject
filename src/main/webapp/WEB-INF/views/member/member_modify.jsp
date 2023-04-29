@@ -27,6 +27,8 @@
 							class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
 							<div class="col-lg-8 ftco-animate">
 								<div class="text w-100 text-center mb-md-5 pb-md-5">
+								
+									<!-- 2023-04-29 김동욱 생년월일, 전화번호 삭제 -->
 									<form action="modifyPro" method="post">
 										<div>
 											<label for="inputEmail" class="visually-hidden">Email</label>
@@ -52,20 +54,10 @@
 												<input type="text" class="w-50 form-control" style="margin-bottom: 10px;"
 													id="member_name" placeholder="이름" value="${member.member_name}" readonly="readonly">
 											</div>
-											<label for="birth" class="visually-hidden">생년월일</label>
-											<div class="d-flex justify-content-center">
-												<input type="text" class="w-50 form-control" style="margin-bottom: 10px;"
-													id="member_birth" readonly="readonly" value="${member.member_birth}"/>
-											</div>
 											<label for="gender" class="visually-hidden">Gender</label>
 											<div class="d-flex justify-content-center">
 												<input type="text" class="w-50 form-control" style="margin-bottom: 10px;"
 													id="member_gender" value="${member.member_gender}" readonly="readonly">
-											</div>
-											<label for="phone" class="visually-hidden">Phone</label>
-											<div class="d-flex justify-content-center">
-												<input type="text" class="w-50 form-control" style="margin-bottom: 10px;"
-													name="member_phone" id="member_phone" placeholder="01X-0000-0000" value="${member.member_phone}" required>
 											</div>
 												<!-- 등록여부 체크박스로 할건지 정해야함 -->
 <!-- 											<label for="license" class="visually-hidden">운전면허증 등록여부</label> -->

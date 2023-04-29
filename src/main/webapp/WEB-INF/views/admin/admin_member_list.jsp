@@ -65,7 +65,8 @@
 							<td>${memberList.member_license}</td>
 							<td>${memberList.member_isadmin}</td>
 							<th>
-								<input type="button"  class="nextBtn" value="수정" onclick="location.href='AdminMemberInfo.ad?member_email=${memberList.member_email}&member_name=${memberList.member_name}&member_birth=${memberList.member_birth}&member_gender=${memberList.member_gender }&member_phone=${memberList.member_phone }&member_point=${memberList.member_point }&member_license=${memberList.member_license }&member_isadmin=${memberList.member_isadmin }'">
+								<!-- 2023-04-29 김동욱 수정시 파라미터에서 전화번호, 생년월일 삭제 -->
+								<input type="button"  class="nextBtn" value="수정" onclick="location.href='AdminMemberInfo.ad?member_email=${memberList.member_email}&member_name=${memberList.member_name}&member_gender=${memberList.member_gender }&member_point=${memberList.member_point }&member_license=${memberList.member_license }&member_isadmin=${memberList.member_isadmin }'">
 								<!-- 2023-04-28 김동욱 리스트 삭제시 confirm창으로 되묻기 -->
 								<input type="button" class="nextBtn" value="삭제" onclick="AdminMemberDelete('${memberList.member_email}')">
 							</th>

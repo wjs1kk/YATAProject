@@ -27,10 +27,10 @@
 		 WHERE member_email = #{member_email}
 	</select>
 	<!-- 회원수정 -->
+	<!-- 2023-04-29 김동욱 전화번호 수정 삭제 -->
 	<update id="modifyUser">
 		UPDATE member			
-			SET member_passwd = #{member_passwd},
-				member_phone = #{member_phone}
+			SET member_passwd = #{member_passwd}
 			WHERE member_email = #{member_email}
 	</update>
 	
@@ -50,10 +50,10 @@
 	
 	
 	<!-- 관리자 회원 정보 수정 -->
+	<!-- 2023-04-29 김동욱 전화번호 삭제 -->
 	<update id="AdminMemberModify">
 		UPDATE member
-			SET  member_phone = #{member_phone}
-			    , member_point = #{member_point}
+			SET member_point = #{member_point}
 			    <if test='member_license neq ""'>
 			    , member_license = #{member_license}
 				</if>

@@ -29,6 +29,8 @@
 			<div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
 				<div class="col-lg-8 ftco-animate">
 					<div class="text w-100 text-center mb-md-5 pb-md-5">
+					
+					<!-- 2023-04-29 김동욱 전화번호, 생년월일 삭제 -->
 						<form action="AdminMemberModifyPro.ad" method="post">
 							<div>
 								<br>	
@@ -40,10 +42,6 @@
 								<label for="name" class="visually-hidden">Name</label>
 								<div class="d-flex justify-content-center">
 									<input type="text" id="member_name" value="${member.member_name }" class="w-50 form-control" readonly="readonly">
-								</div>
-								<label for="date" class="visually-hidden">YYYY/MM/DD</label>
-								<div class="d-flex justify-content-center">
-									<input class="w-50 form-control" id="member_birth" value="${member.member_birth }" type="date" name='userBirthday' readonly="readonly"/>
 								</div>
 								<label for="gender" class="visually-hidden">Gender</label>
 								<div class="d-flex justify-content-center" id="member_gender">
@@ -61,9 +59,6 @@
 									</select>
 								</div>
 								<label for="phone" class="visually-hidden">Phone</label>
-								<div class="d-flex justify-content-center">
-									<input type="text" id="member_phone" value="${member.member_phone }" name="member_phone" class="w-50 form-control" required>
-								</div>
 								<label for="point" class="visually-hidden">Point</label>
 								<div class="d-flex justify-content-center">
 									<input type="text" id="member_point" value="${member.member_point }" name="member_point" class="w-50 form-control" required>
