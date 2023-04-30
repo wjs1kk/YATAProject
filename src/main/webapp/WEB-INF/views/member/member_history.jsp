@@ -261,13 +261,11 @@
 																</div>
 															</td>
 															<td>${resList.res_totalPrice }원</td>
-<<<<<<< HEAD
 															<td class="clip "><input class="btn-danger"
 																id="deleteBtn" type="button" value="예약취소"
 																onclick="if(confirm('예약을 취소하시겠습니까?')){location.href='deleteReserve?res_id=${resList.res_id}'} else {alert('취소되었습니다.')}">
 															</td>
-															<td class="clip "><input class="btn-primary"
-=======
+															<td class="clip "><input class="btn-primary">
 															<td class="clip ">
 															<input class="btn-danger"
 																type="button" value="예약취소"
@@ -275,7 +273,6 @@
 															</td>
 															<td class="clip ">
 																<input class="btn-primary"
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 																type="button" value="리뷰작성"
 																onclick="location.href='reviewWrite?res_id=${resList.res_id}&res_place=${resList.res_place }'">
 															</td>

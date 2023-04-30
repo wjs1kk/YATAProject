@@ -222,18 +222,12 @@ function mLicense() {
 													id="member_phone" placeholder="01X-0000-0000"
 													value="${member.member_phone}">
 											</div>
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 											<button class="w-50 btn btn-lg btn-primary"
 												style="width: 300px; margin-bottom: 15px" type="submit">수정</button>
 											<button class="w-50 btn btn-lg btn-secondary"
 												style="width: 300px; margin-bottom: 15px" type="button" onclick="location.href='mypage'">취소</button>
 											<button class="w-50 btn btn-lg btn-danger"
-<<<<<<< HEAD
 												style="width: 300px; margin-bottom: 15px" type="button" onclick="if(confirm('회원 탈퇴 하시겠습니까?')){location.href='deleteMember'} else {alert('취소 되었습니다.')}">회원탈퇴</button>
-=======
-												style="width: 300px; margin-bottom: 15px" type="button"
-												onclick="location.href='deleteMember'">회원탈퇴</button>
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 										</div>
 									</form>
 								</div>

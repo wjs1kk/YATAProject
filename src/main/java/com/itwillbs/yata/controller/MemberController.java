@@ -1,18 +1,15 @@
 package com.itwillbs.yata.controller;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-=======
 import java.net.http.*;
 import java.util.List;
 
 import javax.servlet.http.*;
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< HEAD
 import com.itwillbs.yata.service.CarService;
 import com.itwillbs.yata.service.CouponService;
 
@@ -37,10 +33,8 @@ import com.itwillbs.yata.vo.MemberVO;
 import com.itwillbs.yata.vo.PointVO;
 import com.itwillbs.yata.vo.ReservVO;
 import com.itwillbs.yata.vo.ReviewVO;
-=======
 import com.itwillbs.yata.service.*;
 import com.itwillbs.yata.vo.*;
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 
 @Controller
 public class MemberController {
@@ -54,14 +48,8 @@ public class MemberController {
 	private CarService carService;
 	@Autowired
 	private PointService pointService;
-<<<<<<< HEAD
 	@Autowired 
 	private CouponService couponService;
-
-=======
-	@Autowired
-	private LicenseService licenseService;
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 	@GetMapping("login")
 	public String login() {
 		return "member/member_login";
@@ -230,11 +218,7 @@ public class MemberController {
 
 	// 회원정보수정
 	@PostMapping("modifyPro")
-<<<<<<< HEAD
-	public String modifyPro(Model model, HttpServletRequest req,HttpSession session, MemberVO memberVO, String member_passwd2, LicenseVO license) {
-=======
 	public String modifyPro(Model model, HttpServletRequest req, HttpSession session, MemberVO memberVO, String member_passwd2, LicenseVO license) {
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 		String member_email = (String)session.getAttribute("member_email");
 		memberVO.setMember_email(member_email);
 		
@@ -252,7 +236,7 @@ public class MemberController {
 		license.setMember_email(member_email);
 		license.setLicense_num(license_num);
 		
-		int insertCount = licenseService.insertLicense(license);
+		int insertCount = memberService.insertLicense(license);
 		
 		int updateCount = memberService.modifyUser(memberVO);
 
@@ -327,15 +311,12 @@ public class MemberController {
 	}
 	
 	// 예약내역 -> 리뷰 작성
-<<<<<<< HEAD
 	@GetMapping("reviewWrite")
-	public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id) {
+	public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id, String review_place) {
 		if(session.getAttribute("member_email") == null) {
 			model.addAttribute("msg", "로그인 후 이용가능합니다.");
 			return "redirect:/login";
-=======
-		@GetMapping("reviewWrite")
-		public String reviewWrite(HttpSession session, Model model, MemberVO member, @RequestParam Integer res_id, String review_place) {
+		}
 			String member_email = (String) session.getAttribute("member_email");
 			member = memberService.selectUser(member_email);
 			model.addAttribute("member", member);
@@ -346,21 +327,6 @@ public class MemberController {
 				model.addAttribute("msg", "이미 작성된 리뷰입니다!");
 				return "fail_back";
 			}
-			
-			return "member/member_review_write";
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
-		}
-		String member_email = (String) session.getAttribute("member_email");
-		member = memberService.selectUser(member_email);
-		model.addAttribute("member", member);
-		
-		Integer review = reviewService.getResId(res_id);
-		
-		if(review != null) {
-			model.addAttribute("msg", "이미 작성된 리뷰입니다!");
-			return "fail_back";
-		}
-		
 		return "member/member_review_write";
 	}
 	

@@ -12,15 +12,12 @@
 	</select>
 	<insert id="insertUser">
 		insert into member (
-<<<<<<< HEAD
 			member_email, member_passwd, 
 			member_name, member_date, 
 			member_gender, member_isadmin, member_point,member_license
-=======
 			member_email, member_passwd,
 			member_name, member_birth, 
 			member_gender, member_phone, member_date
->>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 			) 
 			value(
 			#{member_email}, #{member_passwd},
