@@ -143,7 +143,14 @@
 			    <br>
 			        <h1 class="h3 mb-3 fw-normal text-dark">회원가입</h1>
 			        <div class="d-flex justify-content-center">
+			        	<c:choose>
+			        		<c:when test="${param.member_email != null}">
+			        		<input type="email" id="member_email" name="member_email" class="justify-content-center w-50 form-control" placeholder="이메일" value="${param.member_email }" readonly="readonly" required autofocus>			        		
+			        		</c:when>
+			        		<c:otherwise>
 			        	<input type="email" id="member_email" name="member_email" class="justify-content-center w-50 form-control" placeholder="이메일" required autofocus>
+			        		</c:otherwise>
+			        	</c:choose>
 			        	<input class="btn btn-lg btn-primary" type="button" id="emailCheck" value="중복체크">
 			        </div>
 		        	<div id="emailResult"></div>

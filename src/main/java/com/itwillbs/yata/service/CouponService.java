@@ -48,4 +48,7 @@ public class CouponService {
 	public int couponUsed(String coup_idx, String member_email) {
 		return mapper.couponUsed(coup_idx,member_email);
 	}
+	public int couponExpired() {
+		return mapper.couponExpired();
+	}
 }

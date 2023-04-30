@@ -25,4 +25,5 @@ public interface CouponMapper {
 	
 	List<CouponVO> userCoupon(String member_email);
 	int couponUsed(@Param("coup_idx") String coup_idx, @Param("member_email") String member_email);
+	int couponExpired();
 }

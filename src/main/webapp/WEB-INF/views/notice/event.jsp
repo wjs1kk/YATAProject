@@ -124,7 +124,7 @@
 												<img src="resources/images/${couponList.coup_percent}b.jpg">
 												<div class="text-center display-3 font-weight-bold">
 													<button class="w-50 h-10 btn btn-lg btn-primary text-28"
-														style="top: 700px; left: 200px; position: absolute;"
+														style="top: 60%; left: 25%; position: absolute;"
 														onclick="location.href='couponEnroll?coup_idx=${couponList.coup_idx}'">
 														<script type="text/javascript">
 															document.write(${couponList.coup_percent} * 100 +"% 할인쿠폰 발급");

@@ -85,4 +85,8 @@
 			set coup_useable = 'N'
 			where coup_idx = #{coup_idx} and member_email = #{member_email}
 	</update>
+	<delete id="couponExpired">
+		DELETE FROM coupon
+		WHERE coup_end <![CDATA[<]]> DATE_SUB(now(), INTERVAL -1 MINUTE)
+	</delete>
 </mapper>

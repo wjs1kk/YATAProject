@@ -38,6 +38,7 @@ public class HomeController {
 	public String home(Model model, HttpSession session) {
 		List<ReviewVO> reviewList = service.getReview();
 	    model.addAttribute("review", reviewList);
+	    couponService.couponExpired();
 	    return "index";
 	}
 	
