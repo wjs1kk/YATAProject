@@ -3,6 +3,7 @@ package com.itwillbs.yata.service;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,9 +76,12 @@ public class MemberService {
 
 		return mapper.loginLookup(member_email);
 	}
+	
+	// 운전면허증 등록
 	public int insertLicense(LicenseVO license) {
 		return mapper.insertLicense(license);
 	}
+
 }
 
 

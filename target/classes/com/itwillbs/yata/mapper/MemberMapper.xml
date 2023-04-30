@@ -132,15 +132,15 @@
 		FROM member
 		WHERE member_email = #{member_email}
 	</select>
-<!-- 	면허인증 -->
-	<insert id="insertLicense">
+	<!-- 면허인증 -->
+	<insert id="insertLicense" parameterType="string">
 		INSERT INTO
-		license
-        (member_email, license_num, license_pass)
-			VALUES (
-				#{member_email},
-				#{license_num},
-				#{license_pass}
-			)
+			license
+				VALUES(
+					null,
+					#{member_email},
+					#{license_num},
+					#{license_pass}
+				)
 	</insert>
   </mapper>

@@ -104,6 +104,9 @@
 												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
 												 style="cursor: pointer;"
 												data-type="faq">자주묻는 질문</a>
+											<a
+												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
+												id="modal_btn" onclick="location.href='mypage?tab=license'" style="cursor: pointer;">운전면허증 등록</a>
 										</div>
 									</div>
 								</div>

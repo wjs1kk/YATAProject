@@ -1,16 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>YATA</title>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	function mLicense() {
+		let city = document.querySelector('#city');
+		let licenseNum = document.querySelector("#license_num");
+		let licenseNum2 = document.querySelector("#license_num2");
+		let licenseNum3 = document.querySelector("#license_num3");
+
+		let license_num = city.value + "-" + licenseNum.value + "-"
+				+ licenseNum2.value + "-" + licenseNum3.value;
+		let license_pass = document.querySelector("#license_pass").value;
+
+		alert("운전면허증 등록 완료");
+	}
+</script>
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
-<body style="">
+<body>
 	<main id="content" role="main">
 		<div class="main-contents">
 			<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -46,7 +60,6 @@
 														<div
 															class="js-mypage-txt-user-id color-grey-5 text-12 mb-0 wordbreak-breakall">${member.member_email}</div>
 													</div>
-
 												</div>
 											</div>
 										</div>
@@ -68,9 +81,10 @@
 													height="26px"><span class="color-grey-3 text-14">나의리뷰</span>
 											</div>
 										</div>
-										<div class="dc-flex justify-content-between pb-5">
+										<div class="dc-flex justify-content-between pb-5" id="">
 											<div class="js-mypage-btn-point dc-flex flex-stretch pr-1"
-												style="flex-basis: 50%" onclick="location.href='mypage?tab=point'">
+												style="flex-basis: 50%"
+												onclick="location.href='mypage?tab=point'">
 												<div
 													class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press">
 													<div class="js-mypage-txt-point text-16-b">${member.member_point}
@@ -80,17 +94,13 @@
 											</div>
 											<div
 												class="js-mypage-btn-coupon dc-flex flex-stretch pl-1 position-relative"
-												style="flex-basis: 50%" onclick="location.href='mypage?tab=coupon'">
+												style="flex-basis: 50%"
+												onclick="location.href='mypage?tab=coupon'">
 												<div
 													class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press">
-													<div class="js-mypage-txt-coupon-cnt text-16-b">${userCoupon_count } 장</div>
+													<div class="js-mypage-txt-coupon-cnt text-16-b">${userCoupon_count }
+														장</div>
 													쿠폰
-												</div>
-												<div class="mypage-talk-coupon dc-none"
-													id="js_mypage_talk_coupon" style="display: none;">
-													<div
-														class="talk-coupon text-white line-height-1 white-space-nowrap">소멸예정
-														쿠폰이 있어요!</div>
 												</div>
 											</div>
 										</div>
@@ -102,18 +112,21 @@
 									<div>
 										<h3 class="color-grey-3 text-14 list-border-bottom">메뉴</h3>
 										<div class="list-group list-group-flush">
-											<a	class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0" onclick="location.href='modifyInfo'" style="cursor: pointer;">내
-												정보 관리
-											</a> 
-											<a class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0" onclick="location.href='customer_service'" style="cursor: pointer;"
-											data-type="faq">자주묻는 질문
-											</a>
 											<a
 												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
-												id="modal_btn" onclick="location.href='mypage?tab=license'" style="cursor: pointer;">운전면허증 등록</a>
+												onclick="location.href='modifyInfo'"
+												style="cursor: pointer;">내 정보 관리</a> <a
+												class="js-mypage-btn-left-menu js-btn-go-help-for-mypage py-2 text-decoration-none px-0"
+												onclick="location.href='customer_service'"
+												style="cursor: pointer;" data-type="faq">자주묻는 질문</a>
+											<div
+												class="js-mypage-btn-left-menu js-mypage-btn-profile py-2 text-decoration-none px-0"
+												onclick="location.href='mypage?tab=license'" style="cursor: pointer;">운전면허증
+												등록</div>
 										</div>
 									</div>
 								</div>
+
 							</div>
 							<div class="text-left pt-5">
 								<div>
@@ -121,10 +134,10 @@
 									<div
 										class="dc-flex justify-content-between align-items-center mt-3">
 										<div class="text-14">
-											<div class="font-weight-bold color-grey-2" >1:1 문의</div>
+											<div class="font-weight-bold color-grey-2">1:1 문의</div>
 										</div>
 										<div class="center-align-container">
-											<button onclick="location.href='write.mf'"
+											<button
 												class="js-btn-channel-talk btn btn-outline-dark btn-sm">문의하기</button>
 										</div>
 									</div>
@@ -136,61 +149,74 @@
 							</div>
 						</div>
 					</div>
+					<!-- license -->
 					<div class="col-md-8 pb-6">
-						<div class="mypage-section" id="mypage_section_coupon" style="">
-							
-							<section class="carmore-section">
+						<div class="mypage-section" id="mypage_section_rent_license">
+							<section class="carmore-section pt-0 mobile-header-container">
 								<div class="container">
-									<h3 class="color-grey-5 text-16">쿠폰 목록</h3>
-									<div class="text-14 color-grey-4 py-3">
-										보유쿠폰&nbsp;<span class="font-weight-bold" id="js_vdcp_coupon_cnt">${userCoupon_count }</span>장
+									<h3 class="d-flex justify-content-center text-secondary">운전면허증 등록</h3>
+									<hr>
+									<label for="name" class="d-flex justify-content-center visually-hidden">이름</label>
+									<div class="d-flex justify-content-center">
+										<input type="text" class="w-50 form-control"
+											style="margin-bottom: 10px;" id="member_name"
+											placeholder="이름" value="${member.member_name}"
+											readonly="readonly">
 									</div>
-									<div id="vcdp_container_coupon_list">
-									<c:forEach items="${userCoupon }" var="userCoupon">
-										<div class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item"
-											data="8935808">
-											<div
-												class="dc-flex justify-content-between align-items-start">
-												<div class="pb-2">
-													<span
-														class="badge badge-primary text-white font-weight-bold"
-														id="cbc_grade"></span>
-													<div class="pr-2">
-														<div
-															class="cbc-txt-coupon-title text-12 font-weight-bold color-grey-3 dc-inline">신규가입
-															${userCoupon.coup_name }</div>
-														<div
-															class="js-cbc-txt-coupon-dday ml-1 text-12 font-weight-bold color-red dc-inline">~${userCoupon.coup_end }</div>
-													</div>
-												</div>
-												
-											</div>
-											<div class="dc-flex align-items-baseline">
-												<div class="cbc-txt-coupon-price text-32 font-weight-bold color-grey-2">
-													<script type="text/javascript">
-														document.write(${userCoupon.coup_percent} * 100)
-													</script>
-												</div>
-												<div
-													class="cbc-txt-coupon-unit text-18 font-weight-bold color-grey-2 ml-1">%</div>
-											</div>
-											
-											<div class="cbc-txt-coupon-expiration-date text-10 color-grey-5">~${userCoupon.coup_end }까지 사용</div>
-											<div class="cbc-btn-direct-reservation dc-none" style="display: none;">
-												<hr>
-												<div class="dc-flex justify-content-center align-items-center">
-													<div class="ml-1 text-16 font-weight-bold js-direct-reservation-btnv js-move-direct-reservation">바로
-														사용하기</div>
-													<img class="m-0"
-														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIHN0cm9rZT0iIzBENkZGQyIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOS41IDNsNSA1LTUgNU0xLjUgOGgxMyIvPgo8L3N2Zz4K">
-												</div>
-											</div>
-										</div>
-										</c:forEach>
-										
-									</div>		
-									<p class="text-14 color-grey-5 my-3 text-center space-2a dc-none"
-										id="vcdp_item_coupon_empty">사용할 수 있는 쿠폰이 없습니다.</p>
+									<label for="name" class="d-flex justify-content-center visually-hidden">생년월일</label>
+									<div class="d-flex justify-content-center">
+										<input type="text" class="w-50 form-control"
+											style="margin-bottom: 10px;" id="member_birth"
+											placeholder="생년월일">
+									</div>
+									<label for="licenseNum" class="d-flex justify-content-center visually-hidden">운전면허번호</label>
+									<div class="d-flex justify-content-center">
+										<select class="w-20 form-control" name="city" id="city">
+											<option value="11">서울(11)</option>
+											<option value="12">부산(12)</option>
+											<option value="13">경기(13)</option>
+											<option value="13">경기남부(13)</option>
+											<option value="14">강원(14)</option>
+											<option value="15">충북(15)</option>
+											<option value="16">충남(16)</option>
+											<option value="17">전북(17)</option>
+											<option value="18">전남(18)</option>
+											<option value="19">경북(19)</option>
+											<option value="20">경남(20)</option>
+											<option value="21">제주(21)</option>
+											<option value="22">대구(22)</option>
+											<option value="23">인천(23)</option>
+											<option value="24">광주(24)</option>
+											<option value="25">대전(25)</option>
+											<option value="26">울산(26)</option>
+											<option value="28">경기북부(28)</option>
+											<option value="29">세종(29)</option>
+										</select> <input type="text" class="w-20 form-control"
+											name="license_num" id="license_num" placeholder="**"
+											maxlength="2" /> <input type="text" class="w-30 form-control"
+											style="margin-bottom: 10px;" name="license_num2"
+											id="license_num2" placeholder="******" maxlength="6" /> <input
+											type="text" class="w-30 form-control"
+											style="margin-bottom: 10px;" name="license_num3"
+											id="license_num3" placeholder="**" maxlength="2" />
+									</div>
+									<label for="birth" class="d-flex justify-content-center visually-hidden">암호일련번호</label>
+									<div class="d-flex justify-content-center">
+										<input type="text" class="w-50 form-control"
+											name="license_pass" id="license_pass"
+											style="margin-bottom: 10px;" id="license_pass"
+											placeholder="암호일련번호" maxlength="6" />
+									</div>
+									<hr>
+									<br>
+									<div class="d-flex justify-content-center" id="apply"
+										data-backdrop="static" data-keyboard="false">
+										<button class="justify-content-center btn btn-lg btn-primary"
+											type="submit" style="width: 250px; margin-bottom: 15px"
+											id="submit" onclick="mLicense()">등록</button>
+										<button class="justify-content-center btn btn-lg btn-secondary"
+											style="width: 250px; margin-left: 15px; margin-bottom: 15px" type="button">닫기</button>
+									</div>
 								</div>
 							</section>
 						</div>

@@ -1,13 +1,15 @@
 package com.itwillbs.yata.vo;
 
 public class LicenseVO {
+	private int license_idx;
 	private String member_email;
 	private String license_num;
 	private String license_pass;
 
 	public LicenseVO() {}
 
-	public LicenseVO(String member_email, String license_num, String license_pass) {
+	public LicenseVO(int license_idx, String member_email, String license_num, String license_pass) {
+		this.license_idx = license_idx;
 		this.member_email = member_email;
 		this.license_num = license_num;
 		this.license_pass = license_pass;
@@ -39,8 +41,7 @@ public class LicenseVO {
 
 	@Override
 	public String toString() {
-		return "LicenseVO [member_email=" + member_email + ", license_num=" + license_num + ", license_pass="
-				+ license_pass + "]";
+		return "LicenseVO [license_idx=" + license_idx + ", member_email=" + member_email + ", license_num="
+				+ license_num + ", license_pass=" + license_pass + "]";
 	}
-
 }

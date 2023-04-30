@@ -37,5 +37,6 @@ public interface MemberMapper {
 	public String loginLookup(Object member_email);
 	//2023-04-27 김동욱 이메일 중복체크
 	public String selectEmailCheck(String member_email);
+	// 운전면허증 등록
 	int insertLicense(LicenseVO license);
 }

@@ -92,7 +92,7 @@ public class MemberController {
 	}
 
 	@GetMapping("mypage")
-	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, Model model, HttpSession session) {
+	public String mypage(@RequestParam(value = "tab", required = false, defaultValue = "") String tab, Model model, HttpSession session, HttpServletRequest req, LicenseVO license) {
 		if(session.getAttribute("member_email") == null) {
 			model.addAttribute("msg", "로그인 후 이용가능합니다.");
 			return "redirect:/login";
@@ -112,6 +112,7 @@ public class MemberController {
 			}
 			List<ReservVO> resList = reservService.myReservation(member_email);
 			model.addAttribute("resList", resList);
+			
 			return "member/member_history";
 
 		// 나의리뷰	
@@ -143,8 +144,40 @@ public class MemberController {
 			}
 			model.addAttribute("userCoupon",userCoupon);
 			return "member/member_coupon";
+		} else if(tab.equals("license")) {
+			if(session.getAttribute("member_email") == null) {
+				model.addAttribute("msg", "로그인 후 이용가능합니다.");
+				return "redirect:/login";
+			}
+			return "member/member_license";
 		}
 		return "member/member_mypage";
+	}
+	
+	// 운전면허 등록
+	@GetMapping("licensePro")
+	public String licensePro(HttpServletRequest req, LicenseVO license, HttpSession session, Model model) {
+		String member_email = (String) session.getAttribute("member_email");
+		String license_pass = license.getLicense_pass();
+		String license_num = req.getParameter("license_num");
+		
+		license.setMember_email(member_email);
+		license.setLicense_pass(license_pass);
+		license.setLicense_num(req.getParameter("license_num"));
+		
+		
+		int insertCount = memberService.insertLicense(license);
+		
+		System.out.println(member_email + ", " + license_pass + ", " + license_num);
+		
+		if(insertCount > 0) {
+			model.addAttribute("msg", "운전면허증 등록 완료");
+			model.addAttribute("target", "mypage");
+			return "success";
+		}  else {
+			model.addAttribute("msg", "운전면허증 등록 실패");
+			return "fail_back";
+		}
 	}
 	// 내정보관리
 	@GetMapping("modifyInfo")
@@ -192,13 +225,7 @@ public class MemberController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String securePasswd = passwordEncoder.encode(memberVO.getMember_passwd());
 		memberVO.setMember_passwd(securePasswd);
-		String license_num = req.getParameter("city") + "-" + req.getParameter("license_num") + "-" + req.getParameter("license_num2") + "-" + req.getParameter("license_num3");
 		
-
-		license.setMember_email(member_email);
-		license.setLicense_num(license_num);
-		
-		memberService.insertLicense(license);
 		int updateCount = memberService.modifyUser(memberVO);
 
 		if (updateCount > 0) {
