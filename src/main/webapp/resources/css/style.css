@@ -59510,6 +59510,11 @@ a.bg-bluegreylight:hover, a.bg-bluegreylight:focus, button.bg-bluegreylight:hove
 .w-20 {
 	width: 20% !important
 }
+/* 김태영 부트스트랩 수정 */
+.w-23 {
+	width: 23% !important
+}
+/* 김태영 부트스트랩 수정 */
 
 .w-30 {
 	width: 30% !important

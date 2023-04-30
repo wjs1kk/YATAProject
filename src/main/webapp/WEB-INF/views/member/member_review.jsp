@@ -200,8 +200,12 @@
 																</c:otherwise>
 															</c:choose>
 														</td>
+<<<<<<< HEAD
 														<td>${myReview.review_place}</td>
 														<td>${myReview.review_content}</td>
+=======
+														<td>${myReview.review_content }</td>
+>>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 													</tr>
 												</c:forEach>
 												</tbody>

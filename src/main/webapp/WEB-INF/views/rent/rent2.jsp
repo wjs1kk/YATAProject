@@ -1005,6 +1005,99 @@ function maskingName(name) {
 												</div>
 											</div>
 										</section>
+<<<<<<< HEAD
+=======
+										<section class="carmore-section is-hide-new-branch">
+											<div class="container">
+												<div class="mt-5">
+													<div
+														class="dc-flex justify-content-between align-items-center">
+														<div>
+															<span
+																class="color-grey-2 text-28 font-weight-bold wordbreak-keepall"
+																id="rpc_company_point">4.7</span><span
+																class="color-grey-6 text-18 wordbreak-keepall">/
+																5.0</span>
+														</div>
+													</div>
+<!-- 													<p class="text-14 color-grey-4" id="rpc_txt_summary_info">최근 -->
+<!-- 														예약수 11593건 | 누적 예약수 26013건 | 입점일 2019-11-28</p> -->
+													<hr>
+													<div
+														class="dc-flex justify-content-between align-items-center mb-2">
+<!-- 														<div> -->
+<!-- 															<p class="color-grey-4 text-14 mb-0">차량 관리 상태</p> -->
+<!-- 														</div> -->
+														<div class="dc-flex align-items-center">
+															<div class="progress" style="width: 128px; height: 4px">
+																<div class="progress-bar" id="rpc_review_progress_1"
+																	style="width: 94%;"></div>
+															</div>
+<!-- 															<div class="ml-1 text-12 font-weight-bold text-primary" -->
+<!-- 																id="rpc_review_1_point">4.7</div> -->
+														</div>
+													</div>
+													<div
+														class="dc-flex justify-content-between align-items-center mb-2">
+														<div>
+															<p class="color-grey-4 text-14 mb-0">업체 친절도</p>
+														</div>
+														<div class="dc-flex align-items-center">
+															<div class="progress" style="width: 128px; height: 4px">
+																<div class="progress-bar" id="rpc_review_progress_2"
+																	style="width: 92%;"></div>
+															</div>
+															<div class="ml-1 text-12 font-weight-bold text-primary"
+																id="rpc_review_2_point">4.6</div>
+														</div>
+													</div>
+													<div
+														class="dc-flex justify-content-between align-items-center mb-2">
+														<div>
+															<p class="color-grey-4 text-14 mb-0">업체의 이용절차 안내</p>
+														</div>
+														<div class="dc-flex align-items-center">
+															<div class="progress" style="width: 128px; height: 4px">
+																<div class="progress-bar" id="rpc_review_progress_3"
+																	style="width: 94%;"></div>
+															</div>
+															<div class="ml-1 text-12 font-weight-bold text-primary"
+																id="rpc_review_3_point">4.7</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+										<section class="carmore-section rpc-only-new-company"
+											style="display: none;">
+											<div class="container">
+												<img
+													class="dc-flex align-items-center img-fluid mx-auto mb-3 max-w-lg-50rem"
+													src="/home/images/image-new-company-review-mocar.png">
+												<p class="text-center text-14 color-grey-3">아직 충분한 평가가
+													없어 표시되지 않습니다.</p>
+											</div>
+										</section>
+										<section class="carmore-section dc-none"
+											id="js_rpc_section_carmore_word" style="display: none;">
+											<div class="container">
+												<div class="text-center mb-3">
+													<img
+														src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjIiIGhlaWdodD0iNDMiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAxMjIgNDMiPgogICAgPHBhdGggZmlsbD0iIzBENkZGQyIgZD0iTTE5LjUwMiAzMS4yNGgtMlYyNWgtMy4zOHYxNy4wOGgzLjM4di03LjU2aDJ2LTMuMjh6bS0xNy41Ni0yLjhoNi40NnYyLjgyaC02LjQ2djMuMDZoNS45Yy0uOTggMi41OC0zLjEyIDMuNzgtNS45IDMuOHYzLjE2YzUuNzItLjAyIDkuODItMy45MiA5LjgyLTEwLjc2VjI1LjRoLTkuODJ2My4wNHpNMzEuMzYgMzguMzJ2LTIuNzZoNS45OFYyNS40aC0xNS40djEwLjE2aDUuOTh2Mi43NkgyMXYzLjE2aDE3LjI4di0zLjE2aC02Ljkyem0tNi4wNi05Ljc2aDguNjh2My44NkgyNS4zdi0zLjg2ek01OCAzMS4yNGgtMlYyNWgtMy4zOHYxNy4wOEg1NnYtNy41Nmgydi0zLjI4ek00NS41OCAyNS4yYy0zLjE4IDAtNS4zIDIuNTItNS4zIDguMTQgMCA1LjYyIDIuMTIgOC4xNCA1LjMgOC4xNCAzLjE4IDAgNS4yOC0yLjUyIDUuMjgtOC4xNCAwLTUuNjItMi4xLTguMTQtNS4yOC04LjE0em0wIDEzLjE4Yy0xLjEyIDAtMS45Ni0xLjItMS45Ni01LjA0IDAtMy44Mi44NC01LjA0IDEuOTYtNS4wNCAxLjEgMCAxLjk0IDEuMjIgMS45NCA1LjA0IDAgMy44NC0uODQgNS4wNC0xLjk0IDUuMDR6TTc2LjMwMyAyNi4xNmgtNC4xMlYyNC43aC0zLjQ0djEuNDZoLTQuMTJ2Mi42NGgxMS42OHYtMi42NHptNC41MiAyLjhWMjVoLTMuMzh2MTIuNzRoMy4zOHYtNS41aDJ2LTMuMjhoLTJ6bS0xMC4zNiA3LjM2YzIuODQgMCA1LjI0LTEuMiA1LjI0LTMuNTIgMC0yLjMyLTIuNC0zLjUyLTUuMjQtMy41Mi0yLjg0IDAtNS4yNCAxLjItNS4yNCAzLjUyIDAgMi4zMiAyLjQgMy41MiA1LjI0IDMuNTJ6bTAtNC42YzEuMjIgMCAyLjAyLjQ4IDIuMDIgMS4wOCAwIC42LS44IDEuMDgtMi4wMiAxLjA4cy0yLjAyLS40OC0yLjAyLTEuMDhjMC0uNi44LTEuMDggMi4wMi0xLjA4em0tMS4yOCA1LjFoLTMuNDR2NS4yNmgxNS4zMnYtMi45NGgtMTEuODh2LTIuMzJ6TTEwMi4wNjEgMzEuMjRoLTJWMjVoLTMuMzh2MTcuMDhoMy4zOHYtNy41Nmgydi0zLjI4em0tMTcuNDYgMTAuMDRoOS45NFYyNS40aC05Ljk0djE1Ljg4em0zLjM4LTEyLjc0aDMuMTh2OS42aC0zLjE4di05LjZ6TTExOS43NzkgMjVoLTMuMzh2MTcuMDhoMy4zOFYyNXptLTUuNjIuNGgtMTAuMTR2MTUuODhoNi45MmMxLjY0IDAgMy41Mi0uMyA0LjU2LS44MnYtMy4wNGMtMS4wNC40OC0yLjguNzgtNC40Mi43OGgtMy42NHYtOS43Mmg2LjcyVjI1LjR6TTY1Ljg2MiAzLjE2N0M2NC40NCAxLjcyMyA2Mi42ODIgMSA2MC41OTQgMWMtMi4xNTMgMC0zLjk2LjcxNi01LjQxMyAyLjE0OUM1My43MjcgNC41ODIgNTMgNi4zNTMgNTMgOC40NjZjMCAyLjAwOC42OTkgMy42ODggMi4wNTQgNS4wMzYgMS4zNTggMS4zNDggMy4xNjggMi4wODUgNS4yODUgMi4yMTJ2Mi4yOWMyLjQ3NC0uNjcgNC4yLTEuODYgNS41ODYtMy41NzhDNjcuMzE1IDEyLjcxMSA2OCAxMC43NDYgNjggOC41M2MuMDA0LTIuMTM1LS43MTYtMy45MjQtMi4xMzgtNS4zNjN6Ii8+Cjwvc3ZnPgo=">
+												</div>
+												<div class="mt-3" id="js_rpc_container_carmore_word"></div>
+												<div class="dc-none" id="js_rpc_template_carmore_word">
+													<div class="dc-flex align-items-start mb-2">
+														<img
+															src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik04IDE0QzExLjMxMzcgMTQgMTQgMTEuMzEzNyAxNCA4QzE0IDQuNjg2MjkgMTEuMzEzNyAyIDggMkM0LjY4NjI5IDIgMiA0LjY4NjI5IDIgOEMyIDExLjMxMzcgNC42ODYyOSAxNCA4IDE0Wk04IDE1QzExLjg2NiAxNSAxNSAxMS44NjYgMTUgOEMxNSA0LjEzNDAxIDExLjg2NiAxIDggMUM0LjEzNDAxIDEgMSA0LjEzNDAxIDEgOEMxIDExLjg2NiA0LjEzNDAxIDE1IDggMTVaIiBmaWxsPSIjNjY2NjY2Ii8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTEuMTcxNSA2LjMyOTE4QzExLjM2NzUgNi41MjM2NyAxMS4zNjg4IDYuODQwMjUgMTEuMTc0MyA3LjAzNjI5TDguMTk4MTIgMTAuMDM2M0M4LjAxNDM2IDEwLjIyMTUgNy43MTkwNyAxMC4yMzQzIDcuNTE5OTggMTAuMDY1N0w1LjQ5NjE3IDguMzUxMzhDNS4yODU0NiA4LjE3MjkgNS4yNTkzNCA3Ljg1NzM5IDUuNDM3ODIgNy42NDY2OUM1LjYxNjMxIDcuNDM1OTggNS45MzE4MSA3LjQwOTg1IDYuMTQyNTIgNy41ODgzM0w3LjgxMzY4IDkuMDAzOTFMMTAuNDY0NCA2LjMzMkMxMC42NTg5IDYuMTM1OTYgMTAuOTc1NSA2LjEzNDcgMTEuMTcxNSA2LjMyOTE4WiIgZmlsbD0iIzk0QzBGRSIvPgo8L3N2Zz4K"
+															style="margin-top: 3px;">
+														<div class="text-14 color-grey-4 ml-1"
+															id="js_rpc_txt_carmore_word"></div>
+													</div>
+												</div>
+											</div>
+										</section>
+>>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 										<section class="carmore-section rpc-only-old-company"
 											id="js_rpc_only_old_company">
 											<div class="container">

@@ -1,6 +1,10 @@
 package com.itwillbs.yata.vo;
+<<<<<<< HEAD
 import java.sql.Date;
 
+=======
+import java.sql.*;
+>>>>>>> afc33c2d139bce7eda0cd5f975d41b67792ade93
 /*
 CREATE TABLE review(
 	review_idx int, -- 게시판 id
