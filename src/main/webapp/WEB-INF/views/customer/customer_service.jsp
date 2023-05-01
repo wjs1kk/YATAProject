@@ -37,7 +37,6 @@
 .mypage-section {
 	display: none;
 }
-
 .on {
 	display: block;
 }
@@ -176,13 +175,11 @@
 				<div class="mypage-section" id="mypage_section_setting">
 					<table class="tb-list">
 						<colgroup>
-							<col style="width: 10%">
 							<col>
-							<col style="width: 11%">
+							<col style="width: 18%">
 						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col">No</th>
 								<th scope="col">제목</th>
 								<th scope="col">날짜</th>
 							</tr>
@@ -202,7 +199,6 @@
 								<c:otherwise>
 									<c:forEach var="myMailForm" items="${myMailForm}">
 										<tr>
-											<td>${myMailForm.board_num}</td>
 											<td class="tb-subj"><c:if
 													test="${myMailForm.board_re_lev > 0 }">
 													<c:forEach var="i" begin="1"

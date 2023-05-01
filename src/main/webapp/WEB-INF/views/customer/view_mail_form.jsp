@@ -38,7 +38,6 @@
 .mypage-section {
 	display: none;
 }
-
 .on {
 	display: block;
 }

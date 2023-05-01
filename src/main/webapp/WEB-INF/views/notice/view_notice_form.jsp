@@ -34,7 +34,6 @@
 .mypage-section {
 	display: none;
 }
-
 .on {
 	display: block;
 }
@@ -106,15 +105,6 @@
 									<h2 class="tit-size-mid">${notice.board_subject}</h2>
 								</div>
 								<div class="form-cont">
-									<div class="row type2">
-										<label for="input02" class="input-tit">제목<span
-											class="txt-red">*</span></label>
-										<div class="input-cont">
-											<div class="inputT">
-												<div id="board_subject">${notice.board_subject}</div>
-											</div>
-										</div>
-									</div>
 
 									<div class="row type2">
 										<label for="" class="input-tit">공지내용<span

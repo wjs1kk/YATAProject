@@ -2,6 +2,7 @@
 
 /* 경은 추가 시작 */
 
+/* 좀더 정리 시작 */
 /* 고객센터 - 1:1문의 */
 .noMailForm {
 	text-align: center;
@@ -16,6 +17,7 @@
     width: 100%;
 }
 .it-notice {
+    margin-left: 25px;
     background-color: #97cf2f;
     color: #fff;
     padding: 2px 5px;
@@ -23,15 +25,18 @@
     border-radius: 5px;
     margin-right: 10px;
 }
-#pageList input:first-child {
-	padding: 5px 10px;
-	border-radius: 5px;
-	background-color: #f2f2f2;
-	color: #fff;
-	border: none;
+/* #pageList input:first-child { */
+/* 	padding: 5px 10px; */
+/* 	border-radius: 5px; */
+/* 	background-color: #f2f2f2; */
+/* 	color: #fff; */
+/* 	border: none; */
+/* } */
+#board_content {
+	 white-space: break-spaces;
 }
 .writeBtn,
-#pageList input:last-child {
+#pageList input {
     padding: 5px 10px;
     border-radius: 5px;
     background-color: #0d6ffc;
@@ -71,8 +76,8 @@ thead {
     color: #fff;
     border: none;
 }
-#btnArea input:nth-child(2) {
-    background-color: #d1d1d1;
+#btnArea input:nth-child(1) {
+    background-color: #dc3545;
 }
 #btnArea input:nth-child(3) {
     background-color: #f2f2f2;
@@ -33195,7 +33200,7 @@ a:active.js-a-href {
 }
 
 #global_footer {
-/*     padding-bottom: 1.5rem */
+    padding-bottom: 1.5rem
 }
 
 @media(max-width: 991.98px) {
