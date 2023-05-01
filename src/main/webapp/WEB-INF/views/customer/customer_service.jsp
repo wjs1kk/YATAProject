@@ -37,6 +37,7 @@
 .mypage-section {
 	display: none;
 }
+
 .on {
 	display: block;
 }
@@ -191,7 +192,7 @@
 										<td colspan="3" class="noMailForm">로그인 후 조회 가능합니다.</td>
 									</tr>
 								</c:when>
-								<c:when test="${empty myMailForm }" >
+								<c:when test="${empty myMailForm }">
 									<tr>
 										<td colspan="3" class="noMailForm">작성된 1:1문의가 없습니다.</td>
 									</tr>
@@ -208,7 +209,14 @@
 														width="10px" height="10px" style="margin: 0 5px 0 20px;">
 													<a href="view.mf?board_num=${myMailForm.board_num -1}">
 												</c:if> <c:if test="${myMailForm.board_re_lev < 1 }">
-													<span class="it-notice">${myMailForm.board_progress}</span>
+													<c:choose>
+														<c:when test="${myMailForm.board_progress eq '진행중'}">
+															<span class="it-notice" style="background-color: #ffab00">${myMailForm.board_progress}</span>
+														</c:when>
+														<c:otherwise>
+															<span class="it-notice" style="background-color: #97cf2f">${myMailForm.board_progress}</span>
+														</c:otherwise>
+													</c:choose>
 													<a href="view.mf?board_num=${myMailForm.board_num}">
 												</c:if> ${myMailForm.board_subject} </a></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd"
