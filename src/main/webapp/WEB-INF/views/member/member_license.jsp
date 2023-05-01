@@ -156,9 +156,10 @@
 										<label for="name"
 											class="d-flex justify-content-center visually-hidden">생년월일</label>
 										<div class="d-flex justify-content-center">
-											<input type="text" class="w-50 form-control"
-												style="margin-bottom: 10px; width: 60% !important;"
-												id="member_birth" name="member_birth" placeholder="생년월일">
+											<input class="w-50 form-control" type="date"
+												name="member_birth" id="member_birth" max="2023-05-02"
+												min="1900-01-01" value="2023-05-02"
+												style="width: 60% !important;">
 										</div>
 										<label for="licenseNum"
 											class="d-flex justify-content-center visually-hidden">운전면허번호</label>
